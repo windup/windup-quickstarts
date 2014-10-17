@@ -8,14 +8,20 @@ import org.jboss.forge.arquillian.Dependencies;
 import org.jboss.forge.arquillian.archive.ForgeArchive;
 import org.jboss.forge.furnace.repositories.AddonDependencyEntry;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.windup.engine.WindupProcessor;
+import org.jboss.windup.engine.predicates.RuleProviderWithDependenciesPredicate;
+import org.jboss.windup.exec.WindupProcessor;
+import org.jboss.windup.exec.configuration.WindupConfiguration;
 import org.jboss.windup.graph.GraphContext;
+import org.jboss.windup.graph.GraphContextFactory;
 import org.jboss.windup.graph.model.WindupConfigurationModel;
 import org.jboss.windup.graph.model.resource.FileModel;
 import org.jboss.windup.graph.service.GraphService;
+import org.jboss.windup.graph.service.WindupConfigurationService;
 import org.jboss.windup.reporting.model.ClassificationModel;
 import org.jboss.windup.reporting.model.InlineHintModel;
-import org.jboss.windup.rules.apps.java.scan.ast.TypeReferenceModel;
+import org.jboss.windup.rules.apps.java.model.WindupJavaConfigurationModel;
+import org.jboss.windup.rules.apps.java.scan.ast.JavaTypeReferenceModel;
+import org.jboss.windup.rules.apps.java.service.WindupJavaConfigurationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -54,31 +60,36 @@ public class MyJavaHintsTest
     private WindupProcessor processor;
 
     @Inject
-    private GraphContext context;
+    private GraphContextFactory contextFactory;
 
-    
+
     @Test
     public void testJavaHints()
     {
-        try
+        try(GraphContext context = contextFactory.create())
         {
             FileModel inputPath = context.getFramed().addVertex(null, FileModel.class);
             inputPath.setFilePath("src/test/java/org/jboss/windup/qs/rules");
             FileModel fileModel = context.getFramed().addVertex(null, FileModel.class);
             fileModel.setFilePath("src/test/java/org/jboss/windup/qs/rules/MyJavaHintsTest.java");
-            
-            WindupConfigurationModel config = GraphService.getConfigurationModel(context);
+
+            WindupConfigurationModel config = WindupConfigurationService.getConfigurationModel(context);
             config.setInputPath(inputPath);
-            config.setSourceMode(true);
-            
-            processor.execute();
-            
-            
+
+            WindupJavaConfigurationModel javaCfg = WindupJavaConfigurationService.getJavaConfigurationModel(context);
+            javaCfg.setSourceMode(true);
+
+            WindupConfiguration wc = new WindupConfiguration();
+            wc.setGraphContext(context);
+            wc.setRuleProviderFilter(new RuleProviderWithDependenciesPredicate(MyHintsRuleProvider.class));
+            processor.execute(wc);
+
+
             GraphService<InlineHintModel> hintService = new GraphService<>(context, InlineHintModel.class);
             GraphService<ClassificationModel> classificationService = new GraphService<>(context, ClassificationModel.class);
-            
-            GraphService<TypeReferenceModel> typeRefService = new GraphService<>(context, TypeReferenceModel.class);
-            Iterable<TypeReferenceModel> typeReferences = typeRefService.findAll();
+
+            GraphService<JavaTypeReferenceModel> typeRefService = new GraphService<>(context, JavaTypeReferenceModel.class);
+            Iterable<JavaTypeReferenceModel> typeReferences = typeRefService.findAll();
         }
         catch(Exception ex)
         {
