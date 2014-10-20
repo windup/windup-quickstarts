@@ -17,19 +17,10 @@
     <dependencyManagement>
         <dependencies>
 
-            <!-- Forge BOM -->
-            <dependency>
-                <groupId>org.jboss.forge</groupId>
-                <artifactId>forge-bom</artifactId>
-                <version>${version.forge}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
             <!-- Windup BOM -->
             <dependency>
                 <groupId>org.jboss.windup</groupId>
-                <artifactId>windup-rulesets-bom</artifactId>
+                <artifactId>windup-bom</artifactId>
                 <version>${version.windup}</version>
                 <type>pom</type>
                 <scope>import</scope>
