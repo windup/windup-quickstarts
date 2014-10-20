@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <properties>
+        <version.windup>2.0.0.Beta2</version.windup>
+    </properties>
+
+    <parent>
+        <groupId>org.jboss</groupId>
+        <artifactId>jboss-parent</artifactId>
+        <version>16</version>
+        <relativePath />
+    </parent>
+
+    <groupId>org.jboss.windup.qs</groupId>
+    <artifactId>windup-quickstarts-root</artifactId>
+    <version>2.0.0.Beta2</version>
+    <packaging>pom</packaging>
+
+    <name>Windup QuickStart Root</name>
+
+    <modules>
+        <module>javaee-WLServlet</module>
+    </modules>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <distribution>repo</distribution>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <tag>master</tag>
+        <connection>scm:git:https://github.com/windup/windup-quickstarts.git</connection>
+        <developerConnection>scm:git:git@github.com:windup/windup-quickstarts.git</developerConnection>
+        <url>http://github.com/windup/windup-quickstarts</url>
+    </scm>
+
+</project>
