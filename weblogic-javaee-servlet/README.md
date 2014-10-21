@@ -21,6 +21,16 @@ The rule searches for the following annotations:
 
 * *@WLInitParam*: This is the equivalent of the Java EE 6 *@WebInitParam* annotation.
 
+Review the Quickstart Code
+-------------------------
+
+The `MyHintsRuleProvider` class extends `WindupRuleProvider` and overrides the following methods:
+
+* `getPhase()`: This method returns `RulePhase.MIGRATION_RULES`.
+
+* `getExecuteAfter()`: Nothing executes after this, so this method returns an empty list.
+
+* `getConfiguration(GraphContext context)`: This method looks for packages named "weblogic.servlet.annotation.WLServlet". When found, it adds the text "Migrate to Java EE 6 @WebServlet." to the report and points the person to the JBoss EAP 6 documentation.
 
 System requirements
 -------------------
@@ -92,5 +102,21 @@ Remove the Rule
 --------------------
 
 Remove the rule from Windup using the `addon-remove` command.
+
+
+Run the Arquillian Tests 
+-------------------------
+
+This quickstart provides Arquillian tests. 
+
+1. Open a command prompt and navigate to the root directory of this quickstart.
+2. Type the following command to run the test goal:
+
+        mvn clean test
+3. You should see the following results.
+
+        Results :
+
+        Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 
 
