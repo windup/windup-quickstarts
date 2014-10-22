@@ -40,8 +40,7 @@ public class MyHintsRuleProvider extends WindupRuleProvider
     @Override
     public void enhanceMetadata(Context context)
     {
-        // this method simply associates some metadata with all of the rules provided by this
-        // Rule Provider.
+        // Associates some metadata with all of the rules provided by this RuleProvider.
         super.enhanceMetadata(context);
         context.put(RuleMetadata.CATEGORY, "Java");
     }
