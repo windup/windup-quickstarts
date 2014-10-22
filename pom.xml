@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
-        <version.windup>2.0.0.Beta2</version.windup>
+        <version.windup>2.0.0.Beta4</version.windup>
     </properties>
 
     <parent>
@@ -22,6 +22,7 @@
 
     <modules>
         <module>weblogic-javaee-servlet</module>
+        <module>ejb-beanutils-async</module>
     </modules>
 
     <licenses>
