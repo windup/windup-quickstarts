@@ -1,7 +1,9 @@
 package org.jboss.windup.qs.rules;
 
 import java.nio.file.Paths;
+
 import javax.inject.Inject;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.forge.arquillian.AddonDependency;
@@ -15,48 +17,44 @@ import org.jboss.windup.exec.configuration.WindupConfiguration;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.GraphContextFactory;
 import org.jboss.windup.graph.model.resource.FileModel;
-import org.jboss.windup.graph.service.GraphService;
 import org.jboss.windup.reporting.model.ClassificationModel;
 import org.jboss.windup.reporting.model.InlineHintModel;
+import org.jboss.windup.reporting.service.ClassificationService;
+import org.jboss.windup.reporting.service.InlineHintService;
 import org.jboss.windup.rules.apps.java.model.WindupJavaConfigurationModel;
-import org.jboss.windup.rules.apps.java.scan.ast.JavaTypeReferenceModel;
 import org.jboss.windup.rules.apps.java.service.WindupJavaConfigurationService;
-//import org.jboss.windup.util.Checks;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 
 @RunWith(Arquillian.class)
 public class MyJavaHintsTest
 {
     @Deployment
     @Dependencies({
-        @AddonDependency(name = "org.jboss.windup.config:windup-config"),
-        @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
-        @AddonDependency(name = "org.jboss.windup.utils:utils"),
-        @AddonDependency(name = "org.jboss.windup.rules.apps:rules-java"),
-        @AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
-        @AddonDependency(name = "org.jboss.forge.furnace.container:cdi")
+                @AddonDependency(name = "org.jboss.windup.config:windup-config"),
+                @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
+                @AddonDependency(name = "org.jboss.windup.utils:utils"),
+                @AddonDependency(name = "org.jboss.windup.rules.apps:rules-java"),
+                @AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
+                @AddonDependency(name = "org.jboss.forge.furnace.container:cdi")
     })
     public static ForgeArchive getDeployment()
     {
         final ForgeArchive archive = ShrinkWrap.create(ForgeArchive.class)
-            .addBeansXML()
-            .addClass(MyHintsRuleProvider.class)
-            .addAsAddonDependencies(
-                AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
-                AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
-                AddonDependencyEntry.create("org.jboss.windup.utils:utils"),
-                AddonDependencyEntry.create("org.jboss.windup.rules.apps:rules-java"),
-                AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
-                AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi")
-            );
+                    .addBeansXML()
+                    .addClass(MyHintsRuleProvider.class)
+                    .addAsAddonDependencies(
+                                AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
+                                AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
+                                AddonDependencyEntry.create("org.jboss.windup.utils:utils"),
+                                AddonDependencyEntry.create("org.jboss.windup.rules.apps:rules-java"),
+                                AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
+                                AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi")
+                    );
 
         return archive;
     }
-
-    @Inject
-    private MyHintsRuleProvider provider;
 
     @Inject
     private WindupProcessor processor;
@@ -64,14 +62,13 @@ public class MyJavaHintsTest
     @Inject
     private GraphContextFactory contextFactory;
 
-
     @Test
     public void testJavaHints()
     {
-        try(GraphContext context = contextFactory.create())
+        try (GraphContext context = contextFactory.create())
         {
             FileModel fileModel = context.getFramed().addVertex(null, FileModel.class);
-            //fileModel.setFilePath("src/test/java/org/jboss/windup/qs/rules/MyJavaHintsTest.java");
+            // fileModel.setFilePath("src/test/java/org/jboss/windup/qs/rules/MyJavaHintsTest.java");
             fileModel.setFilePath("src/test/resources/app/com/foo/MyWLServletUsingClass.java");
 
             WindupJavaConfigurationModel javaCfg = WindupJavaConfigurationService.getJavaConfigurationModel(context);
@@ -85,19 +82,33 @@ public class MyJavaHintsTest
 
             processor.execute(wc);
 
-
-            GraphService<InlineHintModel> hintService = new GraphService<>(context, InlineHintModel.class);
-            GraphService<ClassificationModel> clsfService = new GraphService<>(context, ClassificationModel.class);
-            GraphService<JavaTypeReferenceModel> typeRefService = new GraphService<>(context, JavaTypeReferenceModel.class);
+            InlineHintService hintService = new InlineHintService(context);
+            ClassificationService classificationService = new ClassificationService(context);
 
             Iterable<InlineHintModel> hints = hintService.findAll();
-            Iterable<ClassificationModel> clsf = clsfService.findAll();
-            Iterable<JavaTypeReferenceModel> typeRefs = typeRefService.findAll();
-            //Checks.checkNotEmpty(hints);
-            //Checks.checkNotEmpty(clsf);
-            //Checks.checkNotEmpty(typeRefs);
+            Iterable<ClassificationModel> classificationModels = classificationService.findAll();
+
+            boolean wlsClassificationFound = false;
+            for (ClassificationModel cm : classificationModels)
+            {
+                if ("WebLogic @WLServlet".equals(cm.getClassification()))
+                {
+                    wlsClassificationFound = true;
+                }
+            }
+            Assert.assertTrue(wlsClassificationFound);
+
+            boolean wlsHintFound = false;
+            for (InlineHintModel hint : hints)
+            {
+                if ("Migrate to Java EE 6 @WebServlet.".equals(hint.getHint()))
+                {
+                    wlsHintFound = true;
+                }
+            }
+            Assert.assertTrue(wlsHintFound);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new RuntimeException(ex.getMessage(), ex);
         }
