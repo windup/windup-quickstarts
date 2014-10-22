@@ -91,17 +91,64 @@ Install the Rule as a Windup Addon
         [windup-distribution-2.0.0.Beta3]$ 
 2. Add the rule to Windup using the `addon-install` command.
 
+* Type the following command at the Windup prompt:
 
-Execute Windup 
+        [windup-distribution-2.0.0.Beta3]$ addon-install  
+
+* Windup responds with this prompt: 
+
+        Coordinate (The addon's "groupId:artifactId,version" coordinate):
+
+*  The `groupId`, `artifactId`, and `version` are specified in the quickstart `pom.xml` file. At the prompt, type the following response:
+       
+        org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Beta3
+
+   You should see the following result:
+
+        ***SUCCESS*** Addon org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Beta3 was installed successfully.
+
+Test the Rule
 ---------------------
 
-To test the rule, follow the instructions to [Execute Windup](https://github.com/windup/windup/wiki/Execute-Windup). To see information reported by this rule, you must test using a WebLogic application that contains the proprietary annotations.
+To test this rule, you must run the migration tool against a WebLogic application that contains the proprietary annotations.
+
+1. Start Windup as described above. 
+
+2. Test the rule WebLogic application by running the `windup-migrate-app` command at the Windup prompt. The command uses this syntax:
+
+        windup-migrate-app --input INPUT_ARCHIVE_OR_FOLDER --output OUTPUT_REPORT_DIRECTORY --packages PACKAGE_1 PACKAGE_2 PACKAGE_N
+
+   For example:
+        windup-migrate-app --input /home/username/my-weblogic-app/ --output /home/username/WindupOutput/my-weblogic-app-report --packages weblogic.servlet
 
 
-Remove the Rule
+For more information about how to run Windup, see: [Execute Windup](https://github.com/windup/windup/wiki/Execute-Windup). 
+
+
+Remove the Rule from Windup
 --------------------
 
 Remove the rule from Windup using the `addon-remove` command.
+
+1. Start Windup as described above. 
+
+2. Type the following command at the Windup prompt:
+
+        [windup-distribution-2.0.0.Beta3]$ addon-remove  
+
+3. Windup responds with a list of installed add-ons.
+
+        [0] - org.jboss.forge.furnace.container:cdi,2.12.1.Final
+        [1] - org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Beta3
+        
+        Installed addons (The installed addons in mutable addon repositories that may be removed): [0-1] 
+
+
+4. Choose the number of this rule addon, in this case, type `1` and hit enter. Then leave it blank and hit enter to finish. You should see:
+
+        ***SUCCESS*** Removed addons: org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Beta3
+
+5. Type `exit` to leave Windup.
 
 
 Run the Arquillian Tests 
