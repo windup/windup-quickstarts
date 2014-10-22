@@ -13,7 +13,7 @@ System requirements
 -------------------
 
 The rules in this repository are designed to be run on Windup 2.0 or later.
-gi
+
 This project requires Java 6.0 (Java SDK 1.6) or later and Maven 3.0 or later.
 
  
