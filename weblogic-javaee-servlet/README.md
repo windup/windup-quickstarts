@@ -53,6 +53,8 @@ Configure Maven
 
 If you have not yet done so, you must configure your Maven settings to access the Windup artifacts. The instructions are located here: [Install and Configure Maven](https://github.com/windup/windup/wiki/Install-and-Configure-Maven).
 
+An example `settings.xml` file is provided  in the root directory of the quickstarts.
+
 
 Start Windup
 ------------

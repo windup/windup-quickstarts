@@ -28,10 +28,13 @@ The rules in this repository are designed to be run on Windup 2.0 or later.
 This project requires Java 6.0 (Java SDK 1.6) or later and Maven 3.0 or later.
 
  
+
 Configure Maven
 ---------------
 
 If you have not yet done so, you must configure your Maven settings to access the Windup artifacts. The instructions are located here: [Install and Configure Maven](https://github.com/windup/windup/wiki/Install-and-Configure-Maven).
+
+An example `settings.xml` file is provided  in the root directory of the quickstarts.
 
 
 Install Windup 2.0
