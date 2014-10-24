@@ -25,13 +25,13 @@ The rule searches for the following annotations:
 Review the Quickstart Code
 -------------------------
 
-The `MyHintsRuleProvider` class extends `WindupRuleProvider` and overrides the following methods:
-
-* `getPhase()`: This method returns `RulePhase.MIGRATION_RULES`.
+The *MyHintsRuleProvider* class extends *WindupRuleProvider* and overrides the following methods:
 
 * `getExecuteAfter()`: Nothing executes after this, so this method returns an empty list.
 
-* `getConfiguration(GraphContext context)`: This method looks for packages named "weblogic.servlet.annotation.WLServlet". When found, it adds the text "Migrate to Java EE 6 @WebServlet." to the report and points the person to the JBoss EAP 6 documentation.
+* `enhanceMetadata(Context context)`: This method specifies additional meta-data about the Rule instances originating from this WindupRuleProvider.
+
+* `getConfiguration(GraphContext context)`: This method looks for "weblogic.servlet.annotation.WLServlet" annotations. If found, it adds the warning text "Migrate to Java EE 6 @WebServlet." to the report, assigns the effort at 8 story points, and provides a link to the JBoss EAP 6 documentation.
 
 
 System requirements
@@ -100,7 +100,9 @@ This is the easiest and fastest way to build the quickstart, install it into the
 
 1. If you have not started Windup, follow the instructions above to [Start Windup](#start-windup).
 
-2. Build the quickstart and install the addon in Windup using the `addon-build-and-install` command in the Windup console. This command uses the following syntax, where `QUICKSTART_HOME` refers the root directory of this quickstart:
+2. Build the quickstart and install the addon in Windup using the `addon-build-and-install` command in the Windup console. 
+
+  The command uses the following syntax, where `QUICKSTART_HOME` refers the root directory of this quickstart:
 
         addon-build-and-install --projectRoot QUICKSTART_HOME
         
@@ -111,7 +113,7 @@ This is the easiest and fastest way to build the quickstart, install it into the
    You should see the following result.
    
         ***SUCCESS*** Addon org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet:::2.0.0.Beta4 was installed successfully.
-
+3. You can now skip the next two sections and proceed to [Test the Quickstart Rule Addon](#test-the-quickstart-rule-addon).
 
 ### Install the Quickstart into the Local Maven Repository
 
@@ -122,8 +124,7 @@ Use these instructions to build the quickstart using the Maven command line and 
 
         mvn clean install
         
-The quickstart is now installed in the local Maven repository.
-
+3. The quickstart is now installed in the local Maven repository. Continue to the next section to [Install the Quickstart into Windup as an Addon](#install-the-quickstart-into-windup-as-an-addon).
 
 ### Install the Quickstart into Windup as an Addon
 
@@ -133,48 +134,66 @@ After you build the quickstart and install it into the local Maven repository, u
 
 2. Add the rule to Windup using the `addon-install` command in the Windup console.
 
-* Type the following command at the Windup prompt:
+  Type the following command at the Windup prompt:
 
         addon-install  
 
-* Windup responds with this prompt: 
+  Windup responds with this prompt: 
 
         Coordinate (The addon's "groupId:artifactId,version" coordinate):
-
-*  The `groupId`, `artifactId`, and `version` are specified in the quickstart `pom.xml` file. At the prompt, enter the following response:
+3.  The `groupId`, `artifactId`, and `version` are specified in the quickstart `pom.xml` file. At the prompt, enter the following response:
        
         org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Beta4
 
    You should see the following result:
 
         ***SUCCESS*** Addon org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Beta4 was installed successfully.
+3. You can now [Test the Quickstart Rule Addon](#test-the-quickstart-rule-addon).
 
+Test the Quickstart Rule Addon
+------------------------------
 
-
-Test the Quickstart
---------------
-
-To test this quickstart, you must run Windup against a WebLogic application that contains the proprietary annotations.
+This quickstart provides an example source file containing WebLogic annotations to use when testing the quickstart. It is located in this quickstart's `test-files/src_example/` directory.
 
 1. If you have not started Windup, follow the instructions above to [Start Windup](#start-windup).
 
-2. Test the rule WebLogic application by running the `windup-migrate-app` command at the Windup prompt. The command uses this syntax:
+2. Test the rule WebLogic application by running the `windup-migrate-app` command at the Windup prompt. 
+
+  The command uses this syntax:
 
         windup-migrate-app [--sourceMode true] --input INPUT_ARCHIVE_OR_FOLDER --output OUTPUT_REPORT_DIRECTORY --packages PACKAGE_1 PACKAGE_2 PACKAGE_N
 
-   The following example shows how to run Windup against an archive:
-   
-        windup-migrate-app --input /home/username/my-weblogic-app.ear --output /home/username/WindupOutput/my-weblogic-app-report --packages weblogic.servlet
+  To test this quickstart using the `test-files/src_example/src/main/java/org/windup/examples/servlet/SampleWebLogicServlet.java` example file provided in the root directory of this quickstart, type the following commmand. Be sure to replace `QUICKSTART_HOME` with the fully qualified path to this quickstart.
+    
+        windup-migrate-app --sourceMode true --input QUICKSTART_HOME/weblogic-javaee-servlet/test-files/src_example/ --output QUICKSTART_HOME/weblogic-javaee-servlet/windup-reports/src_example_report --packages org.windup
 
-   The following example shows how to run Windup against a source directory:
+  You should see the following result:
+ 
+        ***SUCCESS*** Windup report created: QUICKSTART_HOME/weblogic-javaee-servlet/windup-reports/src_example_report/index.html
 
-        windup-migrate-app --input /home/username/my-weblogic-app/ --output /home/username/WindupOutput/my-weblogic-app-report --packages weblogic.servlet
-
+  
 For more information about how to run Windup, see: [Execute Windup](https://github.com/windup/windup/wiki/Execute-Windup). 
 
 
+Review the Quickstart Report
+----------------------------
+
+1. Open the `QUICKSTART_HOME/weblogic-javaee-servlet/windup-reports/src_example_report/index.html` file in a browser.
+
+   You are presented with the following Overview page containing the application profiles.  
+
+![Overview page](images/windup-report-index-page.png)  
+2. Click on the `src_example` link. 
+
+   This opens a detail page describing the number of story points for this migration.  
+
+![Overview page](images/windup-report-detail-page.png)  
+3. Click on the link to drill down and find more infomation.  
+4. Explore the contents of the `windup-reports` folder. For example, the `windup-reports/src_example_report/reports/ruleproviders.html` page lists the details of the rule provider executions. 
+
+
 Remove the Quickstart from Windup
---------------------
+---------------------------------
 
 Remove the quickstart rule addon from Windup using the `addon-remove` command.
 
