@@ -16,11 +16,11 @@ import weblogic.servlet.annotation.WLFilter;
  */
 @WLFilter (
     name = "MyHintsRuleFilter",
-    initParams = {
-        @WLInitParam (name="language", value="English"),
-        @WLInitParam (name="catalog", value="spring")
-        ​}
-    mapping = {"/catalog/*"}
+    initParams = { 
+​        @WLInitParam (name="catalog", value="spring"),
+​        @WLInitParam (name="language", value="English")
+​     },
+​     mapping = {"/catalog/*"}
 )
 public class SampleWebLogicFilter implements Filter {
     // no-op

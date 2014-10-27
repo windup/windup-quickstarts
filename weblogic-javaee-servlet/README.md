@@ -11,7 +11,7 @@ Source: <https://github.com/windup/windup-quickstarts/>
 What is it?
 -----------
 
-WebLogic provides its own proprietary servlet and filter annotations for dependency injection. If the application uses them, they must be replaced with the standard Java EE 6 annotations. This example demonstrates how to create a Windup rule that searches for these proprietary annotations and reports on them.
+WebLogic provides its own proprietary servlet and filter annotations for dependency injection. If the application uses them, they must be replaced with the standard Java EE 6 annotations. This example demonstrates how to create a WindupRuleProvider that searches for these proprietary annotations and reports on them.
 
 The rule searches for the following annotations:
 
@@ -29,10 +29,28 @@ The *MyHintsRuleProvider* class extends *WindupRuleProvider* and overrides the f
 
 * `getExecuteAfter()`: Nothing executes after this, so this method returns an empty list.
 
-* `enhanceMetadata(Context context)`: This method specifies additional meta-data about the Rule instances originating from this WindupRuleProvider.
+* `enhanceMetadata(Context context)`: This method specifies additional metadata about the Rule instances originating from this WindupRuleProvider.
 
-* `getConfiguration(GraphContext context)`: This method looks for "weblogic.servlet.annotation.WLServlet" annotations. If found, it adds the warning text "Migrate to Java EE 6 @WebServlet." to the report, assigns the effort at 8 story points, and provides a link to the JBoss EAP 6 documentation.
+* `getConfiguration(GraphContext context)`: This method does the following.
 
+   1. Adds a rule that looks for `weblogic.servlet.annotation.WLServlet` annotations. If found:
+
+        * Classifies the annotation as "WebLogic @WLServlet" and provides a link to the JavaDoc for the  Java EE @WebServlet equivalent.
+        * Provides a warning text telling the user to replace the proprietary WebLogic @WLServlet annotation with the Java EE 6 standard @WebServlet annotation and provides a link to Red Hat documentation.
+        * Assigns 1 story point of effort to this task.
+   2. Adds a rule that looks for `weblogic.servlet.annotation.WLInitParam` annotations. If found:
+
+        * Classifies the annotation as "WebLogic @WLInitParam" and provides a link to the JavaDoc for the  Java EE @WebInitParam equivalent.
+        * Provides a warning text telling the user to replace the proprietary WebLogic @WLInitParam annotation with the Java EE 6 standard @WebInitParam annotation and provides a link to Red Hat documentation.
+        * Assigns 2 story points of effort to this task.
+
+   3. Adds a rule that looks for `weblogic.servlet.annotation.WLFilter` annotations. If found:
+
+        * Classifies the annotation as "WebLogic @WLFilter" and provides a link to the JavaDoc for the  Java EE @WebFilter equivalent.
+        * Provides a warning text telling the user to replace the proprietary WebLogic @WLFilter annotation with the Java EE 6 standard @WebFilter annotation and provides a link to Red Hat documentation.
+        * Assigns 3 story points of effort to this task.
+
+The Windup JavaDoc is located here: <http://windup.github.io/windup/docs/javadoc/latest/>
 
 System requirements
 -------------------
@@ -183,12 +201,22 @@ Review the Quickstart Report
    You are presented with the following Overview page containing the application profiles.  
 
 ![Overview page](images/windup-report-index-page.png)  
-2. Click on the `src_example` link. 
+2. Click on the `test-files` link. 
 
-   This opens a detail page describing the number of story points for this migration.  
+   This opens a detail page listing the files containing the WebLogic proprietary annotations along with the warning messages, links to obtain more inforamation, and the estimated story points for each item.  
 
 ![Overview page](images/windup-report-detail-page.png)  
-3. Click on the link to drill down and find more infomation.  
+3. Click on the file links to drill down and find more infomation.  
+
+* `SampleWebLogicFilter` shows 7 story points
+
+        4 points, 2 points for each of the two @WLInitParam references
+        3 points for the @WLFilter reference
+        
+* `SampleWebLogicServlet` show 5 story points
+
+        4 points, 2 points for each of the two @WLInitParam references
+        1 points for the @WLServlet reference
 4. Explore the contents of the `windup-reports` folder. For example, the `windup-reports/src_example_report/reports/ruleproviders.html` page lists the details of the rule provider executions. 
 
 
