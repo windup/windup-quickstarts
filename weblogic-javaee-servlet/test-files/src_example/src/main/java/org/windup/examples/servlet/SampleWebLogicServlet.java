@@ -10,7 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 ​import weblogic.servlet.annotation.WLInitParam;
 ​import weblogic.servlet.annotation.WLServlet;
 ​ 
-​@WLServlet (
+​/**
+ * This is an example of a servlet that uses the propietary 
+ * @WLServlet and @WLInitParam annotations.
+ * 
+ * This is not a fully functional class. Its sole purpose is 
+ * to demonstrate Windup rule addon processing.
+ * 
+ * @author Windup-Team
+ */
+@WLServlet (
 ​    name = "catalog",
 ​    runAs = "SuperEditor"
 ​    initParams = { 

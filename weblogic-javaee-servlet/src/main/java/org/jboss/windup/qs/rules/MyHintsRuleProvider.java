@@ -67,7 +67,7 @@ public class MyHintsRuleProvider extends WindupRuleProvider
             )
             .perform(
                 Classification.as("WebLogic @WLInitParam")
-                   .with(Link.to("Java EE 6 @WLInitParam", "http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"))
+                   .with(Link.to("Java EE 6 @WebInitParam", "http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"))
                    .withEffort(0)
                    .and(Hint.withText("Replace @WLInitParam with Java EE 6 @WebInitParam.\n\r" +
                                "For details on how to map the initialization parameter attributes, see: <a href=\"https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/index.html\">Red Hat JBoss Documentation</a>").withEffort(2)))
