@@ -56,9 +56,31 @@ public class MyHintsRuleProvider extends WindupRuleProvider
             )
             .perform(
                 Classification.as("WebLogic @WLServlet")
-                   .with(Link.to("Java EE 6 @WebServlet", "https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/index.html"))
+                   .with(Link.to("Java EE 6 @WebServlet", "http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"))
                    .withEffort(0)
-                   .and(Hint.withText("Migrate to Java EE 6 @WebServlet.").withEffort(8))
+                   .and(Hint.withText("Replace @WLServlet with Java EE 6 @WebServlet.\n\r" +
+                               "For details on how to map the Servlet attributes, see: <a href=\"https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/index.html\">Red Hat JBoss Documentation</a>"
+                   ).withEffort(1)))
+            .addRule()
+            .when(
+                JavaClass.references("weblogic.servlet.annotation.WLInitParam").at(TypeReferenceLocation.ANNOTATION)
+            )
+            .perform(
+                Classification.as("WebLogic @WLInitParam")
+                   .with(Link.to("Java EE 6 @WLInitParam", "http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"))
+                   .withEffort(0)
+                   .and(Hint.withText("Replace @WLInitParam with Java EE 6 @WebInitParam.\n\r" +
+                               "For details on how to map the initialization parameter attributes, see: <a href=\"https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/index.html\">Red Hat JBoss Documentation</a>").withEffort(2)))
+            .addRule()
+            .when(
+                JavaClass.references("weblogic.servlet.annotation.WLFilter").at(TypeReferenceLocation.ANNOTATION)
+            )
+            .perform(
+                Classification.as("WebLogic @WLFilter")
+                   .with(Link.to("Java EE 6 @WebFilter", "http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"))
+                   .withEffort(0)
+                   .and(Hint.withText("Replace @WLFilter annotation with Java EE 6 @WebFilter.\n\r" +
+                                   "For details on how to map the filter attributes, see: <a href=\"https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/index.html\">Red Hat JBoss Documentation</a>").withEffort(3))
             );
     }
     // @formatter:on
