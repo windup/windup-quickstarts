@@ -16,8 +16,12 @@ import org.ocpsoft.rewrite.config.ConfigurationBuilder;
 import org.ocpsoft.rewrite.context.Context;
 
 /**
+ * Reports on Java classes that contain proprietary WebLogic 
+ * servlet annotations and provides links to documentation 
+ * that describe how to migrate to standard Java EE 6 code.
  *
- * @author Ondrej Zizka, ozizka at redhat.com
+ * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
+
  */
 public class MyHintsRuleProvider extends WindupRuleProvider
 {
