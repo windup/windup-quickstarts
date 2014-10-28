@@ -33,18 +33,18 @@ The *MyHintsRuleProvider* class extends *WindupRuleProvider* and overrides the f
 
 * `getConfiguration(GraphContext context)`: This method does the following.
 
-   1. Adds a rule that looks for `weblogic.servlet.annotation.WLServlet` annotations. If found:
+   * Adds a rule that looks for `weblogic.servlet.annotation.WLServlet` annotations. If found:
 
         * Classifies the annotation as "WebLogic @WLServlet" and provides a link to the Java EE `javax.servlet.annotation` package Javadoc.
         * Provides a warning text telling the user to replace the proprietary WebLogic @WLServlet annotation with the Java EE 6 standard @WebServlet annotation and provides a link to an article on the Red Hat Customer Portal.
         * Assigns 1 story point of effort to this task.
-   2. Adds a rule that looks for `weblogic.servlet.annotation.WLInitParam` annotations. If found:
+   * Adds a rule that looks for `weblogic.servlet.annotation.WLInitParam` annotations. If found:
 
         * Classifies the annotation as "WebLogic @WLInitParam" and provides a link to the Java EE `javax.servlet.annotation` package Javadoc.
         * Provides a warning text telling the user to replace the proprietary WebLogic @WLInitParam annotation with the Java EE 6 standard @WebInitParam annotation and provides a link to an article on the Red Hat Customer Portal.
         * Assigns 2 story points of effort to this task.
 
-   3. Adds a rule that looks for `weblogic.servlet.annotation.WLFilter` annotations. If found:
+   * Adds a rule that looks for `weblogic.servlet.annotation.WLFilter` annotations. If found:
 
         * Classifies the annotation as "WebLogic @WLFilter" and provides a link to the Java EE `javax.servlet.annotation` package Javadoc.
         * Provides a warning text telling the user to replace the proprietary WebLogic @WLFilter annotation with the Java EE 6 standard @WebFilter annotation and provides a link to an article on the Red Hat Customer Portal.
