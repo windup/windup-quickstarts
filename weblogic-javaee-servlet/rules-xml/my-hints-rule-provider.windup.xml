@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<ruleset xmlns="http://windup.jboss.org/v1/xml" id="xmltestrules_1">
+
+  <!-- Limited function XML rules as we build out the syntax. Will get more powerful over time -->
+  <rules>
+    <rule>
+      <when>
+        <javaclass type="weblogic.servlet.annotation.WLServlet">
+          <location>ANNOTATION</location>
+        </javaclass>
+      </when>
+      <perform>
+        <hint message="Replace the proprietary WebLogic @WLServlet annotation with the Java EE 6 standard @WebServlet annotation." effort="1">
+            <link href=  "https://access.redhat.com/articles/1249423"
+              description="Migrate WebLogic Proprietary Servlet Annotations" />
+        </hint>
+      </perform>
+      <perform>
+        <hint message="See the javax.servlet.annotation JavaDoc for more information.">
+            <link href=  "http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"
+              description="Java EE 6 Servlet annotation package summary" />
+        </hint>
+      </perform>
+    </rule>  
+    <rule>
+      <when>
+        <javaclass type="weblogic.servlet.annotation.WLInitParam">
+          <location>ANNOTATION</location>
+        </javaclass>
+      </when>
+      <perform>
+        <hint message="Replace the proprietary WebLogic @WLInitParam annotation with the Java EE 6 standard @WebInitParam annotation." effort="2">
+            <link href=  "https://access.redhat.com/articles/1249423"
+              description="Migrate WebLogic Proprietary Servlet Annotations" />
+        </hint>
+      </perform>
+      <perform>
+        <hint message="See the javax.servlet.annotation JavaDoc for more information.">
+            <link href=  "http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"
+              description="Java EE 6 Servlet annotation package summary" />
+        </hint>
+      </perform>
+    </rule>  
+    <rule>
+      <when>
+        <javaclass type="weblogic.servlet.annotation.WLFilter">
+          <location>ANNOTATION</location>
+        </javaclass>
+      </when>
+      <perform>
+        <hint message="Replace the proprietary WebLogic @WLFilter annotation with the Java EE 6 standard @WebFilter annotation." effort="3">
+            <link href=  "https://access.redhat.com/articles/1249423"
+              description="Migrate WebLogic Proprietary Servlet Annotations" />
+        </hint>
+      </perform>
+      <perform>
+        <hint message="See the javax.servlet.annotation JavaDoc for more information.">
+            <link href=  "http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"
+              description="Java EE 6 Servlet annotation package summary" />
+        </hint>
+      </perform>
+    </rule>  
+  </rules>
+</ruleset>

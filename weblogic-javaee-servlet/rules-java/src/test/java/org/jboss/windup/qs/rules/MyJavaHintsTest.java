@@ -101,7 +101,13 @@ public class MyJavaHintsTest
             boolean wlsHintFound = false;
             for (InlineHintModel hint : hints)
             {
-                if ("Migrate to Java EE 6 @WebServlet.".equals(hint.getHint()))
+//                if ("Migrate to Java EE 6 @WebServlet.".equals(hint.getHint()))
+                String weblogicHintString = "Replace the proprietary WebLogic @WLServlet annotaion with the Java EE 6 " +
+                            "standard @WebServlet annotation.\n\r" +
+                           "For details on how to map the Servlet attributes, see: " + 
+                           "<a href=\"https://access.redhat.com/articles/1249423\">" +
+                           "Migrate WebLogic Proprietary Servlet Annotations</a>";
+                if (weblogicHintString.equals(hint.getHint()))
                 {
                     wlsHintFound = true;
                 }
