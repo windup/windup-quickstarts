@@ -17,8 +17,8 @@ The rule searches for the following annotations:
 
 You can create Winupup rule addons using Java or XML. This quickstart demonstrates both.
 
-* [Java-based rule addon](rules-java/README.md): Follow the instructions here to see how to create a java-based rule addon.
+* [Java-based rule addon](rules-java/README.md): Follow the instructions here to see how to create a Java-based rule addon.
 
-* [XML-based rule addon](rules-xml/README.md): Follow the instructions here to see how to create an xml-based rule addon.
+* [XML-based rule addon](rules-xml/README.md): Follow the instructions here to see how to create an XML-based rule addon.
 
 

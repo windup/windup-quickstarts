@@ -16,6 +16,8 @@ Available Quickstarts
 
 The Windup quickstarts are located in GitHub here: <https://github.com/windup/windup-quickstarts>
 
+* [ejb-beanutils-async](ejb-beanutils-async/README.md)
+* [weblogic-javaee-servlet](weblogic-javaee-servlet/README.md)
 
 [TOC-quickstart]
 

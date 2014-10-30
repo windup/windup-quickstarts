@@ -1,4 +1,4 @@
-ejb-beanutils-async: Windup Rule That BeanUtils Asynchronous
+ejb-beanutils-async: Java-based Rule Addon That Detects BeanUtils AsyncronousMethod
 =============================================================================================
 Author: Jess Sightler
 Level: Intermediate
@@ -11,7 +11,7 @@ Source: <https://github.com/windup/windup-quickstarts/>
 What is it?
 -----------
 
-BeanUtils Asyncronous is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asyncronous annotation
+The BeanUtils AsyncronousMethod is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asyncronous annotation
 
 Review the Quickstart Code
 -------------------------
