@@ -183,11 +183,11 @@ This quickstart provides an example source file containing WebLogic annotations 
 
   To test this quickstart using the `test-files/src_example/src/main/java/org/windup/examples/servlet/SampleWebLogicServlet.java` example file provided in the root directory of this quickstart, type the following commmand. Be sure to replace `QUICKSTART_HOME` with the fully qualified path to this quickstart.
     
-        windup-migrate-app --sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output QUICKSTART_HOME/windup-reports/java_src_example_report --packages org.windup
+        windup-migrate-app --sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output QUICKSTART_HOME/windup-reports-java --packages org.windup
 
   You should see the following result:
  
-        ***SUCCESS*** Windup report created: QUICKSTART_HOME/windup-reports/java_src_example_report/index.html
+        ***SUCCESS*** Windup report created: QUICKSTART_HOME/windup-reports-java/index.html
 
   
 For more information about how to run Windup, see: [Execute Windup](https://github.com/windup/windup/wiki/Execute-Windup). 
@@ -196,7 +196,7 @@ For more information about how to run Windup, see: [Execute Windup](https://gith
 Review the Quickstart Report
 ----------------------------
 
-1. Open the `QUICKSTART_HOME/windup-reports/java_src_example_report/index.html` file in a browser.  
+1. Open the `QUICKSTART_HOME/windup-reports-java/index.html` file in a browser.  
 
    You are presented with the following Overview page containing the application profiles.  
 
@@ -223,7 +223,7 @@ Review the Quickstart Report
 * The **Hint** text appears at the appropriate locations within the code and provides a link to the [Migrate WebLogic Proprietary Servlet Annotations](https://access.redhat.com/articles/1249423) article on the Red Hat Customer Portal.
 
 ![File detail page](../images/windup-report-java-file-page.png)  
-4. Explore the contents of the `windup-reports` folder. For example, the `windup-reports/java_src_example_report/reports/ruleproviders.html` page lists the details of the rule provider executions. 
+4. Explore the contents of the `windup-reports-java` folder. For example, the `windup-reports-java/reports/ruleproviders.html` page lists the details of the rule provider executions. 
 
 
 Remove the Quickstart from Windup
