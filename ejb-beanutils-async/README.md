@@ -1,9 +1,9 @@
-ejb-beanutils-async: Java-based Rule Addon That Detects BeanUtils AsyncronousMethod
+ejb-beanutils-async: Java-based Rule Addon That Detects BeanUtils AsynchronousMethod
 =============================================================================================
 Author: Jess Sightler
 Level: Intermediate
 Technologies: 
-Summary: Windup rule that reports on com.beanutils.async.AsyncronousMethod in remote EJBs
+Summary: Windup rule that reports on com.beanutils.async.AsynchronousMethod in remote EJBs
 Target Product: Windup
 Product Versions: 2.0
 Source: <https://github.com/windup/windup-quickstarts/>
@@ -11,14 +11,14 @@ Source: <https://github.com/windup/windup-quickstarts/>
 What is it?
 -----------
 
-The BeanUtils AsyncronousMethod is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asyncronous annotation
+The BeanUtils AsynchronousMethod is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asynchronous annotation
 
 Review the Quickstart Code
 -------------------------
 
 The `EjbBeanUtilsAsyncUsageRuleProvider` class extends `WindupRuleProvider` and overrides the following methods:
 
-* `getConfiguration(GraphContext context)`: This method looks for annotations named "com.beanutils.async.AsyncronousMethod". When found, it adds the text "BeanUtils Asyncronous is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asyncronous annotation." to the report and points the person to the JBoss EAP 6 documentation.
+* `getConfiguration(GraphContext context)`: This method looks for annotations named "com.beanutils.async.AsynchronousMethod". When found, it adds the text "BeanUtils Asynchronous is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asynchronous annotation." to the report and points the person to the JBoss EAP 6 documentation.
 
 System requirements
 -------------------

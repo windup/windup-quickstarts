@@ -63,15 +63,15 @@ public class EjbBeanUtilsAsyncUsageRuleProvider extends WindupRuleProvider
                         .and(
                                 JavaClass
                                     .from("sessionBeans")
-                                    .references("com.beanutils.async.AsyncronousMethod")
+                                    .references("com.beanutils.async.AsynchronousMethod")
                                     .at(TypeReferenceLocation.ANNOTATION)
                                     .as("asyncUsingSessionBeans")
                         )
             )
             .perform(
                 Iteration.over("asyncUsingSessionBeans").perform(
-                    Hint.withText("BeanUtils Asyncronous is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asyncronous annotation.")
-                        .with(Link.to("Using Java EE 6 @Asyncronous.", "http://docs.oracle.com/javaee/6/tutorial/doc/gkkqg.html"))
+                    Hint.withText("BeanUtils Asynchronous is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asynchronous annotation.")
+                        .with(Link.to("Using Java EE 6 @Asynchronous.", "http://docs.oracle.com/javaee/6/tutorial/doc/gkkqg.html"))
                         .withEffort(8)
                 ).endIteration()
             );

@@ -87,7 +87,7 @@ public class EjbBeanUtilsAsyncUsageRuleProviderTest
             boolean hintFound = false;
             for (InlineHintModel hint : hints)
             {
-                if ("BeanUtils Asyncronous is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asyncronous annotation."
+                if ("BeanUtils Asynchronous is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asynchronous annotation."
                             .equals(hint.getHint()))
                 {
                     hintFound = true;

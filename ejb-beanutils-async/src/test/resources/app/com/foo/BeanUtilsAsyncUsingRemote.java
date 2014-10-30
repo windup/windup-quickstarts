@@ -1,12 +1,12 @@
 package com.foo;
 
 import javax.ejb.EJBObject;
-import com.beanutils.async.AsyncronousMethod;
+import com.beanutils.async.AsynchronousMethod;
 
 /**
  */
 public class BeanUtilsAsyncUsingRemote extends EJBObject {
-    @AsyncronousMethod
+    @AsynchronousMethod
     public void asyncMethod() {
         
     }
