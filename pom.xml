@@ -22,6 +22,7 @@
 
     <modules>
         <module>weblogic-javaee-servlet</module>
+        <module>ejb-beanutils-async</module>
     </modules>
 
     <licenses>
