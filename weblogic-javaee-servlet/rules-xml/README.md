@@ -1,4 +1,4 @@
-weblogic-javaee-servlet: XML-based Rule Addon That Detects WebLogic Proprietary Servlet Annotations
+weblogic-javaee-servlet: XML-based Rule That Detects WebLogic Proprietary Servlet Annotations
 =============================================================================================
 Author: Windup Team  
 Level: Beginner  
@@ -13,7 +13,7 @@ What is it?
 
 WebLogic provides its own proprietary servlet and filter annotations for dependency injection. If the application uses them, they must be replaced with the standard Java EE 6 annotations. This example demonstrates how to create a WindupRuleProvider that searches for these proprietary annotations and reports on them.
 
-This XML-based Windup rule addon searches for the following annotations:
+This XML-based Windup rule searches for the following annotations:
 
 * *@WLServlet*: This is the equivalent of the Java EE 6 *@WebServlet* annotation.
 
@@ -29,7 +29,7 @@ Review the Quickstart Code
 
 The QUICKSTART_HOME/rules-xml/my-hints-rule-provider.windup.xml file contains the following elements:
 
-* The `<ruleset>` element defines this as a Windup rule addon.
+* The `<ruleset>` element defines this as a Windup rule.
 
 * The `<rules>` element contains the individual rules.
 
@@ -85,17 +85,17 @@ Start Windup
 Add the Quickstart to Windup
 ----------------------------
 
-To install the rule addon in Windup, simply copy the `QUICKSTART_HOME/rules-java/my-hints-rule-provider.windup.xml` file into the `WINDUP_HOME/rules` directory.
+To install the rule in Windup, simply copy the `QUICKSTART_HOME/rules-java/my-hints-rule-provider.windup.xml` file into the `WINDUP_HOME/rules` directory.
 
 
-Test the Quickstart Rule Addon
-------------------------------
+Test the Quickstart Rule
+------------------------
 
 This quickstart provides an example source file containing WebLogic annotations to use when testing the quickstart. It is located in this quickstart's `test-files/src_example/` directory.
 
 1. If you have not started Windup, follow the instructions above to [Start Windup](#start-windup).
 
-2. Test the XML-based rule addon against the WebLogic application file by running the `windup-migrate-app` command at the Windup prompt. 
+2. Test the XML-based rule against the WebLogic application file by running the `windup-migrate-app` command at the Windup prompt. 
 
   The command uses this syntax:
 
@@ -148,7 +148,7 @@ Review the Quickstart Report
 Remove the Quickstart from Windup
 ---------------------------------
 
-To remove the rule addon from Windup, simply delete the `WINDUP_HOME/rules/my-hints-rule-provider.windup.xml` file.
+To remove the rule from Windup, simply delete the `WINDUP_HOME/rules/my-hints-rule-provider.windup.xml` file.
 
 
 Stop Windup
