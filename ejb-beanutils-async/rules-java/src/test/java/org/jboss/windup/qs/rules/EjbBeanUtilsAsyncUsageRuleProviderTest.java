@@ -30,7 +30,7 @@ public class EjbBeanUtilsAsyncUsageRuleProviderTest
 {
     @Deployment
     @Dependencies({
-                @AddonDependency(name = "org.jboss.windup.quickstarts:windup-ejb-beanutils-async"),
+                @AddonDependency(name = "org.jboss.windup.quickstarts:windup-ejb-beanutils-async-rules-java"),
                 @AddonDependency(name = "org.jboss.windup.config:windup-config"),
                 @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
                 @AddonDependency(name = "org.jboss.windup.utils:utils"),
@@ -45,7 +45,7 @@ public class EjbBeanUtilsAsyncUsageRuleProviderTest
                     .addBeansXML()
                     .addAsAddonDependencies(
                                 AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
-                                AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-ejb-beanutils-async"),
+                                AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-ejb-beanutils-async-rules-java"),
                                 AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
                                 AddonDependencyEntry.create("org.jboss.windup.utils:utils"),
                                 AddonDependencyEntry.create("org.jboss.windup.rules.apps:rules-java"),
