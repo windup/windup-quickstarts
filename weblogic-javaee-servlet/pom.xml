@@ -11,7 +11,7 @@
     <version>2.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Windup QuickStart Root</name>
+    <name>Windup Quickstart: WLServlet (parent)</name>
 
     <modules>
         <module>rules-java</module>
