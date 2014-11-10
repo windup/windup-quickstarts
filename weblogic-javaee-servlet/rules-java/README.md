@@ -137,7 +137,7 @@ This is the easiest and fastest way to build the quickstart, install it into the
 
 Use these instructions to build the quickstart using the Maven command line and install it into your local Maven repository. This is useful if you need to use specific build options other than the default.
 
-1. Open a command prompt and navigate to the root directory of this quickstart.
+1. Open a command prompt and navigate to this quickstart's `rules-java/` directory.
 2. Type this command to build and install the rule in your local Maven repository:
 
         mvn clean install
@@ -150,7 +150,9 @@ After you build the quickstart and install it into the local Maven repository, u
 
 1. If you have not started Windup, follow the instructions above to [Start Windup](#start-windup).
 
-2. Add the rule to Windup using the `addon-install` command in the Windup console.
+2. Be sure to navigate to this quickstart's `rules-java/` directory.
+
+3. Add the rule to Windup using the `addon-install` command in the Windup console.
 
   Type the following command at the Windup prompt:
 
@@ -159,14 +161,14 @@ After you build the quickstart and install it into the local Maven repository, u
   Windup responds with this prompt: 
 
         Coordinate (The addon's "groupId:artifactId,version" coordinate):
-3.  The `groupId`, `artifactId`, and `version` are specified in the quickstart `pom.xml` file. At the prompt, enter the following response:
+4.  The `groupId`, `artifactId`, and `version` are specified in the quickstart `pom.xml` file. At the prompt, enter the following response:
        
         org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Beta4
 
    You should see the following result:
 
         ***SUCCESS*** Addon org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Beta4 was installed successfully.
-3. You can now [Test the Quickstart Rule Addon](#test-the-quickstart-rule-addon).
+5. You can now [Test the Quickstart Rule Addon](#test-the-quickstart-rule-addon).
 
 Test the Quickstart Rule Addon
 ------------------------------

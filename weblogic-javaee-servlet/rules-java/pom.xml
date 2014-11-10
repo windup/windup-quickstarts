@@ -3,15 +3,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jboss.windup.quickstarts</groupId>
-    <artifactId>windup-weblogic-javaee-servlet</artifactId>
+    <artifactId>windup-weblogic-javaee-servlet-rules-java</artifactId>
     <version>2.0.0-SNAPSHOT</version>
     <name>Windup Quickstart: weblogic-javaee-servet-rules-java</name>
     <description>Windup Quickstart: WebLogic Proprietary Servlet Annotations</description>
 
     <parent>
         <groupId>org.jboss.windup.quickstarts</groupId>
-        <artifactId>windup-weblogic-javaee-servlet-parent</artifactId>
+        <artifactId>windup-weblogic-javaee-servlet</artifactId>
         <version>2.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <properties>
@@ -19,7 +20,6 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
         <version.windup>2.0.0-SNAPSHOT</version.windup>
-        <version.forge>2.12.1.Final</version.forge>
     </properties>
 
     <dependencyManagement>
@@ -131,20 +131,7 @@
         </resources>
 
         <plugins>
-            <!-- These two make this artifact a Forge addon. -->
-            <plugin>
-                <groupId>org.jboss.forge.furnace</groupId>
-                <artifactId>furnace-maven-plugin</artifactId>
-                <version>${version.forge}</version>
-                <executions>
-                    <execution>
-                        <id>generate-dot</id>
-                        <phase>prepare-package</phase>
-                        <goals> <goal>generate-dot</goal> </goals>
-                        <configuration> <attach>true</attach> </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!-- This plugin makes this artifact a Forge addon. -->
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.5</version>
