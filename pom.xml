@@ -23,6 +23,7 @@
     <modules>
         <module>weblogic-javaee-servlet</module>
         <module>ejb-beanutils-async</module>
+        <module>victi.ms</module>
     </modules>
 
     <licenses>

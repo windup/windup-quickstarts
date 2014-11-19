@@ -1,0 +1,62 @@
+package org.jboss.windup.qs.victims;
+
+import org.jboss.windup.config.AbstractWindupConfigurationOption;
+import org.jboss.windup.config.InputType;
+import org.jboss.windup.config.ValidationResult;
+
+/**
+ * Indicates that all opterations should function in "Offline" mode (without accessing the internet).
+ *
+ * @author Ondrej Zizka
+ */
+public class UpdateOption extends AbstractWindupConfigurationOption
+{
+    public static final String NAME = "victimsUpdate";
+
+    @Override
+    public String getDescription()
+    {
+        return "Indicates whether to download new Victi.ms database";
+    }
+
+    @Override
+    public String getName()
+    {
+        return NAME;
+    }
+
+    @Override
+    public String getLabel()
+    {
+        return "Update Victi.ms database";
+    }
+
+    @Override
+    public Class<?> getType()
+    {
+        return Boolean.class;
+    }
+
+    @Override
+    public InputType getUIType()
+    {
+        return InputType.SINGLE;
+    }
+
+    @Override
+    public boolean isRequired()
+    {
+        return false;
+    }
+
+    public ValidationResult validate(Object valueObj)
+    {
+        return ValidationResult.SUCCESS;
+    }
+
+
+    public Object getDefaultValue()
+    {
+        return true;
+    }
+}
