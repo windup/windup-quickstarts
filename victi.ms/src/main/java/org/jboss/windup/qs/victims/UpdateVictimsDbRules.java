@@ -3,9 +3,11 @@ package org.jboss.windup.qs.victims;
 import com.redhat.victims.VictimsException;
 import com.redhat.victims.database.VictimsDB;
 import com.redhat.victims.database.VictimsDBInterface;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jboss.windup.config.GraphRewrite;
+import org.jboss.windup.config.RulePhase;
 
 import org.jboss.windup.config.WindupRuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
@@ -13,6 +15,7 @@ import org.jboss.windup.config.operation.GraphOperation;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.model.WindupConfigurationModel;
 import org.jboss.windup.graph.service.GraphService;
+import org.jboss.windup.rules.apps.java.scan.provider.UnzipArchivesToOutputRuleProvider;
 import org.jboss.windup.util.Logging;
 import org.ocpsoft.rewrite.config.Condition;
 import org.ocpsoft.rewrite.config.Configuration;
@@ -29,6 +32,20 @@ import org.ocpsoft.rewrite.event.Rewrite;
 public class UpdateVictimsDbRules extends WindupRuleProvider
 {
     private static final Logger log = Logging.get(UpdateVictimsDbRules.class);
+
+
+    @Override
+    public RulePhase getPhase()
+    {
+        return RulePhase.POST_DISCOVERY;
+    }
+
+    @Override
+    public List<Class<? extends WindupRuleProvider>> getExecuteAfter()
+    {
+        return asClassList(UnzipArchivesToOutputRuleProvider.class);
+    }
+
 
     @Override
     public void enhanceMetadata(Context context)

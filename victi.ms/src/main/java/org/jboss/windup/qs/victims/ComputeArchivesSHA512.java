@@ -5,6 +5,7 @@ import java.io.InputStream;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.jboss.windup.config.GraphRewrite;
 import org.jboss.windup.config.IteratingRuleProvider;
+import org.jboss.windup.config.RulePhase;
 
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.query.Query;
@@ -24,6 +25,12 @@ public class ComputeArchivesSHA512 extends IteratingRuleProvider<ArchiveModel>
 {
     public static final String KEY_SHA512 = "SHA512";
 
+
+    @Override
+    public RulePhase getPhase()
+    {
+        return RulePhase.POST_DISCOVERY;
+    }
 
     @Override
     public void enhanceMetadata(Context context)

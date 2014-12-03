@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Logger;
 import org.jboss.windup.config.GraphRewrite;
+import org.jboss.windup.config.RulePhase;
 
 import org.jboss.windup.config.WindupRuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
@@ -18,7 +19,6 @@ import org.jboss.windup.config.operation.ruleelement.AbstractIterationOperation;
 import org.jboss.windup.config.query.Query;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.model.ArchiveModel;
-import org.jboss.windup.graph.model.WindupVertexFrame;
 import org.jboss.windup.graph.service.GraphService;
 import org.jboss.windup.qs.victims.model.AffectedJarModel;
 import org.jboss.windup.util.Logging;
@@ -37,6 +37,12 @@ public class CheckArchivesWithVictimsRules extends WindupRuleProvider
 {
     private static final Logger log = Logging.get(CheckArchivesWithVictimsRules.class);
 
+
+    @Override
+    public RulePhase getPhase()
+    {
+        return RulePhase.POST_DISCOVERY;
+    }
 
     @Override
     public void enhanceMetadata(Context context)

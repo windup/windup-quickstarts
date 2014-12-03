@@ -14,6 +14,7 @@ import org.jboss.forge.arquillian.Dependencies;
 import org.jboss.forge.arquillian.archive.ForgeArchive;
 import org.jboss.forge.furnace.repositories.AddonDependencyEntry;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.windup.config.RulePhase;
 import org.jboss.windup.exec.WindupProcessor;
 import org.jboss.windup.exec.configuration.WindupConfiguration;
 import org.jboss.windup.graph.GraphContext;
@@ -25,7 +26,10 @@ import org.jboss.windup.qs.victims.UpdateVictimsDbRules;
 import org.jboss.windup.qs.victims.VictimsReportRules;
 import org.jboss.windup.qs.victims.model.AffectedJarModel;
 import org.jboss.windup.qs.victims.model.VulnerabilityModel;
+import org.jboss.windup.qs.victims.test.rulefilters.AndPredicate;
+import org.jboss.windup.qs.victims.test.rulefilters.NotPredicate;
 import org.jboss.windup.qs.victims.test.rulefilters.OrPredicate;
+import org.jboss.windup.rules.apps.java.binary.DecompileArchivesRuleProvider;
 import org.jboss.windup.rules.apps.java.model.JarArchiveModel;
 import org.jboss.windup.rules.apps.java.model.WindupJavaConfigurationModel;
 import org.jboss.windup.rules.apps.java.scan.provider.UnzipArchivesToOutputRuleProvider;
@@ -86,12 +90,12 @@ public class VictimsRulesetTest
         try (GraphContext ctx = contextFactory.create())
         {
             // Create a project.
-            
+
 
             // Create JAR entry in the graph.
-            JarArchiveModel jarM = ctx.getFramed().addVertex(null, JarArchiveModel.class);
-            jarM.setFilePath("src/test/resources/xercesImpl-2.9.1.jar");
-            jarM.setArchiveName("xercesImpl-2.9.1.jar");
+            //JarArchiveModel jarM = ctx.getFramed().addVertex(null, JarArchiveModel.class);
+            //jarM.setFilePath("src/test/resources/xercesImpl-2.9.1.jar");
+            //jarM.setArchiveName("xercesImpl-2.9.1.jar");
 
             // Get Java config and notify that we will not scan a source.
             WindupJavaConfigurationModel javaCfg = WindupJavaConfigurationService.getJavaConfigurationModel(ctx);
@@ -103,12 +107,19 @@ public class VictimsRulesetTest
             // Only run Victims Rules and those it needs.
             //wc.setRuleProviderFilter(new RuleProviderWithDependenciesPredicate(CheckArchivesWithVictimsRules.class));
             wc.setRuleProviderFilter(
-                new OrPredicate(
+                /*new OrPredicate(
                     new EnumerationOfRulesFilter(
                         UnzipArchivesToOutputRuleProvider.class,
                         ComputeArchivesSHA512.class, CheckArchivesWithVictimsRules.class,
                         UpdateVictimsDbRules.class, VictimsReportRules.class),
-                    new PhaseRulesFilter.ReportingRulesFilter()));
+                    new PhaseRulesFilter.ReportingRulesFilter()
+                )*/
+                // Changed to allow creation of the ProjectModel.
+                new NotPredicate( new AndPredicate(
+                        new PhaseRulesFilter(RulePhase.MIGRATION_RULES),
+                        new EnumerationOfRulesFilter(DecompileArchivesRuleProvider.class)
+                ))
+            );
             wc.setInputPath(Paths.get("src/test/resources/xercesImpl-2.9.1.jar.war"));
             wc.setOutputDirectory(Paths.get("target/WindupReport"));
 

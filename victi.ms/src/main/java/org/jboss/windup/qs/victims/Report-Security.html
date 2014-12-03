@@ -23,7 +23,7 @@
                 <td>
                     <li>
                     <#list file.vulnerabilities.iterator() as vul>
-                        <ul>${vul.cve}</ul>
+                        <ul><a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=${vul.cve}">${vul.cve}</a></ul>
                     </#list>
                     </li>
                 </td>
@@ -67,13 +67,13 @@
                     <div class="navbar-collapse collapse navbar-responsive-collapse">
                         <ol class="breadcrumb top-menu">
                             <li><a href="../index.html">All Applications</a></li>
-                            <#include "include/breadcrumbs.ftl">
+                            <#include "/reports/templates/include/breadcrumbs.ftl">
                         </ol>
 
                     </div><!-- /.nav-collapse -->
                     <div class="navbar-collapse collapse navbar-responsive-collapse">
                         <ul class="nav navbar-nav">
-                            <#include "include/navbar.ftl">
+                            <#include "/reports/templates/include/navbar.ftl">
                         </ul>
                     </div><!-- /.nav-collapse -->
                 </div>
