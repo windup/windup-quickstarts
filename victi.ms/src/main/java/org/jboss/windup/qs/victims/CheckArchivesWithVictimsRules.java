@@ -84,7 +84,7 @@ public class CheckArchivesWithVictimsRules extends WindupRuleProvider
 
             // Check the jars
             .addRule()
-            .when(Query.find(ArchiveModel.class))
+            .when(Query.fromType(ArchiveModel.class))
             .perform(
                 LogOperation.info("Victims database last updated on: " + new SimpleDateFormat("y-M-d H:m:s").format(victiomsLastUpdated)),
                 LogOperation.info("Victims database records:   " + victimsRecordCount),

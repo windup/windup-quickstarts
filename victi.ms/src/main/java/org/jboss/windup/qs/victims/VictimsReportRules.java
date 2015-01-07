@@ -41,7 +41,7 @@ public class VictimsReportRules extends WindupRuleProvider
     @Override
     public Configuration getConfiguration(GraphContext context)
     {
-        ConditionBuilder applicationProjectModelsFound = Query.find(WindupJavaConfigurationModel.class);
+        ConditionBuilder applicationProjectModelsFound = Query.fromType(WindupJavaConfigurationModel.class);
 
         AbstractIterationOperation<WindupJavaConfigurationModel> addApplicationReport = new AbstractIterationOperation<WindupJavaConfigurationModel>()
         {
