@@ -42,7 +42,7 @@ public class ComputeArchivesSHA512 extends IteratingRuleProvider<ArchiveModel>
     @Override
     public ConditionBuilder when()
     {
-        return Query.find(ArchiveModel.class);
+        return Query.fromType(ArchiveModel.class);
     }
 
 
