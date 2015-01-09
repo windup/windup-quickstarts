@@ -47,7 +47,7 @@ public class EjbBeanUtilsAsyncUsageRuleProvider extends WindupRuleProvider
             .addRule()
             .when(
                 Query
-                    .find(EjbSessionBeanModel.class)
+                    .fromType(EjbSessionBeanModel.class)
                         .piped(new QueryGremlinCriterion()
                         {   
                             @Override
