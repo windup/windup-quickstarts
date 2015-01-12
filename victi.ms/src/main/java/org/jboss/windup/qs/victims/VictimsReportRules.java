@@ -77,7 +77,7 @@ public class VictimsReportRules extends WindupRuleProvider
         VictimsReportModel reportM = reportServ.create();
 
         // Report metadata
-        reportM.setReportPriority(100);
+        reportM.setReportPriority(1000);
         reportM.setReportName(TITLE);
         reportM.setMainApplicationReport(false);
         reportM.setDisplayInApplicationReportIndex(true);
