@@ -1,8 +1,8 @@
-package org.jboss.windup.qs.skipjars;
+package org.jboss.windup.qs.skiparch;
 
-import org.jboss.windup.qs.skipjars.lib.GAV;
-import org.jboss.windup.qs.skipjars.lib.ArchiveGAVIdentifier;
-import org.jboss.windup.qs.skipjars.lib.SkippedArchives;
+import org.jboss.windup.qs.skiparch.lib.GAV;
+import org.jboss.windup.qs.skiparch.lib.ArchiveGAVIdentifier;
+import org.jboss.windup.qs.skiparch.lib.SkippedArchives;
 import java.util.List;
 import java.util.logging.Logger;
 import org.jboss.windup.config.GraphRewrite;
@@ -33,6 +33,8 @@ public class SkipArchivesRules extends WindupRuleProvider
 {
     private static final Logger log = Logging.get(SkipArchivesRules.class);
 
+    private static final String SKIP_PROP = "w:skip";
+
 
     @Override
     public RulePhase getPhase()
@@ -50,7 +52,7 @@ public class SkipArchivesRules extends WindupRuleProvider
     @Override
     public List<Class<? extends WindupRuleProvider>> getExecuteAfter()
     {
-        return asClassList();
+        return asClassList(SkipArchivesLoadConfigRules.class);
     }
 
 
@@ -60,34 +62,33 @@ public class SkipArchivesRules extends WindupRuleProvider
     {
         return ConfigurationBuilder.begin()
 
-            // Check the jars
-            .addRule()
-            .when(Query.fromType(ArchiveModel.class))
+        // Check the jars
+        .addRule()
+        .when(Query.fromType(ArchiveModel.class))
+        .perform(
+            Iteration.over(ArchiveModel.class) // TODO: Use IteratingRuleProvider?
             .perform(
-                Iteration.over(ArchiveModel.class) // TODO: Use IteratingRuleProvider?
-                .perform(
-                    new AbstractIterationOperation<ArchiveModel>()
+                new AbstractIterationOperation<ArchiveModel>()
+                {
+                    @Override
+                    public void perform(GraphRewrite event, EvaluationContext evCtx, ArchiveModel arch)
                     {
-                        @Override
-                        public void perform(GraphRewrite event, EvaluationContext evCtx, ArchiveModel arch)
-                        {
-                            log.info("\tSkipArchives checking archive: " + arch.getFilePath());
+                        log.info("\tSkipArchives checking archive: " + arch.getFilePath());
 
-                            GAV archiveGav = ArchiveGAVIdentifier.getGAVFromSHA1(arch.getSHA1Hash());
+                        GAV archiveGav = ArchiveGAVIdentifier.getGAVFromSHA1(arch.getSHA1Hash());
 
-                            if(SkippedArchives.isSkipped(archiveGav))
-                                arch.asVertex().setProperty("w:skip", true);
-                        }
-
-
-                        @Override
-                        public String toString()
-                        {
-                            return "Checking archives with SkipArchives";
-                        }
+                        if(SkippedArchives.isSkipped(archiveGav))
+                            arch.asVertex().setProperty(SKIP_PROP, true);
                     }
-                ).endIteration()
-            ).withId("CheckArchivesWithSkipArchives");
+
+                    @Override
+                    public String toString()
+                    {
+                        return "Checking archives with SkipArchives";
+                    }
+                }
+            ).endIteration()
+        ).withId("CheckArchivesWithSkipArchives");
     }
     // @formatter:on
 }

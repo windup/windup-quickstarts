@@ -1,4 +1,4 @@
-package org.jboss.windup.qs.skipjars.lib;
+package org.jboss.windup.qs.skiparch.lib;
 
 import org.apache.commons.lang.StringUtils;
 

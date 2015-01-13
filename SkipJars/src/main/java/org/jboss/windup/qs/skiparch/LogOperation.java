@@ -1,4 +1,4 @@
-package org.jboss.windup.qs.skipjars;
+package org.jboss.windup.qs.skiparch;
 
 import java.util.logging.Logger;
 import org.ocpsoft.rewrite.config.Operation;
