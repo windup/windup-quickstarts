@@ -67,7 +67,6 @@ public class CheckArchivesWithVictimsRules extends WindupRuleProvider
     @Override
     public Configuration getConfiguration(final GraphContext grCtx)
     {
-
         try
         {
             db = VictimsDB.db();
@@ -102,6 +101,9 @@ public class CheckArchivesWithVictimsRules extends WindupRuleProvider
                             try
                             {
                                 HashSet<String> vuls = db.getVulnerabilities(hash);
+                                if (vuls.isEmpty())
+                                    return;
+
                                 AffectedJarModel jar = GraphService.addTypeToModel(grCtx, arch, AffectedJarModel.class);
                                 for( String vul : vuls )
                                 {
