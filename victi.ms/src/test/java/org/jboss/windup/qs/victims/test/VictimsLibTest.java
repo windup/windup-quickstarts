@@ -14,7 +14,7 @@ import org.junit.Test;
 
 /**
  * Tests for the library itself.
- * 
+ *
  * @author Ondrej Zizka, ozizka at redhat.com
  */
 public class VictimsLibTest
@@ -23,9 +23,10 @@ public class VictimsLibTest
 
 
     // Found by victims-client.
-    private static final String BAD_JAR = "/home/ondra/.m2/repository/xerces/xercesImpl/2.9.1/xercesImpl-2.9.1.jar";
+    //private static final String BAD_JAR = "/home/ondra/.m2/repository/xerces/xercesImpl/2.9.1/xercesImpl-2.9.1.jar";
+    private static final String BAD_JAR = "target/testJars/xercesImpl-2.9.1.jar";
 
-    // sha512sum /home/ondra/.m2/repository/xerces/xercesImpl/2.9.1/xercesImpl-2.9.1.jar
+    // sha512sum of xerces/xercesImpl/2.9.1/xercesImpl-2.9.1.jar
     private static final String BAD_JAR_SHA512 = "ec2200e5a5a70f5c64744f6413a546f5e4979b3fb1649b02756ff035d36dde31170eaadc70842230296b60896f04877270c26b40415736299aef44ac16c5811c";
 
     // Contained in FILEHASHES table.

@@ -20,19 +20,12 @@ import org.jboss.windup.exec.configuration.WindupConfiguration;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.GraphContextFactory;
 import org.jboss.windup.graph.service.GraphService;
-import org.jboss.windup.qs.victims.CheckArchivesWithVictimsRules;
-import org.jboss.windup.qs.victims.ComputeArchivesSHA512;
-import org.jboss.windup.qs.victims.UpdateVictimsDbRules;
-import org.jboss.windup.qs.victims.VictimsReportRules;
 import org.jboss.windup.qs.victims.model.AffectedJarModel;
 import org.jboss.windup.qs.victims.model.VulnerabilityModel;
 import org.jboss.windup.qs.victims.test.rulefilters.AndPredicate;
 import org.jboss.windup.qs.victims.test.rulefilters.NotPredicate;
-import org.jboss.windup.qs.victims.test.rulefilters.OrPredicate;
 import org.jboss.windup.rules.apps.java.binary.DecompileArchivesRuleProvider;
-import org.jboss.windup.rules.apps.java.model.JarArchiveModel;
 import org.jboss.windup.rules.apps.java.model.WindupJavaConfigurationModel;
-import org.jboss.windup.rules.apps.java.scan.provider.UnzipArchivesToOutputRuleProvider;
 import org.jboss.windup.rules.apps.java.service.WindupJavaConfigurationService;
 import org.jboss.windup.util.Logging;
 import org.junit.Assert;
@@ -93,6 +86,8 @@ public class VictimsRulesetTest
 
 
             // Create JAR entry in the graph.
+            // Commented out - the report creation needs more data, like project.
+            // So we let other rulesets scan the jar.
             //JarArchiveModel jarM = ctx.getFramed().addVertex(null, JarArchiveModel.class);
             //jarM.setFilePath("src/test/resources/xercesImpl-2.9.1.jar");
             //jarM.setArchiveName("xercesImpl-2.9.1.jar");
