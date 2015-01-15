@@ -26,15 +26,48 @@
     <dependencies>
 
         <!-- Libraries -->
+
+        <!--
         <dependency>
             <groupId>org.sonatype.nexus</groupId>
             <artifactId>nexus-indexer</artifactId>
             <version>3.0.4</version>
         </dependency>
+        -->
 
+        <dependency>
+            <groupId>org.apache.maven.indexer</groupId>
+            <artifactId>indexer-core</artifactId>
+            <version>6.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- For ResourceFetcher implementation, if used -->
+        <dependency>
+            <groupId>org.apache.maven.wagon</groupId>
+            <artifactId>wagon-http-lightweight</artifactId>
+            <version>2.8</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Runtime: DI, but using Plexus Shim as we use Wagon -->
+        <dependency>
+            <groupId>org.eclipse.sisu</groupId>
+            <artifactId>org.eclipse.sisu.plexus</artifactId>
+            <version>0.3.0.M1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sonatype.sisu</groupId>
+            <artifactId>sisu-guice</artifactId>
+            <version>3.2.4</version>
+        </dependency>
 
         <!-- Test dependencies -->
-
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>
