@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.logging.Logger;
 import org.jboss.windup.util.Logging;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -26,7 +27,7 @@ public class IndexToGavMappingConverterTest
     }
 
 
-    @Test
+    @Test @Ignore
     public void testUpdateIndex() throws Exception
     {
         final IndexToGavMappingConverter coverter = new IndexToGavMappingConverter(new File("target/"), "central", "http://repo1.maven.org/maven2");
@@ -46,5 +47,7 @@ public class IndexToGavMappingConverterTest
         log.info("Printing all artifacts to " + shaToGavFile);
         coverter.printAllArtifacts(new FileWriter(shaToGavFile));
         coverter.close();
+        log.info("Sorting " + shaToGavFile);
+        IndexToGavMappingConverter.sortFile(new File(shaToGavFile), new File("target/central.SHA1toGAVs.sorted.txt"));
     }
 }

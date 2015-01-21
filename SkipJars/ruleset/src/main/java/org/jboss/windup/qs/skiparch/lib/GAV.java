@@ -1,5 +1,6 @@
 package org.jboss.windup.qs.skiparch.lib;
 
+import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -9,13 +10,12 @@ import org.apache.commons.lang.StringUtils;
  */
 public class GAV
 {
-
-
     @Override
     public String toString()
     {
         return "GAV{" + "sha1:" + sha1 + " " + groupId + ":" + artifactId + ":" + version + ":" + classifier + '}';
     }
+
     private final String sha1;
     private final String groupId;
     private final String artifactId;
@@ -52,6 +52,20 @@ public class GAV
 
         return gav;
     }
+
+
+    static final Pattern PATTERN_SHA1AndGAV = Pattern.compile(
+                    "\\p{XDigit}{0,40}"
+                    + " [\\w-]+(\\.[\\w-]+)+"
+                    + ":[\\w-]+"
+                    + ":[\\w-\\.]+"
+                    + "(:[\\w-\\.])?");
+
+    public static boolean isValidSHA1AndGAV(String line)
+    {
+        return PATTERN_SHA1AndGAV.matcher(line).matches();
+    }
+
 
 
     public GAV(String sha1, String groupId, String artifactId, String version)

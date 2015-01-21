@@ -1,14 +1,21 @@
 package org.jboss.windup.qs.skiparchives.nexusreader;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Writer;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.MultiFields;
@@ -35,6 +42,7 @@ import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.PlexusContainerException;
 import org.codehaus.plexus.component.repository.exception.ComponentLookupException;
 import org.jboss.windup.util.Logging;
+import org.jboss.windup.util.WindupPathUtil;
 
 
 /**
@@ -110,8 +118,7 @@ public class IndexToGavMappingConverter
      */
     public void updateIndex() throws IOException
     {
-        System.out.println( "Updating Index..." );
-        System.out.println( "This might take a while on first run, so please be patient!" );
+        log.info("Updating Index. This might take a while on first run.");
         // Create ResourceFetcher implementation to be used with IndexUpdateRequest
         // Here, we use Wagon based one as shorthand, but all we need is a ResourceFetcher implementation
         TransferListener listener = new AbstractTransferListener()
@@ -134,7 +141,15 @@ public class IndexToGavMappingConverter
         // Let's go download.
         ResourceFetcher resourceFetcher = new WagonHelper.WagonFetcher( httpWagon, listener, null, null );
 
+        // Skip if local data is younger than X days.
+        int noUpdateDays = 7;
         Date repoCurrentTimestamp = this.centralContext.getTimestamp();
+        //if (new Date().before(DateUtils.addDays(repoCurrentTimestamp, noUpdateDays)) )
+        //    return;
+        final long lastMod = this.centralIndexDir.lastModified();
+        if (!(this.centralIndexDir.exists()) || (lastMod != 0 && lastMod + noUpdateDays * 24 * 3600 > System.currentTimeMillis() ) )
+            return;
+
         IndexUpdateRequest updateRequest = new IndexUpdateRequest( this.centralContext, resourceFetcher );
         IndexUpdateResult updateResult = indexUpdater.fetchAndUpdateIndex( updateRequest );
         if ( updateResult.isFullUpdate() )
@@ -166,8 +181,20 @@ public class IndexToGavMappingConverter
 
                     if (ai == null)
                         continue;
+                    if (ai.getSha1() == null)
+                        continue;
+                    if (ai.getSha1().length() != 40)
+                        continue;
+                    if ("javadoc".equals(ai.getClassifier()))
+                        continue;
+                    if ("sources".equals(ai.getClassifier()))
+                        continue;
+
                     out.append(StringUtils.lowerCase(ai.getSha1())).append(' ');
-                    out.append(ai.getGroupId()).append(":").append(ai.getArtifactId()).append(":").append(ai.getVersion()).append(":").append(ai.getClassifier());
+                    out.append(ai.getGroupId()).append(":");
+                    out.append(ai.getArtifactId()).append(":");
+                    out.append(ai.getVersion()).append(":");
+                    out.append(StringUtils.defaultString(ai.getClassifier()));
                     out.append('\n');
                 }
             }
@@ -185,14 +212,73 @@ public class IndexToGavMappingConverter
     }
 
 
-    // TODO: Remove.
-    public static void main( String[] args )
-        throws Exception
+    /**
+     * Sorts the lines from input file alphabetically and writes to the output file.
+     */
+    public static void sortFile(File input, File output) throws FileNotFoundException, IOException {
+
+        log.fine("  Reading...");
+        List<String> lineList;
+        try (FileReader fileReader = new FileReader(input))
+        {
+            BufferedReader reader = new BufferedReader(fileReader);
+            String inputLine;
+            lineList = new ArrayList((int) (input.length() / 50));
+            while ((inputLine = reader.readLine()) != null) {
+                lineList.add(inputLine);
+            }
+        }
+
+        log.fine("  Sorting...");
+		Collections.sort(lineList);
+
+        log.fine("  Writing...");
+        try (FileWriter fileWriter = new FileWriter(output))
+        {
+            PrintWriter out = new PrintWriter(fileWriter);
+            for (String outputLine : lineList) {
+                out.println(outputLine);
+            }
+        }
+    }
+
+
+    /**
+     * Makes this tool invokable from command line.
+     * @param args 1st param tells which directory to store index data to.
+     */
+    public static void main( String[] args ) throws Exception
     {
-        final IndexToGavMappingConverter converter = new IndexToGavMappingConverter(new File("target/"), "central", "http://repo1.maven.org/maven2");
+        // Where to store data.
+
+        File dataDir = WindupPathUtil.getWindupUserDir().resolve("temp/mavenIndexesData/").toFile();
+        if (args.length > 0)
+        {
+            final File dir = new File(args[0]);
+            dataDir = dir;
+        }
+        else
+            System.out.println("No data directory given, using default: " + dataDir);
+
+        if (dataDir.exists() && !dataDir.isDirectory())
+        {
+            System.err.println("Given path for data directory already exists and is a file: " + dataDir);
+            return;
+        }
+        dataDir.mkdirs();
+
+
+        final IndexToGavMappingConverter converter = new IndexToGavMappingConverter(dataDir, "central", "http://repo1.maven.org/maven2");
+        // Update
         converter.updateIndex();
-        final String shaToGavFile = "target/central.SHA1toGAVs.txt";
-        log.info("Printing all artifacts to " + shaToGavFile);
+
+        // Print
+        final File shaToGavFile = new File(dataDir.getPath(), "central.SHA1toGAVs.txt");
+        log.info("Printing all artifacts to: " + shaToGavFile);
         converter.printAllArtifacts(new FileWriter(shaToGavFile));
+
+        // Sort
+        log.info("Sorting: " + shaToGavFile);
+        sortFile(shaToGavFile, new File(dataDir, "central.SHA1toGAVs.sorted.txt"));
     }
 }

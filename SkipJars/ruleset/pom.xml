@@ -128,9 +128,9 @@
 
         <!-- Libraries -->
         <dependency>
-            <groupId>com.redhat.victims</groupId>
-            <artifactId>victims-lib</artifactId>
-            <version>1.3.2</version>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.6</version>
         </dependency>
 
 
@@ -162,14 +162,13 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Vulnerable jar -->
+        <!-- Jars to identify jar -->
         <dependency>
             <groupId>xerces</groupId>
             <artifactId>xercesImpl</artifactId>
             <version>2.9.1</version>
             <scope>test</scope>
         </dependency>
-        <!-- Vulnerable jar? -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring</artifactId>
