@@ -1,4 +1,4 @@
-package org.jboss.windup.qs.skipjars.test.rulefilters;
+package org.jboss.windup.qs.skiparch.test.rulefilters;
 
 
 import java.util.Arrays;

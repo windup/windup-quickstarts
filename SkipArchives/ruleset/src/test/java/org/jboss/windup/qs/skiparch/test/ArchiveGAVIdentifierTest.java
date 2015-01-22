@@ -1,8 +1,6 @@
-package org.jboss.windup.qs.skipjars.test;
+package org.jboss.windup.qs.skiparch.test;
 
-import com.redhat.victims.VictimsException;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Logger;
 import org.jboss.windup.qs.skiparch.lib.ArchiveGAVIdentifier;
@@ -23,7 +21,7 @@ public class ArchiveGAVIdentifierTest
 
 
     @Test
-    public void testIdentifyArchive() throws IOException, VictimsException
+    public void testIdentifyArchive() throws IOException
     {
         ArchiveGAVIdentifier.addMappingsFrom(Paths.get("src/test/java/org/jboss/windup/qs/skipjars/test/data/sha1ToGAV.txt"));
         GAV gav = ArchiveGAVIdentifier.getGAVFromSHA1("11856de4eeea74ce134ef3f910ff8d6f989dab2e");
@@ -34,7 +32,7 @@ public class ArchiveGAVIdentifierTest
     }
 
     @Test
-    public void testSkippedArchives() throws IOException, VictimsException
+    public void testSkippedArchives() throws IOException
     {
         SkippedArchives.addSkippedArchivesFrom(Paths.get("src/test/java/org/jboss/windup/qs/skipjars/test/data/skippedArchives.txt"));
         log.info("Skipped archives count: " + SkippedArchives.getCount());

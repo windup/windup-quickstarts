@@ -1,4 +1,4 @@
-package org.jboss.windup.qs.skipjars.test;
+package org.jboss.windup.qs.skiparch.test;
 
 import java.util.logging.Logger;
 
