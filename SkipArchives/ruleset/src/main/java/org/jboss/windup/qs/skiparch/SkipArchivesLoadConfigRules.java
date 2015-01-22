@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.LinkedList;
-import org.jboss.windup.qs.skiparch.lib.ArchiveGAVIdentifier;
+import org.jboss.windup.qs.identarch.lib.ArchiveGAVIdentifier;
 import org.jboss.windup.qs.skiparch.lib.SkippedArchives;
 import java.util.List;
 import java.util.logging.Level;

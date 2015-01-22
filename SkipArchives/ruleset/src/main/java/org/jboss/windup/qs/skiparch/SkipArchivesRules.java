@@ -1,7 +1,7 @@
 package org.jboss.windup.qs.skiparch;
 
-import org.jboss.windup.qs.skiparch.lib.GAV;
-import org.jboss.windup.qs.skiparch.lib.ArchiveGAVIdentifier;
+import org.jboss.windup.qs.identarch.lib.GAV;
+import org.jboss.windup.qs.identarch.lib.ArchiveGAVIdentifier;
 import org.jboss.windup.qs.skiparch.lib.SkippedArchives;
 import java.util.List;
 import java.util.logging.Logger;

@@ -1,5 +1,6 @@
 package org.jboss.windup.qs.skiparch.lib;
 
+import org.jboss.windup.qs.identarch.lib.GAV;
 import org.apache.commons.lang.StringUtils;
 
 /**

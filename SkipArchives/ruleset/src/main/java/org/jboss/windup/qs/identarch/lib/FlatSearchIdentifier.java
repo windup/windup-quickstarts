@@ -1,4 +1,4 @@
-package org.jboss.windup.qs.skiparch.lib;
+package org.jboss.windup.qs.identarch.lib;
 
 import java.io.BufferedReader;
 import java.io.IOException;

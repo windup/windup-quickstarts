@@ -1,4 +1,4 @@
-package org.jboss.windup.qs.skiparch.lib;
+package org.jboss.windup.qs.identarch.lib;
 
 import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;

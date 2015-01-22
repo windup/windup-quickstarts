@@ -1,4 +1,4 @@
-package org.jboss.windup.qs.skiparch.lib;
+package org.jboss.windup.qs.identarch.lib;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
