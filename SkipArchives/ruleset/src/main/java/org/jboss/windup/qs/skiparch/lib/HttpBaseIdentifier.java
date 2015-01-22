@@ -2,10 +2,6 @@ package org.jboss.windup.qs.skiparch.lib;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 
 /**
  * Queries online HTTP source for GAV info.
@@ -19,13 +15,14 @@ public abstract class HttpBaseIdentifier implements HashToGAVIdentifier
     private final String baseURL;
 
     // Work tools.
-    private HttpClient client = new HttpClient();
+    private final HttpClient client = new HttpClient();
 
 
     /**
      * @param baseURL  Base URL of the endpoint, in which the ${SHA1} token will be replaced with the hash.
      *                 E.g. https://repository.jboss.org/nexus/service/local/identify/sha1/${SHA1}
-     *                 or   http://search.maven.org/solrsearch/select?q=1:”35379fb6526fd019f331542b4e9ae2e566c57933”&rows=20&wt=json
+     *                 or   http://search.maven.org/solrsearch/select?q=1:"35379fb6526fd019f331542b4e9ae2e566c57933"&wt=json
+     *                 or   http://search.maven.org/solrsearch/select?q=1:"35379fb6526fd019f331542b4e9ae2e566c57933"&wt=xml
      */
     public HttpBaseIdentifier(String baseURL)
     {

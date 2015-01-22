@@ -127,10 +127,19 @@
         </dependency>
 
         <!-- Libraries -->
+        <!--
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.3.6</version>
+        </dependency>
+        -->
+        <!-- Using old and obsolete Commons HttpClient
+             as there were problems with getting the above artifact. -->
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
         </dependency>
 
 
