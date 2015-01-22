@@ -1,14 +1,15 @@
 package org.jboss.windup.qs.identarch.lib;
 
+import com.tinkerpop.blueprints.Vertex;
 import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 
 /**
- *  Maven G:A:V coordinates.
+ * Maven G:A:V coordinates.
  *
- *  @author Ondrej Zizka, ozizka at redhat.com
+ * @author Ondrej Zizka, ozizka at redhat.com
  */
-public class GAV
+public class GAV implements GAVModel
 {
     @Override
     public String toString()
@@ -16,10 +17,10 @@ public class GAV
         return "GAV{" + "sha1:" + sha1 + " " + groupId + ":" + artifactId + ":" + version + ":" + classifier + '}';
     }
 
-    private final String sha1;
-    private final String groupId;
-    private final String artifactId;
-    private final String version;
+    private String sha1;
+    private String groupId;
+    private String artifactId;
+    private String version;
     private String classifier;
 
 
@@ -84,47 +85,88 @@ public class GAV
 
 
 
+    //<editor-fold defaultstate="collapsed" desc="get/set">
 
+    @Override
     public String getSha1()
     {
         return sha1;
     }
 
 
+    @Override
     public String getGroupId()
     {
         return groupId;
     }
 
 
+    @Override
     public String getArtifactId()
     {
         return artifactId;
     }
 
 
+    @Override
     public String getVersion()
     {
         return version;
     }
 
 
+    @Override
     public String getClassifier()
     {
         return classifier;
     }
 
+    @Override
+    public void setSha1(String sha1)
+    {
+        this.sha1 = sha1;
+    }
 
 
+    @Override
+    public void setGroupId(String groupId)
+    {
+        this.groupId = groupId;
+    }
 
-    /**
-     * TODO: Make this unmodifiable?
-     */
+
+    @Override
+    public void setArtifactId(String artifactId)
+    {
+        this.artifactId = artifactId;
+    }
+
+
+    @Override
+    public void setVersion(String version)
+    {
+        this.version = version;
+    }
+
+
+    @Override
     public void setClassifier(String classifier)
     {
         this.classifier = classifier;
     }
+    //</editor-fold>
 
 
+    @Override
+    public String toPrettyString()
+    {
+        return toString();
+    }
+
+    @Override
+    public Vertex asVertex()
+    {
+        return null;
+    }
 
 }// class
