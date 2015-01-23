@@ -1,4 +1,4 @@
-package org.jboss.windup.qs.identarch.lib;
+package org.jboss.windup.qs.identarch.model;
 
 import com.tinkerpop.blueprints.Vertex;
 import java.util.regex.Pattern;

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.logging.Logger;
 import org.jboss.windup.qs.identarch.lib.ArchiveGAVIdentifier;
-import org.jboss.windup.qs.identarch.lib.GAV;
+import org.jboss.windup.qs.identarch.model.GAV;
 import org.jboss.windup.qs.skiparch.lib.SkippedArchives;
 import org.jboss.windup.util.Logging;
 import org.junit.Assert;

@@ -1,7 +1,8 @@
-package org.jboss.windup.qs.skiparch;
+package org.jboss.windup.qs.identarch.lib;
 
+import org.jboss.windup.qs.identarch.model.IdentifiedArchiveModel;
 import org.jboss.windup.qs.identarch.model.GAV;
-import org.jboss.windup.qs.identarch.lib.ArchiveGAVIdentifier;
+import org.jboss.windup.qs.skiparch.*;
 import org.jboss.windup.qs.skiparch.lib.SkippedArchives;
 import java.util.List;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import org.jboss.windup.config.operation.ruleelement.AbstractIterationOperation;
 import org.jboss.windup.config.query.Query;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.model.ArchiveModel;
+import org.jboss.windup.graph.service.GraphService;
 import org.jboss.windup.util.Logging;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.config.ConfigurationBuilder;
@@ -29,11 +31,9 @@ import org.ocpsoft.rewrite.context.EvaluationContext;
  *
  * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
  */
-public class SkipArchivesRules extends WindupRuleProvider
+public class IdentifyArchivesRules extends WindupRuleProvider
 {
-    private static final Logger log = Logging.get(SkipArchivesRules.class);
-
-    private static final String SKIP_PROP = "w:skip";
+    private static final Logger log = Logging.get(IdentifyArchivesRules.class);
 
 
     @Override
@@ -73,12 +73,12 @@ public class SkipArchivesRules extends WindupRuleProvider
                     @Override
                     public void perform(GraphRewrite event, EvaluationContext evCtx, ArchiveModel arch)
                     {
-                        log.info("\tSkipArchives checking archive: " + arch.getFilePath());
+                        log.fine("\tIdentArch identifying archive: " + arch.getFilePath());
 
                         GAV archiveGav = ArchiveGAVIdentifier.getGAVFromSHA1(arch.getSHA1Hash());
 
-                        if(SkippedArchives.isSkipped(archiveGav))
-                            arch.asVertex().setProperty(SKIP_PROP, true);
+                        // TODO: Add type
+                        GraphService.addTypeToModel(grCtx, arch, IdentifiedArchiveModel.class);
                     }
 
                     @Override

@@ -1,5 +1,7 @@
 package org.jboss.windup.qs.identarch.lib;
 
+import org.jboss.windup.qs.identarch.model.GAV;
+
 /**
  *
  * @author Ondrej Zizka, ozizka at redhat.com

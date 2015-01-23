@@ -1,7 +1,7 @@
 package org.jboss.windup.qs.skiparch.lib;
 
 import org.jboss.windup.qs.identarch.lib.ArchiveGAVIdentifier;
-import org.jboss.windup.qs.identarch.lib.GAV;
+import org.jboss.windup.qs.identarch.model.GAV;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

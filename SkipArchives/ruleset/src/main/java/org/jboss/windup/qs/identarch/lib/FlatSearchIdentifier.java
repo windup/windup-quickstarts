@@ -1,5 +1,6 @@
 package org.jboss.windup.qs.identarch.lib;
 
+import org.jboss.windup.qs.identarch.model.GAV;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

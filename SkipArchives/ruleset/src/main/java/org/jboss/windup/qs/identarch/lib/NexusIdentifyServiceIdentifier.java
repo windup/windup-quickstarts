@@ -1,5 +1,6 @@
 package org.jboss.windup.qs.identarch.lib;
 
+import org.jboss.windup.qs.identarch.model.GAV;
 import java.io.IOException;
 import java.util.jar.Attributes;
 import javax.xml.parsers.ParserConfigurationException;

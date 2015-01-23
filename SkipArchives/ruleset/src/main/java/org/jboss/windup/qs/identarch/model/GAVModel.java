@@ -1,6 +1,7 @@
-package org.jboss.windup.qs.identarch.lib;
+package org.jboss.windup.qs.identarch.model;
 
 import com.tinkerpop.frames.Property;
+import com.tinkerpop.frames.modules.typedgraph.TypeValue;
 import org.jboss.windup.graph.model.WindupVertexFrame;
 
 /**
@@ -8,9 +9,11 @@ import org.jboss.windup.graph.model.WindupVertexFrame;
  *
  * @author Ondrej Zizka, ozizka at redhat.com
  */
+@TypeValue(GAVModel.TYPE)
 public interface GAVModel extends WindupVertexFrame
 {
     static final String PREFIX = "identarch:";
+    static final String TYPE = PREFIX + "GAVModel";
 
     @Property(PREFIX + "g")
     String getGroupId();

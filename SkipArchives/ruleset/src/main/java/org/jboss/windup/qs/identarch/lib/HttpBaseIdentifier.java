@@ -1,5 +1,6 @@
 package org.jboss.windup.qs.identarch.lib;
 
+import org.jboss.windup.qs.identarch.model.GAV;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
 
