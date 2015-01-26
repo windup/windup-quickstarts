@@ -1,4 +1,4 @@
-package org.jboss.windup.qs.skiparch.test.rulefilters;
+package org.jboss.windup.qs.victims.test.rulefilters;
 
 import org.jboss.forge.furnace.util.Predicate;
 import org.jboss.windup.config.WindupRuleProvider;
@@ -9,11 +9,11 @@ import org.jboss.windup.config.WindupRuleProvider;
  *
  * @author Ondrej Zizka, ozizka at redhat.com
  */
-public class OrPredicate extends AndPredicate
+public class OrFilter extends AndFilter
 {
-    public OrPredicate(Predicate ... preds)
+    public OrFilter(RuleFilter ... filters)
     {
-        super(preds);
+        super(filters);
     }
 
     @Override

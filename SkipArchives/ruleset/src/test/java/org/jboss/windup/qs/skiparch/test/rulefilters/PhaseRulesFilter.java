@@ -4,7 +4,6 @@ package org.jboss.windup.qs.skiparch.test.rulefilters;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import org.jboss.forge.furnace.util.Predicate;
 import org.jboss.windup.config.RulePhase;
 import org.jboss.windup.config.WindupRuleProvider;
 
@@ -13,7 +12,7 @@ import org.jboss.windup.config.WindupRuleProvider;
  *
  * @author Ondrej Zizka, ozizka at redhat.com
  */
-public class PhaseRulesFilter implements Predicate<WindupRuleProvider>
+public class PhaseRulesFilter implements RuleFilter
 {
     private final Set<RulePhase> phases;
 

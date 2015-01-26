@@ -3,7 +3,6 @@ package org.jboss.windup.qs.victims.test.rulefilters;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import org.jboss.forge.furnace.util.Predicate;
 import org.jboss.windup.config.WindupRuleProvider;
 
 /**
@@ -11,7 +10,7 @@ import org.jboss.windup.config.WindupRuleProvider;
  *
  * @author Ondrej Zizka, ozizka at redhat.com
  */
-public class PackageRulesFilter implements Predicate<WindupRuleProvider>
+public class PackageRulesFilter implements RuleFilter
 {
     private Set<String> packages;
 

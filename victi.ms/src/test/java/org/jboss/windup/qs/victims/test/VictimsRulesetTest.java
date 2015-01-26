@@ -22,8 +22,8 @@ import org.jboss.windup.graph.GraphContextFactory;
 import org.jboss.windup.graph.service.GraphService;
 import org.jboss.windup.qs.victims.model.AffectedJarModel;
 import org.jboss.windup.qs.victims.model.VulnerabilityModel;
-import org.jboss.windup.qs.victims.test.rulefilters.AndPredicate;
-import org.jboss.windup.qs.victims.test.rulefilters.NotPredicate;
+import org.jboss.windup.qs.victims.test.rulefilters.AndFilter;
+import org.jboss.windup.qs.victims.test.rulefilters.NotFilter;
 import org.jboss.windup.rules.apps.java.binary.DecompileArchivesRuleProvider;
 import org.jboss.windup.rules.apps.java.model.WindupJavaConfigurationModel;
 import org.jboss.windup.rules.apps.java.service.WindupJavaConfigurationService;
@@ -101,8 +101,7 @@ public class VictimsRulesetTest
             wc.setGraphContext(ctx);
             // Only run Victims Rules and those it needs.
             //wc.setRuleProviderFilter(new RuleProviderWithDependenciesPredicate(CheckArchivesWithVictimsRules.class));
-            wc.setRuleProviderFilter(
-                /*new OrPredicate(
+            wc.setRuleProviderFilter(/*new OrPredicate(
                     new EnumerationOfRulesFilter(
                         UnzipArchivesToOutputRuleProvider.class,
                         ComputeArchivesSHA512.class, CheckArchivesWithVictimsRules.class,
@@ -110,7 +109,7 @@ public class VictimsRulesetTest
                     new PhaseRulesFilter.ReportingRulesFilter()
                 )*/
                 // Changed to allow creation of the ProjectModel.
-                new NotPredicate( new AndPredicate(
+                new NotFilter( new AndFilter(
                         new PhaseRulesFilter(RulePhase.MIGRATION_RULES),
                         new EnumerationOfRulesFilter(DecompileArchivesRuleProvider.class)
                 ))

@@ -1,4 +1,4 @@
-package org.jboss.windup.qs.victims.test.rulefilters;
+package org.jboss.windup.qs.skiparch.test.rulefilters;
 
 
 import java.util.Arrays;
@@ -13,13 +13,13 @@ import org.jboss.windup.config.WindupRuleProvider;
  *
  * @author Ondrej Zizka, ozizka at redhat.com
  */
-public class AndPredicate implements Predicate<WindupRuleProvider>
+public class AndFilter implements RuleFilter
 {
     protected final Set<Predicate> predicates;
     protected boolean stopWhenKnown = false;
 
 
-    public AndPredicate(Predicate ... preds)
+    public AndFilter(Predicate ... preds)
     {
         this.predicates = new HashSet(Arrays.asList(preds));
     }

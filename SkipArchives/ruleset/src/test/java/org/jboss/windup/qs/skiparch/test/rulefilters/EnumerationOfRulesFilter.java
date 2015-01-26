@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import org.apache.commons.lang.StringUtils;
-import org.jboss.forge.furnace.util.Predicate;
 import org.jboss.windup.config.WindupRuleProvider;
 
 /**
@@ -12,7 +11,7 @@ import org.jboss.windup.config.WindupRuleProvider;
  *
  * @author Ondrej Zizka, ozizka at redhat.com
  */
-public class EnumerationOfRulesFilter implements Predicate<WindupRuleProvider>
+public class EnumerationOfRulesFilter implements RuleFilter
 {
     private final Set<? extends WindupRuleProvider> classes;
     private final Set<String> classNames = new HashSet();
