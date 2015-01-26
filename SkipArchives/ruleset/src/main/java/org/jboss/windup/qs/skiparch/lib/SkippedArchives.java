@@ -1,7 +1,6 @@
 package org.jboss.windup.qs.skiparch.lib;
 
 import org.jboss.windup.qs.identarch.lib.ArchiveGAVIdentifier;
-import org.jboss.windup.qs.identarch.model.GAV;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,14 +13,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
-import org.apache.commons.lang.StringUtils;
 import org.jboss.forge.furnace.versions.DefaultVersionRange;
 import org.jboss.forge.furnace.versions.SingleVersion;
-import org.jboss.forge.furnace.versions.Version;
 import org.jboss.forge.furnace.versions.VersionRange;
+import org.jboss.windup.qs.identarch.model.GAVModel;
 import org.jboss.windup.util.Logging;
 
 /**
+ * A service class keeping the set of skipped archives and handling their lookup.
+ * 
  * Data file format:
  *   G:A:V[~V][:C]
  *
@@ -52,7 +52,7 @@ public class SkippedArchives
     }
 
 
-    public static boolean isSkipped(GAV archiveGav)
+    public static boolean isSkipped(GAVModel archiveGav)
     {
         for(GAVWithVersionRange def : skippedArtifactsDefinitions.values())
         {

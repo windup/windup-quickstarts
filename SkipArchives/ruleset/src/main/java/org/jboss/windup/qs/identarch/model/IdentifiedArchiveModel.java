@@ -19,7 +19,7 @@ public interface IdentifiedArchiveModel extends ArchiveModel
     public static final String IDENT_AS = "IdentArch:identifiedAs";
 
     @Adjacency(label = IDENT_AS, direction = Direction.OUT)
-    public Iterable<GAVModel> getGAV();
+    public GAVModel getGAV();
 
     @Adjacency(label = IDENT_AS, direction = Direction.OUT)
     public IgnoredArchiveModel setGAV(GAVModel vul);

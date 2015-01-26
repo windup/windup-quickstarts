@@ -66,11 +66,11 @@ public class SkipJarsRulesetTest
     private GraphContextFactory contextFactory;
 
     @Test
-    public void testAffectedJarsFound()
+    public void testSkippedJarsFound()
     {
         try (GraphContext ctx = contextFactory.create())
         {
-
+            
         }
         catch (Exception ex)
         {

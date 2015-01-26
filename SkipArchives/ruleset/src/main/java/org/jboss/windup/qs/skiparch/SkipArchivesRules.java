@@ -15,6 +15,10 @@ import org.jboss.windup.config.operation.ruleelement.AbstractIterationOperation;
 import org.jboss.windup.config.query.Query;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.model.ArchiveModel;
+import org.jboss.windup.graph.service.GraphService;
+import org.jboss.windup.qs.identarch.IdentifyArchivesRules;
+import org.jboss.windup.qs.identarch.model.IdentifiedArchiveModel;
+import org.jboss.windup.qs.skiparch.model.IgnoredArchiveModel;
 import org.jboss.windup.util.Logging;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.config.ConfigurationBuilder;
@@ -52,7 +56,7 @@ public class SkipArchivesRules extends WindupRuleProvider
     @Override
     public List<Class<? extends WindupRuleProvider>> getExecuteAfter()
     {
-        return asClassList(SkipArchivesLoadConfigRules.class);
+        return asClassList(IdentifyArchivesRules.class, SkipArchivesLoadConfigRules.class);
     }
 
 
@@ -64,21 +68,25 @@ public class SkipArchivesRules extends WindupRuleProvider
 
         // Check the jars
         .addRule()
-        .when(Query.fromType(ArchiveModel.class))
+        .when(Query.fromType(IdentifiedArchiveModel.class))
         .perform(
-            Iteration.over(ArchiveModel.class) // TODO: Use IteratingRuleProvider?
+            Iteration.over(IdentifiedArchiveModel.class) // TODO: Use IteratingRuleProvider?
             .perform(
-                new AbstractIterationOperation<ArchiveModel>()
+                new AbstractIterationOperation<IdentifiedArchiveModel>()
                 {
                     @Override
-                    public void perform(GraphRewrite event, EvaluationContext evCtx, ArchiveModel arch)
+                    public void perform(GraphRewrite event, EvaluationContext evCtx, IdentifiedArchiveModel arch)
                     {
                         log.info("\tSkipArchives checking archive: " + arch.getFilePath());
 
-                        GAV archiveGav = ArchiveGAVIdentifier.getGAVFromSHA1(arch.getSHA1Hash());
+                        //GAV archiveGav = ArchiveGAVIdentifier.getGAVFromSHA1(arch.getSHA1Hash());
+                        // Identification moved to IdentifyArchiveRules.
 
-                        if(SkippedArchives.isSkipped(archiveGav))
-                            arch.asVertex().setProperty(SKIP_PROP, true);
+                        if (SkippedArchives.isSkipped(arch.getGAV()))
+                        {
+                            GraphService.addTypeToModel(grCtx, arch, IgnoredArchiveModel.class);
+                            //arch.asVertex().setProperty(SKIP_PROP, true);
+                        }
                     }
 
                     @Override
