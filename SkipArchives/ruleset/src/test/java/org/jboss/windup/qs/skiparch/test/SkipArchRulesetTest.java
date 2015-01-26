@@ -42,9 +42,11 @@ public class SkipArchRulesetTest
 
     @Deployment
     @Dependencies({
+        @AddonDependency(name = "org.jboss.windup.graph:windup-graph"),
         @AddonDependency(name = "org.jboss.windup.config:windup-config"),
         @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
         @AddonDependency(name = "org.jboss.windup.utils:utils"),
+        @AddonDependency(name = "org.jboss.windup.rules.apps:rules-base"),
         @AddonDependency(name = "org.jboss.windup.rules.apps:rules-java"),
         //@AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
         @AddonDependency(name = "org.jboss.windup.quickstarts:windup-skiparchives"),
@@ -58,9 +60,11 @@ public class SkipArchRulesetTest
             .addClasses(SkipArchivesRules.class)
             .addPackages(true, SkipArchRulesetTest.class.getPackage())
             .addAsAddonDependencies(
+                AddonDependencyEntry.create("org.jboss.windup.graph:windup-graph"),
                 AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
                 AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
                 AddonDependencyEntry.create("org.jboss.windup.utils:utils"),
+                AddonDependencyEntry.create("org.jboss.windup.rules.apps:rules-base"),
                 AddonDependencyEntry.create("org.jboss.windup.rules.apps:rules-java"),
                 //AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
                 AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-skiparchives"),
