@@ -1,7 +1,7 @@
 package org.jboss.windup.qs.skiparch.test;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.logging.Logger;
 import org.jboss.windup.qs.identarch.lib.ArchiveGAVIdentifier;
 import org.jboss.windup.qs.identarch.model.GAV;
@@ -19,12 +19,20 @@ public class ArchiveGAVIdentifierTest
 {
     private static final Logger log = Logging.get(ArchiveGAVIdentifierTest.class);
 
+    private static final String PKG_PATH  = ArchiveGAVIdentifierTest.class.getPackage().getName().replace('.', '/');
+    private static final String DATA_PATH = "src/test/java/" + PKG_PATH + "/data";
 
+    
     @Test
     public void testIdentifyArchive() throws IOException
     {
-        ArchiveGAVIdentifier.addMappingsFrom(Paths.get("src/test/java/org/jboss/windup/qs/skipjars/test/data/sha1ToGAV.txt"));
+
+        final File mappingFile = new File(DATA_PATH + "/sha1ToGAV.txt");
+        if (!mappingFile.exists())
+            throw new IllegalStateException("Test file does not exist: " + mappingFile);
+        ArchiveGAVIdentifier.addMappingsFrom(mappingFile);
         GAV gav = ArchiveGAVIdentifier.getGAVFromSHA1("11856de4eeea74ce134ef3f910ff8d6f989dab2e");
+        Assert.assertNotNull("ArchiveGAVIdentifier.getGAVFromSHA1 returned something", gav);
         Assert.assertEquals("org.jboss.windup", gav.getGroupId());
         Assert.assertEquals("windup-bootstrap", gav.getArtifactId());
         Assert.assertEquals("2.0.0.Beta7", gav.getVersion());
@@ -34,7 +42,11 @@ public class ArchiveGAVIdentifierTest
     @Test
     public void testSkippedArchives() throws IOException
     {
-        SkippedArchives.addSkippedArchivesFrom(Paths.get("src/test/java/org/jboss/windup/qs/skipjars/test/data/skippedArchives.txt"));
+        final File skipListFile = new File(DATA_PATH + "/skippedArchives.txt");
+        if (!skipListFile.exists())
+            throw new IllegalStateException("Test file does not exist: " + skipListFile);
+
+        SkippedArchives.addSkippedArchivesFrom(skipListFile);
         log.info("Skipped archives count: " + SkippedArchives.getCount());
         Assert.assertNotEquals("There are some skipped archives", 0, SkippedArchives.getCount());
 

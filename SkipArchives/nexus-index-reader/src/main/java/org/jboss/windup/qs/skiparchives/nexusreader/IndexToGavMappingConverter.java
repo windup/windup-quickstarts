@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
+import org.apache.commons.lang.time.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
@@ -109,45 +110,42 @@ public class IndexToGavMappingConverter
 
 
 
-
-
     /**
      * Does all the downloading / partial update.
      */
     public void updateIndex() throws IOException
     {
+        int noUpdateDays = 7;
+
+        // Local repo update time - TODO.
+        Date localIndexUpdated = null;
+        Date repoCurrentTimestamp = this.centralContext.getTimestamp();
+
+        if (localIndexUpdated != null)
+        {
+            // Do not update if remote repo was not updated since last update.
+            if (new Date().before(DateUtils.addDays(repoCurrentTimestamp, noUpdateDays)) )
+                return;
+
+            // Do not update if local repo was updated in last $noUpdateDays.
+            if (this.centralIndexDir.exists())
+            {
+                final long lastMod = this.centralIndexDir.lastModified();
+                if (lastMod != 0)
+                {
+                    final long nextMod = lastMod + noUpdateDays * 24 * 3600;
+                    if (nextMod > System.currentTimeMillis() )
+                        return;
+                }
+            }
+        }
+
+
+        // Let's go download.
         log.info("Updating Index. This might take a while on first run.");
         // Create ResourceFetcher implementation to be used with IndexUpdateRequest
         // Here, we use Wagon based one as shorthand, but all we need is a ResourceFetcher implementation
-        TransferListener listener = new AbstractTransferListener()
-        {
-            public void transferStarted( TransferEvent transferEvent )
-            {
-                log.info("  Downloading " + transferEvent.getResource().getName() );
-            }
-
-            public void transferProgress( TransferEvent transferEvent, byte[] buffer, int length )
-            {
-            }
-
-            public void transferCompleted( TransferEvent transferEvent )
-            {
-                log.info( " - Done" );
-            }
-        };
-
-        // Let's go download.
-        ResourceFetcher resourceFetcher = new WagonHelper.WagonFetcher( httpWagon, listener, null, null );
-
-        // Skip if local data is younger than X days.
-        int noUpdateDays = 7;
-        Date repoCurrentTimestamp = this.centralContext.getTimestamp();
-        //if (new Date().before(DateUtils.addDays(repoCurrentTimestamp, noUpdateDays)) )
-        //    return;
-        final long lastMod = this.centralIndexDir.lastModified();
-        if (!(this.centralIndexDir.exists()) || (lastMod != 0 && lastMod + noUpdateDays * 24 * 3600 > System.currentTimeMillis() ) )
-            return;
-
+        ResourceFetcher resourceFetcher = new WagonHelper.WagonFetcher( httpWagon, createLoggingTransferListener(), null, null );
         IndexUpdateRequest updateRequest = new IndexUpdateRequest( this.centralContext, resourceFetcher );
         IndexUpdateResult updateResult = indexUpdater.fetchAndUpdateIndex( updateRequest );
         if ( updateResult.isFullUpdate() )
@@ -157,6 +155,27 @@ public class IndexToGavMappingConverter
         else
             log.info("Incremental update happened, change covered " + repoCurrentTimestamp
                     + " - " + updateResult.getTimestamp() + " period.");
+    }
+
+
+    /**
+     * A listener that just logs.
+     */
+    private TransferListener createLoggingTransferListener()
+    {
+        TransferListener listener = new AbstractTransferListener()
+        {
+            public void transferStarted( TransferEvent transferEvent )
+            {
+                log.info("  Downloading " + transferEvent.getResource().getName() );
+            }
+
+            public void transferCompleted( TransferEvent transferEvent )
+            {
+                log.info( "  Downloaded." );
+            }
+        };
+        return listener;
     }
 
 

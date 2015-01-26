@@ -1,8 +1,11 @@
 package org.jboss.windup.qs.identarch.model;
 
 import com.tinkerpop.blueprints.Vertex;
+import info.aduna.lang.ObjectUtil;
 import java.util.regex.Pattern;
+import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
+import static org.jboss.windup.qs.identarch.lib.HashToGAVIdentifier.SHA1_LENGTH;
 
 /**
  * Maven G:A:V coordinates.
@@ -56,7 +59,7 @@ public class GAV implements GAVModel
 
 
     static final Pattern PATTERN_SHA1AndGAV = Pattern.compile(
-                    "\\p{XDigit}{0,40}"
+                    "\\p{XDigit}{0," + SHA1_LENGTH + "}"
                     + " [\\w-]+(\\.[\\w-]+)+"
                     + ":[\\w-]+"
                     + ":[\\w-\\.]+"
@@ -160,6 +163,26 @@ public class GAV implements GAVModel
         return this;
     }
     //</editor-fold>
+
+
+    @Override
+    public boolean equals(Object other)
+    {
+        if (!(other instanceof GAVModel))
+            return false;
+        GAVModel gav = (GAVModel) other;
+        if (!StringUtils.equals(this.groupId, gav.getGroupId()))
+                return false;
+        if (!StringUtils.equals(this.artifactId, gav.getArtifactId()))
+                return false;
+        if (!StringUtils.equals(this.version, gav.getVersion()))
+                return false;
+        if (this.sha1 != null && gav.getSha1() != null && !(this.sha1.equals(gav.getSha1())))
+            return false;
+        
+        return true;
+    }
+
 
 
     @Override

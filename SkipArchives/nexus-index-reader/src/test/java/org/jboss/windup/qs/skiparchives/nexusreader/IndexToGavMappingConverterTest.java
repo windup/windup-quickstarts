@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.jboss.windup.qs.skiparchives.nexusreader;
 
 import java.io.File;
@@ -28,18 +23,18 @@ public class IndexToGavMappingConverterTest
 
 
     @Test @Ignore
-    public void testUpdateIndex() throws Exception
+    public void testAUpdateIndex() throws Exception
     {
         final IndexToGavMappingConverter coverter = new IndexToGavMappingConverter(new File("target/"), "central", "http://repo1.maven.org/maven2");
 
         // Update the index (incremental update will happen if this is not 1st run and files are not deleted)
-        coverter.updateIndex( );
+        coverter.updateIndex();
         coverter.close();
     }
 
 
     @Test
-    public void testPrintAllArtifacts() throws Exception
+    public void testZPrintAllArtifacts() throws Exception
     {
         final IndexToGavMappingConverter coverter = new IndexToGavMappingConverter(new File("target/"), "central", "http://repo1.maven.org/maven2");
 

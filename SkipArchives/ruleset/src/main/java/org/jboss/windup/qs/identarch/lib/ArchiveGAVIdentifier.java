@@ -58,15 +58,15 @@ public class ArchiveGAVIdentifier
     }
 
 
-    public static void addMappingsFrom(Path path)
+    public static void addMappingsFrom(File file)
     {
         try
         {
-            addMappingsFrom(new FileInputStream(path.toFile()));
+            addMappingsFrom(new FileInputStream(file));
         }
         catch( FileNotFoundException ex )
         {
-            log.log(Level.SEVERE, "Failed loading SHA1 to GAV mapping from " + path.toString() + ": " + ex.getMessage(), ex);
+            log.log(Level.SEVERE, "Failed loading SHA1 to GAV mapping from " + file.toString() + ": " + ex.getMessage(), ex);
         }
     }
 

@@ -21,7 +21,7 @@ import org.jboss.windup.util.Logging;
 
 /**
  * A service class keeping the set of skipped archives and handling their lookup.
- * 
+ *
  * Data file format:
  *   G:A:V[~V][:C]
  *
@@ -86,15 +86,15 @@ public class SkippedArchives
     }
 
 
-    public static void addSkippedArchivesFrom(Path path)
+    public static void addSkippedArchivesFrom(File skippedArchFile)
     {
         try
         {
-            addSkippedArchivesFrom(new FileInputStream(path.toFile()));
+            addSkippedArchivesFrom(new FileInputStream(skippedArchFile));
         }
         catch( FileNotFoundException ex )
         {
-            log.log(Level.SEVERE, "Failed loading SHA1 to GAV mapping from " + path.toString() + ": " + ex.getMessage(), ex);
+            log.log(Level.SEVERE, "Failed loading SHA1 to GAV mapping from " + skippedArchFile.toString() + ": " + ex.getMessage(), ex);
         }
     }
 

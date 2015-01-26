@@ -91,10 +91,10 @@ public class SkipArchivesLoadConfigRules extends WindupRuleProvider
             List<Path> skips = findFilesBySuffix(confDir, ".ignoredGavs.txt");
 
             for(Path gavMappingFile : gavs)
-                ArchiveGAVIdentifier.addMappingsFrom(confDir.toPath().resolve(gavMappingFile));
+                ArchiveGAVIdentifier.addMappingsFrom(confDir.toPath().resolve(gavMappingFile).toFile());
 
             for(Path skippedArchivesConfig : skips)
-                SkippedArchives.addSkippedArchivesFrom(confDir.toPath().resolve(skippedArchivesConfig));
+                SkippedArchives.addSkippedArchivesFrom(confDir.toPath().resolve(skippedArchivesConfig).toFile());
         }
         catch (IOException ex)
         {

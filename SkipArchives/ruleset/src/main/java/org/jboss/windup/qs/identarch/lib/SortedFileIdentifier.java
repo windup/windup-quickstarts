@@ -217,8 +217,8 @@ public class SortedFileIdentifier implements HashToGAVIdentifier
                 continue;
 
 
-            /*// Compare the two SHA1 hashes (by bytes).
-            System.arraycopy(line.substring(0,40).getBytes(), 0, entryHashBytes, 0, 40);
+            // Compare the two SHA1 hashes (by bytes).
+            /*System.arraycopy(line.substring(0,SHA1_LENGTH).getBytes(), 0, entryHashBytes, 0, SHA1_LENGTH);
             int compare = compare(hashBytes, entryHashBytes);
             if (compare == 0)
                 // Match
