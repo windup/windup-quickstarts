@@ -14,7 +14,8 @@ import org.jboss.forge.arquillian.Dependencies;
 import org.jboss.forge.arquillian.archive.ForgeArchive;
 import org.jboss.forge.furnace.repositories.AddonDependencyEntry;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.windup.config.RulePhase;
+import org.jboss.windup.config.phase.MigrationRules;
+import org.jboss.windup.config.phase.RulePhase;
 import org.jboss.windup.exec.WindupProcessor;
 import org.jboss.windup.exec.configuration.WindupConfiguration;
 import org.jboss.windup.graph.GraphContext;
@@ -110,7 +111,7 @@ public class VictimsRulesetTest
                 )*/
                 // Changed to allow creation of the ProjectModel.
                 new NotFilter( new AndFilter(
-                        new PhaseRulesFilter(RulePhase.MIGRATION_RULES),
+                        new PhaseRulesFilter(MigrationRules.class),
                         new EnumerationOfRulesFilter(DecompileArchivesRuleProvider.class)
                 ))
             );

@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jboss.windup.config.GraphRewrite;
-import org.jboss.windup.config.RulePhase;
 
 import org.jboss.windup.config.WindupRuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
@@ -33,12 +32,6 @@ public class UpdateVictimsDbRules extends WindupRuleProvider
 {
     private static final Logger log = Logging.get(UpdateVictimsDbRules.class);
 
-
-    @Override
-    public RulePhase getPhase()
-    {
-        return RulePhase.POST_DISCOVERY;
-    }
 
     @Override
     public List<Class<? extends WindupRuleProvider>> getExecuteAfter()

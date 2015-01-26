@@ -1,20 +1,17 @@
 package org.jboss.windup.qs.skiparch;
 
-import org.jboss.windup.qs.identarch.model.GAV;
-import org.jboss.windup.qs.identarch.lib.ArchiveGAVIdentifier;
 import org.jboss.windup.qs.skiparch.lib.SkippedArchives;
 import java.util.List;
 import java.util.logging.Logger;
 import org.jboss.windup.config.GraphRewrite;
-import org.jboss.windup.config.RulePhase;
 
 import org.jboss.windup.config.WindupRuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.Iteration;
 import org.jboss.windup.config.operation.ruleelement.AbstractIterationOperation;
+import org.jboss.windup.config.phase.DecompilationPhase;
 import org.jboss.windup.config.query.Query;
 import org.jboss.windup.graph.GraphContext;
-import org.jboss.windup.graph.model.ArchiveModel;
 import org.jboss.windup.graph.service.GraphService;
 import org.jboss.windup.qs.identarch.IdentifyArchivesRules;
 import org.jboss.windup.qs.identarch.model.IdentifiedArchiveModel;
@@ -37,15 +34,6 @@ public class SkipArchivesRules extends WindupRuleProvider
 {
     private static final Logger log = Logging.get(SkipArchivesRules.class);
 
-    private static final String SKIP_PROP = "w:skip";
-
-
-    @Override
-    public RulePhase getPhase()
-    {
-        return RulePhase.POST_DISCOVERY;
-    }
-
     @Override
     public void enhanceMetadata(Context context)
     {
@@ -57,6 +45,13 @@ public class SkipArchivesRules extends WindupRuleProvider
     public List<Class<? extends WindupRuleProvider>> getExecuteAfter()
     {
         return asClassList(IdentifyArchivesRules.class, SkipArchivesLoadConfigRules.class);
+    }
+
+
+    @Override
+    public List<Class<? extends WindupRuleProvider>> getExecuteBefore()
+    {
+        return asClassList(DecompilationPhase.class);
     }
 
 
@@ -85,7 +80,6 @@ public class SkipArchivesRules extends WindupRuleProvider
                         if (SkippedArchives.isSkipped(arch.getGAV()))
                         {
                             GraphService.addTypeToModel(grCtx, arch, IgnoredArchiveModel.class);
-                            //arch.asVertex().setProperty(SKIP_PROP, true);
                         }
                     }
 

@@ -18,25 +18,25 @@ public interface GAVModel extends WindupVertexFrame
     @Property(PREFIX + "g")
     String getGroupId();
     @Property(PREFIX + "g")
-    void setGroupId(String groupId);
+    GAVModel setGroupId(String groupId);
 
     @Property(PREFIX + "a")
     String getArtifactId();
     @Property(PREFIX + "a")
-    void setArtifactId(String artifactId);
+    GAVModel setArtifactId(String artifactId);
 
     @Property(PREFIX + "c")
     String getClassifier();
     @Property(PREFIX + "c")
-    void setClassifier(String classifier);
+    GAVModel setClassifier(String classifier);
 
     @Property(PREFIX + "v")
     String getVersion();
     @Property(PREFIX + "v")
-    void setVersion(String version);
+    GAVModel setVersion(String version);
 
     @Property(PREFIX + "sha1")
     String getSha1();
     @Property(PREFIX + "sha1")
-    void setSha1(String sha1);
+    GAVModel setSha1(String sha1);
 }

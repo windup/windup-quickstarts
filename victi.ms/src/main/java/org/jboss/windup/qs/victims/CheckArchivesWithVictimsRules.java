@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Logger;
 import org.jboss.windup.config.GraphRewrite;
-import org.jboss.windup.config.RulePhase;
 
 import org.jboss.windup.config.WindupRuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
@@ -39,12 +38,6 @@ public class CheckArchivesWithVictimsRules extends WindupRuleProvider
 
 
     @Override
-    public RulePhase getPhase()
-    {
-        return RulePhase.POST_DISCOVERY;
-    }
-
-    @Override
     public void enhanceMetadata(Context context)
     {
         super.enhanceMetadata(context);
@@ -54,7 +47,7 @@ public class CheckArchivesWithVictimsRules extends WindupRuleProvider
     @Override
     public List<Class<? extends WindupRuleProvider>> getExecuteAfter()
     {
-        return asClassList(UpdateVictimsDbRules.class, ComputeArchivesSHA512.class);
+        return asClassList(UpdateVictimsDbRules.class, ComputeArchivesSHA512Rules.class);
     }
 
 
@@ -97,7 +90,7 @@ public class CheckArchivesWithVictimsRules extends WindupRuleProvider
                         {
                             log.info("\tVicti.ms checking archive: " + arch.getFilePath());
                             GraphService<VulnerabilityModel> vulGS = new GraphService(event.getGraphContext(), VulnerabilityModel.class);
-                            String hash = arch.asVertex().getProperty(ComputeArchivesSHA512.KEY_SHA512);
+                            String hash = arch.asVertex().getProperty(ComputeArchivesSHA512Rules.KEY_SHA512);
                             try
                             {
                                 HashSet<String> vuls = db.getVulnerabilities(hash);

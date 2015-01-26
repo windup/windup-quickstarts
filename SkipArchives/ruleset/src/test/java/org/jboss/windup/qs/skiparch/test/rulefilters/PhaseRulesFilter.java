@@ -4,8 +4,10 @@ package org.jboss.windup.qs.skiparch.test.rulefilters;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import org.jboss.windup.config.RulePhase;
 import org.jboss.windup.config.WindupRuleProvider;
+import org.jboss.windup.config.phase.ReportGeneration;
+import org.jboss.windup.config.phase.ReportRendering;
+import org.jboss.windup.config.phase.RulePhase;
 
 /**
  * Filters the rules with given phases.
@@ -16,7 +18,7 @@ public class PhaseRulesFilter implements RuleFilter
 {
     private final Set<RulePhase> phases;
 
-    public PhaseRulesFilter( RulePhase ... phases )
+    public PhaseRulesFilter( Class<? extends RulePhase> ... phases )
     {
         this.phases = new HashSet(Arrays.asList(phases));
     }
@@ -38,7 +40,7 @@ public class PhaseRulesFilter implements RuleFilter
     {
         public ReportingRulesFilter()
         {
-            super(RulePhase.REPORT_GENERATION, RulePhase.REPORT_RENDERING);
+            super(ReportGeneration.class, ReportRendering.class);
         }
     }
 

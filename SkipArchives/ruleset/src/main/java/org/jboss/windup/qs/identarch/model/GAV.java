@@ -122,37 +122,42 @@ public class GAV implements GAVModel
     }
 
     @Override
-    public void setSha1(String sha1)
+    public GAV setSha1(String sha1)
     {
         this.sha1 = sha1;
+        return this;
     }
 
 
     @Override
-    public void setGroupId(String groupId)
+    public GAV setGroupId(String groupId)
     {
         this.groupId = groupId;
+        return this;
     }
 
 
     @Override
-    public void setArtifactId(String artifactId)
+    public GAV setArtifactId(String artifactId)
     {
         this.artifactId = artifactId;
+        return this;
     }
 
 
     @Override
-    public void setVersion(String version)
+    public GAV setVersion(String version)
     {
         this.version = version;
+        return this;
     }
 
 
     @Override
-    public void setClassifier(String classifier)
+    public GAV setClassifier(String classifier)
     {
         this.classifier = classifier;
+        return this;
     }
     //</editor-fold>
 

@@ -15,7 +15,6 @@ import org.apache.commons.io.DirectoryWalker;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.jboss.windup.config.GraphRewrite;
-import org.jboss.windup.config.RulePhase;
 
 import org.jboss.windup.config.WindupRuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
@@ -42,12 +41,6 @@ public class SkipArchivesLoadConfigRules extends WindupRuleProvider
 
     private static final String SKIP_PROP = "w:skip";
 
-
-    @Override
-    public RulePhase getPhase()
-    {
-        return RulePhase.DISCOVERY;
-    }
 
     @Override
     public void enhanceMetadata(Context context)
@@ -78,8 +71,6 @@ public class SkipArchivesLoadConfigRules extends WindupRuleProvider
                 {
                     loadConfig();
                 }
-
-
             }
         ).withId("SkipArchivesLoadConfig");
     }
@@ -96,15 +87,14 @@ public class SkipArchivesLoadConfigRules extends WindupRuleProvider
             log.info("SkipArchives config dir not found at " + confDir.toString());
         else try
         {
-            LinkedList sha1toGAVs = new LinkedList();
             List<Path> gavs = findFilesBySuffix(confDir, ".gavMapping.txt");
             List<Path> skips = findFilesBySuffix(confDir, ".ignoredGavs.txt");
 
             for(Path gavMappingFile : gavs)
-                ArchiveGAVIdentifier.addMappingsFrom(gavMappingFile);
+                ArchiveGAVIdentifier.addMappingsFrom(confDir.toPath().resolve(gavMappingFile));
 
             for(Path skippedArchivesConfig : skips)
-                SkippedArchives.addSkippedArchivesFrom(skippedArchivesConfig);
+                SkippedArchives.addSkippedArchivesFrom(confDir.toPath().resolve(skippedArchivesConfig));
         }
         catch (IOException ex)
         {
@@ -126,29 +116,31 @@ public class SkipArchivesLoadConfigRules extends WindupRuleProvider
 
 
     /**
-     * Scans given directory for
-     * @param confDir
-     * @param suffix
-     * @return
-     * @throws IOException
+     * Scans given directory for files with name ending with given suffix.
+     *
+     * @return  A list of paths to matching files, relative to baseDir.
      */
-    private List<Path> findFilesBySuffix(final File confDir, final String suffix) throws IOException
+    private List<Path> findFilesBySuffix(final File baseDir, final String suffix) throws IOException
     {
-        final LinkedList files = new LinkedList();
-        new DirectoryWalker<File>(DirectoryFileFilter.DIRECTORY, new SuffixFileFilter(suffix), -1)
+        final LinkedList<Path> foundSubPaths = new LinkedList();
+
+        final Path basePath = baseDir.toPath();
+
+        new DirectoryWalker<Path>(DirectoryFileFilter.DIRECTORY, new SuffixFileFilter(suffix), -1)
         {
             void findArchives() throws IOException
             {
-                this.walk(confDir, files);
+                this.walk(baseDir, foundSubPaths);
             }
 
             @Override
-            protected void handleFile(File file, int depth, Collection<File> results) throws IOException
+            protected void handleFile(File file, int depth, Collection<Path> results) throws IOException
             {
-                results.add(file);
+                Path relPath = basePath.relativize(file.toPath());
+                results.add(relPath);
             }
         }.findArchives();
 
-        return files;
+        return foundSubPaths;
     }
 }

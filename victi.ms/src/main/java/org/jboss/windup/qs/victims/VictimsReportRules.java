@@ -1,9 +1,10 @@
 package org.jboss.windup.qs.victims;
 
+import java.util.List;
 import org.jboss.windup.config.GraphRewrite;
-import org.jboss.windup.config.RulePhase;
 import org.jboss.windup.config.WindupRuleProvider;
 import org.jboss.windup.config.operation.ruleelement.AbstractIterationOperation;
+import org.jboss.windup.config.phase.ReportGeneration;
 import org.jboss.windup.config.query.Query;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.model.ProjectModel;
@@ -32,10 +33,11 @@ public class VictimsReportRules extends WindupRuleProvider
     public static final String TEMPLATE_REPORT = "/org/jboss/windup/qs/victims/Report-Security.html";
 
     @Override
-    public RulePhase getPhase()
+    public List<Class<? extends WindupRuleProvider>> getExecuteAfter()
     {
-        return RulePhase.REPORT_GENERATION;
+        return asClassList(UpdateVictimsDbRules.class, ReportGeneration.class);
     }
+
 
     // @formatter:off
     @Override
