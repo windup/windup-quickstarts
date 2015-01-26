@@ -36,7 +36,6 @@ import org.junit.runner.RunWith;
  * @author Ondrej Zizka, ozizka at redhat.com
  */
 @RunWith(Arquillian.class)
-@Ignore
 public class IdentifyArchivesRulesetTest
 {
     private static final Logger log = Logging.get(IdentifyArchivesRulesetTest.class);
@@ -46,8 +45,8 @@ public class IdentifyArchivesRulesetTest
         @AddonDependency(name = "org.jboss.windup.config:windup-config"),
         @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
         @AddonDependency(name = "org.jboss.windup.utils:utils"),
-        @AddonDependency(name = "org.jboss.windup.rules.apps:rules-java"),
-        @AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
+        //@AddonDependency(name = "org.jboss.windup.rules.apps:rules-java"),
+        //@AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
         @AddonDependency(name = "org.jboss.windup.quickstarts:windup-skiparchives"),
         @AddonDependency(name = "org.jboss.forge.furnace.container:cdi"),
     })
@@ -55,14 +54,13 @@ public class IdentifyArchivesRulesetTest
     {
         final ForgeArchive archive = ShrinkWrap.create(ForgeArchive.class)
             .addBeansXML()
-            //.addClasses(SkipArchivesRules.class, EnumerationOfRulesFilter.class, OrPredicate.class, )
-            .addPackages(true,"org.jboss.windup.qs.victims.test")
+            .addPackages(true, IdentifyArchivesRulesetTest.class.getPackage())
             .addAsAddonDependencies(
                 AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
                 AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
                 AddonDependencyEntry.create("org.jboss.windup.utils:utils"),
-                AddonDependencyEntry.create("org.jboss.windup.rules.apps:rules-java"),
-                AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
+                //AddonDependencyEntry.create("org.jboss.windup.rules.apps:rules-java"),
+                //AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
                 AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-skiparchives"),
                 AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi")
             );
@@ -103,7 +101,7 @@ public class IdentifyArchivesRulesetTest
             Assert.assertNotNull(gav);
 
             // Correctly identified.
-            final GAV expectedGav = GAV.fromSHA1AndGAV("4e031bb61df09069aeb2bffb4019e7a5034a4ee0 junit:junit:4.11");
+            final GAV expectedGav = GAV.fromSHA1AndGAV("4e031bb61df09069aeb2bffb4019e7a5034a4ee0 junitx:junit:4.11");
             Assert.assertEquals(expectedGav, gav);
 
         }

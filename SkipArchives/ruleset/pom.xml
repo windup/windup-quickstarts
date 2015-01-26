@@ -105,7 +105,18 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Other rulesets. -->
+        <!-- Windup Rules Base -->
+        <dependency>
+            <groupId>org.jboss.windup.rules.apps</groupId>
+            <artifactId>rules-base</artifactId>
+            <classifier>forge-addon</classifier>
+            <scope>provided</scope>
+        </dependency>
+
+
+
+        <!-- Other rulesets.
+        -->
         <dependency>
             <groupId>org.jboss.windup.rules.apps</groupId>
             <artifactId>rules-java</artifactId>

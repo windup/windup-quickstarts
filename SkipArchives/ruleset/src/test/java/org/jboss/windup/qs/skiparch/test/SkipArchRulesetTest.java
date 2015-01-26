@@ -21,9 +21,11 @@ import org.jboss.windup.graph.service.GraphService;
 import org.jboss.windup.qs.identarch.model.GAVModel;
 import org.jboss.windup.qs.identarch.model.IdentifiedArchiveModel;
 import org.jboss.windup.qs.skiparch.SkipArchivesRules;
+import org.jboss.windup.qs.skiparch.model.IgnoredArchiveModel;
 import org.jboss.windup.qs.skiparch.test.rulefilters.EnumerationOfRulesFilter;
 import org.jboss.windup.qs.skiparch.test.rulefilters.RuleFilter;
 import org.jboss.windup.util.Logging;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,10 +36,9 @@ import org.junit.runner.RunWith;
  * @author Ondrej Zizka, ozizka at redhat.com
  */
 @RunWith(Arquillian.class)
-@Ignore
-public class SkipJarsRulesetTest
+public class SkipArchRulesetTest
 {
-    private static final Logger log = Logging.get(SkipJarsRulesetTest.class);
+    private static final Logger log = Logging.get(SkipArchRulesetTest.class);
 
     @Deployment
     @Dependencies({
@@ -45,26 +46,43 @@ public class SkipJarsRulesetTest
         @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
         @AddonDependency(name = "org.jboss.windup.utils:utils"),
         @AddonDependency(name = "org.jboss.windup.rules.apps:rules-java"),
-        @AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
+        //@AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
         @AddonDependency(name = "org.jboss.windup.quickstarts:windup-skiparchives"),
         @AddonDependency(name = "org.jboss.forge.furnace.container:cdi"),
     })
     public static ForgeArchive getDeployment()
     {
+        //AddonDependencyEntry[] entries = classToAddonDepEntries(SkipArchRulesetTest.class);
         final ForgeArchive archive = ShrinkWrap.create(ForgeArchive.class)
             .addBeansXML()
-            //.addClasses(SkipArchivesRules.class, EnumerationOfRulesFilter.class, OrPredicate.class, )
-            .addPackages(true,"org.jboss.windup.qs.victims.test")
+            .addClasses(SkipArchivesRules.class)
+            .addPackages(true, SkipArchRulesetTest.class.getPackage())
             .addAsAddonDependencies(
                 AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
                 AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
                 AddonDependencyEntry.create("org.jboss.windup.utils:utils"),
                 AddonDependencyEntry.create("org.jboss.windup.rules.apps:rules-java"),
-                AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
+                //AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
                 AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-skiparchives"),
                 AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi")
             );
         return archive;
+    }
+
+
+    /**
+     * TODO: Move to utils.
+     */
+    private static <T> AddonDependencyEntry[] classToAddonDepEntries(final Class<T> cls)
+    {
+        AddonDependency[] annDeps = cls.getAnnotation(Dependencies.class).value();
+        AddonDependencyEntry[] entries = new AddonDependencyEntry[annDeps.length];
+        for( int i = 0; i < annDeps.length; i++ )
+        {
+            AddonDependency annDep = annDeps[i];
+            entries[i] = AddonDependencyEntry.create(annDep.name());
+        }
+        return entries;
     }
 
 
@@ -75,20 +93,26 @@ public class SkipJarsRulesetTest
     private GraphContextFactory contextFactory;
 
     @Test
-    public void testSkippedJarsFound()
+    public void testSkippedArchivesFound()
     {
         try (GraphContext grCtx = contextFactory.create())
         {
-            // Create some identifiable archives.
+            // Create some skipped archives.
+            GraphService<IdentifiedArchiveModel> iArchGS = new GraphService(grCtx, IdentifiedArchiveModel.class);
+            IdentifiedArchiveModel archM = iArchGS.create();
+            archM.setFilePath("foo/windup-utils.jar");
+
             GraphService<GAVModel> gavGS = new GraphService(grCtx, GAVModel.class);
             GAVModel gavM = gavGS.create().setGroupId("org.jboss.windup").setArtifactId("windup-utils").setVersion("2.0.0-Beta4");
-
-            GraphService<IdentifiedArchiveModel> iaGS = new GraphService(grCtx, IdentifiedArchiveModel.class);
-            IdentifiedArchiveModel iaM = iaGS.create();
-            iaM.setGAV(gavM);
+            archM.setGAV(gavM);
 
             // Run the SkipArchivesRules.
             runRule(SkipArchivesRules.class, grCtx);
+
+            // Check the results.
+            //archM = iArchGS.reload(archM);
+            archM = grCtx.getFramed().frame(archM.asVertex(), IdentifiedArchiveModel.class);
+            Assert.assertTrue(archM instanceof IgnoredArchiveModel);
         }
         catch (Exception ex)
         {

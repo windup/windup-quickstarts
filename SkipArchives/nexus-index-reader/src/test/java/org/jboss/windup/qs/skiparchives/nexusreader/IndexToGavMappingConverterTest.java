@@ -4,14 +4,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.logging.Logger;
 import org.jboss.windup.util.Logging;
+import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 
 /**
  *
  * @author Ondrej Zizka, ozizka at redhat.com
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class IndexToGavMappingConverterTest
 {
     private static final Logger log = Logging.get(IndexToGavMappingConverterTest.class);
