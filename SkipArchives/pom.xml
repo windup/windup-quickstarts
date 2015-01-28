@@ -18,6 +18,7 @@
     <modules>
         <module>ruleset</module>
         <module>nexus-index-reader</module>
+        <module>mappings-bundle</module>
     </modules>
 
 </project>

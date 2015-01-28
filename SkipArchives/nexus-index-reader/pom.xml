@@ -23,19 +23,16 @@
         </resources>
 
         <plugins>
+            <!-- Create a test .jar so it can be used when creating the bundle in next Maven module. -->
             <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.5.3</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.5</version>
                 <executions>
                     <execution>
-                        <id>zipMappings</id>
-                        <phase>prepare-package</phase>
                         <goals>
-                            <goal>single</goal>
+                            <goal>test-jar</goal>
                         </goals>
-                        <configuration>
-                            <descriptor>src/zipMappings.xml</descriptor>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
