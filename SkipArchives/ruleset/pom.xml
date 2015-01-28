@@ -111,9 +111,18 @@
             <artifactId>rules-base</artifactId>
             <classifier>forge-addon</classifier>
             <scope>provided</scope>
+            <!-- FIXME: Remove when ready! -->
+            <version>2.0.0-SNAPSHOT</version>
         </dependency>
 
-
+        <!-- SHA1 to GAV mappings. -->
+        <dependency>
+            <groupId>org.jboss.windup.quickstarts</groupId>
+            <artifactId>windup-skiparch-mappings</artifactId>
+            <type>zip</type>
+            <!-- For now it's synced with Windup version, but later this will likely diverge. -->
+            <version>2.0.0-SNAPSHOT</version>
+        </dependency>
 
         <!-- Other rulesets.
         -->
