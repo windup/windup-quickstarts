@@ -12,12 +12,18 @@ import org.jboss.windup.config.WindupRuleProvider;
  */
 public class PackageRulesFilter implements RuleFilter
 {
-    private Set<String> packages;
+    protected Set<String> packages;
 
 
     public PackageRulesFilter(String ... packages)
     {
         this.packages = new HashSet(Arrays.asList(packages));
+    }
+
+
+    public PackageRulesFilter(Package pkg)
+    {
+        this.packages = new HashSet(Arrays.asList(pkg.getName()));
     }
 
 

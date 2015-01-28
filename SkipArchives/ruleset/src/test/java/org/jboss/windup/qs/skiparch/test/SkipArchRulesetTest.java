@@ -20,9 +20,12 @@ import org.jboss.windup.graph.GraphContextFactory;
 import org.jboss.windup.graph.service.GraphService;
 import org.jboss.windup.qs.identarch.model.GAVModel;
 import org.jboss.windup.qs.identarch.model.IdentifiedArchiveModel;
+import org.jboss.windup.qs.identarch.util.GraphService2;
 import org.jboss.windup.qs.skiparch.SkipArchivesRules;
 import org.jboss.windup.qs.skiparch.model.IgnoredArchiveModel;
 import org.jboss.windup.qs.skiparch.test.rulefilters.EnumerationOfRulesFilter;
+import org.jboss.windup.qs.skiparch.test.rulefilters.PackageRulesFilter;
+import org.jboss.windup.qs.skiparch.test.rulefilters.PackageSubtreeRulesFilter;
 import org.jboss.windup.qs.skiparch.test.rulefilters.RuleFilter;
 import org.jboss.windup.util.Logging;
 import org.junit.Assert;
@@ -102,8 +105,9 @@ public class SkipArchRulesetTest
         try (GraphContext grCtx = contextFactory.create())
         {
             // Create some skipped archives.
-            GraphService<IdentifiedArchiveModel> iArchGS = new GraphService(grCtx, IdentifiedArchiveModel.class);
-            IdentifiedArchiveModel archM = iArchGS.create();
+            GraphService<IdentifiedArchiveModel> archGS = new GraphService(grCtx, IdentifiedArchiveModel.class);
+            GraphService2<IdentifiedArchiveModel> archGS2 = new GraphService2(grCtx, IdentifiedArchiveModel.class);
+            IdentifiedArchiveModel archM = archGS.create();
             archM.setFilePath("foo/windup-utils.jar");
 
             GraphService<GAVModel> gavGS = new GraphService(grCtx, GAVModel.class);
@@ -111,11 +115,13 @@ public class SkipArchRulesetTest
             archM.setGAV(gavM);
 
             // Run the SkipArchivesRules.
-            runRule(SkipArchivesRules.class, grCtx);
+            runRules(new PackageSubtreeRulesFilter(SkipArchivesRules.class), grCtx);
 
             // Check the results.
             //archM = iArchGS.reload(archM);
-            archM = grCtx.getFramed().frame(archM.asVertex(), IdentifiedArchiveModel.class);
+            //archM = grCtx.getFramed().frame(archM.asVertex(), IdentifiedArchiveModel.class);
+            //archM = archGS.getById(archM.asVertex().getId());
+            archM = archGS2.reload(archM);
             Assert.assertTrue(archM instanceof IgnoredArchiveModel);
         }
         catch (Exception ex)
@@ -144,9 +150,8 @@ public class SkipArchRulesetTest
             // Windup config.
             WindupConfiguration wc = new WindupConfiguration();
             wc.setGraphContext(grCtx);
-
+            wc.setInputPath(Paths.get("."));
             wc.setRuleProviderFilter(ruleFilter);
-            //wc.setInputPath(Paths.get("src/test/resources/xercesImpl-2.9.1.jar.war"));
             wc.setOutputDirectory(Paths.get("target/WindupReport"));
 
             // Run.

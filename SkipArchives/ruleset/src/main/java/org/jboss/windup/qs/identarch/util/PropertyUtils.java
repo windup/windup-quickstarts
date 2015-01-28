@@ -1,6 +1,7 @@
 package org.jboss.windup.qs.identarch.util;
 
 import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.security.AccessController;
@@ -12,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import org.apache.commons.lang.StringUtils;
+import org.jboss.windup.graph.model.WindupVertexFrame;
 
 
 /**
@@ -266,6 +269,64 @@ public class PropertyUtils
         }
 
         return null;
+    }
+
+
+
+
+
+    /**
+     * Finds the "writable properties" in the frame and copies values for those from the source, if available.
+     */
+    public static <X extends WindupVertexFrame> void copyProperties( X source, X frame  ) {
+        if( source == null ) throw new IllegalArgumentException("source is null.");
+        List<Method> setters = PropertyUtils.findSetters( frame.getClass() );
+        for( Method setter : setters ) {
+            Method getter = PropertyUtils.findGetter( source.getClass(), PropertyUtils.deriveGetterName(setter.getName()), setter.getReturnType() );
+            if( getter == null )
+                continue;
+            copyFromGetterToSetter( source, frame, getter,  setter);
+        }
+    }
+
+
+    /**
+     * Helper method to encapsulate the exceptions.
+     */
+    private static <X extends WindupVertexFrame> void copyFromGetterToSetter( X source, X dest, Method getter, Method setter ) {
+        Object val;
+
+        // Get.
+        try {
+            val = getter.invoke( source );
+        } catch( IllegalArgumentException | IllegalAccessException | InvocationTargetException ex ) {
+            throw new RuntimeException("Unable to call getter "+getter.getDeclaringClass().getSimpleName() +"#"+ getter.getName()+": " + ex.getMessage(), ex);
+        }
+
+        // Set.
+        try {
+            setter.invoke( dest, val );
+        } catch( IllegalAccessException | IllegalArgumentException | InvocationTargetException ex ) {
+            throw new RuntimeException("Unable to call setter "+getter.getDeclaringClass().getSimpleName() +"#"+ getter.getName()+": " + ex.getMessage(), ex);
+        }
+    }
+
+
+
+    /**
+     * Strips the "set" prefix and uncapitalizes.
+     */
+    public static String stripSetterPropName( String name ) {
+        return StringUtils.uncapitalize( StringUtils.removeStart(name, "set") );
+    }
+
+
+    /**
+     * Strips the "set" prefix and prepends get.
+     */
+    public static String deriveGetterName( String name ) {
+        return "get" + StringUtils.removeStart(name, "set");
+        // Not bullet-proof.
     }
 
 }// class

@@ -1,5 +1,6 @@
-package org.jboss.windup.qs.skiparch;
+package org.jboss.windup.qs.identarch;
 
+import org.jboss.windup.qs.skiparch.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,9 +37,9 @@ import org.ocpsoft.rewrite.context.EvaluationContext;
  *
  * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
  */
-public class SkipArchivesLoadConfigRules extends WindupRuleProvider
+public class IdentifyArchivesLoadConfigRules extends WindupRuleProvider
 {
-    private static final Logger log = Logging.get(SkipArchivesLoadConfigRules.class);
+    private static final Logger log = Logging.get(IdentifyArchivesLoadConfigRules.class);
 
 
     @Override
@@ -71,7 +72,7 @@ public class SkipArchivesLoadConfigRules extends WindupRuleProvider
                     loadConfig();
                 }
             }
-        ).withId("SkipArchivesLoadConfig");
+        ).withId("IdentifyArchivesLoadConfig");
     }
     // @formatter:on
 
@@ -80,24 +81,34 @@ public class SkipArchivesLoadConfigRules extends WindupRuleProvider
     private void loadConfig()
     {
 
-        // Load them from ~/.windup/config/SkipArchives
-        final File confDir = WindupPathUtil.getWindupUserDir().resolve("config/SkipArchives").toFile();
+        // Load them from ~/.windup/config/IdentifyArchives
+        final File confDir = WindupPathUtil.getWindupUserDir().resolve("config/IdentifyArchives").toFile();
         if (!confDir.exists())
-            log.info("SkipArchives config dir not found at " + confDir.toString());
+            log.info("IdentifyArchives config dir not found at " + confDir.toString());
         else try
         {
-            //List<Path> gavs = findFilesBySuffix(confDir, ".gavMapping.txt");
-            //for(Path gavMappingFile : gavs)
-            //    ArchiveGAVIdentifier.addMappingsFrom(confDir.toPath().resolve(gavMappingFile).toFile());
+            List<Path> gavs = findFilesBySuffix(confDir, ".gavMapping.txt");
 
-            List<Path> skips = findFilesBySuffix(confDir, ".ignoredGavs.txt");
-            for(Path skippedArchivesConfig : skips)
-                SkippedArchives.addSkippedArchivesFrom(confDir.toPath().resolve(skippedArchivesConfig).toFile());
+            for(Path gavMappingFile : gavs)
+                ArchiveGAVIdentifier.addMappingsFrom(confDir.toPath().resolve(gavMappingFile).toFile());
         }
         catch (IOException ex)
         {
-            Logger.getLogger(SkipArchivesLoadConfigRules.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(IdentifyArchivesLoadConfigRules.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        // GAV's may also be bundled within the IdentArch addon.
+        final String GAVS_MAPPING_RESOURCE =
+                ResourceUtils.getResourcesPath(IdentifyArchivesLoadConfigRules.class) + "/data/jboss.sha1ToGAV.txt";
+
+        try(InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(GAVS_MAPPING_RESOURCE))
+        {
+            if (is == null)
+               log.info("IdentifyArchives' bundled G:A:V mappings not found at " + GAVS_MAPPING_RESOURCE);
+            else
+                ArchiveGAVIdentifier.addMappingsFrom(is);
+        }
+        catch(IOException ex){} // Ignore ex from .close()
     }
 
 
@@ -129,4 +140,6 @@ public class SkipArchivesLoadConfigRules extends WindupRuleProvider
 
         return foundSubPaths;
     }
+
+
 }

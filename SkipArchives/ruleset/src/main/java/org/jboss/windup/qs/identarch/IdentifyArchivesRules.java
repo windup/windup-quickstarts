@@ -18,7 +18,7 @@ import org.jboss.windup.graph.model.ArchiveModel;
 import org.jboss.windup.graph.service.GraphService;
 import org.jboss.windup.qs.identarch.lib.ArchiveGAVIdentifier;
 import org.jboss.windup.qs.identarch.model.GAVModel;
-import org.jboss.windup.qs.identarch.util.GraphServiceWrap;
+import org.jboss.windup.qs.identarch.util.GraphService2;
 import org.jboss.windup.util.Logging;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.config.ConfigurationBuilder;
@@ -62,10 +62,8 @@ public class IdentifyArchivesRules extends WindupRuleProvider
         // Check the jars
         .addRule()
         .when(Query.fromType(ArchiveModel.class))
-        .perform(
-            Iteration.over(ArchiveModel.class) // TODO: Use IteratingRuleProvider?
-            .perform(
-                new AbstractIterationOperation<ArchiveModel>()
+        .perform(Iteration.over(ArchiveModel.class) // TODO: Use IteratingRuleProvider?
+            .perform(new AbstractIterationOperation<ArchiveModel>()
                 {
                     @Override
                     public void perform(GraphRewrite event, EvaluationContext evCtx, ArchiveModel arch)
@@ -82,14 +80,14 @@ public class IdentifyArchivesRules extends WindupRuleProvider
                         // Store the identified GAV to the graph.
                         IdentifiedArchiveModel idArch = GraphService.addTypeToModel(grCtx, arch, IdentifiedArchiveModel.class);
                         // Copy to a real model.
-                        GAVModel gavM = new GraphServiceWrap<GAVModel>(event.getGraphContext(), GAVModel.class).merge(archiveGav);
+                        GAVModel gavM = new GraphService2<>(event.getGraphContext(), GAVModel.class).merge(archiveGav);
                         idArch.setGAV(gavM);
                     }
 
                     @Override
                     public String toString()
                     {
-                        return "Checking archives with SkipArchives";
+                        return "Checking archives with IdentArch";
                     }
                 }
             ).endIteration()

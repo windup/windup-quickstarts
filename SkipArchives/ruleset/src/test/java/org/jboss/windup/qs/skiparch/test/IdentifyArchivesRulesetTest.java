@@ -18,11 +18,13 @@ import org.jboss.windup.exec.configuration.WindupConfiguration;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.GraphContextFactory;
 import org.jboss.windup.graph.service.GraphService;
+import org.jboss.windup.qs.identarch.IdentifyArchivesRules;
 import org.jboss.windup.qs.identarch.model.GAV;
 import org.jboss.windup.qs.identarch.model.GAVModel;
 import org.jboss.windup.qs.identarch.model.IdentifiedArchiveModel;
 import org.jboss.windup.qs.skiparch.SkipArchivesRules;
 import org.jboss.windup.qs.skiparch.test.rulefilters.EnumerationOfRulesFilter;
+import org.jboss.windup.qs.skiparch.test.rulefilters.PackageSubtreeRulesFilter;
 import org.jboss.windup.qs.skiparch.test.rulefilters.RuleFilter;
 import org.jboss.windup.util.Logging;
 import org.junit.Assert;
@@ -93,6 +95,7 @@ public class IdentifyArchivesRulesetTest
 
             // Run the SkipArchivesRules.
             runRule(SkipArchivesRules.class, grCtx);
+            runRules(new PackageSubtreeRulesFilter(IdentifyArchivesRules.class), grCtx);
 
             // Check if the archives were identified.
 
@@ -131,9 +134,8 @@ public class IdentifyArchivesRulesetTest
             // Windup config.
             WindupConfiguration wc = new WindupConfiguration();
             wc.setGraphContext(grCtx);
-
+            wc.setInputPath(Paths.get("."));
             wc.setRuleProviderFilter(ruleFilter);
-            //wc.setInputPath(Paths.get("src/test/resources/xercesImpl-2.9.1.jar.war"));
             wc.setOutputDirectory(Paths.get("target/WindupReport"));
 
             // Run.
