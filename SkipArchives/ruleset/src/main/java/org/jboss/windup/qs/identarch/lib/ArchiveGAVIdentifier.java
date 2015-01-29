@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.zip.ZipInputStream;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
 import org.apache.commons.lang.StringUtils;
@@ -41,6 +42,12 @@ public class ArchiveGAVIdentifier
         {
             Logging.get(ArchiveGAVIdentifier.class).log(Level.SEVERE, null, ex);
         }
+    }
+
+
+    public static void addMappingsFromZip(InputStream is)
+    {
+        addMappingsFrom(new ZipInputStream(is));
     }
 
     public ArchiveGAVIdentifier()

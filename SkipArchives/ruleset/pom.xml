@@ -25,6 +25,32 @@
         </resources>
 
         <plugins>
+            <!-- Copy the mappings data zip to this artefact. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.9</version>
+                <executions>
+                    <execution>
+                        <id>copyDataToThisAddonUntilWeFigureOutHowToDownloadThemThroughForge</id>
+                        <phase>generate-resources</phase>
+                        <goals> <goal>copy</goal> </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>windup-skiparch-mappings</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                <outputDirectory>${project.build.outputDirectory}/META-INF/data/</outputDirectory>
+                                <destFileName>central.sha1ToGAV.txt.zip</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- These two make this artifact a Forge addon. -->
             <plugin>
                 <groupId>org.jboss.forge.furnace</groupId>

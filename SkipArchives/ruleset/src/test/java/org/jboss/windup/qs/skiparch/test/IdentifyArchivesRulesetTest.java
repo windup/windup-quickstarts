@@ -1,5 +1,6 @@
 package org.jboss.windup.qs.skiparch.test;
 
+import java.io.File;
 import java.nio.file.Paths;
 import java.util.logging.Logger;
 
@@ -18,6 +19,7 @@ import org.jboss.windup.exec.configuration.WindupConfiguration;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.GraphContextFactory;
 import org.jboss.windup.graph.service.GraphService;
+import org.jboss.windup.qs.identarch.IdentifyArchivesLoadConfigRules;
 import org.jboss.windup.qs.identarch.IdentifyArchivesRules;
 import org.jboss.windup.qs.identarch.model.GAV;
 import org.jboss.windup.qs.identarch.model.GAVModel;
@@ -54,6 +56,9 @@ public class IdentifyArchivesRulesetTest
     })
     public static ForgeArchive getDeployment()
     {
+        final File res = new File("target/classes" + IdentifyArchivesLoadConfigRules.CENTRAL_MAPPING_DATA_CLASSPATH);
+        assert res.exists();
+
         final ForgeArchive archive = ShrinkWrap.create(ForgeArchive.class)
             .addBeansXML()
             .addPackages(true, IdentifyArchivesRulesetTest.class.getPackage())
@@ -65,7 +70,10 @@ public class IdentifyArchivesRulesetTest
                 //AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
                 AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-skiparchives"),
                 AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi")
-            );
+            )
+            //.addAsResource(res, IdentifyArchivesLoadConfigRules.CENTRAL_MAPPING_DATA_CLASSPATH);
+            .addAsResource(res, "x.zip");
+
         return archive;
     }
 
@@ -104,7 +112,7 @@ public class IdentifyArchivesRulesetTest
             Assert.assertNotNull(gav);
 
             // Correctly identified.
-            final GAV expectedGav = GAV.fromSHA1AndGAV("4e031bb61df09069aeb2bffb4019e7a5034a4ee0 junitx:junit:4.11");
+            final GAV expectedGav = GAV.fromSHA1AndGAV("4e031bb61df09069aeb2bffb4019e7a5034a4ee0 junit:junit:4.11");
             Assert.assertEquals(expectedGav, gav);
 
         }

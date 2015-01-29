@@ -1,9 +1,12 @@
 package org.jboss.windup.qs.skiparch.test;
 
+import java.io.InputStream;
+import java.io.StringReader;
 import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
+import org.apache.commons.io.input.ReaderInputStream;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -22,6 +25,7 @@ import org.jboss.windup.qs.identarch.model.GAVModel;
 import org.jboss.windup.qs.identarch.model.IdentifiedArchiveModel;
 import org.jboss.windup.qs.identarch.util.GraphService2;
 import org.jboss.windup.qs.skiparch.SkipArchivesRules;
+import org.jboss.windup.qs.skiparch.lib.SkippedArchives;
 import org.jboss.windup.qs.skiparch.model.IgnoredArchiveModel;
 import org.jboss.windup.qs.skiparch.test.rulefilters.EnumerationOfRulesFilter;
 import org.jboss.windup.qs.skiparch.test.rulefilters.PackageRulesFilter;
@@ -110,9 +114,14 @@ public class SkipArchRulesetTest
             IdentifiedArchiveModel archM = archGS.create();
             archM.setFilePath("foo/windup-utils.jar");
 
+            // Attach an identification.
             GraphService<GAVModel> gavGS = new GraphService(grCtx, GAVModel.class);
             GAVModel gavM = gavGS.create().setGroupId("org.jboss.windup").setArtifactId("windup-utils").setVersion("2.0.0-Beta4");
             archM.setGAV(gavM);
+            archGS.commit();
+
+            SkippedArchives.addSkippedArchivesFrom(new ReaderInputStream(new StringReader("org.jboss.windup:*:*")));
+            Assert.assertTrue(SkippedArchives.isSkipped(gavM)); // Just to be sure.
 
             // Run the SkipArchivesRules.
             runRules(new PackageSubtreeRulesFilter(SkipArchivesRules.class), grCtx);

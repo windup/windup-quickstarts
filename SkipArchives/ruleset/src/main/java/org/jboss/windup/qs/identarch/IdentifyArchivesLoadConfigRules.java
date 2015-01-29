@@ -21,7 +21,6 @@ import org.jboss.windup.config.operation.GraphOperation;
 import org.jboss.windup.config.phase.Initialization;
 import org.jboss.windup.config.phase.RulePhase;
 import org.jboss.windup.graph.GraphContext;
-import org.jboss.windup.qs.identarch.util.ResourceUtils;
 import org.jboss.windup.util.Logging;
 import org.jboss.windup.util.WindupPathUtil;
 import org.ocpsoft.rewrite.config.Configuration;
@@ -40,6 +39,8 @@ import org.ocpsoft.rewrite.context.EvaluationContext;
 public class IdentifyArchivesLoadConfigRules extends WindupRuleProvider
 {
     private static final Logger log = Logging.get(IdentifyArchivesLoadConfigRules.class);
+
+    public static final String CENTRAL_MAPPING_DATA_CLASSPATH = "/META-INF/data/central.sha1ToGAV.txt.zip";
 
 
     @Override
@@ -108,14 +109,21 @@ public class IdentifyArchivesLoadConfigRules extends WindupRuleProvider
 
         // GAV's may also be bundled within the IdentArch addon.
         final String GAVS_MAPPING_RESOURCE =
-                ResourceUtils.getResourcesPath(IdentifyArchivesLoadConfigRules.class) + "/data/jboss.sha1ToGAV.txt";
+                //ResourceUtils.getResourcesPath(IdentifyArchivesLoadConfigRules.class) +
+                //CENTRAL_MAPPING_DATA_CLASSPATH;
+                //"/x.zip";
+                "/META-INF/beans.xml";
 
-        try(InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(GAVS_MAPPING_RESOURCE))
+        try(InputStream is = //Thread.currentThread().getContextClassLoader().getResourceAsStream(GAVS_MAPPING_RESOURCE))
+                getClass().getResourceAsStream(GAVS_MAPPING_RESOURCE))
         {
             if (is == null)
-               log.info("IdentifyArchives' bundled G:A:V mappings not found at " + GAVS_MAPPING_RESOURCE);
+                log.info("IdentifyArchives' bundled G:A:V mappings not found at " + GAVS_MAPPING_RESOURCE);
             else
-                ArchiveGAVIdentifier.addMappingsFrom(is);
+            {
+                log.info("IdentifyArchives loading bundled G:A:V mappings from " + GAVS_MAPPING_RESOURCE);
+                ArchiveGAVIdentifier.addMappingsFromZip(is);
+            }
         }
         catch(IOException ex){} // Ignore ex from .close()
     }
