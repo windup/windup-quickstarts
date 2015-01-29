@@ -52,12 +52,13 @@ public class IdentifyArchivesRulesetTest
         //@AddonDependency(name = "org.jboss.windup.rules.apps:rules-java"),
         //@AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
         @AddonDependency(name = "org.jboss.windup.quickstarts:windup-skiparchives"),
+        @AddonDependency(name = "org.jboss.windup.quickstarts:windup-skiparch-mappings"),
         @AddonDependency(name = "org.jboss.forge.furnace.container:cdi"),
     })
     public static ForgeArchive getDeployment()
     {
         final File res = new File("target/classes" + IdentifyArchivesLoadConfigRules.CENTRAL_MAPPING_DATA_CLASSPATH);
-        assert res.exists();
+        Assert.assertTrue(res.exists());
 
         final ForgeArchive archive = ShrinkWrap.create(ForgeArchive.class)
             .addBeansXML()
@@ -69,10 +70,11 @@ public class IdentifyArchivesRulesetTest
                 //AddonDependencyEntry.create("org.jboss.windup.rules.apps:rules-java"),
                 //AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
                 AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-skiparchives"),
+                AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-skiparch-mappings"),
                 AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi")
             )
-            //.addAsResource(res, IdentifyArchivesLoadConfigRules.CENTRAL_MAPPING_DATA_CLASSPATH);
-            .addAsResource(res, "x.zip");
+            .addAsResource(res, IdentifyArchivesLoadConfigRules.CENTRAL_MAPPING_DATA_CLASSPATH);
+            //.addAsResource(res, "/x.zip");
 
         return archive;
     }

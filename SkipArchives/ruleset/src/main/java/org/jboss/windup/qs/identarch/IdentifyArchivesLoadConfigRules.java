@@ -13,9 +13,11 @@ import java.util.logging.Logger;
 import org.apache.commons.io.DirectoryWalker;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
+import org.jboss.forge.furnace.addons.AddonId;
 import org.jboss.windup.config.GraphRewrite;
 
 import org.jboss.windup.config.WindupRuleProvider;
+import org.jboss.windup.config.furnace.FurnaceHolder;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.GraphOperation;
 import org.jboss.windup.config.phase.Initialization;
@@ -112,7 +114,11 @@ public class IdentifyArchivesLoadConfigRules extends WindupRuleProvider
                 //ResourceUtils.getResourcesPath(IdentifyArchivesLoadConfigRules.class) +
                 //CENTRAL_MAPPING_DATA_CLASSPATH;
                 //"/x.zip";
-                "/META-INF/beans.xml";
+                //"/META-INF/beans.xml"; -- WORKS
+                "/central.SHA1toGAVs.sorted.txt";
+
+        InputStream is2 = FurnaceHolder.getFurnace().getRuntimeClassLoader().getResourceAsStream(GAVS_MAPPING_RESOURCE);
+        is2 = FurnaceHolder.getAddonRegistry().getAddon(AddonId.from("org.jboss.windup.quickstarts:windup-skiparch-mappings", "2.0.0-SNAPSHOT")).getClassLoader().getResourceAsStream(GAVS_MAPPING_RESOURCE);
 
         try(InputStream is = //Thread.currentThread().getContextClassLoader().getResourceAsStream(GAVS_MAPPING_RESOURCE))
                 getClass().getResourceAsStream(GAVS_MAPPING_RESOURCE))
