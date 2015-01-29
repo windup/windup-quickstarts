@@ -1,6 +1,5 @@
 package org.jboss.windup.qs.identarch;
 
-import org.jboss.windup.qs.skiparch.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,7 +7,6 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.LinkedList;
 import org.jboss.windup.qs.identarch.lib.ArchiveGAVIdentifier;
-import org.jboss.windup.qs.skiparch.lib.SkippedArchives;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +18,8 @@ import org.jboss.windup.config.GraphRewrite;
 import org.jboss.windup.config.WindupRuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.GraphOperation;
+import org.jboss.windup.config.phase.Initialization;
+import org.jboss.windup.config.phase.RulePhase;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.qs.identarch.util.ResourceUtils;
 import org.jboss.windup.util.Logging;
@@ -54,6 +54,15 @@ public class IdentifyArchivesLoadConfigRules extends WindupRuleProvider
     {
         return asClassList();
     }
+
+
+    @Override
+    public Class<? extends RulePhase> getPhase()
+    {
+        return Initialization.class;
+    }
+
+
 
 
     // @formatter:off

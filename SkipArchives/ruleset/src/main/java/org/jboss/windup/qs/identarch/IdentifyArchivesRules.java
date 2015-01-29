@@ -12,6 +12,8 @@ import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.Iteration;
 import org.jboss.windup.config.operation.ruleelement.AbstractIterationOperation;
 import org.jboss.windup.config.phase.ArchiveMetadataExtraction;
+import org.jboss.windup.config.phase.InitialAnalysis;
+import org.jboss.windup.config.phase.RulePhase;
 import org.jboss.windup.config.query.Query;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.model.ArchiveModel;
@@ -49,8 +51,15 @@ public class IdentifyArchivesRules extends WindupRuleProvider
     public List<Class<? extends WindupRuleProvider>> getExecuteAfter()
     {
         // UnzipArchivesToOutputRuleProvider would make it dependent on rules-java
-        return asClassList(ArchiveMetadataExtraction.class, SkipArchivesLoadConfigRules.class);
+        return asClassList(ArchiveMetadataExtraction.class, IdentifyArchivesLoadConfigRules.class);
     }
+
+    @Override
+    public Class<? extends RulePhase> getPhase()
+    {
+        return InitialAnalysis.class;
+    }
+
 
 
     // @formatter:off

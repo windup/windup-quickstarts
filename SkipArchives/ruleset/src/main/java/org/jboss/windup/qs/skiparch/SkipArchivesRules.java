@@ -9,7 +9,8 @@ import org.jboss.windup.config.WindupRuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.Iteration;
 import org.jboss.windup.config.operation.ruleelement.AbstractIterationOperation;
-import org.jboss.windup.config.phase.DecompilationPhase;
+import org.jboss.windup.config.phase.InitialAnalysis;
+import org.jboss.windup.config.phase.RulePhase;
 import org.jboss.windup.config.query.Query;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.service.GraphService;
@@ -48,11 +49,22 @@ public class SkipArchivesRules extends WindupRuleProvider
     }
 
 
+    /*
     @Override
     public List<Class<? extends WindupRuleProvider>> getExecuteBefore()
     {
-        return asClassList(DecompilationPhase.class);
+        return asClassList(DecompileArchivesRuleProvider.class);
     }
+    */
+
+
+    @Override
+    public Class<? extends RulePhase> getPhase()
+    {
+        return InitialAnalysis.class;
+    }
+
+
 
 
     // @formatter:off
