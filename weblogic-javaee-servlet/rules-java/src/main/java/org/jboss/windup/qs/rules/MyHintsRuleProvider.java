@@ -6,7 +6,7 @@ import java.util.List;
 import org.jboss.windup.config.WindupRuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.graph.GraphContext;
-import org.jboss.windup.reporting.config.Classification;
+import org.jboss.windup.reporting.config.classification.Classification;
 import org.jboss.windup.reporting.config.Hint;
 import org.jboss.windup.reporting.config.Link;
 import org.jboss.windup.rules.apps.java.condition.JavaClass;
