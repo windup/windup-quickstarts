@@ -109,19 +109,23 @@ public class IdentifyArchivesLoadConfigRules extends WindupRuleProvider
             Logger.getLogger(IdentifyArchivesLoadConfigRules.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        // ====== CONSTRUCTION AREA ======= //
+
         // GAV's may also be bundled within the IdentArch addon.
         final String GAVS_MAPPING_RESOURCE =
-                //ResourceUtils.getResourcesPath(IdentifyArchivesLoadConfigRules.class) +
-                //CENTRAL_MAPPING_DATA_CLASSPATH;
-                //"/x.zip";
-                //"/META-INF/beans.xml"; -- WORKS
-                "/central.SHA1toGAVs.sorted.txt";
+                //ResourceUtils.getResourcesPath(IdentifyArchivesLoadConfigRules.class)
+                //CENTRAL_MAPPING_DATA_CLASSPATH;  // -- Trying to load it from target/classes through ShrinkWrap
+                //"/x.zip";  // -- Trying to load it form ShrinkWrap
+                //"/META-INF/beans.xml"; -- This WORKS :/
+                "/central.SHA1toGAVs.sorted.txt"; // -- Trying load it in other Forge addon
 
         InputStream is2 = FurnaceHolder.getFurnace().getRuntimeClassLoader().getResourceAsStream(GAVS_MAPPING_RESOURCE);
         is2 = FurnaceHolder.getAddonRegistry().getAddon(AddonId.from("org.jboss.windup.quickstarts:windup-skiparch-mappings", "2.0.0-SNAPSHOT")).getClassLoader().getResourceAsStream(GAVS_MAPPING_RESOURCE);
 
         try(InputStream is = //Thread.currentThread().getContextClassLoader().getResourceAsStream(GAVS_MAPPING_RESOURCE))
                 getClass().getResourceAsStream(GAVS_MAPPING_RESOURCE))
+        // ====== CONSTRUCTION AREA ======= //
+
         {
             if (is == null)
                 log.info("IdentifyArchives' bundled G:A:V mappings not found at " + GAVS_MAPPING_RESOURCE);
