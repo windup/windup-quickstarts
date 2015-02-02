@@ -87,13 +87,13 @@ This is the easiest and fastest way to build the quickstart, install it into the
 
 2. Build the quickstart and install the addon in Windup using the `addon-build-and-install` command in the Windup console. 
 
-  The command uses the following syntax, where `QUICKSTART_HOME` refers the root directory of this `weblogic-javaee-servlet` quickstart:
+  The command uses the following syntax, where `QUICKSTART_HOME` refers the root directory of this `ejb-beanutils-async` quickstart:
 
         addon-build-and-install --projectRoot QUICKSTART_HOME/rules-java
         
    For example:
    
-        addon-build-and-install --projectRoot /home/username/windup-quickstarts/weblogic-javaee-servlet/rules-java
+        addon-build-and-install --projectRoot /home/username/windup-quickstarts/ejb-beanutils-async/rules-java
         
    You should see the following result.
    
@@ -146,11 +146,14 @@ To test this rule, you must run the migration tool against an application that c
 
 1. Start Windup as described above. 
 
-2. Test the rule WebLogic application by running the `windup-migrate-app` command at the Windup prompt. The command uses this syntax:
+2. Test the rule quickstart application by running the `windup-migrate-app` command at the Windup prompt. 
+
+  The command uses this syntax:
 
         windup-migrate-app --input INPUT_ARCHIVE_OR_FOLDER --output OUTPUT_REPORT_DIRECTORY --packages PACKAGE_1 PACKAGE_2 PACKAGE_N
 
-   For example:
+   To test this quickstart using the `test-files/jee-example-app-1.0.0.ear/` folder provided in the root directory of this quickstart, type the following commmand. Be sure to replace `QUICKSTART_HOME` with the fully qualified path to this quickstart.
+   
         windup-migrate-app --input QUICKSTART_HOME/test-files/jee-example-app-1.0.0.ear --output QUICKSTART_HOME/windup-reports-java --packages com.acme
 
 
