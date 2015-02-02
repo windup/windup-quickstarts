@@ -85,7 +85,7 @@ Start Windup
 Add the Quickstart to Windup
 ----------------------------
 
-To install the rule in Windup, simply copy the `QUICKSTART_HOME/rules-java/my-hints-rule-provider.windup.xml` file into the `WINDUP_HOME/rules` directory.
+To install the rule in Windup, simply copy the `QUICKSTART_HOME/rules-xml/my-hints-rule-provider.windup.xml` file into the `WINDUP_HOME/rules` directory.
 
 
 Test the Quickstart Rule
