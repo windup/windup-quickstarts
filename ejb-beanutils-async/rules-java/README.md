@@ -150,11 +150,11 @@ To test this rule, you must run the migration tool against an application that c
 
   The command uses this syntax:
 
-        windup-migrate-app --input INPUT_ARCHIVE_OR_FOLDER --output OUTPUT_REPORT_DIRECTORY --packages PACKAGE_1 PACKAGE_2 PACKAGE_N
+        windup-migrate-app [--sourceMode true] --input INPUT_ARCHIVE_OR_FOLDER --output OUTPUT_REPORT_DIRECTORY --packages PACKAGE_1 PACKAGE_2 PACKAGE_N
 
    To test this quickstart using the `test-files/jee-example-app-1.0.0.ear/` folder provided in the root directory of this quickstart, type the following commmand. Be sure to replace `QUICKSTART_HOME` with the fully qualified path to this quickstart.
    
-        windup-migrate-app --input QUICKSTART_HOME/test-files/jee-example-app-1.0.0.ear --output QUICKSTART_HOME/windup-reports-java --packages com.acme
+        windup-migrate-app -sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output QUICKSTART_HOME/windup-reports-java --packages org.windup
 
 
 For more information about how to run Windup, see: [Execute Windup](https://github.com/windup/windup/wiki/Execute-Windup). 
