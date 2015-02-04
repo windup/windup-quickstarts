@@ -86,7 +86,7 @@ Start Windup
 
 3. You are presented with the following prompt.
 
-        Using Windup at /home/username/windup-distribution-2.0.0.Beta4
+        Using Windup at /home/username/windup-distribution-2.0.0.Final
         
          _       ___           __          
         | |     / (_)___  ____/ /_  ______ 
@@ -95,9 +95,9 @@ Start Windup
         |__/|__/_/_/ /_/\__,_/\__,_/ .___/ 
                                   /_/      
         
-        JBoss Windup, version [ 2.0.0.Beta4 ] - JBoss, by Red Hat, Inc. [ http://windup.jboss.org ]
+        JBoss Windup, version [ 2.0.0.Final ] - JBoss, by Red Hat, Inc. [ http://windup.jboss.org ]
         
-        [windup-distribution-2.0.0.Beta4]$ 
+        [windup-distribution-2.0.0.Final]$ 
 
 4. This prompt is the Windup console where you enter Windup commands.
 
@@ -130,7 +130,7 @@ This is the easiest and fastest way to build the quickstart, install it into the
         
    You should see the following result.
    
-        ***SUCCESS*** Addon org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet:::2.0.0.Beta4 was installed successfully.
+        ***SUCCESS*** Addon org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet:::2.0.0.Final was installed successfully.
 3. You can now skip the next two sections and proceed to [Test the Quickstart Rule Addon](#test-the-quickstart-rule-addon).
 
 ### Install the Quickstart into the Local Maven Repository
@@ -163,11 +163,11 @@ After you build the quickstart and install it into the local Maven repository, u
         Coordinate (The addon's "groupId:artifactId,version" coordinate):
 4.  The `groupId`, `artifactId`, and `version` are specified in the quickstart `pom.xml` file. At the prompt, enter the following response:
        
-        org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Beta4
+        org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Final
 
    You should see the following result:
 
-        ***SUCCESS*** Addon org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Beta4 was installed successfully.
+        ***SUCCESS*** Addon org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Final was installed successfully.
 5. You can now [Test the Quickstart Rule Addon](#test-the-quickstart-rule-addon).
 
 Test the Quickstart Rule Addon
@@ -242,14 +242,14 @@ Remove the quickstart rule addon from Windup using the `addon-remove` command.
 3. Windup responds with a list of installed add-ons.
 
         [0] - org.jboss.forge.furnace.container:cdi,2.12.1.Final
-        [1] - org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Beta4
+        [1] - org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Final
         
         Installed addons (The installed addons in mutable addon repositories that may be removed): [0-1] 
 
 
 4. Choose the number of this rule addon, in this case, type `1` and hit enter. Then leave it blank and hit enter to finish. You should see:
 
-        ***SUCCESS*** Removed addons: org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Beta4
+        ***SUCCESS*** Removed addons: org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Final
 
 
 Stop Windup
