@@ -1,4 +1,4 @@
-package org.jboss.windup.qs.skiparch;
+package org.jboss.windup.rules.apps.skiparch;
 
 import org.jboss.windup.qs.skiparch.lib.SkippedArchives;
 import java.util.List;
@@ -16,8 +16,8 @@ import org.jboss.windup.config.phase.RulePhase;
 import org.jboss.windup.config.query.Query;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.service.GraphService;
-import org.jboss.windup.qs.identarch.IdentifyArchivesRules;
-import org.jboss.windup.qs.identarch.model.IdentifiedArchiveModel;
+import org.jboss.windup.rules.apps.identarch.IdentifyArchivesRules;
+import org.jboss.windup.rules.apps.identarch.model.IdentifiedArchiveModel;
 import org.jboss.windup.qs.skiparch.model.IgnoredArchiveModel;
 import org.jboss.windup.util.Logging;
 import org.ocpsoft.rewrite.config.Configuration;

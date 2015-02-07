@@ -1,6 +1,6 @@
 package org.jboss.windup.qs.skiparch.lib;
 
-import org.jboss.windup.qs.identarch.lib.ArchiveGAVIdentifier;
+import org.jboss.windup.rules.apps.identarch.lib.ArchiveGAVIdentifier;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,7 +16,7 @@ import org.apache.commons.io.LineIterator;
 import org.jboss.forge.furnace.versions.DefaultVersionRange;
 import org.jboss.forge.furnace.versions.SingleVersion;
 import org.jboss.forge.furnace.versions.VersionRange;
-import org.jboss.windup.qs.identarch.model.GAVModel;
+import org.jboss.windup.rules.apps.identarch.model.GAVModel;
 import org.jboss.windup.util.Logging;
 
 /**

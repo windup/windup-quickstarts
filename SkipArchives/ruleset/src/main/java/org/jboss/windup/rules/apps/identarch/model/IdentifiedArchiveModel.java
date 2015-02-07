@@ -1,4 +1,4 @@
-package org.jboss.windup.qs.identarch.model;
+package org.jboss.windup.rules.apps.identarch.model;
 
 import com.tinkerpop.blueprints.Direction;
 import com.tinkerpop.frames.Adjacency;

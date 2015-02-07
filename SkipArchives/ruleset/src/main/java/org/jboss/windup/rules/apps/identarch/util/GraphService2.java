@@ -1,4 +1,4 @@
-package org.jboss.windup.qs.identarch.util;
+package org.jboss.windup.rules.apps.identarch.util;
 
 
 import org.jboss.windup.graph.GraphContext;

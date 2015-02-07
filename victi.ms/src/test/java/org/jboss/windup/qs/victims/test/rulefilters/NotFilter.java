@@ -1,4 +1,4 @@
-package org.jboss.windup.qs.victims.test.rulefilters;
+package org.jboss.windup.qs.skiparch.test.rulefilters;
 
 
 import org.jboss.forge.furnace.util.Predicate;

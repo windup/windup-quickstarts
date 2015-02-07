@@ -1,11 +1,11 @@
-package org.jboss.windup.qs.identarch.model;
+package org.jboss.windup.rules.apps.identarch.model;
 
 import com.tinkerpop.blueprints.Vertex;
 import info.aduna.lang.ObjectUtil;
 import java.util.regex.Pattern;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
-import static org.jboss.windup.qs.identarch.lib.HashToGAVIdentifier.SHA1_LENGTH;
+import static org.jboss.windup.rules.apps.identarch.lib.HashToGAVIdentifier.SHA1_LENGTH;
 
 /**
  * Maven G:A:V coordinates.

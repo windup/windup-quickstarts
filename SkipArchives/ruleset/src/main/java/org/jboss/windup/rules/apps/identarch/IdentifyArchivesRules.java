@@ -1,8 +1,7 @@
-package org.jboss.windup.qs.identarch;
+package org.jboss.windup.rules.apps.identarch;
 
-import org.jboss.windup.qs.identarch.model.IdentifiedArchiveModel;
-import org.jboss.windup.qs.identarch.model.GAV;
-import org.jboss.windup.qs.skiparch.*;
+import org.jboss.windup.rules.apps.identarch.model.IdentifiedArchiveModel;
+import org.jboss.windup.rules.apps.identarch.model.GAV;
 import java.util.List;
 import java.util.logging.Logger;
 import org.jboss.windup.config.GraphRewrite;
@@ -18,9 +17,9 @@ import org.jboss.windup.config.query.Query;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.model.ArchiveModel;
 import org.jboss.windup.graph.service.GraphService;
-import org.jboss.windup.qs.identarch.lib.ArchiveGAVIdentifier;
-import org.jboss.windup.qs.identarch.model.GAVModel;
-import org.jboss.windup.qs.identarch.util.GraphService2;
+import org.jboss.windup.rules.apps.identarch.lib.ArchiveGAVIdentifier;
+import org.jboss.windup.rules.apps.identarch.model.GAVModel;
+import org.jboss.windup.rules.apps.identarch.util.GraphService2;
 import org.jboss.windup.util.Logging;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.config.ConfigurationBuilder;

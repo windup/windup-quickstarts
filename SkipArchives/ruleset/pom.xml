@@ -6,14 +6,13 @@
     <artifactId>windup-skiparchives</artifactId>
     <version>2.0.0-SNAPSHOT</version>
 
-    <name>Windup Ruleset: SkipArchives</name>
+    <name>Windup Ruleset: Java Archives</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
         <version.windup>2.0.0-SNAPSHOT</version.windup>
-        <version.forge>2.12.1.Final</version.forge>
     </properties>
 
     <build>
@@ -41,7 +40,7 @@
                                     <groupId>${project.groupId}</groupId>
                                     <artifactId>windup-skiparch-mappings</artifactId>
                                     <version>${project.version}</version>
-                                    <type>zip</type>
+                                    <type>jar</type>
                                 <outputDirectory>${project.build.outputDirectory}/META-INF/data/</outputDirectory>
                                 <destFileName>central.sha1ToGAV.txt.zip</destFileName>
                                 </artifactItem>
@@ -55,7 +54,6 @@
             <plugin>
                 <groupId>org.jboss.forge.furnace</groupId>
                 <artifactId>furnace-maven-plugin</artifactId>
-                <version>${version.forge}</version>
                 <executions>
                     <execution>
                         <id>generate-dot</id>
@@ -229,6 +227,12 @@
             <artifactId>spring</artifactId>
             <version>2.5.6</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.windup.exec</groupId>
+            <artifactId>windup-exec-api</artifactId>
+            <version>2.0.0-SNAPSHOT</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
 

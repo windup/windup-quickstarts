@@ -1,4 +1,4 @@
-package org.jboss.windup.qs.identarch.util;
+package org.jboss.windup.rules.apps.identarch.util;
 
 import java.beans.IntrospectionException;
 import java.lang.reflect.InvocationTargetException;
