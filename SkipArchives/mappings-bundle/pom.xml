@@ -12,6 +12,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
+
+        <version.windup>2.0.0-SNAPSHOT</version.windup>
     </properties>
 
     <build>
@@ -85,7 +87,6 @@
             <plugin>
                 <groupId>org.jboss.forge.furnace</groupId>
                 <artifactId>furnace-maven-plugin</artifactId>
-                <version>2.13.1.Final</version>
                 <executions>
                     <execution>
                         <id>generate-dot</id>
@@ -110,6 +111,22 @@
 
         </plugins>
     </build>
+
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Windup BOM -->
+            <dependency>
+                <groupId>org.jboss.windup</groupId>
+                <artifactId>windup-bom</artifactId>
+                <version>${version.windup}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
 
 
     <dependencies>
