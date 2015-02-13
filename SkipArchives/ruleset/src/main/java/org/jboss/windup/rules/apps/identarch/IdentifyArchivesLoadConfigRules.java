@@ -23,6 +23,7 @@ import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.GraphOperation;
 import org.jboss.windup.config.phase.Initialization;
 import org.jboss.windup.config.phase.RulePhase;
+import org.jboss.windup.exec.configuration.WindupConfiguration;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.util.Logging;
 import org.jboss.windup.util.WindupPathUtil;
@@ -73,7 +74,7 @@ public class IdentifyArchivesLoadConfigRules extends WindupRuleProvider
     @Override
     public Configuration getConfiguration(final GraphContext grCtx)
     {
-        for (final WindupConfigurationOption option : WindupConfiguration.())
+        //for (final WindupConfigurationOption option : WindupConfiguration.getWindupConfigurationOptions())
 
         return ConfigurationBuilder.begin()
 
@@ -123,7 +124,7 @@ public class IdentifyArchivesLoadConfigRules extends WindupRuleProvider
                 "/central.SHA1toGAVs.sorted.txt"; // -- Trying load it in other Forge addon
 
         InputStream is2 = FurnaceHolder.getFurnace().getRuntimeClassLoader().getResourceAsStream(GAVS_MAPPING_RESOURCE);
-        is2 = FurnaceHolder.getAddonRegistry().getAddon(AddonId.from("org.jboss.windup.quickstarts:windup-skiparch-mappings", "2.0.0-SNAPSHOT")).getClassLoader().getResourceAsStream(GAVS_MAPPING_RESOURCE);
+        is2 = FurnaceHolder.getAddonRegistry().getAddon(AddonId.from("org.jboss.windup.quickstarts:windup-skiparch-mappings", "2.2.0-SNAPSHOT")).getClassLoader().getResourceAsStream(GAVS_MAPPING_RESOURCE);
 
         try(InputStream is = //Thread.currentThread().getContextClassLoader().getResourceAsStream(GAVS_MAPPING_RESOURCE))
                 getClass().getResourceAsStream(GAVS_MAPPING_RESOURCE))
