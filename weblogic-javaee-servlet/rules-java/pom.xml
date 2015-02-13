@@ -6,7 +6,8 @@
     <groupId>org.jboss.windup.quickstarts</groupId>
     <artifactId>windup-weblogic-javaee-servlet-rules-java</artifactId>
     <version>2.2.0-SNAPSHOT</version>
-    <name>Windup Quickstart: weblogic-javaee-servet-rules-java</name>
+
+    <name>Windup Quickstart: WebLogic to Java EE Servlet Rules</name>
     <description>Windup Quickstart: WebLogic Proprietary Servlet Annotations</description>
 
     <properties>

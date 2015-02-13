@@ -12,7 +12,7 @@
     <version>2.2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Windup Quickstart: weblogic-javaee-servet</name>
+    <name>Windup Quickstart: WebLogic to Java EE Servlet</name>
 
     <modules>
         <module>rules-java</module>
