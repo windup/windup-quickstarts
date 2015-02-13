@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
-import org.apache.commons.lang.time.DateUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
