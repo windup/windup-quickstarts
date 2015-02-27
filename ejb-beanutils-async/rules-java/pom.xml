@@ -47,8 +47,8 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss.windup.ext</groupId>
-            <artifactId>windup-config-groovy</artifactId>
+            <groupId>org.jboss.windup.config</groupId>
+            <artifactId>windup-config-xml</artifactId>
             <classifier>forge-addon</classifier>
             <scope>provided</scope>
         </dependency>
@@ -68,13 +68,13 @@
         <!-- Other rulesets. -->
         <dependency>
             <groupId>org.jboss.windup.rules.apps</groupId>
-            <artifactId>rules-java</artifactId>
+            <artifactId>windup-rules-java</artifactId>
             <classifier>forge-addon</classifier>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.windup.rules.apps</groupId>
-            <artifactId>rules-java-ee</artifactId>
+            <artifactId>windup-rules-java-ee</artifactId>
             <classifier>forge-addon</classifier>
             <scope>provided</scope>
         </dependency>

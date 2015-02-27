@@ -1,13 +1,11 @@
 package org.windup.examples.ejb;
 
 import javax.ejb.EJBObject;
-import com.beanutils.async.AsynchronousMethod;
+import org.jboss.seam.annotations.async.Asynchronous;
 
 /**
  */
-public class BeanUtilsAsyncUsingRemote extends EJBObject {
-    @AsynchronousMethod
-    public void asyncMethod() {
-        
-    }
+public interface BeanUtilsAsyncUsingRemote extends EJBObject {
+    @Asynchronous
+    public void asyncMethod();
 }

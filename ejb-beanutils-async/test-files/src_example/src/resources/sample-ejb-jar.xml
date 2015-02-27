@@ -4,11 +4,7 @@
     <enterprise-beans>
         <session>
             <ejb-name>BeanUtilsAsyncUsing</ejb-name>
-            <ejb-ref>
-                <ejb-ref-name>ejb/fooremote</ejb-ref-name>
-                <ejb-ref-type>Session</ejb-ref-type>
-                <remote>org.windup.examples.ejb.BeanUtilsAsyncUsingRemote</remote>
-            </ejb-ref>
+            <remote>org.windup.examples.ejb.BeanUtilsAsyncUsingRemote</remote>
         </session>
     </enterprise-beans>
 </ejb-jar>
