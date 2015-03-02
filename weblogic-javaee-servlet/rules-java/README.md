@@ -190,6 +190,7 @@ This quickstart provides an example source file containing WebLogic annotations 
   You should see the following result:
  
         ***SUCCESS*** Windup report created: QUICKSTART_HOME/windup-reports-java/index.html
+                      Access it at this URL: file:///QUICKSTART_HOME/windup-reports-xml/index.html
 
   
 For more information about how to run Windup, see: [Execute Windup](https://github.com/windup/windup/wiki/Execute-Windup). 

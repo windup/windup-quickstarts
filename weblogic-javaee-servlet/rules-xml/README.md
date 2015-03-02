@@ -22,23 +22,20 @@ This XML-based Windup rule searches for the following annotations:
 * *@WLInitParam*: This is the equivalent of the Java EE 6 *@WebInitParam* annotation.
 
 
+**Note:** Windup only analyzes XML files with names ending in `.windup.xml`. Be sure to name XML-base rules using this naming convention!
+
+
 Review the Quickstart Code
 -------------------------
 
-**Note:** Windup only analyzes XML files with names ending in `.windup.xml`. Be sure to name XML-base rules using this naming convention!
-
-The QUICKSTART_HOME/rules-xml/my-hints-rule-provider.windup.xml file contains the following elements:
-
-* The `<ruleset>` element defines this as a Windup rule.
-
-* The `<rules>` element contains the individual rules.
+The QUICKSTART_HOME/rules-xml/my-hints-rule-provider.windup.xml ruleset contains 3 rules. Each rule tests for a Java class reference to a WebLogic servlet annotation and provides a message about to migrate the code.
 
 * A `<rule>` elements is defined for each of the above WebLogic Servlet annotations. Each `rule` contains the following elements.
-
-   * The `<when>` looks for a javaclass for the specific WebLogic annotation, for example, `weblogic.servlet.annotation.WLServlet`, `weblogic.servlet.annotation.WLInitParam`, or `weblogic.servlet.annotation.WLFilter`, with a location `ANNOTATION`.
-   * On a match, the `<perform>` element provides a `<hint>` message and description with links to documentation.
+* The `<when>` looks for a `javaclass` for the specific WebLogic annotation, for example, `weblogic.servlet.annotation.WLServlet`, `weblogic.servlet.annotation.WLInitParam`, or `weblogic.servlet.annotation.WLFilter`, with a location `ANNOTATION`.
+* On a match, the `<perform>` element provides a `<hint>` message and description with links to documentation.
 
 The Windup Javadoc is located here: <http://windup.github.io/windup/docs/javadoc/latest/>
+
 
 System requirements
 -------------------
@@ -108,7 +105,7 @@ This quickstart provides an example source file containing WebLogic annotations 
   You should see the following result:
  
         ***SUCCESS*** Windup report created: QUICKSTART_HOME/windup-reports-xml/index.html
-
+                      Access it at this URL: file:///QUICKSTART_HOME/windup-reports-xml/index.html
   
 For more information about how to run Windup, see: [Execute Windup](https://github.com/windup/windup/wiki/Execute-Windup). 
 
@@ -118,37 +115,36 @@ Review the Quickstart Report
 
 1. Open the `QUICKSTART_HOME/windup-reports-xml/index.html` file in a browser.  
 
-   You are presented with the following Overview page containing the application profiles.  
+   You are presented with the following index page.  
 
-![Overview page](../images/windup-report-index-page.png)  
-2. Click on the `test-files` link.  
+![Index page](../images/windup-report-index-page.png)  
+2. Click on the `src_example` link.  
 
-   This opens a detail page showing a total of 12 story points and the list the files containing the WebLogic proprietary annotations along with the warning messages, links to obtain more information, and the estimated story points for each item.  
+   This opens an overview page showing a total of 9 story points and the list of the relevant files along with the warning messages, links to obtain more information, and the estimated story points for each item.  
 
-*org.windup.example.servlet.SampleWebLogicFilter* shows 7 story points
+*src/resources/sample-ejb-jar.xml* shows 0 story points
 
-        4 points, 2 points for each of the two @WLInitParam references
-        3 points for the @WLFilter reference
        
-*org.windup.example.servlet.SampleWebLogicServlet* show 5 story points
+*org.windup.examples.ejb.BeanUtilsAsyncUsingRemote* show 9 story points
 
         4 points, 2 points for each of the two @WLInitParam references
-        1 points for the @WLServlet reference  
+        9 points for References annotation 'org.jboss.seam.annotations.async.Asynchronous'
 
-![Detail page](../images/windup-report-xml-detail-page.png)  
+
+![Detail page](../images/windup-report-xml-overview-page.png)  
 3. Click on the file links to drill down and find more information.  
 
-* The **Information** section reports the proprietary annotations and provides a link to the standard Java EE servlet annotation documentation.
+* The **Information** section reports on the matching conditions and provides a link to the standard Java EE servlet annotation documentation.
 
-* The **Hint** text appears at the appropriate locations within the code and provides a link to the [Migrate WebLogic Proprietary Servlet Annotations](https://access.redhat.com/articles/1249423) article on the Red Hat Customer Portal. Additional **Hint** text provides links to the javax.servlet.annotation package [Javadoc](http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html).
+* This is followed by the source code matching the condition with a detailed message desription.
 
-![File detail page](../images/windup-report-xml-file-page.png)  
+![File detail page](../images/windup-report-detail-page.png)  
 
 
 Remove the Quickstart from Windup
 ---------------------------------
 
-To remove the rule from Windup, simply delete the `WINDUP_HOME/rules/my-hints-rule-provider.windup.xml` file.
+To remove the rule from Windup, simply delete the `WINDUP_HOME/rules/my-hints-rule-provider.windup.xml` file `WINDUP_HOME/rules` directory.
 
 
 Stop Windup

@@ -12,11 +12,12 @@ Source: <https://github.com/windup/windup-quickstarts/>
 What is it?
 -----------
 
-The BeanUtils AsynchronousMethod is not compatible with Red Hat JBoss Enterprise Application Platform Remote EJBs and should be replaced with the Java EE 6 @Asynchronous annotation
+The BeanUtils AsynchronousMethod is not compatible with Red Hat JBoss Enterprise Application Platform remote EJBs and must be replaced with the Java EE 6 @Asynchronous annotation.
 
-You can create Windup rule addons using Java or XML. This quickstart demonstrates a Java-based rule addon.
+You can create Windup rules using XML or by writing Java addons. This quickstart demonstrates both approaches.
 
-* [Java-based rule addon](rules-java/README.md): Follow the instructions here to see how to create a Java-based rule addon.
+* [Java rule addon](rules-java/README.md): Follow the instructions here to see how to create this rule as a Java rule addon.
 
+* [XML rule](rules-xml/README.md): Follow the instructions here to see how to create this rule using XML.
 
 

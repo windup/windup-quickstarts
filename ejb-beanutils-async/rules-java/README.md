@@ -11,7 +11,7 @@ Source: <https://github.com/windup/windup-quickstarts/>
 What is it?
 -----------
 
-The BeanUtils AsynchronousMethod is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asynchronous annotation
+The BeanUtils AsynchronousMethod is not compatible with Red Hat JBoss Enterprise Application Platform remote EJBs and must be replaced with the Java EE 6 @Asynchronous annotation.
 
 Review the Quickstart Code
 -------------------------
@@ -142,7 +142,7 @@ After you build the quickstart and install it into the local Maven repository, u
 Test the Quickstart Rule Addon
 -----------------------------
 
-To test this rule, you must run the migration tool against an application that contains the  BeanUtils AsynchronousMethod annotation. The `jee-example-app-1.0.0.ear` file located in the `test-files/` contains this annotation and can be used to test the rule addon.
+To test this rule, you must run the migration tool against an application that contains the  BeanUtils AsynchronousMethod annotation. The `src_example` folder located in the `test-files/` directory contains XML and Java class files that can be used to test the rule addon.
 
 1. Start Windup as described above. 
 
@@ -152,7 +152,7 @@ To test this rule, you must run the migration tool against an application that c
 
         windup-migrate-app [--sourceMode true] --input INPUT_ARCHIVE_OR_FOLDER --output OUTPUT_REPORT_DIRECTORY --packages PACKAGE_1 PACKAGE_2 PACKAGE_N
 
-   To test this quickstart using the `test-files/jee-example-app-1.0.0.ear/` folder provided in the root directory of this quickstart, type the following commmand. Be sure to replace `QUICKSTART_HOME` with the fully qualified path to this quickstart.
+   To test this quickstart using the `test-files/src_example/` folder provided in the root directory of this quickstart, type the following commmand. Be sure to replace `QUICKSTART_HOME` with the fully qualified path to this quickstart.
    
         windup-migrate-app -sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output QUICKSTART_HOME/windup-reports-java --packages org.windup
 
@@ -160,7 +160,39 @@ To test this rule, you must run the migration tool against an application that c
 For more information about how to run Windup, see: [Execute Windup](https://github.com/windup/windup/wiki/Execute-Windup). 
 
 
-Remove the Rule from Windup
+Review the Quickstart Report
+----------------------------
+
+
+1. Open the `QUICKSTART_HOME/windup-reports-xml/index.html` file in a browser.  
+
+   You are presented with the following index page.  
+
+![Index page](../images/windup-report-index-page.png)  
+2. Click on the `src_example` link.  
+
+   This opens an overview page showing a total of 9 story points and the list of the relevant files along with the warning messages, links to obtain more information, and the estimated story points for each item.  
+
+*src/resources/sample-ejb-jar.xml* shows 0 story points
+
+       
+*org.windup.examples.ejb.BeanUtilsAsyncUsingRemote* show 9 story points
+
+        4 points, 2 points for each of the two @WLInitParam references
+        9 points for References annotation 'org.jboss.seam.annotations.async.Asynchronous'
+
+
+![Overview page](../images/windup-report-overview-page.png)  
+3. Click on the file links to drill down and find more information.  
+
+* The **Information** section reports on the matching conditions and provides a link to the standard Java EE servlet annotation documentation.
+
+* This is followed by the source code matching the condition with a detailed message desription.
+
+![Detail page](../images/windup-report-detail-page.png)  
+
+
+Remove the Quickstart Rule from Windup
 --------------------
 
 Remove the rule from Windup using the `addon-remove` command.
