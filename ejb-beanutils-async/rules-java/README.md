@@ -1,9 +1,9 @@
-ejb-beanutils-async: Java-based Rule Addon That Detects BeanUtils AsynchronousMethod
+ejb-beanutils-async: Java Rule Addon That Detects Seam Asynchronous Annotation in Remote EJBs
 =============================================================================================
 Author: Jess Sightler
 Level: Intermediate
 Technologies: 
-Summary: Windup rule that reports on com.beanutils.async.AsynchronousMethod in remote EJBs
+Summary: Windup Java rule addon that reports on use of the Seam Asynchronous annotation in remote EJBs
 Target Product: Windup
 Product Versions: 2.0
 Source: <https://github.com/windup/windup-quickstarts/>
@@ -11,14 +11,14 @@ Source: <https://github.com/windup/windup-quickstarts/>
 What is it?
 -----------
 
-The BeanUtils AsynchronousMethod is not compatible with Red Hat JBoss Enterprise Application Platform remote EJBs and must be replaced with the Java EE 6 @Asynchronous annotation.
+The Seam `@Asynchronous` annotation is not compatible with remote EJBs in Red Hat JBoss Enterprise Application Platform. This Java rule addon tests for for use of `org.jboss.seam.annotations.async.Asynchronous` annotations in remote EJBs and reports that it must be replaced with the standard Java EE 6 `@Asynchronous` annotation.
 
 Review the Quickstart Code
 -------------------------
 
 The `EjbBeanUtilsAsyncUsageRuleProvider` class extends `WindupRuleProvider` and overrides the following methods:
 
-* `getConfiguration(GraphContext context)`: This method looks for annotations named "com.beanutils.async.AsynchronousMethod". When found, it adds the text "BeanUtils Asynchronous is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asynchronous annotation." to the report and points the person to the JBoss EAP 6 documentation.
+* `getConfiguration(GraphContext context)`: This method looks for annotations named "com.beanutils.async.AsynchronousMethod". When found, it adds the text "`REMOTE_EJB_CLASS_NAME` uses the Seam @Asynchronous annotation. It is not compatible with JBoss EAP Remote EJBs and should be replaced with the standard Java EE 6 @Asynchronous annotation." to the report and points the person to the JBoss EAP 6 documentation.
 
 System requirements
 -------------------
@@ -142,7 +142,7 @@ After you build the quickstart and install it into the local Maven repository, u
 Test the Quickstart Rule Addon
 -----------------------------
 
-To test this rule, you must run the migration tool against an application that contains the  BeanUtils AsynchronousMethod annotation. The `src_example` folder located in the `test-files/` directory contains XML and Java class files that can be used to test the rule addon.
+To test this rule, you must run the migration tool against an application that contains the Seam `org.jboss.seam.annotations.async.Asynchronous` annotation. The `src_example` folder located in the `test-files/` directory contains XML and Java class files that can be used to test the rule addon.
 
 1. Start Windup as described above. 
 

@@ -13,7 +13,7 @@
             <perform>
                 <iteration over="asyncUsingSessionBeans">
                     <hint
-                        message="XML Rule Example: {remoteclass} uses a Seam @Asynchronous annotation, but that is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asynchronous annotation."
+                        message="XML Rule Example: {remoteclass} uses the Seam @Asynchronous annotation. It is not compatible with JBoss EAP Remote EJBs and should be replaced with the standard Java EE 6 @Asynchronous annotation."
                         effort="8">
                         <link href="http://docs.oracle.com/javaee/6/tutorial/doc/gkkqg.html" description="Using Java EE 6 @Asynchronous." />
                     </hint>

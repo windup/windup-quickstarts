@@ -48,7 +48,7 @@ public class EjbBeanUtilsAsyncUsageRuleProvider extends WindupRuleProvider
             )
             .perform(
                 Iteration.over("asyncUsingSessionBeans").perform(
-                    Hint.withText("{remoteclass} uses a Seam @Asynchronous annotation, but that is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asynchronous annotation.")
+                    Hint.withText("{remoteclass} uses the Seam @Asynchronous annotation. It is not compatible with JBoss EAP Remote EJBs and should be replaced with the standard Java EE 6 @Asynchronous annotation.")
                         .with(Link.to("Using Java EE 6 @Asynchronous.", "http://docs.oracle.com/javaee/6/tutorial/doc/gkkqg.html"))
                         .withEffort(8)
                 ).endIteration()

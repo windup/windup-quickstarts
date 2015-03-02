@@ -1,9 +1,9 @@
-ejb-beanutils-async: XML Rule That Detects BeanUtils AsynchronousMethod
+ejb-beanutils-async: XML Rule That Detects Seam Asynchronous Annotation in Remote EJBs
 =============================================================================================
 Author: Jess Sightler
 Level: Intermediate
 Technologies: XML rule
-Summary: Windup XML-based rule that reports on com.beanutils.async.AsynchronousMethod in remote EJBs
+Summary: Windup XML-based rule that reports on reports on use of the Seam Asynchronous annotation in remote EJBs
 Target Product: Windup
 Product Versions: 2.0
 Source: <https://github.com/windup/windup-quickstarts/>
@@ -11,7 +11,7 @@ Source: <https://github.com/windup/windup-quickstarts/>
 What is it?
 -----------
 
-The BeanUtils AsynchronousMethod is not compatible with Red Hat JBoss Enterprise Application Platform remote EJBs and must be replaced with the Java EE 6 @Asynchronous annotation.
+The Seam `@Asynchronous` annotation is not compatible with remote EJBs in Red Hat JBoss Enterprise Application Platform. This XML rule tests for use of `org.jboss.seam.annotations.async.Asynchronous` annotations in remote EJBs and reports that it must be replaced with the standard Java EE 6 `@Asynchronous` annotation.
 
 
 **Note:** Windup only analyzes XML files with names ending in `.windup.xml`. Be sure to name XML-base rules using this naming convention!
@@ -87,7 +87,7 @@ To install the rule in Windup, simply copy the `QUICKSTART_HOME/rules-xml/ejb-be
 Test the Quickstart Rule
 ------------------------
 
-To test this rule, you must run the migration tool against an application that contains the  BeanUtils AsynchronousMethod annotation. The `src_example` folder located in the `test-files/` directory contains XML and Java class files that can be used to test the rule addon.
+To test this rule, you must run the migration tool against an application that contains the Seam `org.jboss.seam.annotations.async.Asynchronous` annotation. The `src_example` folder located in the `test-files/` directory contains XML and Java class files that can be used to test the rule addon.
 
 1. Start Windup as described above. 
 
