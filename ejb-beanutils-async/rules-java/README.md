@@ -16,7 +16,7 @@ The Seam `@Asynchronous` annotation is not compatible with remote EJBs in Red Ha
 Review the Quickstart Code
 -------------------------
 
-The `EjbBeanUtilsAsyncUsageRuleProvider` class extends `WindupRuleProvider` and overrides the following methods:
+The `EjbBeanUtilsAsyncUsageRuleProvider` class extends `RuleProvider` and overrides the following methods:
 
 * `getConfiguration(GraphContext context)`: This method looks for annotations named "com.beanutils.async.AsynchronousMethod". When found, it adds the text "`REMOTE_EJB_CLASS_NAME` uses the Seam @Asynchronous annotation. It is not compatible with JBoss EAP Remote EJBs and should be replaced with the standard Java EE 6 @Asynchronous annotation." to the report and points the person to the JBoss EAP 6 documentation.
 

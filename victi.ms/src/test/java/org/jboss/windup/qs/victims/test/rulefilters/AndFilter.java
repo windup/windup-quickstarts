@@ -1,11 +1,11 @@
-package org.jboss.windup.qs.skiparch.test.rulefilters;
+package org.jboss.windup.qs.victims.test.rulefilters;
 
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import org.jboss.forge.furnace.util.Predicate;
-import org.jboss.windup.config.WindupRuleProvider;
+import org.jboss.windup.config.RuleProvider;
 
 /**
  * AND predicate which needs all of the given predicates to accept.
@@ -25,7 +25,7 @@ public class AndFilter implements RuleFilter
     }
 
     @Override
-    public boolean accept(WindupRuleProvider provider)
+    public boolean accept(RuleProvider provider)
     {
         boolean res = true;
         if (this.predicates.isEmpty())

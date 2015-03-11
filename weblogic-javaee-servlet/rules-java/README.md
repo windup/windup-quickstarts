@@ -11,7 +11,7 @@ Source: <https://github.com/windup/windup-quickstarts/>
 What is it?
 -----------
 
-WebLogic provides its own proprietary servlet and filter annotations for dependency injection. If the application uses them, they must be replaced with the standard Java EE 6 annotations. This example demonstrates how to create a WindupRuleProvider that searches for these proprietary annotations and reports on them.
+WebLogic provides its own proprietary servlet and filter annotations for dependency injection. If the application uses them, they must be replaced with the standard Java EE 6 annotations. This example demonstrates how to create a RuleProvider that searches for these proprietary annotations and reports on them.
 
 This Java-based Windup rule addon searches for the following annotations:
 
@@ -25,11 +25,11 @@ This Java-based Windup rule addon searches for the following annotations:
 Review the Quickstart Code
 -------------------------
 
-The *MyHintsRuleProvider* class extends *WindupRuleProvider* and overrides the following methods:
+The *MyHintsRuleProvider* class extends *RuleProvider* and overrides the following methods:
 
 * `getExecuteAfter()`: Nothing executes after this, so this method returns an empty list.
 
-* `enhanceMetadata(Context context)`: This method specifies additional metadata about the Rule instances originating from this WindupRuleProvider.
+* `enhanceMetadata(Context context)`: This method specifies additional metadata about the Rule instances originating from this RuleProvider.
 
 * `getConfiguration(GraphContext context)`: This method does the following.
 

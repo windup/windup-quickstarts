@@ -2,19 +2,17 @@ package org.jboss.windup.qs.victims;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.jboss.windup.config.GraphRewrite;
-import org.jboss.windup.config.IteratingRuleProvider;
-import org.jboss.windup.config.WindupRuleProvider;
 
 import org.jboss.windup.config.metadata.RuleMetadata;
+import org.jboss.windup.config.phase.DependentPhase;
 import org.jboss.windup.config.query.Query;
+import org.jboss.windup.config.ruleprovider.IteratingRuleProvider;
 import org.jboss.windup.graph.model.ArchiveModel;
 import org.jboss.windup.rules.apps.java.scan.provider.UnzipArchivesToOutputRuleProvider;
 import org.jboss.windup.util.exception.WindupException;
 import org.ocpsoft.rewrite.config.ConditionBuilder;
-import org.ocpsoft.rewrite.context.Context;
 import org.ocpsoft.rewrite.context.EvaluationContext;
 
 /**
@@ -23,23 +21,10 @@ import org.ocpsoft.rewrite.context.EvaluationContext;
  * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
  *
  */
+@RuleMetadata(tags = {"java"}, after = {UnzipArchivesToOutputRuleProvider.class}, phase = DependentPhase.class)
 public class ComputeArchivesSHA512Rules extends IteratingRuleProvider<ArchiveModel>
 {
     public static final String KEY_SHA512 = "SHA512";
-
-
-    @Override
-    public List<Class<? extends WindupRuleProvider>> getExecuteAfter()
-    {
-        return asClassList(UnzipArchivesToOutputRuleProvider.class);
-    }
-
-    @Override
-    public void enhanceMetadata(Context context)
-    {
-        super.enhanceMetadata(context);
-        context.put(RuleMetadata.CATEGORY, "Java");
-    }
 
 
     @Override

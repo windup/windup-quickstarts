@@ -7,14 +7,14 @@ import com.redhat.victims.database.VictimsDBInterface;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.logging.Logger;
+import org.jboss.windup.config.AbstractRuleProvider;
 import org.jboss.windup.config.GraphRewrite;
 
-import org.jboss.windup.config.WindupRuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.Iteration;
-import org.jboss.windup.config.operation.ruleelement.AbstractIterationOperation;
+import org.jboss.windup.config.operation.iteration.AbstractIterationOperation;
+import org.jboss.windup.config.phase.DependentPhase;
 import org.jboss.windup.config.query.Query;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.model.ArchiveModel;
@@ -24,7 +24,6 @@ import org.jboss.windup.util.Logging;
 import org.jboss.windup.util.exception.WindupException;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.config.ConfigurationBuilder;
-import org.ocpsoft.rewrite.context.Context;
 import org.ocpsoft.rewrite.context.EvaluationContext;
 
 /**
@@ -32,24 +31,10 @@ import org.ocpsoft.rewrite.context.EvaluationContext;
  *
  * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
  */
-public class CheckArchivesWithVictimsRules extends WindupRuleProvider
+@RuleMetadata(tags = {"java", "security"}, after = {UpdateVictimsDbRules.class, ComputeArchivesSHA512Rules.class}, phase = DependentPhase.class)
+public class CheckArchivesWithVictimsRules extends AbstractRuleProvider
 {
     private static final Logger log = Logging.get(CheckArchivesWithVictimsRules.class);
-
-
-    @Override
-    public void enhanceMetadata(Context context)
-    {
-        super.enhanceMetadata(context);
-        context.put(RuleMetadata.CATEGORY, "Java/Security");
-    }
-
-    @Override
-    public List<Class<? extends WindupRuleProvider>> getExecuteAfter()
-    {
-        return asClassList(UpdateVictimsDbRules.class, ComputeArchivesSHA512Rules.class);
-    }
-
 
     private VictimsDBInterface db;
     private Date victiomsLastUpdated;

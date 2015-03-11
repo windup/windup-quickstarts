@@ -1,7 +1,7 @@
-package org.jboss.windup.qs.skiparch.test.rulefilters;
+package org.jboss.windup.qs.victims.test.rulefilters;
 
 import org.jboss.forge.furnace.util.Predicate;
-import org.jboss.windup.config.WindupRuleProvider;
+import org.jboss.windup.config.RuleProvider;
 
 
 /**
@@ -9,7 +9,7 @@ import org.jboss.windup.config.WindupRuleProvider;
  *
  * @author Ondrej Zizka, ozizka at redhat.com
  */
-public interface RuleFilter extends Predicate<WindupRuleProvider>
+public interface RuleFilter extends Predicate<RuleProvider>
 {
 
 }

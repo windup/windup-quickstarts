@@ -15,7 +15,7 @@ import org.jboss.forge.arquillian.Dependencies;
 import org.jboss.forge.arquillian.archive.ForgeArchive;
 import org.jboss.forge.furnace.repositories.AddonDependencyEntry;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.windup.config.WindupRuleProvider;
+import org.jboss.windup.config.RuleProvider;
 import org.jboss.windup.exec.WindupProcessor;
 import org.jboss.windup.exec.configuration.WindupConfiguration;
 import org.jboss.windup.graph.GraphContext;
@@ -54,7 +54,7 @@ public class SkipArchRulesetTest
         @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
         @AddonDependency(name = "org.jboss.windup.utils:utils"),
         @AddonDependency(name = "org.jboss.windup.rules.apps:rules-base"),
-        @AddonDependency(name = "org.jboss.windup.rules.apps:rules-java"),
+        @AddonDependency(name = "org.jboss.windup.rules.apps:windup-rules-java"),
         //@AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
         @AddonDependency(name = "org.jboss.windup.quickstarts:windup-skiparchives"),
         @AddonDependency(name = "org.jboss.forge.furnace.container:cdi"),
@@ -72,7 +72,7 @@ public class SkipArchRulesetTest
                 AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
                 AddonDependencyEntry.create("org.jboss.windup.utils:utils"),
                 AddonDependencyEntry.create("org.jboss.windup.rules.apps:rules-base"),
-                AddonDependencyEntry.create("org.jboss.windup.rules.apps:rules-java"),
+                AddonDependencyEntry.create("org.jboss.windup.rules.apps:windup-rules-java"),
                 //AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
                 AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-skiparchives"),
                 AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi")
@@ -143,7 +143,7 @@ public class SkipArchRulesetTest
     /**
      * @param ruleProvider RuleProvider to run, with all rules that must be run before.
      */
-    private void runRule(Class<? extends WindupRuleProvider> ruleProvider, GraphContext grCtx)
+    private void runRule(Class<? extends RuleProvider> ruleProvider, GraphContext grCtx)
     {
         this.runRules(new EnumerationOfRulesFilter(ruleProvider), grCtx);
     }

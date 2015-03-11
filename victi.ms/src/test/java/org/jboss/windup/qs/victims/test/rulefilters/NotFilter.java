@@ -1,8 +1,8 @@
-package org.jboss.windup.qs.skiparch.test.rulefilters;
+package org.jboss.windup.qs.victims.test.rulefilters;
 
 
 import org.jboss.forge.furnace.util.Predicate;
-import org.jboss.windup.config.WindupRuleProvider;
+import org.jboss.windup.config.RuleProvider;
 
 /**
  * NOT predicate which negates the result of given predicate..
@@ -20,7 +20,7 @@ public class NotFilter implements RuleFilter
     }
 
     @Override
-    public boolean accept(WindupRuleProvider provider)
+    public boolean accept(RuleProvider provider)
     {
         return ! this.predicate.accept(provider);
     }

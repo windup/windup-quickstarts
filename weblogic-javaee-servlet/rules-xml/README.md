@@ -11,7 +11,7 @@ Source: <https://github.com/windup/windup-quickstarts/>
 What is it?
 -----------
 
-WebLogic provides its own proprietary servlet and filter annotations for dependency injection. If the application uses them, they must be replaced with the standard Java EE 6 annotations. This example demonstrates how to create a WindupRuleProvider that searches for these proprietary annotations and reports on them.
+WebLogic provides its own proprietary servlet and filter annotations for dependency injection. If the application uses them, they must be replaced with the standard Java EE 6 annotations. This example demonstrates how to create a RuleProvider that searches for these proprietary annotations and reports on them.
 
 This XML-based Windup rule searches for the following annotations:
 

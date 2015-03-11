@@ -3,7 +3,7 @@ package org.jboss.windup.qs.victims.test.rulefilters;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import org.jboss.windup.config.WindupRuleProvider;
+import org.jboss.windup.config.RuleProvider;
 
 /**
  * A convenient filter for rule providers enumerated as constructor params.
@@ -22,7 +22,7 @@ public class PackageRulesFilter implements RuleFilter
 
 
     @Override
-    public boolean accept(WindupRuleProvider ruleProvider)
+    public boolean accept(RuleProvider ruleProvider)
     {
         return this.packages.contains(ruleProvider.getClass().getPackage().getName());
     }

@@ -32,26 +32,26 @@ public class MyJavaHintsTest
 {
     @Deployment
     @Dependencies({
-                @AddonDependency(name = "org.jboss.windup.config:windup-config"),
-                @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
-                @AddonDependency(name = "org.jboss.windup.utils:utils"),
-                @AddonDependency(name = "org.jboss.windup.rules.apps:rules-java"),
-                @AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
-                @AddonDependency(name = "org.jboss.forge.furnace.container:cdi")
+        @AddonDependency(name = "org.jboss.windup.config:windup-config"),
+        @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
+        @AddonDependency(name = "org.jboss.windup.utils:utils"),
+        @AddonDependency(name = "org.jboss.windup.rules.apps:windup-rules-java"),
+        @AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
+        @AddonDependency(name = "org.jboss.forge.furnace.container:cdi")
     })
     public static ForgeArchive getDeployment()
     {
         final ForgeArchive archive = ShrinkWrap.create(ForgeArchive.class)
-                    .addBeansXML()
-                    .addClass(MyHintsRuleProvider.class)
-                    .addAsAddonDependencies(
-                                AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
-                                AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
-                                AddonDependencyEntry.create("org.jboss.windup.utils:utils"),
-                                AddonDependencyEntry.create("org.jboss.windup.rules.apps:rules-java"),
-                                AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
-                                AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi")
-                    );
+            .addBeansXML()
+            .addClass(MyHintsRuleProvider.class)
+            .addAsAddonDependencies(
+                AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
+                AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
+                AddonDependencyEntry.create("org.jboss.windup.utils:utils"),
+                AddonDependencyEntry.create("org.jboss.windup.rules.apps:windup-rules-java"),
+                AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
+                AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi")
+            );
 
         return archive;
     }
@@ -103,7 +103,7 @@ public class MyJavaHintsTest
             {
                 String weblogicHintString = "Replace the proprietary WebLogic @WLServlet annotaion with the Java EE 6 " +
                             "standard @WebServlet annotation.\n\r" +
-                           "For details on how to map the Servlet attributes, see: " + 
+                           "For details on how to map the Servlet attributes, see: " +
                            "<a href=\"https://access.redhat.com/articles/1249423\">" +
                            "Migrate WebLogic Proprietary Servlet Annotations</a>";
                 if (weblogicHintString.equals(hint.getHint()))

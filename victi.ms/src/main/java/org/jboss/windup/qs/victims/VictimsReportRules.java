@@ -1,10 +1,11 @@
 package org.jboss.windup.qs.victims;
 
-import java.util.List;
+import org.jboss.windup.config.AbstractRuleProvider;
 import org.jboss.windup.config.GraphRewrite;
-import org.jboss.windup.config.WindupRuleProvider;
-import org.jboss.windup.config.operation.ruleelement.AbstractIterationOperation;
-import org.jboss.windup.config.phase.ReportGeneration;
+import org.jboss.windup.config.metadata.RuleMetadata;
+import org.jboss.windup.config.operation.iteration.AbstractIterationOperation;
+import org.jboss.windup.config.phase.DependentPhase;
+import org.jboss.windup.config.phase.ReportGenerationPhase;
 import org.jboss.windup.config.query.Query;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.model.ProjectModel;
@@ -27,16 +28,11 @@ import org.ocpsoft.rewrite.context.EvaluationContext;
  *
  * @author Ondrej Zizka
  */
-public class VictimsReportRules extends WindupRuleProvider
+@RuleMetadata(tags = {"java"}, after = {UpdateVictimsDbRules.class, ReportGenerationPhase.class}, phase = DependentPhase.class)
+public class VictimsReportRules extends AbstractRuleProvider
 {
     public static final String TITLE = "Archives affected by security vulnerabilities";
     public static final String TEMPLATE_REPORT = "/org/jboss/windup/qs/victims/Report-Security.html";
-
-    @Override
-    public List<Class<? extends WindupRuleProvider>> getExecuteAfter()
-    {
-        return asClassList(UpdateVictimsDbRules.class, ReportGeneration.class);
-    }
 
 
     // @formatter:off
@@ -63,12 +59,10 @@ public class VictimsReportRules extends WindupRuleProvider
         };
 
         return ConfigurationBuilder.begin()
-                    .addRule()
-                    .when(applicationProjectModelsFound)
-                    .perform(addApplicationReport);
-
+            .addRule()
+            .when(applicationProjectModelsFound)
+            .perform(addApplicationReport);
     }
-
     // @formatter:on
 
 

@@ -30,30 +30,29 @@ public class EjbBeanUtilsAsyncUsageRuleProviderTest
 {
     @Deployment
     @Dependencies({
-                @AddonDependency(name = "org.jboss.windup.quickstarts:windup-ejb-beanutils-async-rules-java"),
-                @AddonDependency(name = "org.jboss.windup.config:windup-config"),
-                @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
+                @AddonDependency(name = "org.jboss.forge.furnace.container:cdi"),
                 @AddonDependency(name = "org.jboss.windup.utils:utils"),
+                @AddonDependency(name = "org.jboss.windup.config:windup-config"),
                 @AddonDependency(name = "org.jboss.windup.rules.apps:windup-rules-java"),
                 @AddonDependency(name = "org.jboss.windup.rules.apps:windup-rules-java-ee"),
                 @AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
-                @AddonDependency(name = "org.jboss.forge.furnace.container:cdi")
+                @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
+                @AddonDependency(name = "org.jboss.windup.quickstarts:windup-ejb-beanutils-async-rules-java"),
     })
     public static ForgeArchive getDeployment()
     {
         final ForgeArchive archive = ShrinkWrap.create(ForgeArchive.class)
-                    .addBeansXML()
-                    .addAsResource(new File("../rules-xml/async-method.windup.xml"))
-                    .addAsAddonDependencies(
-                                AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
-                                AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-ejb-beanutils-async-rules-java"),
-                                AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
-                                AddonDependencyEntry.create("org.jboss.windup.utils:utils"),
-                                AddonDependencyEntry.create("org.jboss.windup.rules.apps:windup-rules-java"),
-                                AddonDependencyEntry.create("org.jboss.windup.rules.apps:windup-rules-java-ee"),
-                                AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
-                                AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi")
-                    );
+            .addBeansXML()
+            .addAsAddonDependencies(
+                AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi"),
+                AddonDependencyEntry.create("org.jboss.windup.utils:utils"),
+                AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
+                AddonDependencyEntry.create("org.jboss.windup.rules.apps:windup-rules-java"),
+                AddonDependencyEntry.create("org.jboss.windup.rules.apps:windup-rules-java-ee"),
+                AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
+                AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
+                AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-ejb-beanutils-async-rules-java")
+            );
 
         return archive;
     }

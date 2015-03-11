@@ -1,33 +1,32 @@
 package org.jboss.windup.qs.rules;
 
-import org.jboss.windup.config.WindupRuleProvider;
+import org.jboss.windup.config.GraphRewrite;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.Iteration;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.reporting.config.Hint;
 import org.jboss.windup.reporting.config.Link;
 import org.jboss.windup.rules.apps.java.condition.JavaClass;
-import org.jboss.windup.rules.apps.java.scan.ast.TypeReferenceLocation;
-import org.jboss.windup.rules.apps.xml.condition.XmlFile;
+import org.jboss.windup.rules.apps.java.model.JavaClassModel;
+import org.jboss.windup.rules.apps.java.scan.ast.JavaTypeReferenceModel;
+import org.jboss.windup.rules.apps.javaee.model.EjbSessionBeanModel;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.config.ConfigurationBuilder;
-import org.ocpsoft.rewrite.context.Context;
+
+import com.thinkaurelius.titan.core.attribute.Text;
+import com.tinkerpop.blueprints.Vertex;
+import com.tinkerpop.gremlin.java.GremlinPipeline;
+import org.jboss.windup.ast.java.data.TypeReferenceLocation;
+import org.jboss.windup.config.AbstractRuleProvider;
+
 
 /**
- *
+ * @author Ondrej Zizka, zizka@seznam.cz
  * @author jsightler <jesse.sightler@gmail.com>
  */
-public class EjbBeanUtilsAsyncUsageRuleProvider extends WindupRuleProvider
+@RuleMetadata(tags = {"Java EE"})
+public class EjbBeanUtilsAsyncUsageRuleProvider extends AbstractRuleProvider
 {
-    @Override
-    public void enhanceMetadata(Context context)
-    {
-        // this method simply associates some metadata with all of the rules provided by this
-        // Rule Provider.
-        super.enhanceMetadata(context);
-        context.put(RuleMetadata.CATEGORY, "Java EE");
-    }
-
     // @formatter:off
     @Override
     public Configuration getConfiguration(GraphContext context)
@@ -55,5 +54,4 @@ public class EjbBeanUtilsAsyncUsageRuleProvider extends WindupRuleProvider
             );
     }
     // @formatter:on
-
 }

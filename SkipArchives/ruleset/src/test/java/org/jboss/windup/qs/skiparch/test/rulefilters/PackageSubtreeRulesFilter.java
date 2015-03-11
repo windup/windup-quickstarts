@@ -1,6 +1,6 @@
 package org.jboss.windup.qs.skiparch.test.rulefilters;
 
-import org.jboss.windup.config.WindupRuleProvider;
+import org.jboss.windup.config.RuleProvider;
 
 /**
  * Accepts rule providers that belong under certain package and "subpackages".
@@ -19,13 +19,13 @@ public class PackageSubtreeRulesFilter extends PackageRulesFilter
         super(pkg);
     }
 
-    public PackageSubtreeRulesFilter(Class<? extends WindupRuleProvider> pkgCls)
+    public PackageSubtreeRulesFilter(Class<? extends RuleProvider> pkgCls)
     {
         this(pkgCls.getPackage());
     }
 
     @Override
-    public boolean accept(WindupRuleProvider ruleProvider)
+    public boolean accept(RuleProvider ruleProvider)
     {
         final Package cls = ruleProvider.getClass().getPackage();
         if (cls == null)

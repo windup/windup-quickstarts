@@ -1,54 +1,42 @@
 package org.jboss.windup.qs.rules;
 
-import java.util.Collections;
-import java.util.List;
+import org.jboss.windup.ast.java.data.TypeReferenceLocation;
+import org.jboss.windup.config.AbstractRuleProvider;
 
-import org.jboss.windup.config.WindupRuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.reporting.config.classification.Classification;
 import org.jboss.windup.reporting.config.Hint;
 import org.jboss.windup.reporting.config.Link;
 import org.jboss.windup.rules.apps.java.condition.JavaClass;
-import org.jboss.windup.rules.apps.java.scan.ast.TypeReferenceLocation;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.config.ConfigurationBuilder;
-import org.ocpsoft.rewrite.context.Context;
 
 /**
- * Reports on Java classes that contain proprietary WebLogic 
- * servlet annotations and provides links to documentation 
+ * Reports on Java classes that contain proprietary WebLogic
+ * servlet annotations and provides links to documentation
  * that describe how to migrate to standard Java EE 6 code.
  *
  * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
 
  */
-public class MyHintsRuleProvider extends WindupRuleProvider
-{
+@RuleMetadata(
+        // A RuleProvider may either specify metadata here,
+        // or call AbstractRuleProvider.super(RuleProviderMetadata) in it's constructor.
 
-    @Override
-    public List<Class<? extends WindupRuleProvider>> getExecuteAfter()
-    {
-        return Collections.emptyList();
-        // Returning a value here will cause the Rules from this provider to execute after the rules
+        // Tags. See Windup documentation for what tags serve for.
+        tags = "Java",
+
+        // Specifying a value here will cause the Rules from this provider to execute after the rules
         // from the providers in the list.
         //
         // The following example specifies that this provider's rules should execute after the rules
         // in AnalyzeJavaFilesRuleProvider. This is technically unnecessary, as the rules in
-        // AnalyzeJavaFilesRuleProvider are set to execute in an earlier phase, but is here only to
-        // demonstrate the concept.
-        //
-        // return asClassList(AnalyzeJavaFilesRuleProvider.class);
-    }
-
-    @Override
-    public void enhanceMetadata(Context context)
-    {
-        // Associates some metadata with all of the rules provided by this RuleProvider.
-        super.enhanceMetadata(context);
-        context.put(RuleMetadata.CATEGORY, "Java");
-    }
-
+        // AnalyzeJavaFilesRuleProvider are set to execute in an earlier phase, but is here only to demonstrate the concept.
+        after = {}
+)
+public class MyHintsRuleProvider extends AbstractRuleProvider
+{
     // @formatter:off
     @Override
     public Configuration getConfiguration(GraphContext context)

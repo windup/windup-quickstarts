@@ -4,7 +4,7 @@ package org.jboss.windup.qs.skiparch.test.rulefilters;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import org.jboss.windup.config.WindupRuleProvider;
+import org.jboss.windup.config.RuleProvider;
 import org.jboss.windup.config.phase.ReportGeneration;
 import org.jboss.windup.config.phase.ReportRendering;
 import org.jboss.windup.config.phase.RulePhase;
@@ -25,7 +25,7 @@ public class PhaseRulesFilter implements RuleFilter
 
 
     @Override
-    public boolean accept(WindupRuleProvider provider)
+    public boolean accept(RuleProvider provider)
     {
         return this.phases.contains( provider.getPhase() );
     }

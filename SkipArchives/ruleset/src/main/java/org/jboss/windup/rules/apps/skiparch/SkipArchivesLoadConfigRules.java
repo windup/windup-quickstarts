@@ -14,7 +14,7 @@ import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.jboss.windup.config.GraphRewrite;
 
-import org.jboss.windup.config.WindupRuleProvider;
+import org.jboss.windup.config.RuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.GraphOperation;
 import org.jboss.windup.config.phase.Initialization;
@@ -35,7 +35,7 @@ import org.ocpsoft.rewrite.context.EvaluationContext;
  *
  * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
  */
-public class SkipArchivesLoadConfigRules extends WindupRuleProvider
+public class SkipArchivesLoadConfigRules extends RuleProvider
 {
     private static final Logger log = Logging.get(SkipArchivesLoadConfigRules.class);
 
@@ -48,7 +48,7 @@ public class SkipArchivesLoadConfigRules extends WindupRuleProvider
     }
 
     @Override
-    public List<Class<? extends WindupRuleProvider>> getExecuteAfter()
+    public List<Class<? extends RuleProvider>> getExecuteAfter()
     {
         return asClassList();
     }

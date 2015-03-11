@@ -1,7 +1,7 @@
 package org.jboss.windup.qs.skiparch.test.rulefilters;
 
 import org.jboss.forge.furnace.util.Predicate;
-import org.jboss.windup.config.WindupRuleProvider;
+import org.jboss.windup.config.RuleProvider;
 
 /**
  * OR predicate which needs at least one of the contained predicates to accept.
@@ -17,7 +17,7 @@ public class OrFilter extends AndFilter
     }
 
     @Override
-    public boolean accept(WindupRuleProvider provider)
+    public boolean accept(RuleProvider provider)
     {
         boolean res = false;
         if (this.predicates.isEmpty())

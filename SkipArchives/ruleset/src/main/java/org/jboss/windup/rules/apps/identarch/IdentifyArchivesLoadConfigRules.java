@@ -17,7 +17,7 @@ import org.jboss.forge.furnace.addons.AddonId;
 import org.jboss.windup.config.GraphRewrite;
 import org.jboss.windup.config.WindupConfigurationOption;
 
-import org.jboss.windup.config.WindupRuleProvider;
+import org.jboss.windup.config.RuleProvider;
 import org.jboss.windup.config.furnace.FurnaceHolder;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.GraphOperation;
@@ -40,7 +40,7 @@ import org.ocpsoft.rewrite.context.EvaluationContext;
  *
  * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
  */
-public class IdentifyArchivesLoadConfigRules extends WindupRuleProvider
+public class IdentifyArchivesLoadConfigRules extends RuleProvider
 {
     private static final Logger log = Logging.get(IdentifyArchivesLoadConfigRules.class);
 
@@ -55,7 +55,7 @@ public class IdentifyArchivesLoadConfigRules extends WindupRuleProvider
     }
 
     @Override
-    public List<Class<? extends WindupRuleProvider>> getExecuteAfter()
+    public List<Class<? extends RuleProvider>> getExecuteAfter()
     {
         return asClassList();
     }

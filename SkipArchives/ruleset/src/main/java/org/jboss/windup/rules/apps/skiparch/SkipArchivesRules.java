@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import org.jboss.windup.config.GraphRewrite;
 
-import org.jboss.windup.config.WindupRuleProvider;
+import org.jboss.windup.config.RuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.Iteration;
 import org.jboss.windup.config.operation.ruleelement.AbstractIterationOperation;
@@ -33,7 +33,7 @@ import org.ocpsoft.rewrite.context.EvaluationContext;
  *
  * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
  */
-public class SkipArchivesRules extends WindupRuleProvider
+public class SkipArchivesRules extends RuleProvider
 {
     private static final Logger log = Logging.get(SkipArchivesRules.class);
 
@@ -45,7 +45,7 @@ public class SkipArchivesRules extends WindupRuleProvider
     }
 
     @Override
-    public List<Class<? extends WindupRuleProvider>> getExecuteAfter()
+    public List<Class<? extends RuleProvider>> getExecuteAfter()
     {
         return asClassList(IdentifyArchivesRules.class, SkipArchivesLoadConfigRules.class);
     }
@@ -53,7 +53,7 @@ public class SkipArchivesRules extends WindupRuleProvider
 
     /*
     @Override
-    public List<Class<? extends WindupRuleProvider>> getExecuteBefore()
+    public List<Class<? extends RuleProvider>> getExecuteBefore()
     {
         return asClassList(DecompileArchivesRuleProvider.class);
     }

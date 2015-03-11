@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import org.jboss.windup.config.GraphRewrite;
 
-import org.jboss.windup.config.WindupRuleProvider;
+import org.jboss.windup.config.RuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.Iteration;
 import org.jboss.windup.config.operation.ruleelement.AbstractIterationOperation;
@@ -34,7 +34,7 @@ import org.ocpsoft.rewrite.context.EvaluationContext;
  *
  * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
  */
-public class IdentifyArchivesRules extends WindupRuleProvider
+public class IdentifyArchivesRules extends RuleProvider
 {
     private static final Logger log = Logging.get(IdentifyArchivesRules.class);
 
@@ -47,7 +47,7 @@ public class IdentifyArchivesRules extends WindupRuleProvider
     }
 
     @Override
-    public List<Class<? extends WindupRuleProvider>> getExecuteAfter()
+    public List<Class<? extends RuleProvider>> getExecuteAfter()
     {
         // UnzipArchivesToOutputRuleProvider would make it dependent on rules-java
         return asClassList(ArchiveMetadataExtraction.class, IdentifyArchivesLoadConfigRules.class);

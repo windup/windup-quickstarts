@@ -14,18 +14,17 @@ import org.jboss.forge.arquillian.Dependencies;
 import org.jboss.forge.arquillian.archive.ForgeArchive;
 import org.jboss.forge.furnace.repositories.AddonDependencyEntry;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.windup.config.phase.MigrationRules;
-import org.jboss.windup.config.phase.RulePhase;
+import org.jboss.windup.config.phase.MigrationRulesPhase;
 import org.jboss.windup.exec.WindupProcessor;
 import org.jboss.windup.exec.configuration.WindupConfiguration;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.GraphContextFactory;
 import org.jboss.windup.graph.service.GraphService;
-import org.jboss.windup.qs.victims.model.AffectedJarModel;
-import org.jboss.windup.qs.victims.model.VulnerabilityModel;
 import org.jboss.windup.qs.victims.test.rulefilters.AndFilter;
 import org.jboss.windup.qs.victims.test.rulefilters.NotFilter;
-import org.jboss.windup.rules.apps.java.binary.DecompileArchivesRuleProvider;
+import org.jboss.windup.qs.victims.model.AffectedJarModel;
+import org.jboss.windup.qs.victims.model.VulnerabilityModel;
+import org.jboss.windup.rules.apps.java.decompiler.DecompileArchivesRuleProvider;
 import org.jboss.windup.rules.apps.java.model.WindupJavaConfigurationModel;
 import org.jboss.windup.rules.apps.java.service.WindupJavaConfigurationService;
 import org.jboss.windup.util.Logging;
@@ -45,13 +44,13 @@ public class VictimsRulesetTest
 
     @Deployment
     @Dependencies({
-        @AddonDependency(name = "org.jboss.windup.config:windup-config"),
-        @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
-        @AddonDependency(name = "org.jboss.windup.utils:utils"),
-        @AddonDependency(name = "org.jboss.windup.rules.apps:rules-java"),
-        @AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
-        @AddonDependency(name = "org.jboss.windup.quickstarts:windup-victims"),
         @AddonDependency(name = "org.jboss.forge.furnace.container:cdi"),
+        @AddonDependency(name = "org.jboss.windup.utils:utils"),
+        @AddonDependency(name = "org.jboss.windup.config:windup-config"),
+        @AddonDependency(name = "org.jboss.windup.rules.apps:windup-rules-java"),
+        @AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
+        @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
+        @AddonDependency(name = "org.jboss.windup.quickstarts:windup-victims"),
     })
     public static ForgeArchive getDeployment()
     {
@@ -60,13 +59,13 @@ public class VictimsRulesetTest
             //.addClasses(CheckArchivesWithVictimsRules.class, EnumerationOfRulesFilter.class, OrPredicate.class, )
             .addPackages(true,"org.jboss.windup.qs.victims.test")
             .addAsAddonDependencies(
-                AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
-                AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
+                AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi"),
                 AddonDependencyEntry.create("org.jboss.windup.utils:utils"),
-                AddonDependencyEntry.create("org.jboss.windup.rules.apps:rules-java"),
+                AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
+                AddonDependencyEntry.create("org.jboss.windup.rules.apps:windup-rules-java"),
                 AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
-                AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-victims"),
-                AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi")
+                AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
+                AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-victims")
             );
         return archive;
     }
@@ -111,7 +110,7 @@ public class VictimsRulesetTest
                 )*/
                 // Changed to allow creation of the ProjectModel.
                 new NotFilter( new AndFilter(
-                        new PhaseRulesFilter(MigrationRules.class),
+                        new PhaseRulesFilter(MigrationRulesPhase.class),
                         new EnumerationOfRulesFilter(DecompileArchivesRuleProvider.class)
                 ))
             );
