@@ -14,22 +14,17 @@ import org.apache.commons.io.DirectoryWalker;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.jboss.forge.furnace.addons.AddonId;
+import org.jboss.windup.config.AbstractRuleProvider;
 import org.jboss.windup.config.GraphRewrite;
-import org.jboss.windup.config.WindupConfigurationOption;
-
-import org.jboss.windup.config.RuleProvider;
 import org.jboss.windup.config.furnace.FurnaceHolder;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.GraphOperation;
-import org.jboss.windup.config.phase.Initialization;
-import org.jboss.windup.config.phase.RulePhase;
-import org.jboss.windup.exec.configuration.WindupConfiguration;
+import org.jboss.windup.config.phase.InitializationPhase;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.util.Logging;
 import org.jboss.windup.util.WindupPathUtil;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.config.ConfigurationBuilder;
-import org.ocpsoft.rewrite.context.Context;
 import org.ocpsoft.rewrite.context.EvaluationContext;
 
 /**
@@ -40,33 +35,12 @@ import org.ocpsoft.rewrite.context.EvaluationContext;
  *
  * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
  */
-public class IdentifyArchivesLoadConfigRules extends RuleProvider
+@RuleMetadata(tags = "java", phase = InitializationPhase.class)
+public class IdentifyArchivesLoadConfigRules extends AbstractRuleProvider
 {
     private static final Logger log = Logging.get(IdentifyArchivesLoadConfigRules.class);
 
     public static final String CENTRAL_MAPPING_DATA_CLASSPATH = "/META-INF/data/central.sha1ToGAV.txt.zip";
-
-
-    @Override
-    public void enhanceMetadata(Context context)
-    {
-        super.enhanceMetadata(context);
-        context.put(RuleMetadata.CATEGORY, "Java");
-    }
-
-    @Override
-    public List<Class<? extends RuleProvider>> getExecuteAfter()
-    {
-        return asClassList();
-    }
-
-
-    @Override
-    public Class<? extends RulePhase> getPhase()
-    {
-        return Initialization.class;
-    }
-
 
 
 

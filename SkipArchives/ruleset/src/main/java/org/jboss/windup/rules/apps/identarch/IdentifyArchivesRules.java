@@ -2,17 +2,15 @@ package org.jboss.windup.rules.apps.identarch;
 
 import org.jboss.windup.rules.apps.identarch.model.IdentifiedArchiveModel;
 import org.jboss.windup.rules.apps.identarch.model.GAV;
-import java.util.List;
 import java.util.logging.Logger;
+import org.jboss.windup.config.AbstractRuleProvider;
 import org.jboss.windup.config.GraphRewrite;
 
-import org.jboss.windup.config.RuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.Iteration;
-import org.jboss.windup.config.operation.ruleelement.AbstractIterationOperation;
-import org.jboss.windup.config.phase.ArchiveMetadataExtraction;
-import org.jboss.windup.config.phase.InitialAnalysis;
-import org.jboss.windup.config.phase.RulePhase;
+import org.jboss.windup.config.operation.iteration.AbstractIterationOperation;
+import org.jboss.windup.config.phase.ArchiveMetadataExtractionPhase;
+import org.jboss.windup.config.phase.InitialAnalysisPhase;
 import org.jboss.windup.config.query.Query;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.model.ArchiveModel;
@@ -23,7 +21,6 @@ import org.jboss.windup.rules.apps.identarch.util.GraphService2;
 import org.jboss.windup.util.Logging;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.config.ConfigurationBuilder;
-import org.ocpsoft.rewrite.context.Context;
 import org.ocpsoft.rewrite.context.EvaluationContext;
 
 /**
@@ -34,31 +31,10 @@ import org.ocpsoft.rewrite.context.EvaluationContext;
  *
  * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
  */
-public class IdentifyArchivesRules extends RuleProvider
+@RuleMetadata(tags = "java", after = {ArchiveMetadataExtractionPhase.class, IdentifyArchivesLoadConfigRules.class}, phase = InitialAnalysisPhase.class)
+public class IdentifyArchivesRules extends AbstractRuleProvider
 {
     private static final Logger log = Logging.get(IdentifyArchivesRules.class);
-
-
-    @Override
-    public void enhanceMetadata(Context context)
-    {
-        super.enhanceMetadata(context);
-        context.put(RuleMetadata.CATEGORY, "Java");
-    }
-
-    @Override
-    public List<Class<? extends RuleProvider>> getExecuteAfter()
-    {
-        // UnzipArchivesToOutputRuleProvider would make it dependent on rules-java
-        return asClassList(ArchiveMetadataExtraction.class, IdentifyArchivesLoadConfigRules.class);
-    }
-
-    @Override
-    public Class<? extends RulePhase> getPhase()
-    {
-        return InitialAnalysis.class;
-    }
-
 
 
     // @formatter:off

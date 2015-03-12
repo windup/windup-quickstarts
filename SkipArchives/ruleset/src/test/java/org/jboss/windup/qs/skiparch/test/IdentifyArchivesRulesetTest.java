@@ -30,7 +30,6 @@ import org.jboss.windup.qs.skiparch.test.rulefilters.PackageSubtreeRulesFilter;
 import org.jboss.windup.qs.skiparch.test.rulefilters.RuleFilter;
 import org.jboss.windup.util.Logging;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -62,7 +61,8 @@ public class IdentifyArchivesRulesetTest
 
         final ForgeArchive archive = ShrinkWrap.create(ForgeArchive.class)
             .addBeansXML()
-            .addPackages(true, IdentifyArchivesRulesetTest.class.getPackage())
+            //.addPackages(true, IdentifyArchivesRulesetTest.class.getPackage())
+            .addPackages(true, RuleFilter.class.getPackage())
             .addAsAddonDependencies(
                 AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
                 AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
@@ -99,11 +99,6 @@ public class IdentifyArchivesRulesetTest
             // 4e031bb61df09069aeb2bffb4019e7a5034a4ee0 junit:junit:4.11
             archM.setSHA1Hash("4e031bb61df09069aeb2bffb4019e7a5034a4ee0");
 
-            //GraphService<GAVModel> gavGS = new GraphService(grCtx, GAVModel.class);
-            //GAVModel gavM = gavGS.create().setGroupId("junit").setArtifactId("junit").setVersion("4.11");
-            //archM.setGAV(gavM);
-
-            // Run the SkipArchivesRules.
             runRule(SkipArchivesRules.class, grCtx);
             runRules(new PackageSubtreeRulesFilter(IdentifyArchivesRules.class), grCtx);
 

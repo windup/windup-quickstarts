@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import org.jboss.windup.config.RuleProvider;
-import org.jboss.windup.config.phase.ReportGeneration;
-import org.jboss.windup.config.phase.ReportRendering;
+import org.jboss.windup.config.phase.ReportGenerationPhase;
+import org.jboss.windup.config.phase.ReportRenderingPhase;
 import org.jboss.windup.config.phase.RulePhase;
 
 /**
@@ -27,12 +27,12 @@ public class PhaseRulesFilter implements RuleFilter
     @Override
     public boolean accept(RuleProvider provider)
     {
-        return this.phases.contains( provider.getPhase() );
+        return this.phases.contains( provider.getMetadata().getPhase() );
     }
 
 
     /**
-     * Filters the rules with phase = REPORTING_*.
+     * Filters the rules with phase = Reporting*.
      *
      * @author Ondrej Zizka, ozizka at redhat.com
      */
@@ -40,7 +40,7 @@ public class PhaseRulesFilter implements RuleFilter
     {
         public ReportingRulesFilter()
         {
-            super(ReportGeneration.class, ReportRendering.class);
+            super(ReportGenerationPhase.class, ReportRenderingPhase.class);
         }
     }
 

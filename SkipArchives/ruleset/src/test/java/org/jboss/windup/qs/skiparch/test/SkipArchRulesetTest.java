@@ -1,6 +1,5 @@
 package org.jboss.windup.qs.skiparch.test;
 
-import java.io.InputStream;
 import java.io.StringReader;
 import java.nio.file.Paths;
 import java.util.logging.Logger;
@@ -28,12 +27,10 @@ import org.jboss.windup.rules.apps.skiparch.SkipArchivesRules;
 import org.jboss.windup.qs.skiparch.lib.SkippedArchives;
 import org.jboss.windup.qs.skiparch.model.IgnoredArchiveModel;
 import org.jboss.windup.qs.skiparch.test.rulefilters.EnumerationOfRulesFilter;
-import org.jboss.windup.qs.skiparch.test.rulefilters.PackageRulesFilter;
 import org.jboss.windup.qs.skiparch.test.rulefilters.PackageSubtreeRulesFilter;
 import org.jboss.windup.qs.skiparch.test.rulefilters.RuleFilter;
 import org.jboss.windup.util.Logging;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -49,33 +46,34 @@ public class SkipArchRulesetTest
 
     @Deployment
     @Dependencies({
+        @AddonDependency(name = "org.jboss.forge.furnace.container:cdi"),
+        @AddonDependency(name = "org.jboss.windup.utils:utils"),
         @AddonDependency(name = "org.jboss.windup.graph:windup-graph"),
         @AddonDependency(name = "org.jboss.windup.config:windup-config"),
-        @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
-        @AddonDependency(name = "org.jboss.windup.utils:utils"),
-        @AddonDependency(name = "org.jboss.windup.rules.apps:rules-base"),
+        @AddonDependency(name = "org.jboss.windup.rules.apps:windup-rules-base"),
         @AddonDependency(name = "org.jboss.windup.rules.apps:windup-rules-java"),
         //@AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
+        @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
         @AddonDependency(name = "org.jboss.windup.quickstarts:windup-skiparchives"),
-        @AddonDependency(name = "org.jboss.forge.furnace.container:cdi"),
     })
     public static ForgeArchive getDeployment()
     {
         //AddonDependencyEntry[] entries = classToAddonDepEntries(SkipArchRulesetTest.class);
         final ForgeArchive archive = ShrinkWrap.create(ForgeArchive.class)
             .addBeansXML()
-            .addClasses(SkipArchivesRules.class)
-            .addPackages(true, SkipArchRulesetTest.class.getPackage())
+            //.addClasses(SkipArchivesRules.class)
+            //.addPackages(true, SkipArchRulesetTest.class.getPackage())
+            .addPackages(true, RuleFilter.class.getPackage())
             .addAsAddonDependencies(
+                AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi"),
+                AddonDependencyEntry.create("org.jboss.windup.utils:utils"),
                 AddonDependencyEntry.create("org.jboss.windup.graph:windup-graph"),
                 AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
-                AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
-                AddonDependencyEntry.create("org.jboss.windup.utils:utils"),
-                AddonDependencyEntry.create("org.jboss.windup.rules.apps:rules-base"),
+                AddonDependencyEntry.create("org.jboss.windup.rules.apps:windup-rules-base"),
                 AddonDependencyEntry.create("org.jboss.windup.rules.apps:windup-rules-java"),
                 //AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
-                AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-skiparchives"),
-                AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi")
+                AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
+                AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-skiparchives")
             );
         return archive;
     }
@@ -84,9 +82,9 @@ public class SkipArchRulesetTest
     /**
      * TODO: Move to utils.
      */
-    private static <T> AddonDependencyEntry[] classToAddonDepEntries(final Class<T> cls)
+    private static <T> AddonDependencyEntry[] classToAddonDepEntries(final Class<T> cls) throws NoSuchMethodException
     {
-        AddonDependency[] annDeps = cls.getAnnotation(Dependencies.class).value();
+        AddonDependency[] annDeps = cls.getMethod("getDeploment").getAnnotation(Dependencies.class).value();
         AddonDependencyEntry[] entries = new AddonDependencyEntry[annDeps.length];
         for( int i = 0; i < annDeps.length; i++ )
         {

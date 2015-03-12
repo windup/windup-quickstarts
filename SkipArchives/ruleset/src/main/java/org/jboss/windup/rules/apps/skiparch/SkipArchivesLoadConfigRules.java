@@ -12,19 +12,17 @@ import java.util.logging.Logger;
 import org.apache.commons.io.DirectoryWalker;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
+import org.jboss.windup.config.AbstractRuleProvider;
 import org.jboss.windup.config.GraphRewrite;
 
-import org.jboss.windup.config.RuleProvider;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.GraphOperation;
-import org.jboss.windup.config.phase.Initialization;
-import org.jboss.windup.config.phase.RulePhase;
+import org.jboss.windup.config.phase.InitializationPhase;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.util.Logging;
 import org.jboss.windup.util.WindupPathUtil;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.config.ConfigurationBuilder;
-import org.ocpsoft.rewrite.context.Context;
 import org.ocpsoft.rewrite.context.EvaluationContext;
 
 /**
@@ -35,32 +33,10 @@ import org.ocpsoft.rewrite.context.EvaluationContext;
  *
  * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
  */
-public class SkipArchivesLoadConfigRules extends RuleProvider
+@RuleMetadata(tags = "java", phase = InitializationPhase.class)
+public class SkipArchivesLoadConfigRules extends AbstractRuleProvider
 {
     private static final Logger log = Logging.get(SkipArchivesLoadConfigRules.class);
-
-
-    @Override
-    public void enhanceMetadata(Context context)
-    {
-        super.enhanceMetadata(context);
-        context.put(RuleMetadata.CATEGORY, "Java");
-    }
-
-    @Override
-    public List<Class<? extends RuleProvider>> getExecuteAfter()
-    {
-        return asClassList();
-    }
-
-
-    @Override
-    public Class<? extends RulePhase> getPhase()
-    {
-        return Initialization.class;
-    }
-
-
 
 
     // @formatter:off
