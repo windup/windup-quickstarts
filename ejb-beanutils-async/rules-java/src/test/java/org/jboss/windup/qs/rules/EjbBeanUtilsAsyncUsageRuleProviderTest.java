@@ -86,19 +86,19 @@ public class EjbBeanUtilsAsyncUsageRuleProviderTest
             for (InlineHintModel hint : hints)
             {
                 System.out.println("Hint: " + hint);
-                if ("org.windup.examples.ejb.BeanUtilsAsyncUsingRemote uses a Seam @Asynchronous annotation, but that is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asynchronous annotation."
-                            .equals(hint.getHint()))
-                {
-                    javaRuleHintFound = true;
-                }
-                else if ("XML Rule Example: org.windup.examples.ejb.BeanUtilsAsyncUsingRemote uses a Seam @Asynchronous annotation, but that is not compatible with JBoss EAP Remote EJBs, and should be replaced with the Java EE 6 @Asynchronous annotation."
-                            .equals(hint.getHint()))
+                // Hint: [v[16128]={InlineHintModel:title: References annotation 'org.jboss.seam.annotations.async.Asynchronous', length: 239, InlineHintModel:effort: 8, lineNumber: 9, w:vertextype: [InlineHintModel, fileLocationModel, fileReferenceModel],
+                //   InlineHintModel:hint: org.windup.examples.ejb.BeanUtilsAsyncUsingRemote uses the Seam @Asynchronous annotation. It is not compatible with JBoss EAP Remote EJBs and should be replaced with the standard Java EE 6 @Asynchronous annotation., startPosition: 0}]
+                if ((""+hint.getHint()).matches(".*XML Rule Example.*BeanUtilsAsyncUsingRemote.*Seam.*@Asynchronous.*"))
                 {
                     xmlRuleHintFound = true;
                 }
+                else if ((""+hint.getHint()).matches(".*BeanUtilsAsyncUsingRemote.*Seam.*@Asynchronous.*"))
+                {
+                    javaRuleHintFound = true;
+                }
             }
-            Assert.assertTrue(javaRuleHintFound);
-            Assert.assertTrue(xmlRuleHintFound);
+            Assert.assertTrue("javaRuleHintFound", javaRuleHintFound);
+            Assert.assertTrue("xmlRuleHintFound", xmlRuleHintFound);
         }
         catch (Exception ex)
         {
