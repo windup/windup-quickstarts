@@ -1,0 +1,104 @@
+[[windup-quickstarts]]
+= Windup Quickstarts
+
+Summary: The quickstarts in this repository provide examples of how to create rules for Windup 2.0. +
+Source: https://github.com/windup/windup-quickstarts +
+
+[[introduction]]
+== Introduction
+
+These quickstarts provide examples of how to create custom rules for Windup 2.0.
+
+The latest Windup information can be found on the https://github.com/windup/windup/wiki[Windup Wiki].
+
+The Windup documentation is located here: 
+
+* http://windup.github.io/windup/docs/latest/html/WindupUserGuide.html[Windup User Guide]
+* http://windup.github.io/windup/docs/latest/html/WindupRulesDevelopmentGuide.html[Windup Rules Development Guide]
+* http://windup.github.io/windup/docs/latest/html/WindupCoreDevelopmentGuide.html[Windup Core Development Guide]
+* http://windup.github.io/windup/docs/latest/javadoc[Windup JavaDoc]
+
+To download the latest release of the quickstarts ZIP file, browse to https://github.com/windup/windup-quickstarts/releases.
+
+[[available-quickstarts]]
+== Available Quickstarts
+
+The following is the list of the currently available quickstarts.
+
+. link:ejb-beanutils-async/README.adoc[ejb-beanutils-async]
+. link:weblogic-javaee-servlet/README.adoc[weblogic-javaee-servlet]
+
+
+[[system-requirements]]
+== System requirements
+
+The rules in this repository are designed to be run on Windup 2.0 or
+later.
+
+This project requires Java 6.0 (Java SDK 1.6) or later and Maven 3.0 or
+later.
+
+[[configure-maven]]
+== Configure Maven
+
+
+If you have not yet done so, you must configure your Maven settings to
+access the Windup artifacts. The instructions are located here: http://windup.github.io/windup/docs/latest/html/WindupRulesDevelopmentGuide.html#Install-and-Configure-Maven[Install
+and Configure Maven].
+
+An example `settings.xml` file is provided in the root directory of the
+quickstarts.
+
+[[install-windup-2.0]]
+== Install Windup 2.0
+
+If you have not yet done so, follow the instructions to
+http://windup.github.io/windup/docs/latest/html/WindupRulesDevelopmentGuide.html#Install-Windup[Download and
+install Windup].
+
+[[use-of-windup_home-variable]]
+== Use of WINDUP_HOME Variable
+
+The quickstart README files use the _replaceable_ value `WINDUP_HOME` to
+denote the path to the Windup installation. When you encounter this
+value in a README file, be sure to replace it with the actual path to
+your Windup installation.
+
+[[start-windup]]
+== Start Windup
+
+1.  Open a terminal and navigate to the `WINDUP_HOME/bin` directory,
+where `WINDUP_HOME` denotes the path to the Windup installation.
+2.  Type the following command to start Windup:
++
+----
+For Linux:    WINDUP_HOME/bin $ ./windup
+For Windows:  C:\WINDUP_HOME\bin> windup
+----
+3.  You are presented with the following prompt.
++
+----
+Using Windup at /home/username/windup-distribution-2.0.0.Beta4
+
+ _       ___           __          
+| |     / (_)___  ____/ /_  ______ 
+| | /| / / / __ \/ __  / / / / __ \
+| |/ |/ / / / / / /_/ / /_/ / /_/ /
+|__/|__/_/_/ /_/\__,_/\__,_/ .___/ 
+                          /_/      
+
+JBoss Windup, version [ 2.0.0.Beta4 ] - JBoss, by Red Hat, Inc. [ http://windup.jboss.org ]
+
+[windup-distribution-2.0.0.Beta4]$ 
+----
+4.  This prompt is the Windup console where you enter Windup commands.
+
+[[stop-windup]]
+== Stop Windup
+
+To stop Windup, type the following command in the Windup console:
+
+----
+    exit
+----
+

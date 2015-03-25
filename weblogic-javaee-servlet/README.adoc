@@ -1,0 +1,25 @@
+[[weblogic-javaee-servlet-windup-rule-that-detects-weblogic-proprietary-servlet-annotations]]
+= weblogic-javaee-servlet: Windup Rule That Detects WebLogic Proprietary Servlet Annotations
+
+Author: Ondra Zizka +
+Level: Beginner +
+Summary: Windup rule that reports on WebLogic servlet annotations +
+Source: https://github.com/windup/windup-quickstarts/ +
+
+[[what-is-it]]
+== What is it?
+
+WebLogic provides its own proprietary servlet and filter annotations for dependency injection. 
+If the application uses them, they must be replaced with the standard Java EE 6 annotations. 
+These examples demonstrates how to create a Windup rule addon that searches for these proprietary annotations and reports on them.
+
+The rule searches for the following annotations:
+
+* _@WLServlet_: This is the equivalent of the Java EE 6 _@WebServlet_ annotation.
+* _@WLFilter_: This is the equivalent of the Java EE 6 _@WebFilter_ annotation.
+* _@WLInitParam_: This is the equivalent of the Java EE 6 _@WebInitParam_ annotation.
+
+You can create Winupup rule addons using Java or XML. This quickstart provides examples of both types of rules.
+
+* link:rules-java/README.adoc[Java rule addon]: Follow the instructions here to see how to create a Java rule addon.
+* link:rules-xml/README.adoc[XML rule]: Follow the instructions here to see how to create an XML rule.
