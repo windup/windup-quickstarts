@@ -7,7 +7,7 @@ import org.ocpsoft.rewrite.event.Rewrite;
 
 /**
  * Wrapper for logging to avoid boilerplate code.
- * 
+ *
  * @author Ondrej Zizka, ozizka at redhat.com
  */
 public final class LogOperation {
