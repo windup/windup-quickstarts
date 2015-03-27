@@ -1,0 +1,7 @@
+= Nexus Index Reader
+
+Reads the Sonatype Nexus repository index and uses the SHA1 to G:A:V mappings.
+
+See https://github.com/cstamas/maven-indexer-examples[Maven indexer examples] for details.
+
+This is a support tool for the SkipArchives ruleset.
