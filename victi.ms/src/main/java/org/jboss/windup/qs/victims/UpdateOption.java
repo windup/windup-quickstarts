@@ -1,6 +1,6 @@
 package org.jboss.windup.qs.victims;
 
-import org.jboss.windup.config.AbstractWindupConfigurationOption;
+import org.jboss.windup.config.AbstractConfigurationOption;
 import org.jboss.windup.config.InputType;
 import org.jboss.windup.config.ValidationResult;
 
@@ -9,7 +9,7 @@ import org.jboss.windup.config.ValidationResult;
  *
  * @author Ondrej Zizka
  */
-public class UpdateOption extends AbstractWindupConfigurationOption
+public class UpdateOption extends AbstractConfigurationOption
 {
     public static final String NAME = "victimsUpdate";
 
