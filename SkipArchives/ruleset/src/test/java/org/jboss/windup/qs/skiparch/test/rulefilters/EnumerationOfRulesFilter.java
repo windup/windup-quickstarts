@@ -5,13 +5,14 @@ import java.util.HashSet;
 import java.util.Set;
 import org.apache.commons.lang.StringUtils;
 import org.jboss.windup.config.RuleProvider;
+import org.jboss.windup.exec.rulefilters.RuleProviderFilter;
 
 /**
  * A convenient filter for rule providers enumerated as constructor params.
  *
  * @author Ondrej Zizka, ozizka at redhat.com
  */
-public class EnumerationOfRulesFilter implements RuleFilter
+public class EnumerationOfRulesFilter implements RuleProviderFilter
 {
     private final Set<? extends RuleProvider> classes;
     private final Set<String> classNames = new HashSet();

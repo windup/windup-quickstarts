@@ -17,6 +17,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.windup.config.RuleProvider;
 import org.jboss.windup.exec.WindupProcessor;
 import org.jboss.windup.exec.configuration.WindupConfiguration;
+import org.jboss.windup.exec.rulefilters.RuleProviderFilter;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.GraphContextFactory;
 import org.jboss.windup.graph.service.GraphService;
@@ -47,7 +48,7 @@ public class SkipArchRulesetTest
     @Deployment
     @Dependencies({
         @AddonDependency(name = "org.jboss.forge.furnace.container:cdi"),
-        @AddonDependency(name = "org.jboss.windup.utils:utils"),
+        @AddonDependency(name = "org.jboss.windup.utils:windup-utils"),
         @AddonDependency(name = "org.jboss.windup.graph:windup-graph"),
         @AddonDependency(name = "org.jboss.windup.config:windup-config"),
         @AddonDependency(name = "org.jboss.windup.rules.apps:windup-rules-base"),
@@ -66,7 +67,7 @@ public class SkipArchRulesetTest
             .addPackages(true, RuleFilter.class.getPackage())
             .addAsAddonDependencies(
                 AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi"),
-                AddonDependencyEntry.create("org.jboss.windup.utils:utils"),
+                AddonDependencyEntry.create("org.jboss.windup.utils:windup-utils"),
                 AddonDependencyEntry.create("org.jboss.windup.graph:windup-graph"),
                 AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
                 AddonDependencyEntry.create("org.jboss.windup.rules.apps:windup-rules-base"),
@@ -150,7 +151,7 @@ public class SkipArchRulesetTest
     /**
      * TODO: Move this to some test utils?
      */
-    private void runRules(RuleFilter ruleFilter, GraphContext grCtx)
+    private void runRules(RuleProviderFilter ruleFilter, GraphContext grCtx)
     {
         try
         {

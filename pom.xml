@@ -24,6 +24,7 @@
     <modules>
         <module>weblogic-javaee-servlet</module>
         <module>ejb-beanutils-async</module>
+        <!-- These have been moved to Windup core, but staying here for exemplary reasons. -->
         <module>victi.ms</module>
         <module>SkipArchives</module>
     </modules>
