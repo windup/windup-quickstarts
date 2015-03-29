@@ -1,8 +1,11 @@
 package org.jboss.windup.qs.rules;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
 
@@ -43,6 +46,7 @@ public class EjbBeanUtilsAsyncUsageRuleProviderTest
     {
         final ForgeArchive archive = ShrinkWrap.create(ForgeArchive.class)
             .addBeansXML()
+            .addAsResource(new File("../rules-xml/async-method.windup.xml"))
             .addAsAddonDependencies(
                 AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi"),
                 AddonDependencyEntry.create("org.jboss.windup.utils:windup-utils"),
