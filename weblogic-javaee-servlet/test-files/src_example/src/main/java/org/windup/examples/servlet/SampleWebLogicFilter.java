@@ -10,7 +10,7 @@ import weblogic.servlet.annotation.WLFilter;
  * @WLFilter and @WLInitParam annotations.
  * 
  * This is not a fully functional class. Its sole purpose is 
- * to demonstrate Windup rule addon processing.
+ * to demonstrate Windup rule add-on processing.
  * 
  * @author Windup-Team
  */

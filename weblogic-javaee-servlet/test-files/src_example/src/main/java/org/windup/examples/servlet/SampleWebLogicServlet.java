@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * @WLServlet and @WLInitParam annotations.
  * 
  * This is not a fully functional class. Its sole purpose is 
- * to demonstrate Windup rule addon processing.
+ * to demonstrate Windup rule add-on processing.
  * 
  * @author Windup-Team
  */
