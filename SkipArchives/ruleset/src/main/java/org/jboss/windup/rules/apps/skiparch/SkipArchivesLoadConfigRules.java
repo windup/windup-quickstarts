@@ -20,7 +20,7 @@ import org.jboss.windup.config.operation.GraphOperation;
 import org.jboss.windup.config.phase.InitializationPhase;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.util.Logging;
-import org.jboss.windup.util.WindupPathUtil;
+import org.jboss.windup.util.PathUtil;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.config.ConfigurationBuilder;
 import org.ocpsoft.rewrite.context.EvaluationContext;
@@ -65,7 +65,7 @@ public class SkipArchivesLoadConfigRules extends AbstractRuleProvider
     {
 
         // Load them from ~/.windup/config/SkipArchives
-        final File confDir = WindupPathUtil.getWindupUserDir().resolve("config/SkipArchives").toFile();
+        final File confDir = PathUtil.getWindupUserDir().resolve("config/SkipArchives").toFile();
         if (!confDir.exists())
             log.info("SkipArchives config dir not found at " + confDir.toString());
         else try

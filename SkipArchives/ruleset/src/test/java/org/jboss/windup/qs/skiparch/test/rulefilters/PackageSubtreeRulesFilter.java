@@ -27,14 +27,14 @@ public class PackageSubtreeRulesFilter extends PackageRulesFilter
     @Override
     public boolean accept(RuleProvider ruleProvider)
     {
-        final Package cls = ruleProvider.getClass().getPackage();
-        if (cls == null)
+        final Package rulePkg = ruleProvider.getClass().getPackage();
+        if (rulePkg == null)
             return false;
-        
-        String rulePkg = cls.getName();
+
+        String rulePkgName = rulePkg.getName();
 
         for (String pkg : packages)
-            if (rulePkg.startsWith(pkg) && (rulePkg.equals(pkg) || rulePkg.charAt(rulePkg.length()) == '.') )
+            if (rulePkgName.startsWith(pkg) && (rulePkgName.equals(pkg) || rulePkgName.charAt(rulePkgName.length()) == '.') )
                 return true;
 
         return false;

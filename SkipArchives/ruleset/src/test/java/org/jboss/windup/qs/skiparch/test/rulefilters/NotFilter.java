@@ -9,7 +9,7 @@ import org.jboss.windup.config.RuleProvider;
  *
  * @author Ondrej Zizka, ozizka at redhat.com
  */
-public class NotFilter implements RuleFilter
+public class NotFilter implements RuleProviderFilter
 {
     protected final Predicate predicate;
 

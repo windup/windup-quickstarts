@@ -13,7 +13,7 @@ import org.jboss.windup.config.RuleProvider;
  *
  * @author Ondrej Zizka, ozizka at redhat.com
  */
-public class AndFilter implements RuleFilter
+public class AndFilter implements RuleProviderFilter
 {
     protected final Set<Predicate> predicates;
     protected boolean stopWhenKnown = false;

@@ -1,15 +1,15 @@
 package org.jboss.windup.qs.victims;
 
-import org.jboss.windup.config.AbstractWindupConfigurationOption;
+import org.jboss.windup.config.AbstractConfigurationOption;
 import org.jboss.windup.config.InputType;
 import org.jboss.windup.config.ValidationResult;
 
 /**
- * Indicates that all opterations should function in "Offline" mode (without accessing the internet).
+ * Indicates that all operations should function in "Offline" mode (without accessing the internet).
  *
  * @author Ondrej Zizka
  */
-public class UpdateOption extends AbstractWindupConfigurationOption
+public class UpdateOption extends AbstractConfigurationOption
 {
     public static final String NAME = "victimsUpdate";
 
@@ -49,12 +49,14 @@ public class UpdateOption extends AbstractWindupConfigurationOption
         return false;
     }
 
+    @Override
     public ValidationResult validate(Object valueObj)
     {
         return ValidationResult.SUCCESS;
     }
 
 
+    @Override
     public Object getDefaultValue()
     {
         return true;

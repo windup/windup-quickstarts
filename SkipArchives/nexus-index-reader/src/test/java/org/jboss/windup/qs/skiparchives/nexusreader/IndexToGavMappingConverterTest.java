@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.logging.Logger;
 import org.jboss.windup.util.Logging;
-import org.jboss.windup.util.WindupPathUtil;
+import org.jboss.windup.util.PathUtil;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -32,7 +32,7 @@ public class IndexToGavMappingConverterTest
         if (!this.storeIndexInWindupHome)
             return new File("target/");
         else
-            return WindupPathUtil.getWindupUserDir().resolve("temp/IdentArch/mavenReposIndexes/").toFile();
+            return PathUtil.getWindupUserDir().resolve("temp/IdentArch/mavenReposIndexes/").toFile();
     }
 
 

@@ -11,7 +11,7 @@ import org.jboss.windup.config.RuleProvider;
  */
 public class OrFilter extends AndFilter
 {
-    public OrFilter(RuleFilter ... filters)
+    public OrFilter(RuleProviderFilter ... filters)
     {
         super(filters);
     }

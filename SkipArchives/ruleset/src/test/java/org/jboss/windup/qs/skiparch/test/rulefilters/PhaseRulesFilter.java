@@ -14,7 +14,7 @@ import org.jboss.windup.config.phase.RulePhase;
  *
  * @author Ondrej Zizka, ozizka at redhat.com
  */
-public class PhaseRulesFilter implements RuleFilter
+public class PhaseRulesFilter implements RuleProviderFilter
 {
     private final Set<RulePhase> phases;
 

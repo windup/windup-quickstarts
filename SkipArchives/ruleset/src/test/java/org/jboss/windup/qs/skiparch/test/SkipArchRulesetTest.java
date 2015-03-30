@@ -17,7 +17,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.windup.config.RuleProvider;
 import org.jboss.windup.exec.WindupProcessor;
 import org.jboss.windup.exec.configuration.WindupConfiguration;
-import org.jboss.windup.exec.rulefilters.RuleProviderFilter;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.GraphContextFactory;
 import org.jboss.windup.graph.service.GraphService;
@@ -28,8 +27,8 @@ import org.jboss.windup.rules.apps.skiparch.SkipArchivesRules;
 import org.jboss.windup.qs.skiparch.lib.SkippedArchives;
 import org.jboss.windup.qs.skiparch.model.IgnoredArchiveModel;
 import org.jboss.windup.qs.skiparch.test.rulefilters.EnumerationOfRulesFilter;
-import org.jboss.windup.qs.skiparch.test.rulefilters.PackageSubtreeRulesFilter;
-import org.jboss.windup.qs.skiparch.test.rulefilters.RuleFilter;
+import org.jboss.windup.qs.skiparch.test.rulefilters.RuleProviderFilter;
+import org.jboss.windup.rules.apps.skiparch.SkipArchivesLoadConfigRules;
 import org.jboss.windup.util.Logging;
 import org.junit.Assert;
 import org.junit.Test;
@@ -64,7 +63,7 @@ public class SkipArchRulesetTest
             .addBeansXML()
             //.addClasses(SkipArchivesRules.class)
             //.addPackages(true, SkipArchRulesetTest.class.getPackage())
-            .addPackages(true, RuleFilter.class.getPackage())
+            .addPackages(true, RuleProviderFilter.class.getPackage())
             .addAsAddonDependencies(
                 AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi"),
                 AddonDependencyEntry.create("org.jboss.windup.utils:windup-utils"),
@@ -123,12 +122,9 @@ public class SkipArchRulesetTest
             Assert.assertTrue(SkippedArchives.isSkipped(gavM)); // Just to be sure.
 
             // Run the SkipArchivesRules.
-            runRules(new PackageSubtreeRulesFilter(SkipArchivesRules.class), grCtx);
+            runRules(new EnumerationOfRulesFilter(SkipArchivesLoadConfigRules.class, SkipArchivesRules.class), grCtx);
 
             // Check the results.
-            //archM = iArchGS.reload(archM);
-            //archM = grCtx.getFramed().frame(archM.asVertex(), IdentifiedArchiveModel.class);
-            //archM = archGS.getById(archM.asVertex().getId());
             archM = archGS2.reload(archM);
             Assert.assertTrue(archM instanceof IgnoredArchiveModel);
         }

@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import org.apache.commons.lang.StringUtils;
+import org.jboss.forge.furnace.proxy.Proxies;
 import org.jboss.windup.config.RuleProvider;
-import org.jboss.windup.exec.rulefilters.RuleProviderFilter;
 
 /**
  * A convenient filter for rule providers enumerated as constructor params.
@@ -31,7 +31,9 @@ public class EnumerationOfRulesFilter implements RuleProviderFilter
     {
         //return this.classes.contains(ruleProvider.getClass());
         //return this.classNames.contains(ruleProvider.getClass().getName());
-        return this.classNames.contains(StringUtils.substringBefore(ruleProvider.toString(), "@"));
+        String realClassName = StringUtils.substringBefore(ruleProvider.toString(), "@");
+        realClassName = Proxies.unwrapProxyClassName(ruleProvider.getClass());
+        return this.classNames.contains(realClassName);
     }
 
 }// class

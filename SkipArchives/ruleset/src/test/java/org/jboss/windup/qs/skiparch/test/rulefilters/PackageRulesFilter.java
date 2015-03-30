@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import org.jboss.windup.config.RuleProvider;
-import org.jboss.windup.exec.rulefilters.RuleProviderFilter;
 
 /**
  * A convenient filter for rule providers enumerated as constructor params.

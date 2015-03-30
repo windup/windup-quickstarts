@@ -9,7 +9,7 @@ import org.jboss.windup.config.RuleProvider;
  *
  * @author Ondrej Zizka, ozizka at redhat.com
  */
-public interface RuleFilter extends Predicate<RuleProvider>
+public interface RuleProviderFilter extends Predicate<RuleProvider>
 {
 
 }

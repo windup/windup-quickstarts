@@ -41,7 +41,7 @@ import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.PlexusContainerException;
 import org.codehaus.plexus.component.repository.exception.ComponentLookupException;
 import org.jboss.windup.util.Logging;
-import org.jboss.windup.util.WindupPathUtil;
+import org.jboss.windup.util.PathUtil;
 
 
 /**
@@ -268,7 +268,7 @@ public class IndexToGavMappingConverter
     {
         // Where to store data.
 
-        File dataDir = WindupPathUtil.getWindupUserDir().resolve("temp/mavenIndexesData/").toFile();
+        File dataDir = PathUtil.getWindupUserDir().resolve("temp/mavenIndexesData/").toFile();
         if (args.length > 0)
         {
             final File dir = new File(args[0]);
