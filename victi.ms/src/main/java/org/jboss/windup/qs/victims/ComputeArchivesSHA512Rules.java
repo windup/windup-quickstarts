@@ -2,11 +2,11 @@ package org.jboss.windup.qs.victims;
 
 import java.io.IOException;
 import java.io.InputStream;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.jboss.windup.config.GraphRewrite;
-
 import org.jboss.windup.config.metadata.RuleMetadata;
-import org.jboss.windup.config.phase.DependentPhase;
+import org.jboss.windup.config.phase.ArchiveExtractionPhase;
 import org.jboss.windup.config.query.Query;
 import org.jboss.windup.config.ruleprovider.IteratingRuleProvider;
 import org.jboss.windup.graph.model.ArchiveModel;
@@ -21,7 +21,7 @@ import org.ocpsoft.rewrite.context.EvaluationContext;
  * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
  *
  */
-@RuleMetadata(tags = {"java"}, after = {UnzipArchivesToOutputRuleProvider.class}, phase = DependentPhase.class)
+@RuleMetadata(tags = { "java" }, after = { UnzipArchivesToOutputRuleProvider.class }, phase = ArchiveExtractionPhase.class)
 public class ComputeArchivesSHA512Rules extends IteratingRuleProvider<ArchiveModel>
 {
     public static final String KEY_SHA512 = "SHA512";

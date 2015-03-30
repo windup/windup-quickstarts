@@ -4,7 +4,6 @@ import org.jboss.windup.config.AbstractRuleProvider;
 import org.jboss.windup.config.GraphRewrite;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.iteration.AbstractIterationOperation;
-import org.jboss.windup.config.phase.DependentPhase;
 import org.jboss.windup.config.phase.ReportGenerationPhase;
 import org.jboss.windup.config.query.Query;
 import org.jboss.windup.graph.GraphContext;
@@ -14,9 +13,9 @@ import org.jboss.windup.graph.service.GraphService;
 import org.jboss.windup.graph.service.WindupConfigurationService;
 import org.jboss.windup.qs.victims.model.AffectedJarModel;
 import org.jboss.windup.qs.victims.model.VictimsReportModel;
-import org.jboss.windup.rules.apps.java.model.WindupJavaConfigurationModel;
 import org.jboss.windup.reporting.model.TemplateType;
 import org.jboss.windup.reporting.service.ReportService;
+import org.jboss.windup.rules.apps.java.model.WindupJavaConfigurationModel;
 import org.ocpsoft.rewrite.config.ConditionBuilder;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.config.ConfigurationBuilder;
@@ -28,12 +27,11 @@ import org.ocpsoft.rewrite.context.EvaluationContext;
  *
  * @author Ondrej Zizka
  */
-@RuleMetadata(tags = {"java"}, after = {UpdateVictimsDbRules.class, ReportGenerationPhase.class}, phase = DependentPhase.class)
+@RuleMetadata(tags = { "java" }, phase = ReportGenerationPhase.class)
 public class VictimsReportRules extends AbstractRuleProvider
 {
     public static final String TITLE = "Archives affected by security vulnerabilities";
     public static final String TEMPLATE_REPORT = "/org/jboss/windup/qs/victims/Report-Security.html";
-
 
     // @formatter:off
     @Override

@@ -16,73 +16,6 @@
         <version.windup>2.3.0-SNAPSHOT</version.windup>
     </properties>
 
-    <build>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <excludes>
-                    <exclude>*.java</exclude>
-                </excludes>
-            </resource>
-        </resources>
-
-        <plugins>
-            <!-- These two make this artifact a Forge addon. -->
-            <plugin>
-                <groupId>org.jboss.forge.furnace</groupId>
-                <artifactId>furnace-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>generate-dot</id>
-                        <phase>prepare-package</phase>
-                        <goals> <goal>generate-dot</goal> </goals>
-                        <configuration> <attach>true</attach> </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.5</version>
-                <executions>
-                    <execution>
-                        <id>create-forge-addon</id>
-                        <phase>package</phase>
-                        <goals> <goal>jar</goal> </goals>
-                        <configuration> <classifier>forge-addon</classifier> </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- Copy the test artifact - containing a CVE. -->
-            <plugin>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.9</version>
-                <executions>
-                    <execution>
-                        <id>copy-test-jar</id>
-                        <phase>generate-test-resources</phase>
-                        <goals> <goal>copy</goal> </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>xerces</groupId>
-                                    <artifactId>xercesImpl</artifactId>
-                                    <version>2.9.1</version>
-                                    <type>jar</type>
-                                    <overWrite>false</overWrite>
-                                    <outputDirectory>target/testJars</outputDirectory>
-                                    <destFileName>xercesImpl-2.9.1.jar</destFileName>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-        </plugins>
-    </build>
-
-
     <dependencyManagement>
         <dependencies>
 
@@ -205,5 +138,80 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <excludes>
+                    <exclude>*.java</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-Xms512m -Xmx2048m -XX:MaxPermSize=768m -XX:ReservedCodeCacheSize=128m</argLine>
+                    <reuseForks>false</reuseForks>
+                </configuration>
+            </plugin>
+
+
+            <!-- These two make this artifact a Forge addon. -->
+            <plugin>
+                <groupId>org.jboss.forge.furnace</groupId>
+                <artifactId>furnace-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-dot</id>
+                        <phase>prepare-package</phase>
+                        <goals> <goal>generate-dot</goal> </goals>
+                        <configuration> <attach>true</attach> </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.5</version>
+                <executions>
+                    <execution>
+                        <id>create-forge-addon</id>
+                        <phase>package</phase>
+                        <goals> <goal>jar</goal> </goals>
+                        <configuration> <classifier>forge-addon</classifier> </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Copy the test artifact - containing a CVE. -->
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.9</version>
+                <executions>
+                    <execution>
+                        <id>copy-test-jar</id>
+                        <phase>generate-test-resources</phase>
+                        <goals> <goal>copy</goal> </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>xerces</groupId>
+                                    <artifactId>xercesImpl</artifactId>
+                                    <version>2.9.1</version>
+                                    <type>jar</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>target/testJars</outputDirectory>
+                                    <destFileName>xercesImpl-2.9.1.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

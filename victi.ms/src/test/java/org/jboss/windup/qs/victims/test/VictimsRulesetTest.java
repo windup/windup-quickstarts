@@ -1,8 +1,7 @@
 package org.jboss.windup.qs.victims.test;
 
-import org.jboss.windup.qs.victims.test.rulefilters.EnumerationOfRulesFilter;
-import org.jboss.windup.qs.victims.test.rulefilters.PhaseRulesFilter;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
@@ -14,19 +13,17 @@ import org.jboss.forge.arquillian.Dependencies;
 import org.jboss.forge.arquillian.archive.ForgeArchive;
 import org.jboss.forge.furnace.repositories.AddonDependencyEntry;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.windup.config.phase.MigrationRulesPhase;
+import org.jboss.windup.engine.predicates.RuleProviderWithDependenciesPredicate;
 import org.jboss.windup.exec.WindupProcessor;
 import org.jboss.windup.exec.configuration.WindupConfiguration;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.GraphContextFactory;
 import org.jboss.windup.graph.service.GraphService;
-import org.jboss.windup.qs.victims.test.rulefilters.AndFilter;
-import org.jboss.windup.qs.victims.test.rulefilters.NotFilter;
+import org.jboss.windup.qs.victims.CheckArchivesWithVictimsRules;
 import org.jboss.windup.qs.victims.model.AffectedJarModel;
 import org.jboss.windup.qs.victims.model.VulnerabilityModel;
-import org.jboss.windup.rules.apps.java.decompiler.DecompileArchivesRuleProvider;
-import org.jboss.windup.rules.apps.java.model.WindupJavaConfigurationModel;
-import org.jboss.windup.rules.apps.java.service.WindupJavaConfigurationService;
+import org.jboss.windup.rules.apps.java.config.ScanPackagesOption;
+import org.jboss.windup.rules.apps.java.config.SourceModeOption;
 import org.jboss.windup.util.Logging;
 import org.junit.Assert;
 import org.junit.Test;
@@ -46,9 +43,7 @@ public class VictimsRulesetTest
     @Dependencies({
         @AddonDependency(name = "org.jboss.forge.furnace.container:cdi"),
         @AddonDependency(name = "org.jboss.windup.utils:windup-utils"),
-        @AddonDependency(name = "org.jboss.windup.config:windup-config"),
         @AddonDependency(name = "org.jboss.windup.rules.apps:windup-rules-java"),
-        @AddonDependency(name = "org.jboss.windup.reporting:windup-reporting"),
         @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
         @AddonDependency(name = "org.jboss.windup.quickstarts:windup-victims"),
     })
@@ -56,14 +51,10 @@ public class VictimsRulesetTest
     {
         final ForgeArchive archive = ShrinkWrap.create(ForgeArchive.class)
             .addBeansXML()
-            //.addClasses(CheckArchivesWithVictimsRules.class, EnumerationOfRulesFilter.class, OrPredicate.class, )
-            .addPackages(true,"org.jboss.windup.qs.victims.test")
             .addAsAddonDependencies(
                 AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi"),
                 AddonDependencyEntry.create("org.jboss.windup.utils:windup-utils"),
-                AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
                 AddonDependencyEntry.create("org.jboss.windup.rules.apps:windup-rules-java"),
-                AddonDependencyEntry.create("org.jboss.windup.reporting:windup-reporting"),
                 AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
                 AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-victims")
             );
@@ -78,50 +69,23 @@ public class VictimsRulesetTest
     private GraphContextFactory contextFactory;
 
     @Test
-    public void testAffectedJarsFound()
+    public void testAffectedJarsFound() throws Exception
     {
         try (GraphContext ctx = contextFactory.create())
         {
-            // Create a project.
-
-
-            // Create JAR entry in the graph.
-            // Commented out - the report creation needs more data, like project.
-            // So we let other rulesets scan the jar.
-            //JarArchiveModel jarM = ctx.getFramed().addVertex(null, JarArchiveModel.class);
-            //jarM.setFilePath("src/test/resources/xercesImpl-2.9.1.jar");
-            //jarM.setArchiveName("xercesImpl-2.9.1.jar");
-
-            // Get Java config and notify that we will not scan a source.
-            WindupJavaConfigurationModel javaCfg = WindupJavaConfigurationService.getJavaConfigurationModel(ctx);
-            javaCfg.setSourceMode(false);
-
             // Windup config.
             WindupConfiguration wc = new WindupConfiguration();
             wc.setGraphContext(ctx);
+            wc.setOptionValue(SourceModeOption.NAME, false);
+            wc.setOptionValue(ScanPackagesOption.NAME, Collections.singletonList("dontscanpackages"));
             // Only run Victims Rules and those it needs.
-            //wc.setRuleProviderFilter(new RuleProviderWithDependenciesPredicate(CheckArchivesWithVictimsRules.class));
-            wc.setRuleProviderFilter(/*new OrPredicate(
-                    new EnumerationOfRulesFilter(
-                        UnzipArchivesToOutputRuleProvider.class,
-                        ComputeArchivesSHA512.class, CheckArchivesWithVictimsRules.class,
-                        UpdateVictimsDbRules.class, VictimsReportRules.class),
-                    new PhaseRulesFilter.ReportingRulesFilter()
-                )*/
-                // Changed to allow creation of the ProjectModel.
-                new NotFilter( new AndFilter(
-                        new PhaseRulesFilter(MigrationRulesPhase.class),
-                        new EnumerationOfRulesFilter(DecompileArchivesRuleProvider.class)
-                ))
-            );
-            wc.setInputPath(Paths.get("src/test/resources/xercesImpl-2.9.1.jar.war"));
+            wc.setRuleProviderFilter(new RuleProviderWithDependenciesPredicate(CheckArchivesWithVictimsRules.class));
+            wc.setInputPath(Paths.get("src/test/resources/commons-fileupload-1.0-beta-1.jar"));
             wc.setOutputDirectory(Paths.get("target/WindupReport"));
 
-            // Run.
             processor.execute(wc);
 
-
-            // Check the results. There should be 2 jars found - 1 for the .jar, 1 for the .jar from the .war.
+            // Check the results. There should be 1 jar found with a vulnerability
             GraphService<AffectedJarModel> jarsGS = new GraphService(ctx, AffectedJarModel.class);
 
             boolean found = false;
@@ -129,15 +93,10 @@ public class VictimsRulesetTest
             {
                 log.info(jar.getFilePath());
                 found = true;
-                for( VulnerabilityModel vul : jar.getVulnerabilities() )
+                for (VulnerabilityModel vul : jar.getVulnerabilities())
                     log.info("  " + vul.getCve());
             }
             Assert.assertTrue(found);
         }
-        catch (Exception ex)
-        {
-            throw new RuntimeException(ex.getMessage(), ex);
-        }
     }
-
 }

@@ -1,25 +1,24 @@
 package org.jboss.windup.qs.victims;
 
-import com.redhat.victims.VictimsException;
-import com.redhat.victims.database.VictimsDB;
-import com.redhat.victims.database.VictimsDBInterface;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.jboss.windup.config.AbstractRuleProvider;
 import org.jboss.windup.config.GraphRewrite;
-
+import org.jboss.windup.config.condition.GraphCondition;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.GraphOperation;
 import org.jboss.windup.config.phase.InitializationPhase;
 import org.jboss.windup.graph.GraphContext;
-import org.jboss.windup.graph.model.WindupConfigurationModel;
-import org.jboss.windup.graph.service.GraphService;
+import org.jboss.windup.graph.service.WindupConfigurationService;
 import org.jboss.windup.util.Logging;
-import org.ocpsoft.rewrite.config.Condition;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.config.ConfigurationBuilder;
 import org.ocpsoft.rewrite.context.EvaluationContext;
-import org.ocpsoft.rewrite.event.Rewrite;
+
+import com.redhat.victims.VictimsException;
+import com.redhat.victims.database.VictimsDB;
+import com.redhat.victims.database.VictimsDBInterface;
 
 /**
  * Victi.ms related rules: database update, archive hashes comparison.
@@ -41,11 +40,11 @@ public class UpdateVictimsDbRules extends AbstractRuleProvider
         .addRule()
         // If not offline...
         .when(
-            new Condition()
+            new GraphCondition()
             {
-                public boolean evaluate(Rewrite event, EvaluationContext context_)
+                public boolean evaluate(GraphRewrite event, EvaluationContext context)
                 {
-                    return ! new GraphService<>(context, WindupConfigurationModel.class).getUnique().isOfflineMode();
+                    return !WindupConfigurationService.getConfigurationModel(event.getGraphContext()).isOfflineMode();
                 }
             }
         )
