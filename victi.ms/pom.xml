@@ -36,6 +36,12 @@
 
         <!-- Windup deps -->
         <dependency>
+            <groupId>org.jboss.windup.utils</groupId>
+            <artifactId>windup-utils</artifactId>
+            <classifier>forge-addon</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.jboss.windup.graph</groupId>
             <artifactId>windup-graph</artifactId>
             <classifier>forge-addon</classifier>
@@ -48,14 +54,8 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss.windup.config</groupId>
-            <artifactId>windup-config-groovy</artifactId>
-            <classifier>forge-addon</classifier>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.windup.utils</groupId>
-            <artifactId>windup-utils</artifactId>
+            <groupId>org.jboss.windup.exec</groupId>
+            <artifactId>windup-exec</artifactId>
             <classifier>forge-addon</classifier>
             <scope>provided</scope>
         </dependency>
@@ -116,12 +116,6 @@
             <type>jar</type>
         </dependency>
 
-        <dependency>
-            <groupId>org.jboss.windup.exec</groupId>
-            <artifactId>windup-exec</artifactId>
-            <classifier>forge-addon</classifier>
-            <scope>test</scope>
-        </dependency>
 
         <!-- Vulnerable jar -->
         <dependency>
@@ -153,6 +147,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
                 <configuration>
                     <argLine>-Xms512m -Xmx2048m -XX:MaxPermSize=768m -XX:ReservedCodeCacheSize=128m</argLine>
                     <reuseForks>false</reuseForks>
@@ -164,6 +159,7 @@
             <plugin>
                 <groupId>org.jboss.forge.furnace</groupId>
                 <artifactId>furnace-maven-plugin</artifactId>
+                <version>2.15.3.Final</version>
                 <executions>
                     <execution>
                         <id>generate-dot</id>

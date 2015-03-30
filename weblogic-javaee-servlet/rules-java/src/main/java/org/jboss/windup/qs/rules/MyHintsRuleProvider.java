@@ -18,7 +18,6 @@ import org.ocpsoft.rewrite.config.ConfigurationBuilder;
  * that describe how to migrate to standard Java EE 6 code.
  *
  * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
-
  */
 @RuleMetadata(
         // A RuleProvider may either specify metadata here,
@@ -51,7 +50,7 @@ public class MyHintsRuleProvider extends AbstractRuleProvider
                    .with(Link.to("Java EE 6 @WebServlet", "http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"))
                    .withEffort(0)
                    .and(Hint.withText("Replace the proprietary WebLogic @WLServlet annotaion with the Java EE 6 standard @WebServlet annotation.\n\r" +
-                               "For details on how to map the Servlet attributes, see: <a href=\"https://access.redhat.com/articles/1249423\">Migrate WebLogic Proprietary Servlet Annotations</a>"
+                        "For details on how to map the Servlet attributes, see: <a href=\"https://access.redhat.com/articles/1249423\">Migrate WebLogic Proprietary Servlet Annotations</a>"
                    ).withEffort(1)))
             .addRule()
             .when(
@@ -62,7 +61,7 @@ public class MyHintsRuleProvider extends AbstractRuleProvider
                    .with(Link.to("Java EE 6 @WebInitParam", "http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"))
                    .withEffort(0)
                    .and(Hint.withText("Replace the proprietary WebLogic @WLInitParam annotation with the Java EE 6 standard @WebInitParam annotation.\n\r" +
-                               "For details on how to map the initialization parameter attributes, see: <a href=\"https://access.redhat.com/articles/1249423\">Migrate WebLogic Proprietary Servlet Annotations</a>").withEffort(2)))
+                        "For details on how to map the initialization parameter attributes, see: <a href=\"https://access.redhat.com/articles/1249423\">Migrate WebLogic Proprietary Servlet Annotations</a>").withEffort(2)))
             .addRule()
             .when(
                 JavaClass.references("weblogic.servlet.annotation.WLFilter").at(TypeReferenceLocation.ANNOTATION)
@@ -72,9 +71,8 @@ public class MyHintsRuleProvider extends AbstractRuleProvider
                    .with(Link.to("Java EE 6 @WebFilter", "http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"))
                    .withEffort(0)
                    .and(Hint.withText("Replace the proprietary WebLogic @WLFilter annotation with Java EE 6 standard @WebFilter annotation.\n\r" +
-                                   "For details on how to map the filter attributes, see: <a href=\"https://access.redhat.com/articles/1249423\">Migrate WebLogic Proprietary Servlet Annotations</a>").withEffort(3))
+                        "For details on how to map the filter attributes, see: <a href=\"https://access.redhat.com/articles/1249423\">Migrate WebLogic Proprietary Servlet Annotations</a>").withEffort(3))
             );
     }
     // @formatter:on
-
 }

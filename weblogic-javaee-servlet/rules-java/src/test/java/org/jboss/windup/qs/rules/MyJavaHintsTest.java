@@ -68,7 +68,6 @@ public class MyJavaHintsTest
         try (GraphContext context = contextFactory.create())
         {
             FileModel fileModel = context.getFramed().addVertex(null, FileModel.class);
-            // fileModel.setFilePath("src/test/java/org/jboss/windup/qs/rules/MyJavaHintsTest.java");
             fileModel.setFilePath("src/test/resources/app/com/foo/MyWLServletUsingClass.java");
 
             WindupJavaConfigurationModel javaCfg = WindupJavaConfigurationService.getJavaConfigurationModel(context);
