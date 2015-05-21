@@ -28,7 +28,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class MyJavaHintsTest
+public class WebLogicServletAnnotationTest
 {
     @Deployment
     @Dependencies({
@@ -43,7 +43,7 @@ public class MyJavaHintsTest
     {
         final ForgeArchive archive = ShrinkWrap.create(ForgeArchive.class)
             .addBeansXML()
-            .addClass(MyHintsRuleProvider.class)
+            .addClass(WebLogicServletAnnotationRuleProvider.class)
             .addAsAddonDependencies(
                 AddonDependencyEntry.create("org.jboss.windup.config:windup-config"),
                 AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
@@ -75,7 +75,7 @@ public class MyJavaHintsTest
 
             WindupConfiguration wc = new WindupConfiguration();
             wc.setGraphContext(context);
-            wc.setRuleProviderFilter(new RuleProviderWithDependenciesPredicate(MyHintsRuleProvider.class));
+            wc.setRuleProviderFilter(new RuleProviderWithDependenciesPredicate(WebLogicServletAnnotationRuleProvider.class));
             wc.setInputPath(Paths.get("src/test/resources/app/"));
             wc.setOutputDirectory(Paths.get("target/WindupReport"));
 

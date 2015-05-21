@@ -34,7 +34,7 @@ import org.ocpsoft.rewrite.config.ConfigurationBuilder;
         // AnalyzeJavaFilesRuleProvider are set to execute in an earlier phase, but is here only to demonstrate the concept.
         after = {}
 )
-public class MyHintsRuleProvider extends AbstractRuleProvider
+public class WebLogicServletAnnotationRuleProvider extends AbstractRuleProvider
 {
     // @formatter:off
     @Override

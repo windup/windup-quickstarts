@@ -1,9 +1,9 @@
-[[weblogic-javaee-servlet-java-based-rule-addon-that-detects-weblogic-proprietary-servlet-annotations]]
-= weblogic-javaee-servlet: Java-based Rule Addon That Detects WebLogic Proprietary Servlet Annotations
+[[weblogic-javaee-servlet-java-based-rule-add-on-that-detects-weblogic-proprietary-servlet-annotations]]
+= weblogic-javaee-servlet: Java-based Rule Add-on That Detects WebLogic Proprietary Servlet Annotations
 
 Author: Ondra Zizka +
 Level: Beginner +
-Summary: Windup Java-based rule addon that reports on WebLogic servlet annotations +
+Summary: Windup Java-based rule add-on that reports on WebLogic servlet annotations +
 Source: https://github.com/windup/windup-quickstarts/ +
 
 [[what-is-it]]
@@ -13,7 +13,7 @@ WebLogic provides its own proprietary servlet and filter annotations for depende
 If the application uses them, they must be replaced with the standard Java EE 6 annotations. 
 This example demonstrates how to create a RuleProvider that searches for these proprietary annotations and reports on them.
 
-This Java-based Windup rule addon searches for the following annotations:
+This Java-based Windup rule add-on searches for the following annotations:
 
 * _@WLServlet_: This is the equivalent of the Java EE 6 _@WebServlet_ annotation.
 * _@WLFilter_: This is the equivalent of the Java EE 6 _@WebFilter_ annotation.
@@ -22,7 +22,7 @@ This Java-based Windup rule addon searches for the following annotations:
 [[review-the-quickstart-code]]
 == Review the Quickstart Code
 
-The _MyHintsRuleProvider_ class extends _RuleProvider_ and overrides the following methods:
+The _WebLogicServletAnnotationRuleProvider_ class extends _RuleProvider_ and overrides the following methods:
 
 * `getExecuteAfter()`: Nothing executes after this, so this method returns an empty list.
 * `enhanceMetadata(Context context)`: This method specifies additional metadata about the Rule instances originating from this RuleProvider.
@@ -95,19 +95,19 @@ JBoss Windup, version [ 2.0.0.Final ] - JBoss, by Red Hat, Inc. [ http://windup.
 
 There are 2 ways to add the quickstart to Windup.
 
-* link:#build-and-install-the-quickstart-as-a-windup-addon-in-one-simple-step[Build and Install the Quickstart as a Windup Addon in One Simple Step]: 
-You can build and install the quickstart into the Maven repository and install it into Windup using one command.This is the fastest way to install a rule addon into Windup.
-* link:#build-and-install-the-quickstart-as-a-windup-addon-in-two-separate-steps[Build and Install the Quickstart as a Windup Addon in Two Separate Steps]: 
+* link:#build-and-install-the-quickstart-as-a-windup-add-on-in-one-simple-step[Build and Install the Quickstart as a Windup Add-on in One Simple Step]: 
+You can build and install the quickstart into the Maven repository and install it into Windup using one command.This is the fastest way to install a rule add-on into Windup.
+* link:#build-and-install-the-quickstart-as-a-windup-add-on-in-two-separate-steps[Build and Install the Quickstart as a Windup Add-on in Two Separate Steps]: 
 You can use a Maven command to build and install the quickstart into the Maven repository and a separate Windup command to install it into Windup.
 
-[[build-and-install-the-quickstart-as-a-windup-addon-in-one-simple-step]]
-== Build and Install the Quickstart as a Windup Addon in One Simple Step
+[[build-and-install-the-quickstart-as-a-windup-add-on-in-one-simple-step]]
+== Build and Install the Quickstart as a Windup Add-on in One Simple Step
 
 This is the easiest and fastest way to build the quickstart, install it
-into the local Maven repository, and install it into Windup as a rule addon.
+into the local Maven repository, and install it into Windup as a rule add-on.
 
 . If you have not started Windup, follow the instructions above to link:#start-windup[Start Windup].
-. Build the quickstart and install the addon in Windup using the `addon-build-and-install` command in the Windup console.
+. Build the quickstart and install the add-on in Windup using the `addon-build-and-install` command in the Windup console.
 * The command uses the following syntax, where `QUICKSTART_HOME` refers the root directory of this `weblogic-javaee-servlet` quickstart:
 +
 ----
@@ -125,11 +125,11 @@ addon-build-and-install --projectRoot /home/username/windup-quickstarts/weblogic
 ----
 ***SUCCESS*** Addon org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet:::2.0.0.Final was installed successfully.
 ----
-. You can now link:#test-the-quickstart-rule-addon[Test the Quickstart Rule Addon].
+. You can now link:#test-the-quickstart-rule-add-on[Test the Quickstart Rule Add-on].
 
 
-[[build-and-install-the-quickstart-as-a-windup-addon-in-two-separate-steps]]
-=== Build and Install the Quickstart as a Windup Addon in Two Separate Steps
+[[build-and-install-the-quickstart-as-a-windup-add-on-in-two-separate-steps]]
+=== Build and Install the Quickstart as a Windup Add-on in Two Separate Steps
 
 [[install-the-quickstart-into-the-local-maven-repository]]
 ==== Install the Quickstart into the Local Maven Repository
@@ -145,10 +145,10 @@ mvn clean install
 ----
 . The quickstart is now installed in the local Maven repository.
 
-[[install-the-quickstart-into-windup-as-an-addon]]
-==== Install the Quickstart into Windup as an Addon
+[[install-the-quickstart-into-windup-as-an-add-on]]
+==== Install the Quickstart into Windup as an Add-on
 
-After you build the quickstart and install it into the local Maven repository, use these instructions to install it into Windup as a rule addon.
+After you build the quickstart and install it into the local Maven repository, use these instructions to install it into Windup as a rule add-on.
 
 . If you have not started Windup, follow the instructions above to link:#start-windup[Start Windup].
 . Be sure to navigate to this quickstart's `rules-java/` directory.
@@ -177,16 +177,16 @@ org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Final
 ----
 ***SUCCESS*** Addon org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Final was installed successfully.
 ----
-. You can now link:#test-the-quickstart-rule-addon[Test the Quickstart Rule Addon].
+. You can now link:#test-the-quickstart-rule-add-on[Test the Quickstart Rule Add-on].
 
-[[test-the-quickstart-rule-addon]]
-== Test the Quickstart Rule Addon
+[[test-the-quickstart-rule-add-on]]
+== Test the Quickstart Rule Add-on
 
 This quickstart provides an example source file containing WebLogic annotations to use when testing the quickstart. 
 It is located in this quickstart's `test-files/src_example/` directory.
 
 . If you have not started Windup, follow the instructions above to link:#start-windup[Start Windup].
-. Test the Java-based rule addon against the WebLogic application file by running the `windup-migrate-app` command at the Windup prompt.
+. Test the Java-based rule add-on against the WebLogic application file by running the `windup-migrate-app` command at the Windup prompt.
 +
 * The command uses this syntax:
 +
@@ -247,7 +247,7 @@ image:../images/windup-report-java-file-page.png[File detail page] +
 [[remove-the-quickstart-from-windup]]
 == Remove the Quickstart from Windup
 
-Remove the quickstart rule addon from Windup using the `addon-remove`
+Remove the quickstart rule add-on from Windup using the `addon-remove`
 command.
 
 . If you have not started Windup, follow the instructions above to link:#start-windup[Start Windup].
@@ -264,7 +264,7 @@ addon-remove
 
 Installed addons (The installed addons in mutable addon repositories that may be removed): [0-1] 
 ----
-. Choose the number of this rule addon, in this case, type `1` and hit enter. Then leave it blank and hit enter to finish. You should see:
+. Choose the number of this rule add-on, in this case, type `1` and hit enter. Then leave it blank and hit enter to finish. You should see:
 +
 ----
 ***SUCCESS*** Removed addons: org.jboss.windup.quickstarts:windup-weblogic-javaee-servlet,2.0.0.Final

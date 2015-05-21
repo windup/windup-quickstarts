@@ -11,7 +11,10 @@ Source: https://github.com/windup/windup-quickstarts/ +
 
 The Seam Asynchronous annotation is not compatible with remote EJBs in Red Hat JBoss Enterprise Application Platform and must be replaced with the Java EE 6 @Asynchronous annotation.
 
-You can create Windup rules using XML or by writing Java addons. This quickstart demonstrates both approaches.
+You can create Windup rules using XML or by writing Java add-ons. This quickstart demonstrates both approaches.
 
-* link:rules-java/README.adoc[Java rule addon]: Follow the instructions here to see how to create this rule as a Java rule addon.
+* link:rules-java/README.adoc[Java rule add-on]: Follow the instructions here to see how to create this rule as a Java rule add-on.
 * link:rules-xml/README.adoc[XML rule]: Follow the instructions here to see how to create this rule using XML.
+
+NOTE: If you deploy both the Java-based rule add-on and XML rule at the same time, you will see double the story points!
+

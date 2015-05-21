@@ -10,8 +10,9 @@ Source: https://github.com/windup/windup-quickstarts/ +
 == What is it?
 
 WebLogic provides its own proprietary servlet and filter annotations for dependency injection. 
-If the application uses them, they must be replaced with the standard Java EE 6 annotations. 
-These examples demonstrates how to create a Windup rule addon that searches for these proprietary annotations and reports on them.
+If your application uses them, they must be replaced with the standard Java EE 6 annotations. 
+
+These examples demonstrates how to create a Windup rule add-on that searches for these proprietary annotations and reports on them.
 
 The rule searches for the following annotations:
 
@@ -19,7 +20,10 @@ The rule searches for the following annotations:
 * _@WLFilter_: This is the equivalent of the Java EE 6 _@WebFilter_ annotation.
 * _@WLInitParam_: This is the equivalent of the Java EE 6 _@WebInitParam_ annotation.
 
-You can create Winupup rule addons using Java or XML. This quickstart provides examples of both types of rules.
+You can create Windup rule add-ons using Java or XML. This quickstart provides examples of both types of rules.
 
-* link:rules-java/README.adoc[Java rule addon]: Follow the instructions here to see how to create a Java rule addon.
+* link:rules-java/README.adoc[Java rule add-on]: Follow the instructions here to see how to create a Java rule add-on.
 * link:rules-xml/README.adoc[XML rule]: Follow the instructions here to see how to create an XML rule.
+
+NOTE: If you deploy both the Java-based rule add-on and XML rule at the same time, you will see double the story points!
+
