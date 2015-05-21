@@ -26,7 +26,7 @@ This XML-based Windup rule searches for the following annotations:
 [[review-the-quickstart-code]]
 == Review the Quickstart Code
 
-The QUICKSTART_HOME/rules-xml/my-hints-rule-provider.windup.xml ruleset contains 3 rules. Each rule tests for a Java class reference to a WebLogic servlet annotation and provides a message about to migrate the code.
+The QUICKSTART_HOME/rules-xml/weblogic-servlet-annotations.windup.xml ruleset contains 3 rules. Each rule tests for a Java class reference to a WebLogic servlet annotation and provides a message about to migrate the code.
 
 * A `<rule>` elements is defined for each of the above WebLogic Servlet annotations. Each `rule` contains the following elements.
 * The `<when>` looks for a `javaclass` for the specific WebLogic annotation, for example, `weblogic.servlet.annotation.WLServlet`, `weblogic.servlet.annotation.WLInitParam`, or `weblogic.servlet.annotation.WLFilter`, with a location `ANNOTATION`.
@@ -80,7 +80,7 @@ JBoss Windup, version [ 2.0.0.Beta4 ] - JBoss, by Red Hat, Inc. [ http://windup.
 [[add-the-quickstart-to-windup]]
 == Add the Quickstart to Windup
 
-To install the rule in Windup, simply copy the `QUICKSTART_HOME/rules-xml/my-hints-rule-provider.windup.xml` file into the `WINDUP_HOME/rules` directory.
+To install the rule in Windup, simply copy the `QUICKSTART_HOME/rules-xml/weblogic-servlet-annotations.windup.xml` file into the `WINDUP_HOME/rules` directory.
 
 [[test-the-quickstart-rule]]
 == Test the Quickstart Rule
@@ -99,7 +99,7 @@ windup-migrate-app [--sourceMode true] --input INPUT_ARCHIVE_OR_FOLDER --output 
 * To test this quickstart using the `test-files/src_example/src/main/java/org/windup/examples/servlet/SampleWebLogicServlet.java` example file provided in the root directory of this quickstart, type the following commmand. Be sure to replace `QUICKSTART_HOME` with the fully qualified path to this quickstart.
 +
 ----
-windup-migrate-app --sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output ~/windup-reports/weblogicservlet-xml --packages org.windup
+windup-migrate-app --sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output ~/windup-reports/weblogicservlet-rulexml-report --packages org.windup
 ----
 +
 * You should see the following result:
@@ -149,7 +149,7 @@ image:../images/windup-report-xml-file-page.png[File detail page] +
 [[remove-the-quickstart-from-windup]]
 == Remove the Quickstart from Windup
 
-To remove the rule from Windup, simply delete the `WINDUP_HOME/rules/my-hints-rule-provider.windup.xml` file `WINDUP_HOME/rules` directory.
+To remove the rule from Windup, simply delete the `WINDUP_HOME/rules/weblogic-servlet-annotations.windup.xml` file `WINDUP_HOME/rules` directory.
 
 [[stop-windup]]
 == Stop Windup

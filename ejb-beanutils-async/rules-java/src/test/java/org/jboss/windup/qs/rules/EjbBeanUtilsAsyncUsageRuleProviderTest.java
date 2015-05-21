@@ -43,7 +43,7 @@ public class EjbBeanUtilsAsyncUsageRuleProviderTest
     {
         final ForgeArchive archive = ShrinkWrap.create(ForgeArchive.class)
             .addBeansXML()
-            .addAsResource(new File("../rules-xml/async-method.windup.xml"))
+            .addAsResource(new File("../rules-xml/ejb-beanutils-async-method.windup.xml"))
             .addAsAddonDependencies(
                 AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi"),
                 AddonDependencyEntry.create("org.jboss.windup.utils:windup-utils"),

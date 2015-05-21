@@ -1,7 +1,9 @@
-<?xml version="1.0"?>
-<ruleset xmlns="http://windup.jboss.org/v1/xml" id="ejb-beanutils-async-xml-example">
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset xmlns="http://windup.jboss.org/v1/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://windup.jboss.org/v1/xml http://windup.jboss.org/schema/rule-schema.xsd"
+    id="ejb-beanutils-async-xml-example">
     <rules>
-        <rule>
+        <rule id="ejb-beanutils-async-xml-example_001">
             <when>
                 <xmlfile matches="/ejb:ejb-jar//ejb:session[windup:matches(ejb:remote/text(), '{remoteclass}')]" as="beanRemoteInterfaces">
                     <namespace prefix="ejb" uri="http://java.sun.com/xml/ns/javaee"/>

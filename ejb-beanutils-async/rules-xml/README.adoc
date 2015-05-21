@@ -17,7 +17,7 @@ This XML rule tests for use of `org.jboss.seam.annotations.async.Asynchronous` a
 [[review-the-quickstart-code]]
 == Review the Quickstart Code
 
-The `QUICKSTART_HOME/rules-xml/async-method.windup.xml` rule first tests for XML file criteria and the filtered results are then used as input
+The `QUICKSTART_HOME/rules-xml/ejb-beanutils-async-method.windup.xml` rule first tests for XML file criteria and the filtered results are then used as input
 for Java class criteria. The final results are assigned an effort level of 8.
 
 * The `xmlfile` `<when>` condition tests for XML files with the "ejb" namespace prefix and matching the XPath `/ejb:ejb-jar//ejb:session[windup:matches(ejb:remote/text()`. The
@@ -76,7 +76,7 @@ JBoss Windup, Final [ 2.0.0.Final ] - JBoss, by Red Hat, Inc. [ http://windup.jb
 == Add the Quickstart to Windup
 
 To install the rule in Windup, simply copy the `QUICKSTART_HOME/rules-xml/ejb-beans-utils-async-usage-rule-provider.windup.xml`
-and `QUICKSTART_HOME/rules-xml/async-method.windup.xml` files into the `WINDUP_HOME/rules` directory.
+and `QUICKSTART_HOME/rules-xml/ejb-beanutils-async-method.windup.xml` files into the `WINDUP_HOME/rules` directory.
 
 [[test-the-quickstart-rule]]
 == Test the Quickstart Rule
@@ -96,7 +96,7 @@ windup-migrate-app [--sourceMode true] --input INPUT_ARCHIVE_OR_FOLDER --output 
 commmand. Be sure to replace `QUICKSTART_HOME` with the fully qualified path to this quickstart.
 +
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
-windup-migrate-app -sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output ~/windup-reports/ejbbeanutils-xml --packages org.windup
+windup-migrate-app -sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output ~/windup-reports/ejbbeanutils-rulexml-report --packages org.windup
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 +
 * You should see the following result:
@@ -140,7 +140,7 @@ image:../images/windup-report-detail-page.png[Detail page]
 [[remove-the-quickstart-rule-from-windup]]
 == Remove the Quickstart Rule from Windup
 
-To remove the rule from Windup, simply delete the `WINDUP_HOME/rules/async-method.windup.xml` file from the `WINDUP_HOME/rules` directory.
+To remove the rule from Windup, simply delete the `WINDUP_HOME/rules/ejb-beanutils-async-method.windup.xml` file from the `WINDUP_HOME/rules` directory.
 
 [[stop-windup]]
 Stop Windup

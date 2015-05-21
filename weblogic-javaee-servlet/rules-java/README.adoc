@@ -197,7 +197,7 @@ windup-migrate-app [--sourceMode true] --input INPUT_ARCHIVE_OR_FOLDER --output 
 * To test this quickstart using the `test-files/src_example/` example provided in the root directory of this quickstart, type the following command. Be sure to replace `QUICKSTART_HOME` with the fully qualified path to this quickstart.
 +
 ----
-windup-migrate-app --sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output ~/windup-reports/windup-reports/weblogicservlet-java --packages org.windup
+windup-migrate-app --sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output ~/windup-reports/weblogicservlet-rulejava-report --packages org.windup
 ----
 +
 * You should see the following result:
