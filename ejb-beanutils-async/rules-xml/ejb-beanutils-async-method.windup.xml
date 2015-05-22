@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ruleset xmlns="http://windup.jboss.org/v1/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://windup.jboss.org/v1/xml http://windup.jboss.org/schema/rule-schema.xsd"
+    xsi:schemaLocation="http://windup.jboss.org/v1/xml http://windup.jboss.org/schema/rule-schema_1_0.xsd"
     id="ejb-beanutils-async-xml-example">
     <rules>
         <rule id="ejb-beanutils-async-xml-example_001">

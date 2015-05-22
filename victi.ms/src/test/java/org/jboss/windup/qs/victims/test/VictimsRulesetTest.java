@@ -86,7 +86,7 @@ public class VictimsRulesetTest
             processor.execute(wc);
 
             // Check the results. There should be 1 jar found with a vulnerability
-            GraphService<AffectedJarModel> jarsGS = new GraphService(ctx, AffectedJarModel.class);
+            GraphService<AffectedJarModel> jarsGS = new GraphService<AffectedJarModel>(ctx, AffectedJarModel.class);
 
             boolean found = false;
             for (AffectedJarModel jar : jarsGS.findAll())

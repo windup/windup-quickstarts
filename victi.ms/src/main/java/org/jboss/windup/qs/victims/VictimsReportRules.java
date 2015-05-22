@@ -67,7 +67,7 @@ public class VictimsReportRules extends AbstractRuleProvider
     private VictimsReportModel createReport(GraphContext graphCtx,
                 WindupJavaConfigurationModel javaCfg, ProjectModel rootProjectModel)
     {
-        GraphService<VictimsReportModel> reportServ = new GraphService(graphCtx, VictimsReportModel.class);
+        GraphService<VictimsReportModel> reportServ = new GraphService<VictimsReportModel>(graphCtx, VictimsReportModel.class);
         VictimsReportModel reportM = reportServ.create();
 
         // Report metadata
@@ -81,7 +81,7 @@ public class VictimsReportRules extends AbstractRuleProvider
         reportM.setDisplayInApplicationList(false);
 
         // Get all jars
-        GraphService<AffectedJarModel> jarService = new GraphService(graphCtx, AffectedJarModel.class);
+        GraphService<AffectedJarModel> jarService = new GraphService<AffectedJarModel>(graphCtx, AffectedJarModel.class);
         Iterable<AffectedJarModel> jars = jarService.findAll();
 
         // For each affected jar...

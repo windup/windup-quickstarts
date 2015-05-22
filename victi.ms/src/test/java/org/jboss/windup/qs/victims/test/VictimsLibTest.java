@@ -78,7 +78,7 @@ public class VictimsLibTest
     @Test
     public void testScanJar() throws IOException, VictimsException
     {
-        final ArrayList<VictimsRecord> res = new ArrayList();
+        final ArrayList<VictimsRecord> res = new ArrayList<VictimsRecord>();
         VictimsScanner.scan(BAD_JAR, res);
         for( VictimsRecord rec : res )
         {

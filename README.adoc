@@ -1,13 +1,13 @@
 [[windup-quickstarts]]
 = Windup Quickstarts
 
-Summary: The quickstarts in this repository provide examples of how to create rules for Windup 2.0. +
+Summary: The quickstarts in this repository provide examples of how to create rules for Windup 2 +
 Source: https://github.com/windup/windup-quickstarts +
 
 [[introduction]]
 == Introduction
 
-These quickstarts provide examples of how to create custom rules for Windup 2.0.
+These quickstarts provide examples of how to create custom rules for Windup 2.
 
 The latest Windup information can be found on the https://github.com/windup/windup/wiki[Windup Wiki].
 
@@ -17,6 +17,7 @@ The Windup documentation is located here:
 * http://windup.github.io/windup/docs/latest/html/WindupRulesDevelopmentGuide.html[Windup Rules Development Guide]
 * http://windup.github.io/windup/docs/latest/html/WindupCoreDevelopmentGuide.html[Windup Core Development Guide]
 * http://windup.github.io/windup/docs/latest/javadoc[Windup JavaDoc]
+* http://windup.jboss.org/schema/rule-schema.xsd[Windup Rule Schema]
 
 To download the latest release of the quickstarts ZIP file, browse to https://github.com/windup/windup-quickstarts/releases.
 
@@ -27,6 +28,7 @@ The following is the list of the currently available quickstarts.
 
 . link:ejb-beanutils-async/README.adoc[ejb-beanutils-async]
 . link:weblogic-javaee-servlet/README.adoc[weblogic-javaee-servlet]
+. link:victi.ms/README.adoc[visti.ms]
 
 
 [[system-requirements]]

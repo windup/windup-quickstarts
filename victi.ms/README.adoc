@@ -1,0 +1,23 @@
+[[ejb-beanutils-asyn-windup-rule-that-detects-seam-asynchronous-annotation-in-remote-ejbs]]
+= victi.ms: Windup Rule That Detects Usage of Java Libraries Affected by CVE Security Vulnerabilities
+
+Author: Ondra Zizka +
+Level: Intermediate +
+Summary: Windup rule that reports on use of Java libraries affected by CVE security vulnerabilites + 
+Source: https://github.com/windup/windup-quickstarts/ +
+
+[[what-is-it]]
+== What is it?
+
+Java developers can easily incorporate 3rd party components and JARs into applications, exposing them to security vulnerabilities. The victi.ms is a database of known vulnerable JAR files and Java artifacts affected by known CVE (Common Vulnerabilities and Exposures) issues. 
+
+This quickstart
+
+For more information, see:
+
+* http://victi.ms[Victims site]
+* https://cve.mitre.org[CVE site]
+
+
+This quickstart demonstrates advanced Ruleset authoring with interacting rules and an external dependency.
+

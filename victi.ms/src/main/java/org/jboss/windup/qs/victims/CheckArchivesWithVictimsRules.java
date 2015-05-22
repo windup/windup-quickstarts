@@ -74,7 +74,7 @@ public class CheckArchivesWithVictimsRules extends AbstractRuleProvider
                                         @Override
                                         public void perform(GraphRewrite event, EvaluationContext context, ArchiveModel archive) {
                                             log.info("\tVicti.ms checking archive: " + archive.getFilePath());
-                                            GraphService<VulnerabilityModel> vulGS = new GraphService(event.getGraphContext(), VulnerabilityModel.class);
+                                            GraphService<VulnerabilityModel> vulGS = new GraphService<VulnerabilityModel>(event.getGraphContext(), VulnerabilityModel.class);
                                             String hash = archive.asVertex().getProperty(ComputeArchivesSHA512Rules.KEY_SHA512);
                                             try {
                                                 HashSet<String> vuls = db.getVulnerabilities(hash);
