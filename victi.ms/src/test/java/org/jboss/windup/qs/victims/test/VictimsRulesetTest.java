@@ -8,8 +8,10 @@ import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.forge.arquillian.AddonDependencies;
 import org.jboss.forge.arquillian.AddonDependency;
 import org.jboss.forge.arquillian.Dependencies;
+import org.jboss.forge.arquillian.archive.AddonArchive;
 import org.jboss.forge.arquillian.archive.ForgeArchive;
 import org.jboss.forge.furnace.repositories.AddonDependencyEntry;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -40,24 +42,17 @@ public class VictimsRulesetTest
     private static final Logger log = Logging.get(VictimsRulesetTest.class);
 
     @Deployment
-    @Dependencies({
+    @AddonDependencies({
         @AddonDependency(name = "org.jboss.forge.furnace.container:cdi"),
         @AddonDependency(name = "org.jboss.windup.utils:windup-utils"),
         @AddonDependency(name = "org.jboss.windup.rules.apps:windup-rules-java"),
         @AddonDependency(name = "org.jboss.windup.exec:windup-exec"),
         @AddonDependency(name = "org.jboss.windup.quickstarts:windup-victims"),
     })
-    public static ForgeArchive getDeployment()
+    public static AddonArchive getDeployment()
     {
-        final ForgeArchive archive = ShrinkWrap.create(ForgeArchive.class)
-            .addBeansXML()
-            .addAsAddonDependencies(
-                AddonDependencyEntry.create("org.jboss.forge.furnace.container:cdi"),
-                AddonDependencyEntry.create("org.jboss.windup.utils:windup-utils"),
-                AddonDependencyEntry.create("org.jboss.windup.rules.apps:windup-rules-java"),
-                AddonDependencyEntry.create("org.jboss.windup.exec:windup-exec"),
-                AddonDependencyEntry.create("org.jboss.windup.quickstarts:windup-victims")
-            );
+        final AddonArchive archive = ShrinkWrap.create(AddonArchive.class)
+            .addBeansXML();
         return archive;
     }
 
@@ -86,7 +81,7 @@ public class VictimsRulesetTest
             processor.execute(wc);
 
             // Check the results. There should be 1 jar found with a vulnerability
-            GraphService<AffectedJarModel> jarsGS = new GraphService<AffectedJarModel>(ctx, AffectedJarModel.class);
+            GraphService<AffectedJarModel> jarsGS = new GraphService<>(ctx, AffectedJarModel.class);
 
             boolean found = false;
             for (AffectedJarModel jar : jarsGS.findAll())
