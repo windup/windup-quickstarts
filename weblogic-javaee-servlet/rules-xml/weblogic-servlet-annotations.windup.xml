@@ -2,7 +2,21 @@
 <ruleset xmlns="http://windup.jboss.org/v1/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://windup.jboss.org/v1/xml http://windup.jboss.org/schema/rule-schema_1_0.xsd"
     id="weblogic-servlet-annotations">
-    <!-- Limited function XML rules as we build out the syntax. Will get more powerful over time -->
+    <metadata>
+        <!--  
+        <description>
+            This ruleset looks for Java files that contain proprietary WebLogic Servlet annotations.
+        </description>
+         -->
+        <dependencies>
+            <addon id="org.jboss.windup.rules,windup-rules-java,2.0.0.Final"/>
+        </dependencies>
+        <sourceTechnology id="weblogic" versionRange="(10,12]"/>
+        <targetTechnology id="eap" versionRange="[6,)"/>
+        <tags>
+            <tag>reviewed-2015-05-27</tag>
+        </tags>
+    </metadata>
     <rules>
         <rule id="weblogic-servlet-annotations_001">
             <when>

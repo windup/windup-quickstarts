@@ -2,6 +2,21 @@
 <ruleset xmlns="http://windup.jboss.org/v1/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://windup.jboss.org/v1/xml http://windup.jboss.org/schema/rule-schema_1_0.xsd"
     id="ejb-beanutils-async-xml-example">
+    <metadata>
+        <!--  
+        <description>
+            This ruleset reports on the use of the Seam Asynchronous annotation in remote EJBs.
+        </description>
+         -->
+        <dependencies>
+            <addon id="org.jboss.windup.rules,windup-rules-java,2.0.0.Final"/>
+        </dependencies>
+        <sourceTechnology id="eap" versionRange="(4,5]"/>
+        <targetTechnology id="eap" versionRange="[6,)"/>
+        <tags>
+            <tag>reviewed-2015-05-27</tag>
+        </tags>
+    </metadata>
     <rules>
         <rule id="ejb-beanutils-async-xml-example_001">
             <when>

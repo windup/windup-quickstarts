@@ -3,7 +3,7 @@
 
 Author: Jess Sightler +
 Level: Intermediate +
-Summary: Windup rule that reports on use of the Seam Asynchronous annotation in remote EJBs + 
+Summary: Windup rule that reports on the use of the Seam Asynchronous annotation in remote EJBs + 
 Source: https://github.com/windup/windup-quickstarts/ +
 
 [[what-is-it]]
