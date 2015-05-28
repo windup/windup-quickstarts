@@ -62,6 +62,7 @@ public class EjbBeanUtilsAsyncUsageRuleProviderTest
             WindupConfiguration wc = new WindupConfiguration();
             wc.setGraphContext(context);
             wc.setInputPath(Paths.get("../test-files/src_example"));
+            wc.addDefaultUserRulesDirectory(Paths.get("../rules-xml/"));
             wc.setOutputDirectory(outPath);
 
             processor.execute(wc);

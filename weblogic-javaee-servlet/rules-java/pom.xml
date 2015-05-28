@@ -126,15 +126,6 @@
 
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <excludes>
-                    <exclude>*.java</exclude>
-                </excludes>
-            </resource>
-        </resources>
-
         <plugins>
             <!-- This plugin makes this artifact a Forge addon. -->
             <plugin>
