@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ruleset xmlns="http://windup.jboss.org/v1/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://windup.jboss.org/v1/xml http://windup.jboss.org/schema/rule-schema_1_0.xsd"
+    xsi:schemaLocation="http://windup.jboss.org/v1/xml http://windup.jboss.org/schema/windup-jboss-ruleset.xsd"
     id="ejb-beanutils-async-xml-example">
     <metadata>
         <!--  
@@ -13,9 +13,7 @@
         </dependencies>
         <sourceTechnology id="eap" versionRange="(4,5]"/>
         <targetTechnology id="eap" versionRange="[6,)"/>
-        <tags>
-            <tag>reviewed-2015-05-27</tag>
-        </tags>
+        <tag>reviewed-2015-05-27</tag>
     </metadata>
     <rules>
         <rule id="ejb-beanutils-async-xml-example_001">
@@ -29,9 +27,8 @@
             </when>
             <perform>
                 <iteration over="asyncUsingSessionBeans">
-                    <hint
-                        message="XML Rule Example: {remoteclass} uses the Seam @Asynchronous annotation. It is not compatible with JBoss EAP Remote EJBs and should be replaced with the standard Java EE 6 @Asynchronous annotation."
-                        effort="8">
+                    <hint effort="8">
+                        <message>XML Rule Example: {remoteclass} uses the Seam @Asynchronous annotation. It is not compatible with JBoss EAP Remote EJBs and should be replaced with the standard Java EE 6 @Asynchronous annotation.</message>
                         <link href="http://docs.oracle.com/javaee/6/tutorial/doc/gkkqg.html" description="Using Java EE 6 @Asynchronous." />
                     </hint>
                 </iteration>

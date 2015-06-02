@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset xmlns="http://windup.jboss.org/v1/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://windup.jboss.org/v1/xml http://windup.jboss.org/schema/windup-jboss-schema.xsd"
+    id="acme-servlet-annotations">
+    <metadata>
+        <!--  
+        <description>
+            This ruleset looks for Java files that contain proprietary Acme Servlet annotations.
+        </description>
+         -->
+        <dependencies>
+            <addon id="org.jboss.windup.rules,windup-rules-java,2.0.0.Final"/>
+        </dependencies>
+        <sourceTechnology id="acme" versionRange="(10,12]"/>
+        <targetTechnology id="eap" versionRange="[6,)"/>
+        <tag>reviewed-2015-05-27</tag>
+    </metadata>
+    <rules>
+        <rule id="acme-servlet-annotations_001">
+            <when>
+                <javaclass references="acme.servlet.annotation.AcmeServlet" as="default">
+                    <location>ANNOTATION</location>
+                </javaclass>
+            </when>
+            <perform>  
+                <hint effort="1">
+                    <message>Replace the proprietary Acme @AcmeServlet annotation with the Java EE 6 standard @WebServlet annotation.</message>
+                 </hint>
+                <hint>
+                    <message>See the javax.servlet.annotation JavaDoc for more information.</message>
+                    <link href="http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"
+                        description="Java EE 6 Servlet annotation package summary" />
+                </hint>
+            </perform>
+        </rule>
+        <rule id="acme-servlet-annotations_002">
+            <when>
+                <javaclass references="acme.servlet.annotation.AcmeInitParam"  as="default">
+                    <location>ANNOTATION</location>
+                </javaclass>
+            </when>
+            <perform>
+                <hint effort="2">
+                    <message>Replace the proprietary Acme @AcmeInitParam annotation with the Java EE 6 standard @WebInitParam annotation.</message>
+                </hint>
+                <hint>
+                    <message>See the javax.servlet.annotation JavaDoc for more information."</message>
+                    <link href="http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"
+                        description="Java EE 6 Servlet annotation package summary" />
+                </hint>
+            </perform>
+        </rule>
+        <rule id="acme-servlet-annotations_003">
+            <when>
+                <javaclass references="acme.servlet.annotation.AcmeFilter" as="default">
+                    <location>ANNOTATION</location>
+                </javaclass>
+            </when>
+            <perform>
+                <hint effort="3">
+                    <message>Replace the proprietary Acme @AcmeFilter annotation with the Java EE 6 standard @WebFilter annotation.</message>
+                </hint>
+                <hint>
+                    <message>See the javax.servlet.annotation JavaDoc for more information.</message>
+                    <link href="http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"
+                        description="Java EE 6 Servlet annotation package summary" />
+                </hint>
+            </perform>
+        </rule>
+    </rules>
+</ruleset>
