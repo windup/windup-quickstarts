@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset xmlns="http://windup.jboss.org/v1/xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://windup.jboss.org/v1/xml http://windup.jboss.org/schema/windup-jboss-schema.xsd"
+    id="proprietary-servlet-annotations">
+    <metadata>
+         <description>
+            This ruleset looks for Java files that contain Proprietary Servlet annotations.
+        </description>
+        <dependencies>
+            <addon id="org.jboss.windup.rules,windup-rules-java,2.0.0.Final"/>
+        </dependencies>
+        <sourceTechnology id="proprietary" versionRange="(10,12]"/>
+        <targetTechnology id="eap" versionRange="[6,)"/>
+        <tag>reviewed-2015-05-27</tag>
+    </metadata>
+    <rules>
+        <rule id="proprietary-servlet-annotations-01000">
+            <when>
+                <javaclass references="com.example.proprietary.servlet.annotation.ProprietaryServlet" as="default">
+                    <location>ANNOTATION</location>
+                </javaclass>
+            </when>
+            <perform>  
+                <hint effort="1">
+                    <message>Replace the proprietary @ProprietaryServlet annotation with the Java EE 6 standard @WebServlet annotation.</message>
+                 </hint>
+                <hint>
+                    <message>See the javax.servlet.annotation JavaDoc for more information.</message>
+                    <link href="http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"
+                        description="Java EE 6 Servlet annotation package summary" />
+                </hint>
+            </perform>
+        </rule>
+        <rule id="proprietary-servlet-annotations-02000">
+            <when>
+                <javaclass references="com.example.proprietary.servlet.annotation.ProprietaryInitParam"  as="default">
+                    <location>ANNOTATION</location>
+                </javaclass>
+            </when>
+            <perform>
+                <hint effort="2">
+                    <message>Replace the proprietary @ProprietaryInitParam annotation with the Java EE 6 standard @WebInitParam annotation.</message>
+                </hint>
+                <hint>
+                    <message>See the javax.servlet.annotation JavaDoc for more information."</message>
+                    <link href="http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"
+                        description="Java EE 6 Servlet annotation package summary" />
+                </hint>
+            </perform>
+        </rule>
+        <rule id="proprietary-servlet-annotations-03000">
+            <when>
+                <javaclass references="com.example.proprietary.servlet.annotation.ProprietaryFilter" as="default">
+                    <location>ANNOTATION</location>
+                </javaclass>
+            </when>
+            <perform>
+                <hint effort="3">
+                    <message>Replace the proprietary @ProprietaryFilter annotation with the Java EE 6 standard @WebFilter annotation.</message>
+                </hint>
+                <hint>
+                    <message>See the javax.servlet.annotation JavaDoc for more information.</message>
+                    <link href="http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"
+                        description="Java EE 6 Servlet annotation package summary" />
+                </hint>
+            </perform>
+        </rule>
+    </rules>
+</ruleset>
