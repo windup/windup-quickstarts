@@ -27,7 +27,7 @@ To download the latest release of the quickstarts ZIP file, browse to https://gi
 The following is the list of the currently available quickstarts.
 
 . link:ejb-beanutils-async/README.adoc[ejb-beanutils-async]
-. link:acme-javaee-servlet/README.adoc[acme-javaee-servlet]
+. link:proprietary-javaee-servlet/README.adoc[proprietary-javaee-servlet]
 . link:victi.ms/README.adoc[visti.ms]
 
 

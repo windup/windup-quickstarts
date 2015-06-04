@@ -1,0 +1,160 @@
+[[proprietary-javaee-servlet-xml-based-rule-that-detects-proprietary-servlet-annotations]]
+= proprietary-javaee-servlet: XML-based Rule That Detects Proprietary Servlet Annotations
+
+Author: Windup Team +
+Level: Beginner +
+Summary: Windup XML-based rule that reports on Proprietary servlet annotations +
+Source: https://github.com/windup/windup-quickstarts/ +
+
+[[what-is-it]]
+== What is it?
+
+In this example, the fictional "Proprietary" corporation provides its own proprietary servlet and filter annotations for dependency injection. 
+If the application uses them, they must be replaced with the standard Java EE 6 annotations. 
+This example demonstrates how to create an XML-based rule that searches for these proprietary annotations and reports on them.
+
+This XML-based Windup rule searches for the following annotations:
+
+* _@ProprietaryServlet_: This is the equivalent of the Java EE 6 _@WebServlet_ annotation.
+* _@ProprietaryFilter_: This is the equivalent of the Java EE 6 _@WebFilter_ annotation.
+* _@ProprietaryInitParam_: This is the equivalent of the Java EE 6 _@WebInitParam_ annotation.
+
+*Note:* Windup only analyzes XML files with names ending in `.windup.xml`. Be sure to name XML-base rules using this naming convention!
+
+[[review-the-quickstart-code]]
+== Review the Quickstart Code
+
+The QUICKSTART_HOME/rules-xml/proprietary-servlet-annotations.windup.xml ruleset contains 3 rules. Each rule tests for a Java class reference to a Proprietary servlet annotation and provides a message about to migrate the code.
+
+* A `<rule>` elements is defined for each of the above Proprietary Servlet annotations. Each `rule` contains the following elements.
+* The `<when>` looks for a `javaclass` for the specific Proprietary annotation, for example, `com.example.proprietary.servlet.annotation.ProprietaryServlet`, `com.example.proprietary.servlet.annotation.ProprietaryInitParam`, or `com.example.proprietary.servlet.annotation.ProprietaryFilter`, with a location `ANNOTATION`.
+* On a match, the `<perform>` element provides a `<hint>` message and description with links to documentation.
+
+The Windup JavaDoc is located here: http://windup.github.io/windup/docs/javadoc/latest/
+
+The Windup rules schema is located here: http://windup.jboss.org/schema/windup-jboss-ruleset.xsd
+
+[[system-requirements]]
+== System requirements
+
+The rule this project produces is designed to be run on Windup 2.0 or later.
+
+This project requires Java 7.0 (Java SDK 1.7) or later.
+
+[[install-windup-2.0]]
+== Install Windup 2.0
+
+If you have not yet done so, follow the instructions to http://windup.github.io/windup/docs/latest/html/WindupRulesDevelopmentGuide.html#Install-Windup[Download and
+install Windup].
+
+[[start-windup]]
+== Start Windup
+
+. Open a terminal and navigate to the `WINDUP_HOME/bin` directory, where `WINDUP_HOME` denotes the path to the Windup installation.
+. Type the following command to start Windup:
++
+----
+For Linux:    WINDUP_HOME/bin $ ./windup
+For Windows:  C:\WINDUP_HOME\bin> windup
+----
+. You are presented with the following prompt.
++
+----
+Using Windup at /home/username/windup-distribution-2.0.0.Beta4
+
+ _       ___           __          
+| |     / (_)___  ____/ /_  ______ 
+| | /| / / / __ \/ __  / / / / __ \
+| |/ |/ / / / / / /_/ / /_/ / /_/ /
+|__/|__/_/_/ /_/\__,_/\__,_/ .___/ 
+                          /_/      
+
+JBoss Windup, version [ 2.0.0.Beta4 ] - JBoss, by Red Hat, Inc. [ http://windup.jboss.org ]
+
+[windup-distribution-2.0.0.Beta4]$ 
+----
+. This prompt is the Windup console where you enter Windup commands.
+
+[[add-the-quickstart-to-windup]]
+== Add the Quickstart to Windup
+
+To install the rule in Windup, simply copy the `QUICKSTART_HOME/rules-xml/proprietary-servlet-annotations.windup.xml` file into the `WINDUP_HOME/rules` directory.
+
+[[test-the-quickstart-rule]]
+== Test the Quickstart Rule
+
+This quickstart provides an example source file containing Proprietary annotations to use when testing the quickstart. It is located in this quickstart's `test-files/src_example/` directory.
+
+. If you have not started Windup, follow the instructions above to link:#start-windup[Start Windup].
+. Test the XML-based rule against the Proprietary application file by running the `windup-migrate-app` command at the Windup prompt.
++
+* The command uses this syntax:
++
+----
+windup-migrate-app [--sourceMode true] --input INPUT_ARCHIVE_OR_FOLDER --output OUTPUT_REPORT_DIRECTORY --packages PACKAGE_1 PACKAGE_2 PACKAGE_N
+----
++
+* To test this quickstart using the `test-files/src_example/src/main/java/org/windup/examples/servlet/ExampleProprietaryServlet.java` example file provided in the root directory of this quickstart, type the following commmand. Be sure to replace `QUICKSTART_HOME` with the fully qualified path to this quickstart.
++
+----
+windup-migrate-app --sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output ~/windup-reports/proprietaryservlet-rulexml-report --packages org.windup
+----
++
+* You should see the following result:
++
+----
+***SUCCESS*** Windup report created: USER_HOME/windup-reports/proprietaryservlet-xml/index.html
+              Access it at this URL: file:///USER_HOME/windup-reports/proprietaryservlet-xml/index.html
+----
++
+. For more information about how to run Windup, see: http://windup.github.io/windup/docs/latest/html/WindupUserGuide.html#Execute-Windup[Execute Windup].
+
+[[review-the-quickstart-report]]
+== Review the Quickstart Report
+
+. Open the `USER_HOME/windup-reports/proprietaryservlet-java/index.html` file in a
+browser.
++
+You are presented with the following index page.
++
+image:../images/windup-report-index-page.png[Index page] +
+. Click on the `src_example` link.
++
+This opens a detail page showing a total of 12 story points and the list the files containing the proprietary annotations along with the warning messages, links to obtain more information, and the estimated story points for each item.
++
+_org.windup.example.servlet.ExampleProprietaryFilter_ shows 7 story points
++
+----
+4 points, 2 points for each of the two @ProprietaryInitParam references
+3 points for the @ProprietaryFilter reference
+----
++
+_org.windup.example.servlet.ExampleProprietaryServlet_ show 5 story points
++
+----
+4 points, 2 points for each of the two @ProprietaryInitParam references
+1 points for the @ProprietaryServlet reference  
+----
++
+image:../images/windup-report-xml-detail-page.png[Detail page] +
+. Click on the file links to drill down and find more information.
++
+The *Information* section reports the proprietary annotations and provides a link to the standard Java EE servlet annotation documentation.
++
+image:../images/windup-report-xml-file-page.png[File detail page] +
+. Explore the contents of the `windup-reports-xml` folder. For example, the `windup-reports-xml/reports/ruleproviders.html` page lists the details of the rule provider executions.
+
+[[remove-the-quickstart-from-windup]]
+== Remove the Quickstart from Windup
+
+To remove the rule from Windup, simply delete the `WINDUP_HOME/rules/proprietary-servlet-annotations.windup.xml` file `WINDUP_HOME/rules` directory.
+
+[[stop-windup]]
+== Stop Windup
+
+To stop Windup, type the following command in the Windup console:
+
+----
+    exit
+----
+
