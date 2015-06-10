@@ -25,5 +25,5 @@ You can create Windup rule add-ons using Java or XML. This quickstart provides e
 * link:rules-java/README.adoc[Java rule add-on]: Follow the instructions here to see how to create a Java rule add-on.
 * link:rules-xml/README.adoc[XML rule]: Follow the instructions here to see how to create an XML rule.
 
-NOTE: If you deploy both the Java-based rule add-on and XML rule at the same time, you will see double the story points!
+WARNING: If you deploy both the Java-based rule add-on and XML rule at the same time, you will see double the story points!
 

@@ -12,15 +12,23 @@ https://github.com/windup/windup-quickstarts/ +
 The Seam `@Asynchronous` annotation is not compatible with remote EJBs in Red Hat JBoss Enterprise Application Platform. 
 This Java rule add-on tests for for use of `org.jboss.seam.annotations.async.Asynchronous` annotations in remote EJBs and reports that it must be replaced with the standard Java EE 6 `@Asynchronous` annotation.
 
+These instructions use the following replaceable variables. 
+
+* `WINDUP-HOME`: Replace this variable with the fully qualified path to your Windup installation.
+* `QUICKSTART_HOME`: Replace this variable with the fully qualified path to the root directory of this quickstart.
+
 [[review-the-quickstart-code]]
 == Review the Quickstart Code
 
-The `EjbBeanUtilsAsyncUsageRuleProvider` class extends `RuleProvider` and overrides the following methods:
-
-* `getConfiguration(GraphContext context)`: This method looks for annotations named "com.beanutils.async.AsynchronousMethod". 
+The `EjbBeanUtilsAsyncUsageRuleProvider` class extends `AbstractRuleProvider` and overrides the `getConfiguration(GraphContext context)` method.
+ 
+This method looks for annotations named "com.beanutils.async.AsynchronousMethod". 
 When found, it adds the following text to the report and points the person to the JBoss EAP 6 documentation: 
-+
-"`REMOTE_EJB_CLASS_NAME` uses the Seam @Asynchronous annotation. It is not compatible with JBoss EAP Remote EJBs and should be replaced with the standard Java EE 6 @Asynchronous annotation."
+....
+`REMOTE_EJB_CLASS_NAME` uses the Seam @Asynchronous annotation. It is not compatible with JBoss EAP Remote EJBs and should be replaced with the standard Java EE 6 @Asynchronous annotation.
+....
+
+The Windup JavaDoc is located here: http://windup.github.io/windup/docs/javadoc/latest/
 
 [[system-requirements]]
 == System requirements
@@ -29,165 +37,102 @@ The rule this project produces is designed to be run on Windup 2.0 or later.
 
 This project requires Java 6.0 (Java SDK 1.6) or later and Maven 3.0 or later.
 
-[[install-windup-2.0]]
-== Install Windup 2.0
+[[install-windup]]
+== Install Windup
 
-If you have not yet done so, http://windup.github.io/windup/docs/latest/html/WindupRulesDevelopmentGuide.html#Install-Windup[download and intall
-Windup].
+If you have not installed Windup, follow the instructions here: https://github.com/windup/windup/wiki/Install[Download and Install Windup].
 
 [[configure-maven]]
 == Configure Maven
 
-If you have not yet done so, you must http://windup.github.io/windup/docs/latest/html/WindupRulesDevelopmentGuide.html#Install-and-Configure-Maven[install
-and configure Maven].
+If you have not yet installed and configured Maven, follow the instructions here: https://github.com/windup/windup/wiki/Install-and-Configure-Maven[Install and Configure Maven].
 
-[[start-windup]]
-== Start Windup
+An example `settings.xml` file is provided in the root directory of the quickstarts.
 
-. Open a terminal and navigate to the `WINDUP_HOME/bin` directory, where `WINDUP_HOME` denotes the path to the Windup installation.
-. Type the following command to start Windup:
-+
-----
-For Linux:    WINDUP_HOME/bin $ ./windup
-For Windows:  C:\WINDUP_HOME\bin> windup
-----
-. You are presented with the following prompt.
-+
-----
-Using Windup at /home/username/windup-distribution-2.0.0.Final
+[[build-the-quickstart-rule]]
+== Build the Quickstart Rule Add-on
 
- _       ___           __          
-| |     / (_)___  ____/ /_  ______ 
-| | /| / / / __ \/ __  / / / / __ \
-| |/ |/ / / / / / /_/ / /_/ / /_/ /
-|__/|__/_/_/ /_/\__,_/\__,_/ .___/ 
-                          /_/      
+Before Windup can use this rule, it must be compiled and added to the local Maven repository.
 
-JBoss Windup, Final [ 2.0.0.Final ] - JBoss, by Red Hat, Inc. [ http://windup.jboss.org ]
-
-[windup-distribution-2.0.0.Final]$ 
-----
-. This prompt is the Windup console where you enter Windup commands.
-
-[[add-the-quickstart-to-windup]]
-== Add the Quickstart to Windup
-
-* link:#build-and-install-the-quickstart-as-a-windup-add-on-in-one-simple-step[Build and Install the Quickstart as a Windup Add-on in One Simple Step]: 
-You can build and install the quickstart into the Maven repository and install it into Windup using one command.This is the fastest way to install a rule add-on into Windup.
-* link:#build-and-install-the-quickstart-as-a-windup-add-on-in-two-separate-steps[Build and Install the Quickstart as a Windup Add-on in Two Separate Steps]: 
-You can use a Maven command to build and install the quickstart into the Maven repository and a separate Windup command to install it into Windup.
-
-
-[[build-and-install-the-quickstart-as-a-windup-add-on-in-one-simple-step]]
-== Build and Install the Quickstart as a Windup Add-on in One Simple Step
-
-This is the easiest and fastest way to build the quickstart, install it into the local Maven repository, and install it into Windup as a rule add-on.
-
-. If you have not started Windup, follow the instructions above to link:#start-windup[Start Windup].
-. Build the quickstart and install the add-on in Windup using the `addon-build-and-install` command in the Windup console.
-* The command uses the following syntax, where `QUICKSTART_HOME` refers the root directory of this `ejb-beanutils-async` quickstart:
-+
-----
-addon-build-and-install --projectRoot QUICKSTART_HOME/rules-java  
-----
-+
-For example:
-+
-----
-addon-build-and-install --projectRoot /home/username/windup-quickstarts/ejb-beanutils-async/rules-java
-----
-+
-* You should see the following result.
-+
-----
-***SUCCESS*** Addon org.jboss.windup.quickstarts:ejb-beanutils-async:::2.0.0.Final was installed successfully.
-----
-. You can link:#test-the-quickstart-rule-add-on[Test the Quickstart Rule Add-on].
-
-[[build-and-install-the-quickstart-as-a-windup-add-on-in-two-separate-steps]]
-=== Build and Install the Quickstart as a Windup Add-on in Two Separate Steps
-
-[[install-the-quickstart-into-the-local-maven-repository]]
-==== Install the Quickstart into the Local Maven Repository
-
-Use these instructions to build the quickstart using the Maven command line and install it into your local Maven repository. This is useful if you need to use specific build options other than the default.
-
-. Open a command prompt and navigate to this quickstart's `rules-java/` directory.
-. Type this command to build and install the rule in your local Maven repository:
+. Open a command prompt and navigate to the `QUICKSTART_HOME/rules-java/` directory.
+. Type the following command to compile the quickstart and install it into the local Maven repository:
 +
 ----
 mvn clean install
 ----
-. The quickstart is now installed in the local Maven repository.
+. You should see the message `BUILD SUCCESS`
 
 
-[[install-the-quickstart-into-windup-as-an-add-on]]
-==== Install the Quickstart into Windup as an Add-on
+[[add-the-quickstart-to-windup]]
+== Add the Quickstart Rule to Windup
 
-After you build the quickstart and install it into the local Maven repository, use these instructions to install it into Windup as a rule add-on.
+You add the rule to Windup using its Maven GAV (groupId, artifactId, and version), which is defined in the quickstart POM file. 
+The command takes the following form:
+----
+WINDUP_HOME/bin/windup --install GROUP_ID:ARTIFACT_ID[,VERSION]
+----
 
-. If you have not started Windup, follow the instructions above to link:#start-windup[Start Windup].
-. Be sure to navigate to this quickstart's `rules-java/` directory.
-. Add the rule to Windup using the `addon-install` command in the Windup console.
-+
-* Type the following command at the Windup prompt:
-+
-----
-addon-install  
-----
-+
-* Windup responds with this prompt:
-+
-----
-Coordinate (The addon's "groupId:artifactId,version" coordinate):
-----
-+
-* The `groupId`, `artifactId`, and `version` are specified in the quickstart `pom.xml` file. At the prompt, enter the following response:
-+
-----
-org.jboss.windup.quickstarts:ejb-beanutils-async,2.0.0.Final
-----
-+
-* You should see the following result:
-+
-----
-***SUCCESS*** Addon org.jboss.windup.quickstarts:ejb-beanutils-async,2.0.0.Final was installed successfully.
-----
-. You can now link:#test-the-quickstart-rule-add-on[Test the Quickstart Rule Add-on].
+To find these values, open the  QUICKSTART_HOME/rules-java/pom.xml file. These values are located near the beginning of the file.
 
-[[test-the-quickstart-rule-add-on]]
-== Test the Quickstart Rule Add-on
+[source,xml]
+----
+<groupId>org.jboss.windup.quickstarts</groupId>
+<artifactId>windup-ejb-beanutils-async-rules-java</artifactId>
+<version>2.3.0-SNAPSHOT</version>
+----
 
-This quickstart provides example files containing the Seam `org.jboss.seam.annotations.async.Asynchronous` annotation to use when testing the quickstart. It is located in the quickstart's `test-files/src_example/` directory.
+Follow these steps to add the rule to Windup.
 
-. If you have not started Windup, follow the instructions above to link:#start-windup[Start Windup].
-. Test the Java-based rule add-on against the Seam application by running the `windup-migrate-app` command at the Windup prompt.
-+
-* The command uses this syntax:
+. Open a command prompt and navigate to the `WINDUP_HOME` directory.
+. Type the following command.
 +
 ----
-windup-migrate-app [--sourceMode true] --input INPUT_ARCHIVE_OR_FOLDER --output OUTPUT_REPORT_DIRECTORY --packages PACKAGE_1 PACKAGE_2 PACKAGE_N
+WINDUP_HOME/bin/windup --install org.jboss.windup.quickstarts:windup-ejb-beanutils-async-rules-java,2.3.0-SNAPSHOT
 ----
-+
-* To test this quickstart using the `test-files/src_example/` folder provided in the root directory of this quickstart, type the following
-command. Be sure to replace `QUICKSTART_HOME` with the fully qualified path to this quickstart.
+. At the following prompt, choose `Y`.
 +
 ----
-windup-migrate-app -sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output ~/windup-reports/ejbbeanutils-rulejava-report --packages org.windup
+Confirm installation [Y/n]? Y
 ----
+
+. You should see the following result.
 +
-* You should see the following result:
+----
+Installation completed successfully.
+----
+. Type `exit` to exit the Windup console.
+
+[[test-the-quickstart-rule]]
+== Test the Quickstart Rule
+
+This quickstart provides an example file containing the Seam `org.jboss.seam.annotations.async.Asynchronous` annotation to use when testing the quickstart. It is located in the quickstart's `test-files/src_example/` directory.
+
+The command to test the rule uses this syntax:
+
+----
+WINDUP_HOME/bin/windup [--sourceMode true] --input INPUT_ARCHIVE_OR_FOLDER --output OUTPUT_REPORT_DIRECTORY --packages PACKAGE_1 PACKAGE_2 PACKAGE_N
+----
+
+To test this quickstart using the `test-files/src_example/` folder provided in the root directory of this quickstart, follow these steps.
+
+. Open a command prompt and navigate to the `WINDUP_HOME` directory.
+. Type the following command to test the rule.
 +
 ----
-***SUCCESS*** Windup report created: USER_HOME/windup-reports/ejbbeanutils-java/index.html
-              Access it at this URL: file:///USER_HOME/windup-reports/ejbbeanutils-java/index.html
+WINDUP_HOME/bin/windup -sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output QUICKSTART_HOME/windup-reports/ --packages org.windup
 ----
-. For more information about how to run Windup, see: http://windup.github.io/windup/docs/latest/html/WindupUserGuide.html#Execute-Windup[Execute Windup].
+
+. You should see the following result:
++
+----
+***SUCCESS*** Windup report created: QUICKSTART_HOME/windup-reports/index.html
+              Access it at this URL: file:///QUICKSTART_HOME/windup-reports/index.html
+----
 
 [[review-the-quickstart-report]]
 == Review the Quickstart Report
 
-. Open the `USER_HOME/windup-reports/ejbbeanutils-java/index.html` file in a browser.
+. Open the `QUICKSTART_HOME/windup-reports/index.html` file in a browser.
 +
 You are presented with the following Overview page containing the application profiles.
 +
@@ -214,41 +159,13 @@ This is followed by the source code matching the condition with a detailed messa
 +
 image:../images/windup-report-detail-page.png[Detail page]
 
-[[remove-the-quickstart-rule-from-windup]]
-== Remove the Quickstart Rule from Windup
-
-Remove the rule from Windup using the `addon-remove` command.
-
-. Start Windup as described above.
-. Type the following command at the Windup prompt:
-+
-----
-[windup-distribution-2.0.0.Beta3]$ addon-remove  
-----
-. Windup responds with a list of installed add-ons.
-+
-----
-[0] - org.jboss.forge.furnace.container:cdi,2.12.1.Final
-[1] - org.jboss.windup.quickstarts:ejb-beanutils-async,2.0.0.Beta3
-+
-Installed addons (The installed addons in mutable addon repositories that may be removed): [0-1] 
-----
-. Choose the number of this rule add-on, in this case, type `1` and hit
-enter. Then leave it blank and hit enter to finish. You should see:
-+
-----
-***SUCCESS*** Removed addons: org.jboss.windup.quickstarts:ejb-beanutils-async,2.0.0.Final
-----
-. Type `exit` to leave Windup.
-
 [[run-the-arquillian-tests]]
 == Run the Arquillian Tests
 
 This quickstart provides Arquillian tests.
 
-. Open a command prompt and navigate to the root directory of this
-quickstart.
-. Type the following command to run the test goal:
+. Open a command prompt and navigate to the `QUICKSTART_HOME/rules-java/` directory.
+. Type the following command to run the test goal.
 +
 ----
 mvn clean test
@@ -260,4 +177,30 @@ Results :
 
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 ----
+
+[[remove-the-quickstart-rule-from-windup]]
+== Remove the Quickstart Rule from Windup
+
+You remove the rule from Windup using its Maven GAV (groupId, artifactId, and version).
+ 
+The command takes the following form:
+----
+WINDUP_HOME/bin/windup --remove GROUP_ID:ARTIFACT_ID[,VERSION]
+----
+
+Follow these steps to remove the rule to Windup.
+
+. Open a command prompt and navigate to the `WINDUP_HOME` directory.
+. Type the following command.
++
+----
+WINDUP_HOME/bin/windup --remove org.jboss.windup.quickstarts:windup-ejb-beanutils-async-rules-java,2.3.0-SNAPSHOT
+----
+
+. You should see the following response.
++
+----
+***SUCCESS*** Removed addons: org.jboss.windup.quickstarts:ejb-beanutils-async,2.3.0.Final
+----
+
 
