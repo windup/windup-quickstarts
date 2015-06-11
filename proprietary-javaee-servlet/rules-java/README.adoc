@@ -83,8 +83,8 @@ mvn clean install
 [[add-the-quickstart-to-windup]]
 == Add the Quickstart to Windup
 
-You add the rule to Windup using its Maven GAV (groupId, artifactId, and version), which is defined in the quickstart POM file. 
-The command takes the following form:
+The command to install the rule in Windup uses the Maven GAV (groupId, artifactId, and version) to locate the rule in the Maven repository. The command uses the following syntax.
+
 ----
 WINDUP_HOME/bin/windup --install GROUP_ID:ARTIFACT_ID[,VERSION]
 ----
