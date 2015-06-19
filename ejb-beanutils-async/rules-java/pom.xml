@@ -124,6 +124,16 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <argLine>-Xms512m -Xmx2048m -XX:MaxPermSize=768m -XX:ReservedCodeCacheSize=128m</argLine>
+                    <reuseForks>false</reuseForks>
+                </configuration>
+            </plugin>
+            
             <!-- This plugin makes this artifact a Forge addon. -->
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
