@@ -15,7 +15,6 @@ import org.jboss.windup.exec.WindupProcessor;
 import org.jboss.windup.exec.configuration.WindupConfiguration;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.GraphContextFactory;
-import org.jboss.windup.graph.model.resource.FileModel;
 import org.jboss.windup.reporting.model.ClassificationModel;
 import org.jboss.windup.reporting.model.InlineHintModel;
 import org.jboss.windup.reporting.service.ClassificationService;
@@ -53,13 +52,10 @@ public class ProprietaryServletAnnotationTest
     private GraphContextFactory contextFactory;
 
     @Test
-    public void testJavaHints()
+    public void testJavaHints() throws Exception
     {
         try (GraphContext context = contextFactory.create())
         {
-            FileModel fileModel = context.getFramed().addVertex(null, FileModel.class);
-            fileModel.setFilePath("src/test/resources/app/com/foo/MyProprietaryServletUsingClass.java");
-
             WindupJavaConfigurationModel javaCfg = WindupJavaConfigurationService.getJavaConfigurationModel(context);
             javaCfg.setSourceMode(true);
 
@@ -97,10 +93,6 @@ public class ProprietaryServletAnnotationTest
                 }
             }
             Assert.assertTrue(proprietaryHintFound);
-        }
-        catch (Exception ex)
-        {
-            throw new RuntimeException(ex.getMessage(), ex);
         }
     }
 

@@ -12,7 +12,7 @@ Source: https://github.com/windup/windup-quickstarts/ +
 In this example, the fictional "Proprietary" corporation provides its own proprietary servlet and filter annotations for dependency injection. 
 If your application uses them, they must be replaced with the standard Java EE 6 annotations. 
 
-These examples demonstrates how to create a Windup rule add-on that searches for these proprietary annotations and reports on them.
+These examples demonstrate how to create a Windup rule add-on that searches for these proprietary annotations and reports on them.
 
 The rule searches for the following annotations:
 
