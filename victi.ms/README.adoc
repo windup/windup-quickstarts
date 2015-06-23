@@ -53,8 +53,6 @@ If you have not installed Windup, follow the instructions here: https://github.c
 
 If you have not yet installed and configured Maven, follow the instructions here: https://github.com/windup/windup/wiki/Install-and-Configure-Maven[Install and Configure Maven].
 
-An example `settings.xml` file is provided in the root directory of the quickstarts.
-
 [[build-the-quickstart-rule]]
 == Build the Quickstart Rule Add-on
 
@@ -72,7 +70,7 @@ mvn clean install
 [[add-the-quickstart-to-windup]]
 == Add the Quickstart Rule to Windup
 
-You add the rule to Windup using its Maven GAV (groupId, artifactId, and version), which is defined in the quickstart POM file. 
+You add the rule to Windup using its Maven GAV (groupId, artifactId, and optional version), which is defined in the quickstart POM file. 
 The command takes the following form:
 ----
 WINDUP_HOME/bin/windup --install GROUP_ID:ARTIFACT_ID[,VERSION]
@@ -84,7 +82,7 @@ To find these values, open the  QUICKSTART_HOME/pom.xml file. These values are l
 ----
 <groupId>org.jboss.windup.quickstarts</groupId>
 <artifactId>windup-victims</artifactId>
-<version>2.3.0-SNAPSHOT</version>
+<version>2.3.0.Final</version>
 ----
 
 Follow these steps to add the rule to Windup.
@@ -93,7 +91,7 @@ Follow these steps to add the rule to Windup.
 . Type the following command.
 +
 ----
-WINDUP_HOME/bin/windup --install org.jboss.windup.quickstarts:windup-victims,2.3.0-SNAPSHOT
+WINDUP_HOME/bin/windup --install org.jboss.windup.quickstarts:windup-victims
 ----
 . At the following prompt, choose `Y`.
 +
@@ -132,7 +130,7 @@ Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
 [[remove-the-quickstart-rule-from-windup]]
 == Remove the Quickstart Rule from Windup
 
-You remove the rule from Windup using its Maven GAV (groupId, artifactId, and version).
+You remove the rule from Windup using its Maven GAV (groupId, artifactId, and optional version).
  
 The command takes the following form:
 ----
@@ -145,13 +143,13 @@ Follow these steps to remove the rule to Windup.
 . Type the following command.
 +
 ----
-WINDUP_HOME/bin/windup --remove org.jboss.windup.quickstarts:windup-victims,2.3.0-SNAPSHOT
+WINDUP_HOME/bin/windup --remove org.jboss.windup.quickstarts:windup-victims
 ----
 
 . You should see the following response.
 +
 ----
-***SUCCESS*** Removed addons: org.jboss.windup.quickstarts:windup-victims,2.3.0-SNAPSHOT
+***SUCCESS*** Removed addons: org.jboss.windup.quickstarts:windup-victims
 ----
 
 

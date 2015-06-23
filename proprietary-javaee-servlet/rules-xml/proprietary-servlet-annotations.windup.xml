@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://windup.jboss.org/schema/jboss-ruleset: http://windup.jboss.org/schema/windup-jboss-ruleset.xsd">
     <metadata>
-         <description>
+        <description>
             This ruleset looks for Java files that contain Proprietary Servlet annotations.
         </description>
         <dependencies>
@@ -28,7 +28,7 @@
                 <hint>
                     <message>See the javax.servlet.annotation JavaDoc for more information.</message>
                     <link href="http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"
-                        description="Java EE 6 Servlet annotation package summary" />
+                        title="Java EE 6 Servlet annotation package summary" />
                 </hint>
             </perform>
         </rule>
@@ -45,7 +45,7 @@
                 <hint>
                     <message>See the javax.servlet.annotation JavaDoc for more information."</message>
                     <link href="http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"
-                        description="Java EE 6 Servlet annotation package summary" />
+                        title="Java EE 6 Servlet annotation package summary" />
                 </hint>
             </perform>
         </rule>
@@ -62,7 +62,7 @@
                 <hint>
                     <message>See the javax.servlet.annotation JavaDoc for more information.</message>
                     <link href="http://docs.oracle.com/javaee/6/api/javax/servlet/annotation/package-summary.html"
-                        description="Java EE 6 Servlet annotation package summary" />
+                        title="Java EE 6 Servlet annotation package summary" />
                 </hint>
             </perform>
         </rule>

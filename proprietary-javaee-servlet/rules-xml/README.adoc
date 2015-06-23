@@ -65,7 +65,7 @@ This quickstart provides an example source file containing Proprietary annotatio
 The command to test the rule uses this syntax:
 
 ----
-windup-migrate-app [--sourceMode true] --input INPUT_ARCHIVE_OR_FOLDER --output OUTPUT_REPORT_DIRECTORY --packages PACKAGE_1 PACKAGE_2 PACKAGE_N
+windup-migrate-app [--sourceMode] --input INPUT_ARCHIVE_OR_FOLDER --output OUTPUT_REPORT_DIRECTORY --packages PACKAGE_1 PACKAGE_2 PACKAGE_N
 ----
 
 To test this quickstart using the `test-files/src_example/` folder provided in the root directory of this quickstart, follow these steps.
@@ -74,7 +74,7 @@ To test this quickstart using the `test-files/src_example/` folder provided in t
 . Type the following command to test the rule.
 +
 ----
-WINDUP_HOME/bin/windup -sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output QUICKSTART_HOME/windup-reports/ --packages org.windup
+WINDUP_HOME/bin/windup --sourceMode --input QUICKSTART_HOME/test-files/src_example/ --output QUICKSTART_HOME/windup-reports/ --packages org.windup
 ----
 
 . You should see the following result:
@@ -92,7 +92,7 @@ browser.
 +
 You are presented with the following index page.
 +
-image:../images/windup-report-index-page.png[Index page] +
+image:../images/proprietary-javaee-servlet-xml-rule-overview.png[Overview page] +
 . Click on the `src_example` link.
 +
 This opens a detail page showing a total of 12 story points and the list the files containing the proprietary annotations along with the warning messages, links to obtain more information, and the estimated story points for each item.
@@ -111,12 +111,17 @@ _org.windup.example.servlet.ExampleProprietaryServlet_ show 5 story points
 1 points for the @ProprietaryServlet reference  
 ----
 +
-image:../images/windup-report-xml-detail-page.png[Detail page] +
+image:../images/proprietary-javaee-servlet-xml-rule-applicationreport.png[Application Report page] +
 . Click on the file links to drill down and find more information.
 +
 The *Information* section reports the proprietary annotations and provides a link to the standard Java EE servlet annotation documentation.
 +
-image:../images/windup-report-xml-file-page.png[File detail page] +
+image:../images/proprietary-javaee-servlet-xml-rule-sourcereport.png[Source Report page] +
++
+The *Hint* text appears at the appropriate locations within the code.
++
+image:../images/proprietary-javaee-servlet-xml-rule-sourcereportdetail.png[Source Report Detail page] +
+
 . Explore the contents of the `windup-reports-xml` folder. For example, the `windup-reports-xml/reports/ruleproviders.html` page lists the details of the rule provider executions.
 
 [[remove-the-quickstart-from-windup]]

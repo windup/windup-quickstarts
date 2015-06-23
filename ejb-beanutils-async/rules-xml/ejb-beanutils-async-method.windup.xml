@@ -4,11 +4,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://windup.jboss.org/schema/jboss-ruleset: http://windup.jboss.org/schema/windup-jboss-ruleset.xsd">
     <metadata>
-        <!--  
         <description>
             This ruleset reports on the use of the Seam Asynchronous annotation in remote EJBs.
         </description>
-         -->
         <dependencies>
             <addon id="org.jboss.windup.rules,windup-rules-java,2.0.0.Final"/>
         </dependencies>
