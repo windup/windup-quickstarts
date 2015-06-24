@@ -16,7 +16,7 @@ The following is the list of the currently available quickstarts.
 
 . link:ejb-beanutils-async/README.adoc[ejb-beanutils-async]
 . link:proprietary-javaee-servlet/README.adoc[proprietary-javaee-servlet]
-. link:victi.ms/README.adoc[visti.ms]
+. link:victi.ms/README.adoc[victi.ms]
 
 
 [[system-requirements]]
