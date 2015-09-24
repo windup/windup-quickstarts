@@ -8,11 +8,11 @@
             This ruleset reports on the use of the Seam Asynchronous annotation in remote EJBs.
         </description>
         <dependencies>
-            <addon id="org.jboss.windup.rules,windup-rules-java,2.0.0.Final"/>
+            <addon id="org.jboss.windup.rules,windup-rules-java,2.3.0.Final"/>
         </dependencies>
         <sourceTechnology id="eap" versionRange="(4,5]"/>
         <targetTechnology id="eap" versionRange="[6,)"/>
-        <tag>reviewed-2015-05-27</tag>
+        <tag>reviewed-2015-09-24</tag>
     </metadata>
     <rules>
         <rule id="ejb-beanutils-async-xml-example_001">
@@ -26,7 +26,7 @@
             </when>
             <perform>
                 <iteration over="asyncUsingSessionBeans">
-                    <hint effort="8">
+                    <hint title="Used Seam @Asynchronous annotation" effort="8">
                         <message>XML Rule Example: {remoteclass} uses the Seam @Asynchronous annotation. It is not compatible with JBoss EAP Remote EJBs and should be replaced with the standard Java EE 6 @Asynchronous annotation.</message>
                         <link href="http://docs.oracle.com/javaee/6/tutorial/doc/gkkqg.html" title="Using Java EE 6 @Asynchronous." />
                     </hint>
