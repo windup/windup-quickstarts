@@ -50,7 +50,7 @@ The Windup JavaDoc is located here: http://windup.github.io/windup/docs/javadoc/
 [[system-requirements]]
 == System requirements
 
-The rule this project produces is designed to be run on Windup 2.0 or later.
+The rule this project produces is designed to be run on Windup 2.x or later.
 
 This project requires Java 7.0 (Java SDK 1.7) or later and Maven 3.0 or later.
 
