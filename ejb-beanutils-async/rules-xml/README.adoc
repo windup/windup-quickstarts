@@ -16,8 +16,17 @@ This XML rule tests for use of `org.jboss.seam.annotations.async.Asynchronous` a
 
 These instructions use the following replaceable variables. 
 
-* `WINDUP-HOME`: Replace this variable with the fully qualified path to your Windup installation.
 * `QUICKSTART_HOME`: Replace this variable with the fully qualified path to the root directory of this quickstart.
+* `WINDUP_HOME`: Replace this variable with the fully qualified path to your Windup installation.
+* `WINDUP_RULES_DIR`: Replace this variable with the fully qualified path to your `${user.home}/.windup/rules/` directory. This directory is created by Windup the first time it is executed and contains rules, add-ons, and the Windup log.
++
+[options="nowrap"]
+----
+For Linux or Mac: ~/.windup/rules/
+For Windows: "\Documents and Settings\USER_NAME\.windup\rules\" or "\Users\USER_NAME\.windup\rules\"
+----
+
+A {ProductShortName} rule is installed simply by copying the XML rule to the `WINDUP_RULES_DIR` folder. 
 
 
 [[review-the-quickstart-code]]
@@ -33,7 +42,7 @@ condition, looks for the referenced `org.jboss.seam.annotations.async.Asynchrono
 * When the condition is met, the `<perform>` action provides a hint message along with a link to more information and assigns it a level of
 effort of "8".
 
-The Windup JavaDoc is located here: http://windup.github.io/windup/docs/javadoc/latest/
+The Windup JavaDoc is located here: http://windup.github.io/windup/docs/latest/javadoc/
 
 The Windup rules schema is located here: https://github.com/windup/windup/blob/master/config-xml/rule-schema.xsd
 
@@ -51,8 +60,13 @@ If you have not installed Windup, follow the instructions here: https://github.c
 [[add-the-quickstart-to-windup]]
 == Add the Quickstart to Windup
 
-To install the rule in Windup, simply copy the `QUICKSTART_HOME/rules-xml/ejb-beans-utils-async-usage-rule-provider.windup.xml`
-and `QUICKSTART_HOME/rules-xml/ejb-beanutils-async-method.windup.xml` files into the `WINDUP_HOME/rules` directory.
+To install the rule in Windup, simply copy the `QUICKSTART_HOME/rules-xml/ejb-beanutils-async-method.windup.xml` file into the `WINDUP_RULES_DIR` directory.
+
+[options="nowrap"]
+----
+cd QUICKSTART_HOME/rules-xml
+cp ejb-beanutils-async-method.windup.xml ~/.windup/rules/
+----
 
 [[test-the-quickstart-rule]]
 == Test the Quickstart Rule
@@ -62,7 +76,7 @@ This quickstart provides example files containing the Seam `org.jboss.seam.annot
 The command to test the rule uses this syntax:
 
 ----
-windup-migrate-app [--sourceMode true] --input INPUT_ARCHIVE_OR_FOLDER --output OUTPUT_REPORT_DIRECTORY --packages PACKAGE_1 PACKAGE_2 PACKAGE_N
+WINDUP_HOME/bin/windup [--sourceMode] --input INPUT_ARCHIVE_OR_FOLDER --output OUTPUT_REPORT_DIRECTORY --target TARGET_TECHNOLOGY --packages PACKAGE_1 PACKAGE_2 PACKAGE_N
 ----
 
 To test this quickstart using the `test-files/src_example/` folder provided in the root directory of this quickstart, follow these steps.
@@ -71,29 +85,30 @@ To test this quickstart using the `test-files/src_example/` folder provided in t
 . Type the following command to test the rule.
 +
 ----
-WINDUP_HOME/bin/windup -sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output QUICKSTART_HOME/windup-reports/ --packages org.windup
+bin/windup --sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --output QUICKSTART_HOME/windup-reports-xml/ --target eap --packages org.windup
 ----
 . You should see the following result:
 +
 ----
-***SUCCESS*** Windup report created: QUICKSTART_HOME/windup-reports/index.html
-              Access it at this URL: file:///QUICKSTART_HOME/windup-reports/index.html
+***SUCCESS*** Windup report created: QUICKSTART_HOME/windup-reports-xml/index.html
+              Access it at this URL: file:///QUICKSTART_HOME/windup-reports-xml/index.html
 ----
 
 [[review-the-quickstart-report]]
 == Review the Quickstart Report
 
-. Open the `QUICKSTART_HOME/windup-reports/index.html` file in a browser.
+. Open the link to the `QUICKSTART_HOME/windup-reports-xml/index.html` file in a browser.
 +
 You are presented with the following index page.
 +
-image:../images/ejb-beanutils-async-xml-rule-overview.png[Overview page] +
+====
+*Overview*
+image:../images/ejb-beanutils-async-xml-rule-overview.png[Overview page]
+====
 . Click on the `src_example` link.
 +
-This opens an overview page showing a total of 8 story points and the list of the relevant files along with the warning messages, links to
+This opens an overview page showing a total of 8 story points and the list of the relevant files along with warning messages. links to
 obtain more information, and the estimated story points for each item.
-+
-_src/resources/sample-ejb-jar.xml_ shows 0 story points
 +
 _org.windup.examples.ejb.BeanUtilsAsyncUsingRemote_ show 8 story points
 +
@@ -101,18 +116,24 @@ _org.windup.examples.ejb.BeanUtilsAsyncUsingRemote_ show 8 story points
 8 points for References annotation 'org.jboss.seam.annotations.async.Asynchronous'
 --------------------------------------------------------------------------------------
 +
+====
+*Application Report*
 image:../images/ejb-beanutils-async-xml-rule-applicationreport.png[Application Report page] +
-. Click on the file links to drill down and find more information.
+====
+. Click on the file link to drill down for more information.
 +
 The *Information* section reports on the matching conditions and provides a link to the standard Java EE servlet annotation documentation.
 +
 This is followed by the source code matching the condition with a detailed message desription.
 +
+====
+*Source report: src_example/src/main/java/org/windup/examples/ejb/BeanUtilsAsyncUsingRemote.java*
 image:../images/ejb-beanutils-async-xml-rule-sourcereport.png[Source Report page]
+====
 
 [[remove-the-quickstart-rule-from-windup]]
 == Remove the Quickstart Rule from Windup
 
-To remove the rule from Windup, simply delete the `WINDUP_HOME/rules/ejb-beanutils-async-method.windup.xml` file from the `WINDUP_HOME/rules` directory.
+To remove the rule from Windup, simply delete the `ejb-beanutils-async-method.windup.xml` file from the `WINDUP_RULES_DIR` directory.
 
 

@@ -21,7 +21,7 @@ This Java-based Windup rule add-on searches for the following annotations:
 
 These instructions use the following replaceable variables. 
 
-* `WINDUP-HOME`: Replace this variable with the fully qualified path to your Windup installation.
+* `WINDUP_HOME`: Replace this variable with the fully qualified path to your Windup installation.
 * `QUICKSTART_HOME`: Replace this variable with the fully qualified path to the root directory of this quickstart.
 
 [[review-the-quickstart-code]]
@@ -45,7 +45,7 @@ The _ProprietaryServletAnnotationRuleProvider_ class extends _RuleProvider_ and 
 ** Provides a warning text telling the user to replace the proprietary @ProprietaryFilter annotation with the Java EE 6 standard @WebFilter annotation.
 ** Assigns 3 story points of effort to this task.
 
-The Windup JavaDoc is located here: http://windup.github.io/windup/docs/javadoc/latest/
+The Windup JavaDoc is located here: http://windup.github.io/windup/docs/latest/javadoc/
 
 [[system-requirements]]
 == System requirements
@@ -95,7 +95,7 @@ To find these values, open the  QUICKSTART_HOME/rules-java/pom.xml file. These v
 ----
 <groupId>org.jboss.windup.quickstarts</groupId>
 <artifactId>windup-proprietary-javaee-servlet-rules-java</artifactId>
-<version>2.3.0.Final</version>
+<version>2.4.0.Final</version>
 ----
 
 Follow these steps to add the rule to Windup.
@@ -104,7 +104,7 @@ Follow these steps to add the rule to Windup.
 . Type the following command, which does not include the optional version.
 +
 ----
-WINDUP_HOME/bin/windup --install org.jboss.windup.quickstarts:windup-proprietary-javaee-servlet-rules-java
+bin/windup --install org.jboss.windup.quickstarts:windup-proprietary-javaee-servlet-rules-java
 ----
 
 . At the following prompt, choose `Y`.
@@ -138,7 +138,7 @@ To test this quickstart using the `test-files/src_example/` folder provided in t
 . Type the following command to test the rule.
 +
 ----
-WINDUP_HOME/bin/windup --sourceMode --input QUICKSTART_HOME/test-files/src_example/ --output QUICKSTART_HOME/windup-reports/ --packages org.windup
+bin/windup --sourceMode --input QUICKSTART_HOME/test-files/src_example/ --output QUICKSTART_HOME/windup-reports/ --packages org.windup
 ----
 
 . You should see the following result:
@@ -222,7 +222,7 @@ Follow these steps to remove the rule to Windup.
 . Type the following command.
 +
 ----
-WINDUP_HOME/bin/windup --remove org.jboss.windup.quickstarts:windup-proprietary-javaee-servlet
+bin/windup --remove org.jboss.windup.quickstarts:windup-proprietary-javaee-servlet
 ----
 
 . You should see the following response.

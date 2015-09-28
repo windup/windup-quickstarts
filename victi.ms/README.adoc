@@ -20,7 +20,7 @@ For more information, see:
 
 These instructions use the following replaceable variables. 
 
-* `WINDUP-HOME`: Replace this variable with the fully qualified path to your Windup installation.
+* `WINDUP_HOME`: Replace this variable with the fully qualified path to your Windup installation.
 * `QUICKSTART_HOME`: Replace this variable with the fully qualified path to the root directory of this quickstart.
 
 
@@ -34,7 +34,7 @@ The `victi.ms` quickstart contains the following rules.
 * `UpdateVictimsDbRules` extends `AbstractRuleProvider` and implements Victi.ms rule related to database update and archive hash comparisons.
 * `VictimsReportRules` extends `AbstractRuleProvider` and creates a report for all the ignored files, including the regexes they were matched against. 
 
-The Windup JavaDoc is located here: http://windup.github.io/windup/docs/javadoc/latest/
+The Windup JavaDoc is located here: http://windup.github.io/windup/docs/latest/javadoc/
 
 [[system-requirements]]
 == System requirements
@@ -91,7 +91,7 @@ Follow these steps to add the rule to Windup.
 . Type the following command.
 +
 ----
-WINDUP_HOME/bin/windup --install org.jboss.windup.quickstarts:windup-victims
+bin/windup --install org.jboss.windup.quickstarts:windup-victims
 ----
 . At the following prompt, choose `Y`.
 +
@@ -143,7 +143,7 @@ Follow these steps to remove the rule to Windup.
 . Type the following command.
 +
 ----
-WINDUP_HOME/bin/windup --remove org.jboss.windup.quickstarts:windup-victims
+bin/windup --remove org.jboss.windup.quickstarts:windup-victims
 ----
 
 . You should see the following response.

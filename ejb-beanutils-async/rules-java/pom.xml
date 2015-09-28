@@ -5,7 +5,7 @@
 
     <groupId>org.jboss.windup.quickstarts</groupId>
     <artifactId>windup-ejb-beanutils-async-rules-java</artifactId>
-    <version>2.3.0.Final</version>
+    <version>2.4.0.Final</version>
     <name>Windup Quickstart: ejb-beanutils-async-rules-java</name>
     <description>Windup Quickstart: Rule That Detects Seam Asynchronous Annotation in Remote EJBs</description>
 
@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
-        <version.windup>2.3.0.Final</version.windup>
+        <version.windup>2.4.0.CR1</version.windup>
     </properties>
 
     <dependencyManagement>
