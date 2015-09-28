@@ -19,6 +19,7 @@ import org.jboss.windup.reporting.model.ClassificationModel;
 import org.jboss.windup.reporting.model.InlineHintModel;
 import org.jboss.windup.reporting.service.ClassificationService;
 import org.jboss.windup.reporting.service.InlineHintService;
+import org.jboss.windup.rules.apps.java.config.SourceModeOption;
 import org.jboss.windup.rules.apps.java.model.WindupJavaConfigurationModel;
 import org.jboss.windup.rules.apps.java.service.WindupJavaConfigurationService;
 import org.junit.Assert;
@@ -64,6 +65,7 @@ public class ProprietaryServletAnnotationTest
             wc.setRuleProviderFilter(new RuleProviderWithDependenciesPredicate(ProprietaryServletAnnotationRuleProvider.class));
             wc.setInputPath(Paths.get("src/test/resources/app/"));
             wc.setOutputDirectory(Paths.get("target/WindupReport"));
+            wc.setOptionValue(SourceModeOption.NAME, true);
 
             processor.execute(wc);
 

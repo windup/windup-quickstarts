@@ -17,6 +17,7 @@ import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.GraphContextFactory;
 import org.jboss.windup.reporting.model.InlineHintModel;
 import org.jboss.windup.reporting.service.InlineHintService;
+import org.jboss.windup.rules.apps.java.config.SourceModeOption;
 import org.jboss.windup.rules.apps.java.model.WindupJavaConfigurationModel;
 import org.jboss.windup.rules.apps.java.service.WindupJavaConfigurationService;
 import org.junit.Assert;
@@ -64,6 +65,7 @@ public class EjbBeanUtilsAsyncUsageRuleProviderTest
             wc.setInputPath(Paths.get("../test-files/src_example"));
             wc.addDefaultUserRulesDirectory(Paths.get("../rules-xml/"));
             wc.setOutputDirectory(outPath);
+            wc.setOptionValue(SourceModeOption.NAME, true);
 
             processor.execute(wc);
 
