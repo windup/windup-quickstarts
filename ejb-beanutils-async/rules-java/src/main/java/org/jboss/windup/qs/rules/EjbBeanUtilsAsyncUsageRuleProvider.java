@@ -9,6 +9,9 @@ import org.jboss.windup.rules.apps.java.condition.JavaClass;
 import org.ocpsoft.rewrite.config.Configuration;
 import org.ocpsoft.rewrite.config.ConfigurationBuilder;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import org.jboss.windup.ast.java.data.TypeReferenceLocation;
 import org.jboss.windup.config.AbstractRuleProvider;
 import org.jboss.windup.rules.apps.xml.condition.XmlFile;
@@ -44,6 +47,7 @@ public class EjbBeanUtilsAsyncUsageRuleProvider extends AbstractRuleProvider
                 Hint.withText("{remoteclass} uses the Seam @Asynchronous annotation. It is not compatible with JBoss EAP Remote EJBs and should be replaced with the standard Java EE 6 @Asynchronous annotation.")
                     .with(Link.to("Using Java EE 6 @Asynchronous.", "http://docs.oracle.com/javaee/6/tutorial/doc/gkkqg.html"))
                     .withEffort(8)
+                    .withTags(new HashSet<String>( Arrays.asList("seam") ))
             ).endIteration()
         );
     }
