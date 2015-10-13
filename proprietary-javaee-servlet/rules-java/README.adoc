@@ -129,7 +129,7 @@ It is located in this quickstart's `test-files/src_example/` directory.
 The command to test the rule uses this syntax:
 
 ----
-WINDUP_HOME/bin/windup [--sourceMode] --input INPUT_ARCHIVE_OR_FOLDER --output OUTPUT_REPORT_DIRECTORY --packages PACKAGE_1 PACKAGE_2 PACKAGE_N
+WINDUP_HOME/bin/windup [--sourceMode] --input INPUT_ARCHIVE_OR_FOLDER --output OUTPUT_REPORT_DIRECTORY --target TARGET_TECHNOLOGY --packages PACKAGE_1 PACKAGE_2 PACKAGE_N
 ----
 
 To test this quickstart using the `test-files/src_example/` folder provided in the root directory of this quickstart, follow these steps.
@@ -138,7 +138,7 @@ To test this quickstart using the `test-files/src_example/` folder provided in t
 . Type the following command to test the rule.
 +
 ----
-bin/windup --sourceMode --input QUICKSTART_HOME/test-files/src_example/ --output QUICKSTART_HOME/windup-reports/ --packages org.windup
+bin/windup --sourceMode --input QUICKSTART_HOME/test-files/src_example/ --output QUICKSTART_HOME/windup-reports/ --target eap --packages org.windup
 ----
 
 . You should see the following result:
