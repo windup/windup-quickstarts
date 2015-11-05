@@ -75,7 +75,7 @@ public class VictimsRulesetTest
             wc.setOptionValue(ScanPackagesOption.NAME, Collections.singletonList("dontscanpackages"));
             // Only run Victims Rules and those it needs.
             wc.setRuleProviderFilter(new RuleProviderWithDependenciesPredicate(CheckArchivesWithVictimsRules.class));
-            wc.setInputPath(Paths.get("src/test/resources/commons-fileupload-1.0-beta-1.jar"));
+            wc.addInputPath(Paths.get("src/test/resources/commons-fileupload-1.0-beta-1.jar"));
             wc.setOutputDirectory(Paths.get("target/WindupReport"));
 
             processor.execute(wc);

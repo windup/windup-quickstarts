@@ -7,6 +7,7 @@ import org.jboss.windup.config.operation.iteration.AbstractIterationOperation;
 import org.jboss.windup.config.phase.ReportGenerationPhase;
 import org.jboss.windup.config.query.Query;
 import org.jboss.windup.graph.GraphContext;
+import org.jboss.windup.graph.model.resource.FileModel;
 import org.jboss.windup.graph.model.ProjectModel;
 import org.jboss.windup.graph.model.WindupConfigurationModel;
 import org.jboss.windup.graph.service.GraphService;
@@ -45,8 +46,11 @@ public class VictimsReportRules extends AbstractRuleProvider
             public void perform(GraphRewrite event, EvaluationContext context, WindupJavaConfigurationModel payload)
             {
                 WindupConfigurationModel configurationModel = WindupConfigurationService.getConfigurationModel(event.getGraphContext());
-                ProjectModel projectModel = configurationModel.getInputPath().getProjectModel();
-                createReport(event.getGraphContext(), payload, projectModel);
+                for (FileModel inputPath : configurationModel.getInputPaths())
+                {
+                    ProjectModel projectModel = inputPath.getProjectModel();
+                    createReport(event.getGraphContext(), payload, projectModel);
+                }
             }
 
             @Override

@@ -63,7 +63,7 @@ public class ProprietaryServletAnnotationTest
             WindupConfiguration wc = new WindupConfiguration();
             wc.setGraphContext(context);
             wc.setRuleProviderFilter(new RuleProviderWithDependenciesPredicate(ProprietaryServletAnnotationRuleProvider.class));
-            wc.setInputPath(Paths.get("src/test/resources/app/"));
+            wc.addInputPath(Paths.get("src/test/resources/app/"));
             wc.setOutputDirectory(Paths.get("target/WindupReport"));
             wc.setOptionValue(SourceModeOption.NAME, true);
 
