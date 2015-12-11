@@ -82,7 +82,6 @@ public class VictimsReportRules extends AbstractRuleProvider
         reportM.setProjectModel(rootProjectModel);
         reportM.setTemplatePath(TEMPLATE_REPORT);
         reportM.setTemplateType(TemplateType.FREEMARKER);
-        reportM.setDisplayInApplicationList(false);
 
         // Get all jars
         GraphService<AffectedJarModel> jarService = new GraphService<AffectedJarModel>(graphCtx, AffectedJarModel.class);
