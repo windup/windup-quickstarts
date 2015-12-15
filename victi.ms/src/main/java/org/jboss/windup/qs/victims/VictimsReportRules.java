@@ -78,7 +78,6 @@ public class VictimsReportRules extends AbstractRuleProvider
         reportM.setReportPriority(1000);
         reportM.setReportName(TITLE);
         reportM.setMainApplicationReport(false);
-        reportM.setDisplayInApplicationReportIndex(true);
         reportM.setProjectModel(rootProjectModel);
         reportM.setTemplatePath(TEMPLATE_REPORT);
         reportM.setTemplateType(TemplateType.FREEMARKER);
