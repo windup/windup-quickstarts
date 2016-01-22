@@ -10,7 +10,7 @@ https://github.com/windup/windup-quickstarts/ +
 == What is it?
 
 The Seam `@Asynchronous` annotation is not compatible with remote EJBs in Red Hat JBoss Enterprise Application Platform. 
-This Java rule add-on tests for for use of `org.jboss.seam.annotations.async.Asynchronous` annotations in remote EJBs and reports that it must be replaced with the standard Java EE 6 `@Asynchronous` annotation.
+This Java rule add-on tests for use of `org.jboss.seam.annotations.async.Asynchronous` annotations in remote EJBs and reports that it must be replaced with the standard Java EE 6 `@Asynchronous` annotation.
 
 These instructions use the following replaceable variables. 
 
