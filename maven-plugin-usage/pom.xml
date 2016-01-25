@@ -28,8 +28,8 @@
 
    <properties>
       <version.forge>2.20.1.Final</version.forge>
-      <version.furnace>2.22.7.Final</version.furnace>
-      <version.windup>2.5.0.CR1</version.windup>
+      <version.windup>2.5.0-SNAPSHOT</version.windup> <!-- 2.5.0.CR1 -->
+      <version.windup-maven-plugin>1.0-SNAPSHOT</version.windup-maven-plugin>
    </properties>
 
    <dependencyManagement>
@@ -37,7 +37,7 @@
          <dependency>
             <groupId>org.jboss.windup</groupId>
             <artifactId>windup-bom</artifactId>
-            <version>${project.version}</version>
+            <version>${version.windup}</version>
             <scope>import</scope>
             <type>pom</type>
          </dependency>
@@ -65,63 +65,33 @@
    <build>
       <plugins>
          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
+            <groupId>org.jboss.windup.plugin</groupId>
+            <artifactId>windup-maven-plugin</artifactId>
+            <version>${version.windup-maven-plugin}</version>
             <executions>
                <execution>
-                  <id>unpack</id>
+                  <id>run-windup</id>
                   <phase>package</phase>
                   <goals>
-                     <goal>unpack</goal>
-                  </goals>
-                  <configuration>
-                     <artifactItems>
-                        <artifactItem>
-                           <groupId>org.jboss.windup</groupId>
-                           <artifactId>windup-distribution</artifactId>
-                           <version>${version.windup}</version>
-                           <classifier>offline</classifier>
-                           <type>zip</type>
-                           <overWrite>true</overWrite>
-                           <outputDirectory>${project.build.directory}</outputDirectory>
-                        </artifactItem>
-                     </artifactItems>
-                  </configuration>
-               </execution>
-            </executions>
-         </plugin>
-         <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <executions>
-               <execution>
-                  <id>launch-windup</id>
-                  <phase>package</phase>
-                  <goals>
-                     <goal>exec</goal>
+                      <goal>windup</goal>
                   </goals>
                </execution>
             </executions>
             <configuration>
-               <executable>${project.build.directory}/windup-distribution-${version.windup}/bin/windup</executable>
-               <arguments>
-                  <argument>--batchMode</argument>
-                  <argument>--sourceMode</argument>
-                  <argument>--userRulesDirectory</argument>
-                  <argument>${basedir}/custom-rules</argument>
-                  <argument>--input</argument>
-                  <argument>${project.basedir}/src/main/java</argument>
-                  <argument>--output</argument>
-                  <argument>${project.build.directory}/reports</argument>
-                  <argument>--target</argument>
-                  <argument>eap</argument>
-               </arguments>
-               <systemProperties>
-                  <systemProperty>
-                     <key>windup.home</key>
-                     <value>${project.build.directory}/windup-distribution-${version.windup}</value>
-                  </systemProperty>
-               </systemProperties>
+                <output>${project.build.directory}/reports</output>
+                <!-- <input>${project.build.directory}</input> -->
+                <input>${project.basedir}/src/main/java</input>
+                <packages></packages>
+                <offline>true</offline>
+                <overwrite>true</overwrite>
+                <userIgnorePath>myIgnoredPaths.txt</userIgnorePath>
+                <userRulesDirectory>${basedir}/custom-rules</userRulesDirectory>
+                <windupVersion>${version.windup}</windupVersion>
+                <forgeVersion>${version.forge}</forgeVersion>
+
+                <batchMode>true</batchMode>
+                <sourceMode>true</sourceMode>
+                <target>eap</target>
             </configuration>
          </plugin>
       </plugins>
