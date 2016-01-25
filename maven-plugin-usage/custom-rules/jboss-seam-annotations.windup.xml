@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset id="proprietary-servlet-annotations"
+    xmlns="http://windup.jboss.org/schema/jboss-ruleset" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://windup.jboss.org/schema/jboss-ruleset: http://windup.jboss.org/schema/windup-jboss-ruleset.xsd">
+    <metadata>
+        <description>
+            This ruleset looks for Java files that contain JBoss Seam annotation.
+        </description>
+        <dependencies>
+            <addon id="org.jboss.windup.rules,windup-rules-java,2.4.1.Final"/>
+        </dependencies>
+        <sourceTechnology id="jboss" versionRange="[2]]"/>
+        <targetTechnology id="eap" versionRange="[6,)"/>
+        <tag>reviewed-2016-01-24</tag>
+    </metadata>
+    <rules>
+        <rule id="jboss-seam-annotations-00001">
+            <when>
+                <javaclass references="org.jboss.seam.{*}">
+                    <location>IMPORT</location>
+                </javaclass>
+            </when>
+            <perform>  
+                <classification title="JBoss Seam" effort="0" severity="mandatory"/>
+                <hint title="JBoss Seam class usage" effort="3" severity="mandatory">
+                    <message>Read the general JBoss Seam 2 to Java EE 6 migration wiki.</message>
+                    <link href="https://github.com/mareknovotny/seam-migration/wiki"
+                        title="General Seam 2 to Java EE 6 guide" />
+                 </hint>
+            </perform>
+        </rule>    
+        <rule id="jboss-seam-annotations-01000">
+            <when>
+                <javaclass references="org.jboss.seam.annotations.async.Asynchronous" as="default">
+                    <location>ANNOTATION</location>
+                </javaclass>
+            </when>
+            <perform>  
+                <hint title="JBoss Seam Annotation" effort="1" severity="mandatory">
+                    <message>Replace the JBoss Seam @Asynchronous annotation with the Java EE 6 standard @javax.ejb.Asynchronous annotation.</message>
+                    <link href="http://docs.oracle.com/javaee/6/api/javax/ejb/Asynchronous.html"
+                        title="Java EE 6 Asynchronous annotation" />
+                 </hint>
+            </perform>
+        </rule>
+    </rules>
+</ruleset>

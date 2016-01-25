@@ -1,0 +1,146 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>org.jboss.windup.quickstarts</groupId>
+      <artifactId>windup-quickstarts-root</artifactId>
+      <version>2.5.0-SNAPSHOT</version>
+   </parent>
+   <artifactId>maven-plugin-usage</artifactId>
+   <description>This example shows how to use Windup for generating reports natively in Maven project</description>
+
+   <name>Windup Quickstart: windup-maven-plugin</name>
+
+   <licenses>
+      <license>
+         <name>Apache License, Version 2.0</name>
+         <distribution>repo</distribution>
+         <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+      </license>
+   </licenses>
+
+   <scm>
+      <tag>master</tag>
+      <connection>scm:git:https://github.com/windup/windup-quickstarts.git</connection>
+      <developerConnection>scm:git:git@github.com:windup/windup-quickstarts.git</developerConnection>
+      <url>http://github.com/windup/windup-quickstarts</url>
+   </scm>
+
+   <properties>
+      <version.forge>2.20.1.Final</version.forge>
+      <version.furnace>2.22.7.Final</version.furnace>
+      <version.windup>2.5.0.CR1</version.windup>
+   </properties>
+
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <groupId>org.jboss.windup</groupId>
+            <artifactId>windup-bom</artifactId>
+            <version>${project.version}</version>
+            <scope>import</scope>
+            <type>pom</type>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
+
+   <dependencies>
+
+      <!-- Project dependencies for building application -->
+      <dependency>
+         <groupId>org.jboss.spec.javax.ejb</groupId>
+         <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+         <version>1.0.0.Final</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jboss.seam</groupId>
+         <artifactId>jboss-seam</artifactId>
+         <version>2.3.1.Final</version>
+         <type>ejb</type>
+      </dependency>
+
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>unpack</id>
+                  <phase>package</phase>
+                  <goals>
+                     <goal>unpack</goal>
+                  </goals>
+                  <configuration>
+                     <artifactItems>
+                        <artifactItem>
+                           <groupId>org.jboss.windup</groupId>
+                           <artifactId>windup-distribution</artifactId>
+                           <version>${version.windup}</version>
+                           <classifier>offline</classifier>
+                           <type>zip</type>
+                           <overWrite>true</overWrite>
+                           <outputDirectory>${project.build.directory}</outputDirectory>
+                        </artifactItem>
+                     </artifactItems>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>launch-windup</id>
+                  <phase>package</phase>
+                  <goals>
+                     <goal>exec</goal>
+                  </goals>
+               </execution>
+            </executions>
+            <configuration>
+               <executable>${project.build.directory}/windup-distribution-${version.windup}/bin/windup</executable>
+               <arguments>
+                  <argument>--batchMode</argument>
+                  <argument>--sourceMode</argument>
+                  <argument>--userRulesDirectory</argument>
+                  <argument>${basedir}/custom-rules</argument>
+                  <argument>--input</argument>
+                  <argument>${project.basedir}/src/main/java</argument>
+                  <argument>--output</argument>
+                  <argument>${project.build.directory}/reports</argument>
+                  <argument>--target</argument>
+                  <argument>eap</argument>
+               </arguments>
+               <systemProperties>
+                  <systemProperty>
+                     <key>windup.home</key>
+                     <value>${project.build.directory}/windup-distribution-${version.windup}</value>
+                  </systemProperty>
+               </systemProperties>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+   <repositories>
+      <repository>
+         <id>jboss</id>
+         <name>jboss public group</name>
+         <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+         <layout>default</layout>
+         <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+         </releases>
+         <snapshots>
+            <enabled>false</enabled>
+            <updatePolicy>never</updatePolicy>
+         </snapshots>
+
+      </repository>
+   </repositories>
+</project>
