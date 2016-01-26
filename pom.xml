@@ -10,7 +10,7 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>16</version>
+        <version>19</version>
         <relativePath />
     </parent>
 
@@ -22,10 +22,10 @@
     <name>Windup QuickStart Root</name>
 
     <modules>
-    
         <module>proprietary-javaee-servlet</module>
         <module>ejb-beanutils-async</module>
         <module>victi.ms</module>
+        <module>maven-plugin-usage</module>
     </modules>
 
     <licenses>

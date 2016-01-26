@@ -1,0 +1,17 @@
+[[ejb-beanutils-asyn-windup-rule-that-detects-seam-asynchronous-annotation-in-remote-ejbs]]
+= Using Windup in Maven project: Windup Rule That Detects Seam Asynchronous Annotation in Remote EJBs
+
+Author: Marek Novotny +
+Level: Intermediate +
+Summary: Windup rule that reports on the use of the Seam Asynchronous annotation in remote EJBs + 
+Source: https://github.com/windup/windup-quickstarts/ +
+
+[[what-is-it]]
+== What is it?
+
+The Seam Asynchronous annotation is not compatible with remote EJBs in Red Hat JBoss Enterprise Application Platform and must be replaced with the Java EE 6 @Asynchronous annotation.
+
+This quickstart emphasizes using Windup in Maven project directly to create reports for migration to Red Hat JBoss Enterprise Application Platform 6. 
+
+This quickstart enhances core Windup rules with its own custom Windup rules file using XML format.
+
