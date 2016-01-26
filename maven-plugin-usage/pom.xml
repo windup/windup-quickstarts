@@ -78,20 +78,64 @@
                </execution>
             </executions>
             <configuration>
+
+                <!--
+                    Below are the Windup maven plugin parameters.
+                    They map to the respective Windup execution parameters, as described at
+                    https://access.redhat.com/documentation/en/red-hat-jboss-migration-toolkit/version-2.5/windup-user-guide/#Execute
+                -->
+
+                <!-- Where the Windup report is generated to. -->
                 <output>${project.build.directory}/reports</output>
-                <!-- <input>${project.build.directory}</input> -->
-                <input>${project.basedir}/src/main/java</input>
-                <packages></packages>
+
+                <!-- The source code or application binaries to analyze. -->
+                <input>${project.build.sourceDirectory}</input>
+
+                <!-- Packages to scan. Limiting to the packages of your application improves performance. -->
+                <packages>
+                    <package>org.*</package>
+                </packages>
+
+                <!-- Windup will not try to update addons, rules, maven index or other data. -->
                 <offline>true</offline>
+
+                <!-- Whether to delete the previous results directory before running. -->
                 <overwrite>true</overwrite>
+
+                <!-- Skipped files which won't be analyzed. -->
                 <userIgnorePath>myIgnoredPaths.txt</userIgnorePath>
+
+                <!-- The directory with user's rules. -->
                 <userRulesDirectory>${basedir}/custom-rules</userRulesDirectory>
+
+                <!-- Which Windup version to use. For the list of released Windup versions, see:
+                    http://repository.jboss.org/nexus/content/groups/public/org/jboss/windup/windup-distribution/ -->
                 <windupVersion>${version.windup}</windupVersion>
+
+                <!-- Which Forge version to use. Must comply with Windup release. TODO FIXME (will be removed) -->
                 <forgeVersion>${version.forge}</forgeVersion>
 
-                <batchMode>true</batchMode>
+                <!-- Whether the analyzed directory or tree is a source code or binaries. -->
                 <sourceMode>true</sourceMode>
-                <target>eap</target>
+
+                <!-- For the latest list of tags used in the Java rules, see:
+                    https://github.com/windup/windup/blob/master/rules-java/api/src/main/resources/data/java-ee.tags.xml -->
+                <includeTags>
+                    <includeTag></includeTag>
+                </includeTags>
+                <excludeTags>
+                    <excludeTag></excludeTag>
+                </excludeTags>
+
+                <!-- Source and target technologies are declared in individual rule sets.
+                    By specifying the technologies, you can limit which Windup rulesets will be executed. -->
+                <sourceTechnologies>
+                    <sourceTechnology></sourceTechnology>
+                </sourceTechnologies>
+                <targetTechnologies>
+                    <targetTechnology>eap</targetTechnology>
+                </targetTechnologies>
+
             </configuration>
          </plugin>
       </plugins>
