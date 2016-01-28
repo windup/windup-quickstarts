@@ -1,5 +1,5 @@
 [[ejb-beanutils-asyn-windup-rule-that-detects-seam-asynchronous-annotation-in-remote-ejbs]]
-= Using Windup in Maven project: Windup Rule That Detects Seam Asynchronous Annotation in Remote EJBs
+= Using Windup Maven Plugin
 
 Author: Marek Novotny +
 Level: Intermediate +
