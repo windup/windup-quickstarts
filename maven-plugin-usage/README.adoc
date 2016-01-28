@@ -2,7 +2,7 @@
 = Using Windup Maven Plugin
 
 Author: Marek Novotny, Ondřej Žižka +
-Level: Intermediate +
+Level: Beginner +
 Summary: Windup rule that reports on the use of the Seam Asynchronous annotation in remote EJBs + 
 Source: https://github.com/windup/windup-quickstarts/ +
 
