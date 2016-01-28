@@ -3,15 +3,17 @@
 
 Author: Marek Novotny, Ondřej Žižka +
 Level: Beginner +
-Summary: Windup rule that reports on the use of the Seam Asynchronous annotation in remote EJBs + 
+Summary: Demonstrates how to execute Windup during a Maven build against the project sources. + 
 Source: https://github.com/windup/windup-quickstarts/ +
 
 [[what-is-it]]
 == What is it?
 
-The Seam Asynchronous annotation is not compatible with remote EJBs in Red Hat JBoss Enterprise Application Platform and must be replaced with the Java EE 6 @Asynchronous annotation.
+This quickstart shows how to use Windup in a Maven project to create reports for migration to Red Hat JBoss Enterprise Application Platform 6.
 
-This quickstart emphasizes using Windup in Maven project directly to create reports for migration to Red Hat JBoss Enterprise Application Platform 6. 
+The quickstart also contains one custom Windup rule in a XML file and shows where to place it to let Windup find it.
 
-This quickstart enhances core Windup rules with its own custom Windup rules file using XML format.
+The example project contains the Seam `@Asynchronous` annotation which is not compatible with remote EJBs in Red Hat JBoss Enterprise Application Platform and must be replaced with the Java EE 6 `@Asynchronous` annotation.
+
+
 
