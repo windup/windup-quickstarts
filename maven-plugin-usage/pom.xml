@@ -93,15 +93,16 @@
                     <input>${project.build.sourceDirectory}</input>
 
                     <!-- Packages to analyze. Limiting to the packages of your application improves performance. -->
+                    <!-- Do not add .* suffix. See WINDUP-922. -->
                     <packages>
-                        <package>org.windup.examples.*</package>
-                        <package>com.yourcompany.scanthisapp.*</package>
+                        <package>org.windup.examples</package>
+                        <package>com.yourcompany.scanthisapp</package>
                     </packages>
                     <!-- Which packages should be excluded from the analysis. -->
                     <!-- The scanned package are those matching the patterns listed above and not matching the patterns listed here. -->
                     <excludePackages>
-                        <package>org.apache.*</package>
-                        <package>com.yourcompany.package.to.be.deleted.*</package>
+                        <package>org.apache</package>
+                        <package>com.yourcompany.package.to.be.deleted</package>
                     </excludePackages>
 
                     <!-- Windup will not try to update addons, rules, maven index or other data. -->
@@ -147,15 +148,17 @@
                     https://github.com/windup/windup/blob/master/rules-java/api/src/main/resources/data/java-ee.tags.xml -->
                     <!--
                     <includeTags>
-                        <includeTag></includeTag>
+                        <includeTag>jms</includeTag>
                     </includeTags>
                     <excludeTags>
-                        <excludeTag></excludeTag>
+                        <excludeTag>hibernate</excludeTag>
                     </excludeTags>
                     -->
 
                     <!-- Source and target technologies are declared in individual rule sets.
-                    By specifying the technologies, you can limit which Windup rulesets will be executed. -->
+                        By specifying the technologies, you can limit which Windup rulesets will be executed.
+                        To get a list of technologies, run Windup with -~listSourceTechnologies, resp. -~listTargetTechnologies.
+                    -->
                     <!--
                     <sourceTechnologies>
                         <sourceTechnology></sourceTechnology>
@@ -183,7 +186,6 @@
                 <enabled>false</enabled>
                 <updatePolicy>never</updatePolicy>
             </snapshots>
-
         </repository>
     </repositories>
 </project>
