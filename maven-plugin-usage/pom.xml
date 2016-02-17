@@ -27,9 +27,7 @@
     </scm>
 
     <properties>
-        <version.forge>2.20.1.Final</version.forge>
-        <version.furnace>2.22.10.Final</version.furnace>
-        <version.windup>2.5.0-SNAPSHOT</version.windup> <!-- 2.5.0.CR1 -->
+        <version.windup>2.5.0-SNAPSHOT</version.windup>
         <version.windup-maven-plugin>1.0-SNAPSHOT</version.windup-maven-plugin>
     </properties>
 
@@ -117,13 +115,13 @@
                     <!-- The directory with user's rules. -->
                     <userRulesDirectory>${basedir}/custom-rules</userRulesDirectory>
 
-                    <!-- Which Windup version to use. For the list of released Windup versions, see:
-                    http://repository.jboss.org/nexus/content/groups/public/org/jboss/windup/windup-distribution/ -->
+                    <!-- Which Windup version to use.
+                         It is recommended to let the plugin pick the proper version.
+                         Only use this if you need some different version, e.g. for debugging purposes.
+                         Set the version through the "version.windup" property.
+                         For the list of released Windup versions, see:
+                         http://repository.jboss.org/nexus/content/groups/public/org/jboss/windup/windup-distribution/ -->
                     <windupVersion>${version.windup}</windupVersion>
-
-                    <!-- Which Forge version to use. Must comply with Windup release. TODO FIXME (will be removed) -->
-                    <forgeVersion>${version.forge}</forgeVersion>
-                    <furnaceVersion>${version.furnace}</furnaceVersion>
 
                     <!-- Whether the analyzed directory or tree is a source code or binaries. -->
                     <sourceMode>true</sourceMode>
