@@ -61,115 +61,270 @@
 
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.jboss.windup.plugin</groupId>
-                <artifactId>windup-maven-plugin</artifactId>
-                <version>${version.windup-maven-plugin}</version>
-                <executions>
-                    <execution>
-                        <id>run-windup</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>windup</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
+    <profiles>
+        <!-- Running against this project's sources. -->
+        <profile>
+            <id>Running against this project's sources</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jboss.windup.plugin</groupId>
+                        <artifactId>windup-maven-plugin</artifactId>
+                        <version>${version.windup-maven-plugin}</version>
+                        <executions>
+                            <execution>
+                                <id>run-windup</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>windup</goal>
+                                </goals>
+                                <configuration>
+                                    <!--
+                                        Below are the Windup maven plugin parameters.
+                                        They map to the respective Windup execution parameters, as described at
+                                        https://access.redhat.com/documentation/en/red-hat-jboss-migration-toolkit/version-2.5/windup-user-guide/#Execute
+                                    -->
 
-                    <!--
-                        Below are the Windup maven plugin parameters.
-                        They map to the respective Windup execution parameters, as described at
-                        https://access.redhat.com/documentation/en/red-hat-jboss-migration-toolkit/version-2.5/windup-user-guide/#Execute
-                    -->
+                                    <!-- Where the Windup report is generated to. -->
+                                    <output>${project.build.directory}/reports-project</output>
 
-                    <!-- Where the Windup report is generated to. -->
-                    <output>${project.build.directory}/reports</output>
+                                    <!-- The source code or application binaries to analyze. -->
+                                    <input>${project.build.sourceDirectory}</input>
 
-                    <!-- The source code or application binaries to analyze. -->
-                    <input>${project.build.sourceDirectory}</input>
+                                    <!-- Packages to analyze. Limiting to the packages of your application improves performance. -->
+                                    <!-- Do not add .* suffix. See WINDUP-922. -->
+                                    <packages>
+                                        <package>org.windup.examples</package>
+                                        <package>com.yourcompany.scanthisapp</package>
+                                    </packages>
+                                    <!-- Which packages should be excluded from the analysis. -->
+                                    <!-- The scanned package are those matching the patterns listed above and not matching the patterns listed here. -->
+                                    <excludePackages>
+                                        <package>org.apache</package>
+                                        <package>com.yourcompany.package.not.to.scan</package>
+                                    </excludePackages>
 
-                    <!-- Packages to analyze. Limiting to the packages of your application improves performance. -->
-                    <!-- Do not add .* suffix. See WINDUP-922. -->
-                    <packages>
-                        <package>org.windup.examples</package>
-                        <package>com.yourcompany.scanthisapp</package>
-                    </packages>
-                    <!-- Which packages should be excluded from the analysis. -->
-                    <!-- The scanned package are those matching the patterns listed above and not matching the patterns listed here. -->
-                    <excludePackages>
-                        <package>org.apache</package>
-                        <package>com.yourcompany.package.to.be.deleted</package>
-                    </excludePackages>
+                                    <!-- Windup will not try to update addons, rules, maven index or other data. -->
+                                    <offline>true</offline>
 
-                    <!-- Windup will not try to update addons, rules, maven index or other data. -->
-                    <offline>true</offline>
+                                    <!-- Whether to delete the previous results directory before running. -->
+                                    <overwrite>true</overwrite>
 
-                    <!-- Whether to delete the previous results directory before running. -->
-                    <overwrite>true</overwrite>
+                                    <!-- Skipped files which won't be analyzed. -->
+                                    <userIgnorePath>myIgnoredPaths.txt</userIgnorePath>
 
-                    <!-- Skipped files which won't be analyzed. -->
-                    <userIgnorePath>myIgnoredPaths.txt</userIgnorePath>
+                                    <!-- The directory with user's rules. -->
+                                    <userRulesDirectory>${basedir}/custom-rules</userRulesDirectory>
 
-                    <!-- The directory with user's rules. -->
-                    <userRulesDirectory>${basedir}/custom-rules</userRulesDirectory>
+                                    <!-- Which Windup version to use.
+                                         It is recommended to let the plugin pick the proper version.
+                                         Only use this if you need some different version, e.g. for debugging purposes.
+                                         Set the version through the "version.windup" property.
+                                         For the list of released Windup versions, see:
+                                         http://repository.jboss.org/nexus/content/groups/public/org/jboss/windup/windup-distribution/ -->
+                                    <windupVersion>${version.windup}</windupVersion>
 
-                    <!-- Which Windup version to use.
-                         It is recommended to let the plugin pick the proper version.
-                         Only use this if you need some different version, e.g. for debugging purposes.
-                         Set the version through the "version.windup" property.
-                         For the list of released Windup versions, see:
-                         http://repository.jboss.org/nexus/content/groups/public/org/jboss/windup/windup-distribution/ -->
-                    <windupVersion>${version.windup}</windupVersion>
+                                    <!-- Whether the analyzed directory or tree is a source code or binaries. -->
+                                    <sourceMode>true</sourceMode>
 
-                    <!-- Whether the analyzed directory or tree is a source code or binaries. -->
-                    <sourceMode>true</sourceMode>
+                                    <!-- Whether to keep the directories with backing database files and unzipped classes. Debugging purposes. -->
+                                    <keepWorkDirs>false</keepWorkDirs>
 
-                    <!-- Whether to keep the directories with backing database files and unzipped classes. Debugging purposes. -->
-                    <keepWorkDirs>false</keepWorkDirs>
+                                    <!-- Is the input unzipped? False by default, but assumed true when sourceMode=true. -->
+                                    <explodedApps>true</explodedApps>
 
-                    <!-- Is the input unzipped? False by default, but assumed true when sourceMode=true. -->
-                    <explodedApps>true</explodedApps>
+                                    <!-- Should Windup export the discovered migration issues into a CSV file? -->
+                                    <exportCSV>true</exportCSV>
 
-                    <!-- Should Windup export the discovered migration issues into a CSV file? -->
-                    <exportCSV>true</exportCSV>
-
-                    <!-- Should Windup generate a JBoss Tattletale report? -->
-                    <enableTattletale>true</enableTattletale>
+                                    <!-- Should Windup generate a JBoss Tattletale report? -->
+                                    <enableTattletale>true</enableTattletale>
 
 
-                    <!-- Should Windup generate a report of files which seem not to need any migration effort? -->
-                    <enableCompatibleFilesReport>true</enableCompatibleFilesReport>
+                                    <!-- Should Windup generate a report of files which seem not to need any migration effort? -->
+                                    <enableCompatibleFilesReport>true</enableCompatibleFilesReport>
 
-                    <!-- For the latest list of tags used in the Java rules, see:
-                    https://github.com/windup/windup/blob/master/rules-java/api/src/main/resources/data/java-ee.tags.xml -->
-                    <!--
-                    <includeTags>
-                        <includeTag>jms</includeTag>
-                    </includeTags>
-                    <excludeTags>
-                        <excludeTag>hibernate</excludeTag>
-                    </excludeTags>
-                    -->
+                                    <!-- For the latest list of tags used in the Java rules, see:
+                                    https://github.com/windup/windup/blob/master/rules-java/api/src/main/resources/data/java-ee.tags.xml -->
+                                    <!--
+                                    <includeTags>
+                                        <includeTag>jms</includeTag>
+                                    </includeTags>
+                                    <excludeTags>
+                                        <excludeTag>hibernate</excludeTag>
+                                    </excludeTags>
+                                    -->
 
-                    <!-- Source and target technologies are declared in individual rule sets.
-                        By specifying the technologies, you can limit which Windup rulesets will be executed.
-                        To get a list of technologies, run Windup with -~listSourceTechnologies, resp. -~listTargetTechnologies.
-                    -->
-                    <!--
-                    <sourceTechnologies>
-                        <sourceTechnology></sourceTechnology>
-                    </sourceTechnologies>
-                    -->
-                    <targetTechnologies>
-                        <targetTechnology>eap</targetTechnology>
-                    </targetTechnologies>
+                                    <!-- Source and target technologies are declared in individual rule sets.
+                                        By specifying the technologies, you can limit which Windup rulesets will be executed.
+                                        To get a list of technologies, run Windup with -~listSourceTechnologies, resp. -~listTargetTechnologies.
+                                    -->
+                                    <!--
+                                    <sourceTechnologies>
+                                        <sourceTechnology></sourceTechnology>
+                                    </sourceTechnologies>
+                                    -->
+                                    <targetTechnologies>
+                                        <targetTechnology>eap</targetTechnology>
+                                    </targetTechnologies>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+
+
+        <!-- Running against given application archive. -->
+        <profile>
+            <id>Running against given application archive</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Download the jee-app example application. -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>2.10</version>
+                        <executions>
+                            <execution>
+                                <id>download-jee-app</id>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.jboss.windup.tests</groupId>
+                                            <artifactId>windup-test-files</artifactId>
+                                            <version>${version.windup}</version>
+                                            <classifier>jeeapp</classifier>
+                                            <type>ear</type>
+                                            <overWrite>[ true or false ]</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                            <destFileName>jee-app.ear</destFileName>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.jboss.windup.plugin</groupId>
+                        <artifactId>windup-maven-plugin</artifactId>
+                        <version>${version.windup-maven-plugin}</version>
+                        <executions>
+                            <execution>
+                                <id>run-windup</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>windup</goal>
+                                </goals>
+                                <configuration>
+                                    <!--
+                                        Below are the Windup maven plugin parameters.
+                                        They map to the respective Windup execution parameters, as described at
+                                        https://access.redhat.com/documentation/en/red-hat-jboss-migration-toolkit/version-2.5/windup-user-guide/#Execute
+                                    -->
+
+                                    <!-- Where the Windup report is generated to. -->
+                                    <output>${project.build.directory}/reports-jee</output>
+
+                                    <!-- The application archive to analyze. -->
+                                    <input>${project.build.directory}/jee-app.ear</input>
+
+                                    <!-- Packages to analyze. Limiting to the packages of your application improves performance. -->
+                                    <!-- Do not add .* suffix. See WINDUP-922. -->
+                                    <packages>
+                                        <package>com.acme.anvil</package>
+                                        <package>com.yourcompany.scanthisapp</package>
+                                    </packages>
+                                    <!-- Which packages should be excluded from the analysis. -->
+                                    <!-- The scanned package are those matching the patterns listed above and not matching the patterns listed here. -->
+                                    <excludePackages>
+                                        <package>org.apache</package>
+                                        <package>com.yourcompany.package.not.to.scan</package>
+                                    </excludePackages>
+
+                                    <!-- Windup will not try to update addons, rules, maven index or other data. -->
+                                    <offline>true</offline>
+
+                                    <!-- Whether to delete the previous results directory before running. -->
+                                    <overwrite>true</overwrite>
+
+                                    <!-- Skipped files which won't be analyzed. -->
+                                    <userIgnorePath>myIgnoredPaths.txt</userIgnorePath>
+
+                                    <!-- The directory with user's rules. -->
+                                    <userRulesDirectory>${basedir}/custom-rules</userRulesDirectory>
+
+                                    <!-- Which Windup version to use.
+                                         It is recommended to let the plugin pick the proper version.
+                                         Only use this if you need some different version, e.g. for debugging purposes.
+                                         Set the version through the "version.windup" property.
+                                         For the list of released Windup versions, see:
+                                         http://repository.jboss.org/nexus/content/groups/public/org/jboss/windup/windup-distribution/ -->
+                                    <windupVersion>${version.windup}</windupVersion>
+
+                                    <!-- Whether the analyzed directory or tree is a source code or binaries. -->
+                                    <sourceMode>false</sourceMode>
+
+                                    <!-- Whether to keep the directories with backing database files and unzipped classes. Debugging purposes. -->
+                                    <keepWorkDirs>false</keepWorkDirs>
+
+                                    <!-- Is the input unzipped? False by default, but assumed true when sourceMode=true. -->
+                                    <explodedApps>false</explodedApps>
+
+                                    <!-- Should Windup export the discovered migration issues into a CSV file? -->
+                                    <exportCSV>true</exportCSV>
+
+                                    <!-- Should Windup generate a JBoss Tattletale report? -->
+                                    <enableTattletale>true</enableTattletale>
+
+
+                                    <!-- Should Windup generate a report of files which seem not to need any migration effort? -->
+                                    <enableCompatibleFilesReport>true</enableCompatibleFilesReport>
+
+                                    <!-- For the latest list of tags used in the Java rules, see:
+                                    https://github.com/windup/windup/blob/master/rules-java/api/src/main/resources/data/java-ee.tags.xml -->
+                                    <!--
+                                    <includeTags>
+                                        <includeTag>jms</includeTag>
+                                    </includeTags>
+                                    <excludeTags>
+                                        <excludeTag>hibernate</excludeTag>
+                                    </excludeTags>
+                                    -->
+
+                                    <!-- Source and target technologies are declared in individual rule sets.
+                                        By specifying the technologies, you can limit which Windup rulesets will be executed.
+                                        To get a list of technologies, run Windup with -~listSourceTechnologies, resp. -~listTargetTechnologies.
+                                    -->
+                                    <!--
+                                    <sourceTechnologies>
+                                        <sourceTechnology></sourceTechnology>
+                                    </sourceTechnologies>
+                                    -->
+                                    <targetTechnologies>
+                                        <targetTechnology>eap</targetTechnology>
+                                    </targetTechnologies>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+
+    </profiles>
+
     <repositories>
         <repository>
             <id>jboss</id>
