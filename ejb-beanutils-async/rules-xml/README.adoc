@@ -97,39 +97,16 @@ bin/windup --sourceMode true --input QUICKSTART_HOME/test-files/src_example/ --o
 [[review-the-quickstart-report]]
 == Review the Quickstart Report
 
-. Open the link to the `QUICKSTART_HOME/windup-reports-xml/index.html` file in a browser.
-+
-You are presented with the following index page.
-+
-====
-*Overview*
-image:../images/ejb-beanutils-async-xml-rule-overview.png[Overview page]
-====
-. Click on the `src_example` link.
-+
-This opens an overview page showing a total of 8 story points and the list of the relevant files along with warning messages. links to
-obtain more information, and the estimated story points for each item.
-+
-_org.windup.examples.ejb.BeanUtilsAsyncUsingRemote_ show 8 story points
-+
---------------------------------------------------------------------------------------
-8 points for References annotation 'org.jboss.seam.annotations.async.Asynchronous'
---------------------------------------------------------------------------------------
-+
-====
-*Application Report*
-image:../images/ejb-beanutils-async-xml-rule-applicationreport.png[Application Report page] +
-====
-. Click on the file link to drill down for more information.
-+
-The *Information* section reports on the matching conditions and provides a link to the standard Java EE servlet annotation documentation.
-+
-This is followed by the source code matching the condition with a detailed message desription.
-+
-====
-*Source report: src_example/src/main/java/org/windup/examples/ejb/BeanUtilsAsyncUsingRemote.java*
-image:../images/ejb-beanutils-async-xml-rule-sourcereport.png[Source Report page]
-====
+. Open the link to the `QUICKSTART_HOME/windup-reports-xml/index.html` file in a browser. You are presented with the `Application List` page. 
+
+. Click on the `src_example` link. This takes you to the `Report Index` page, which provides summary information about findings from the migration analysis.
+
+. Under *Additional Reports*, click on *Application Details*. This opens the `Application Details Report` page that shows a total of 8 story points and the list of the relevant files along with warning messages.
+
+. Click on the `org.windup.examples.ejb.BeanUtilsAsyncUsingRemote` file link to drill down for more information about the Java source.
+ 
+* The *Information* section reports on the matching conditions and provides a link to the standard Java EE servlet annotation documentation.
+* This is followed by the source code matching the condition with a detailed message desription.
 
 [[remove-the-quickstart-rule-from-windup]]
 == Remove the Quickstart Rule from Windup

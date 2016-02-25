@@ -1,3 +1,9 @@
+#ignores output 
+
+*~
+build/
+windup-reports-java/
+windup-reports-xml/
 target/
 localRepo/
 pom.xml.tag

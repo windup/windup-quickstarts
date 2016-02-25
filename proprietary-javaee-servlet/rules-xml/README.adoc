@@ -101,39 +101,13 @@ bin/windup --sourceMode --input QUICKSTART_HOME/test-files/src_example/ --output
 [[review-the-quickstart-report]]
 == Review the Quickstart Report
 
-. Open the `QUICKSTART_HOME/windup-reports-xml/index.html` file in a
-browser. You are presented with the following index page.
-+
-====
-*Overview*
-image:../images/proprietary-javaee-servlet-xml-rule-overview.png[Overview page] 
-====
-. Click on the `src_example` link.
-+
-This opens a detail page showing a total of 12 story points and the list the files containing the proprietary annotations along with the warning messages, links to obtain more information, and the estimated story points for each item.
-+
-_org.windup.example.servlet.ExampleProprietaryFilter_ shows 7 story points and 6 warning items.
-+
-_org.windup.example.servlet.ExampleProprietaryServlet_ show 5 story points and 6 warning items.
-+
-====
-*Application Report*
-image:../images/proprietary-javaee-servlet-xml-rule-applicationreport.png[Application Report page] +
-====
+. Open the link to the `QUICKSTART_HOME/windup-reports-xml/index.html` file in a browser. You are presented with the `Application List` page. 
+
+. Click on the `src_example` link. This takes you to the `Report Index` page, which provides summary information about findings from the migration analysis.
+
+. Under *Additional Reports*, click on *Application Details*. This opens the `Application Details Report` page that shows a total of 12 story points and the list of the relevant files along with warning messages.
+
 . Click on each file link to drill down for more information.
-+
-The *Information* section reports the proprietary annotations and provides a link to the standard Java EE servlet annotation documentation. The *Hint* text appears at the appropriate locations within the code.
-+
-====
-*Source report: src_example/src/main/java/org/windup/examples/servlet/ExampleProprietaryFilter.java*
-image:../images/proprietary-javaee-servlet-xml-rule-sourcereport-proprietaryfilter.png[Source Report - ExampleProprietaryFilter.java] 
-====
-+
-====
-*Source report: src_example/src/main/java/org/windup/examples/servlet/ExampleProprietaryServlet.java*
-image:../images/proprietary-javaee-servlet-xml-rule-sourcereportdetail.png[Source Report Detail page] +
-====
-. Explore the contents of the `windup-reports-xml` folder. For example, the `windup-reports-xml/reports/ruleproviders.html` page lists the details of the rule provider executions.
 
 [[remove-the-quickstart-from-windup]]
 == Remove the Quickstart from Windup

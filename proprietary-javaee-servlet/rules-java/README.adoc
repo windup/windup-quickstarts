@@ -138,54 +138,26 @@ To test this quickstart using the `test-files/src_example/` folder provided in t
 . Type the following command to test the rule.
 +
 ----
-bin/windup --sourceMode --input QUICKSTART_HOME/test-files/src_example/ --output QUICKSTART_HOME/windup-reports/ --target eap --packages org.windup
+bin/windup --sourceMode --input QUICKSTART_HOME/test-files/src_example/ --output QUICKSTART_HOME/windup-reports-java/ --target eap --packages org.windup
 ----
 
 . You should see the following result:
 +
 ----
-***SUCCESS*** Windup report created: QUICKSTART_HOME/windup-reports/index.html
-              Access it at this URL: file:///QUICKSTART_HOME/windup-reports/index.html
+***SUCCESS*** Windup report created: QUICKSTART_HOME/windup-reports-java/index.html
+              Access it at this URL: file:///QUICKSTART_HOME/windup-reports-java/index.html
 ----
 
 [[review-the-quickstart-report]]
 == Review the Quickstart Report
 
-. Open the `QUICKSTART_HOME/windup-reports/index.html` file in a browser.
-+
-You are presented with the following Overview page containing the application profiles.
-+
-image:../images/proprietary-javaee-servlet-java-rule-overview.png[Overview page] +
-. Click on the `src-example` link.
-+
-This opens a detail page showing a total of 12 story points and the list the files containing the proprietary annotations along with the warning messages, links to obtain more information, and the estimated story points for each item.
-+
-_org.windup.example.servlet.ExampleProprietaryFilter_ shows 7 story points
-+
-----
-4 points, 2 points for each of the two @ProprietaryInitParam references
-3 points for the @ProprietaryFilter reference
-----
-+
-_org.windup.example.servlet.ExampleProprietaryServlet_ show 5 story points
-+
-----
-4 points, 2 points for each of the two @ProprietaryInitParam references
-1 points for the @ProprietaryServlet reference  
-----
-+
-image:../images/proprietary-javaee-servlet-java-rule-applicationreport.png[Source Report page] +
-. Click on the file links to drill down and find more information.
-+
-The *Information* section reports the proprietary annotations and provides a link to the standard Java EE servlet annotation documentation.
-+
-image:../images/proprietary-javaee-servlet-java-rule-sourcereport.png[Source Report Detail page] +
-+
-The *Hint* text appears at the appropriate locations within the code.
-+
-image:../images/proprietary-javaee-servlet-java-rule-sourcereportdetail.png[Source Report Detail page] +
-. Explore the contents of the `windup-reports-java` folder. For example, the `windup-reports-java/reports/ruleproviders.html` page lists the details of the rule provider executions.
+. Open the link to the `QUICKSTART_HOME/windup-reports-xml/index.html` file in a browser. You are presented with the `Application List` page. 
 
+. Click on the `src_example` link. This takes you to the `Report Index` page, which provides summary information about findings from the migration analysis.
+
+. Under *Additional Reports*, click on *Application Details*. This opens the `Application Details Report` page that shows a total of 12 story points and the list of the relevant files along with warning messages.
+
+. Click on each file link to drill down for more information.
 
 [[run-the-quickstart-arquillian-tests]]
 == Run the Quickstart Arquillian Tests
@@ -222,10 +194,10 @@ Follow these steps to remove the rule to Windup.
 . Type the following command.
 +
 ----
-bin/windup --remove org.jboss.windup.quickstarts:windup-proprietary-javaee-servlet
+bin/windup --remove org.jboss.windup.quickstarts:windup-proprietary-javaee-servlet-rules-java
 ----
 
-. You should see the following response.
+. Enter `Y` to confirm. You should see the following response.
 +
 ----
 Uninstallation completed successfully.
