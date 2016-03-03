@@ -15,5 +15,15 @@ The quickstart also contains one custom Windup rule in a XML file and shows wher
 
 The example project contains the Seam `@Asynchronous` annotation which is not compatible with remote EJBs in Red Hat JBoss Enterprise Application Platform and must be replaced with the Java EE 6 `@Asynchronous` annotation.
 
+== How to build this project (run the Windup Maven plugin)
 
+Here is a sequence of commands to run.
+[source bash]
+------------------------------
+git clone https://github.com/windup/windup-quickstarts.git
+cd windup-quickstarts/maven-plugin-usage
+sed -i -- 's#<version.windup>2.*/version.windup>#<version.windup>2.5.0.CR2</version.windup>#g' pom.xml
+mvn install -DskipTests
+------------------------------
 
+The `sed` command replaces the version in `pom.xml` with 2.5.0.CR. Change that to the latest Windup release.
