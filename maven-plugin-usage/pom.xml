@@ -27,8 +27,8 @@
     </scm>
 
     <properties>
-        <version.windup>2.5.0-SNAPSHOT</version.windup>
-        <version.windup-maven-plugin>1.0-SNAPSHOT</version.windup-maven-plugin>
+        <version.windup>2.5.0.CR2</version.windup>
+        <version.windup-maven-plugin>2.5.0.CR2</version.windup-maven-plugin>
     </properties>
 
     <dependencyManagement>
@@ -89,7 +89,7 @@
                                     -->
 
                                     <!-- Where the Windup report is generated to. -->
-                                    <output>${project.build.directory}/reports-project</output>
+                                    <output>${project.build.directory}/reports-this-project</output>
 
                                     <!-- The source code or application binaries to analyze. -->
                                     <input>${project.build.sourceDirectory}</input>
@@ -206,7 +206,7 @@
                                             <version>${version.windup}</version>
                                             <classifier>jeeapp</classifier>
                                             <type>ear</type>
-                                            <overWrite>[ true or false ]</overWrite>
+                                            <overWrite>true</overWrite>
                                             <outputDirectory>${project.build.directory}</outputDirectory>
                                             <destFileName>jee-app.ear</destFileName>
                                         </artifactItem>
@@ -234,7 +234,7 @@
                                     -->
 
                                     <!-- Where the Windup report is generated to. -->
-                                    <output>${project.build.directory}/reports-jee</output>
+                                    <output>${project.build.directory}/reports-example-ear</output>
 
                                     <!-- The application archive to analyze. -->
                                     <input>${project.build.directory}/jee-app.ear</input>
