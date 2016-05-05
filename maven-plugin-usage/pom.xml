@@ -1,12 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.jboss.windup.quickstarts</groupId>
-        <artifactId>windup-quickstarts-root</artifactId>
-        <version>2.5.0-SNAPSHOT</version>
-    </parent>
+    <groupId>org.jboss.windup.quickstarts</groupId>
     <artifactId>maven-plugin-usage</artifactId>
+    <version>2.5.0.Final</version>
     <description>This example shows how to use Windup for generating reports natively in Maven project</description>
 
     <name>Windup Quickstart: windup-maven-plugin</name>
@@ -27,8 +24,8 @@
     </scm>
 
     <properties>
-        <version.windup>2.5.0-SNAPSHOT</version.windup>
-        <version.windup-maven-plugin>1.0-SNAPSHOT</version.windup-maven-plugin>
+        <version.windup>2.5.0.Final</version.windup>
+        <version.windup-maven-plugin>2.5.0.Final</version.windup-maven-plugin>
     </properties>
 
     <dependencyManagement>
@@ -206,7 +203,7 @@
                                             <version>${version.windup}</version>
                                             <classifier>jeeapp</classifier>
                                             <type>ear</type>
-                                            <overWrite>[ true or false ]</overWrite>
+                                            <overWrite>true</overWrite>
                                             <outputDirectory>${project.build.directory}</outputDirectory>
                                             <destFileName>jee-app.ear</destFileName>
                                         </artifactItem>
@@ -234,7 +231,7 @@
                                     -->
 
                                     <!-- Where the Windup report is generated to. -->
-                                    <output>${project.build.directory}/reports-jee</output>
+                                    <output>${project.build.directory}/reports-example-ear</output>
 
                                     <!-- The application archive to analyze. -->
                                     <input>${project.build.directory}/jee-app.ear</input>

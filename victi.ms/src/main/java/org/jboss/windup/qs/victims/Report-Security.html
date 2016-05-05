@@ -23,11 +23,12 @@
                 <td><#if file.fileName?has_content> ${file.fileName} </#if></td>
                 <td><#if file.filePath?has_content> ${file.filePath} </#if></td>
                 <td>
-                    <li><#list file.vulnerabilities.iterator() as vul>
-                        <ul>
-                            <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=${vul.cve}">${vul.cve}</a>
-                        </ul> </#list>
-                </li>
+                    <ul><#list file.vulnerabilities.iterator() as vul>
+	                        <li>
+	                        <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=${vul.cve}">${vul.cve}</a>
+	                        </li> 
+                        </#list>
+                    </ul>
                 </td>
             </tr>
             </#list>
@@ -47,44 +48,39 @@
     <link href="resources/css/windup.java.css" rel="stylesheet" media="screen">
 </head>
 <body role="document">
-
-	<!-- Fixed navbar -->
-	<div class="navbar-fixed-top windup-bar" role="navigation">
-		<div class="container theme-showcase" role="main">
-			<img src="resources/img/windup-logo.png" class="logo" />
-		</div>
+	<!-- Navbar -->
+	<div id="main-navbar" class="navbar navbar-default navbar-fixed-top">
+	    <div class="navbar-header">
+	        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	        </button>
+	    </div>
+	
+	    <#if applicationReportIndexModel??>
+	        <div class="navbar-collapse collapse navbar-responsive-collapse">
+	            <#include "/reports/templates/include/navbar.ftl">
+	        </div><!-- /.nav-collapse -->
+	    </#if>
 	</div>
+	<!-- / Navbar -->
 
-	<div class="container" role="main">
+    <!--  container -->
+	<div class="container-fluid" role="main">
 		<div class="row">
 			<div class="page-header page-header-no-border">
-				<h1>
-					Ignored files from <span class="slash">/</span
-                    ><small style="margin-left: 20px; font-weight: 100;">${reportModel.projectModel.name}</small>
+				<h1>Ignored files from <span class="slash">/</span><small style="margin-left: 20px; font-weight: 100;">${reportModel.projectModel.name}</small>
 				</h1>
-				<div class="navbar navbar-default">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-							<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-						</button>
-					</div>
-					<div class="navbar-collapse collapse navbar-responsive-collapse">
-						<ol class="breadcrumb top-menu">
-							<li><a href="../index.html">All Applications</a></li>
-                            <#include "/reports/templates/include/breadcrumbs.ftl">
-						</ol>
-
-					</div>
-					<!-- /.nav-collapse -->
-					<div class="navbar-collapse collapse navbar-responsive-collapse">
-						<ul class="nav navbar-nav"> <#include "/reports/templates/include/navbar.ftl"> </ul>
-					</div>
-					<!-- /.nav-collapse -->
+				<div>
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
 				</div>
 			</div>
 		</div>
 
-		<div class="container theme-showcase" role="main">
+		<div class="container-fluid theme-showcase" role="main">
 			<@affectedJarsRenderer reportModel />
         </div>
 	</div>
