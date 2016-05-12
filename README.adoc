@@ -15,6 +15,7 @@ These quickstarts provide examples of how to create custom rules for Windup.
 The following is the list of the currently available quickstarts.
 
 . link:ejb-beanutils-async/README.adoc[ejb-beanutils-async]
+. link:maven-plugin-usage/README.adoc[maven-plugin-usage]
 . link:proprietary-javaee-servlet/README.adoc[proprietary-javaee-servlet]
 . link:victi.ms/README.adoc[victi.ms]
 
@@ -25,7 +26,7 @@ The following is the list of the currently available quickstarts.
 The rules in this repository are designed to be run on Windup 2.x or
 later.
 
-This project requires Java 6.0 (Java SDK 1.6) or later and Maven 3.0 or
+This project requires Java 7 (Java SDK 1.7) or later and Maven 3.0 or
 later.
 
 [[install-windup]]
@@ -49,10 +50,10 @@ The latest Windup information can be found on the https://github.com/windup/wind
 
 The Windup documentation is located here: 
 
-* http://windup.github.io/windup/docs/latest/html/WindupUserGuide.html[Windup User Guide]
-* http://windup.github.io/windup/docs/latest/html/WindupRulesDevelopmentGuide.html[Windup Rules Development Guide]
+* https://github.com/windup/windup/wiki/User-Guide[Windup User Guide]
+* https://github.com/windup/windup/wiki/Rules-Development-Guide[Windup Rules Development Guide]
 * http://windup.github.io/windup/docs/latest/javadoc[Windup JavaDoc]
-* http://windup.jboss.org/schema/rule-schema.xsd[Windup Rule Schema]
+* http://windup.jboss.org/schema/windup-jboss-ruleset.xsd[Windup Rule Schema]
 
 To download the latest release of the quickstarts ZIP file, browse to https://github.com/windup/windup-quickstarts/releases.
 
