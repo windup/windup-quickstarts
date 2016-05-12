@@ -138,7 +138,7 @@ The command takes the following form:
 WINDUP_HOME/bin/windup --remove GROUP_ID:ARTIFACT_ID[,VERSION]
 ----
 
-Follow these steps to remove the rule to Windup.
+Follow these steps to remove the rule from Windup.
 
 . Open a command prompt and navigate to the `WINDUP_HOME` directory.
 . Type the following command.
