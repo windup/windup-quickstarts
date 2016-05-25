@@ -22,8 +22,6 @@ Here is a sequence of commands to run.
 ------------------------------
 git clone https://github.com/windup/windup-quickstarts.git
 cd windup-quickstarts/maven-plugin-usage
-sed -i -- 's#<version.windup>2.*/version.windup>#<version.windup>2.5.0.Final</version.windup>#g' pom.xml
 mvn install -DskipTests
 ------------------------------
 
-The `sed` command replaces the version in `pom.xml` with 2.5.0.Final. Change that to the latest Windup release.
