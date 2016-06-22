@@ -23,7 +23,7 @@
     </scm>
 
     <properties>
-        <version.windup>2.6.0.Final</version.windup>
+        <version.windup>2.7.0-SNAPSHOT</version.windup>
         <version.windup-maven-plugin>2.6.0.Final</version.windup-maven-plugin>
     </properties>
 
