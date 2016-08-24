@@ -1,8 +1,8 @@
 package org.jboss.windup.qs.rules;
 
+import org.jboss.windup.config.loader.RuleLoaderContext;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.Iteration;
-import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.reporting.config.Hint;
 import org.jboss.windup.reporting.config.Link;
 import org.jboss.windup.rules.apps.java.condition.JavaClass;
@@ -26,7 +26,7 @@ public class EjbBeanUtilsAsyncUsageRuleProvider extends AbstractRuleProvider
 {
     // @formatter:off
     @Override
-    public Configuration getConfiguration(GraphContext context)
+    public Configuration getConfiguration(RuleLoaderContext ruleLoaderContext)
     {
         return ConfigurationBuilder.begin()
         .addRule()

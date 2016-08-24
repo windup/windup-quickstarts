@@ -6,10 +6,10 @@ import java.util.logging.Logger;
 import org.jboss.windup.config.AbstractRuleProvider;
 import org.jboss.windup.config.GraphRewrite;
 import org.jboss.windup.config.condition.GraphCondition;
+import org.jboss.windup.config.loader.RuleLoaderContext;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.GraphOperation;
 import org.jboss.windup.config.phase.InitializationPhase;
-import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.service.WindupConfigurationService;
 import org.jboss.windup.util.Logging;
 import org.ocpsoft.rewrite.config.Configuration;
@@ -32,7 +32,7 @@ public class UpdateVictimsDbRules extends AbstractRuleProvider
 
     // @formatter:off
     @Override
-    public Configuration getConfiguration(final GraphContext context)
+    public Configuration getConfiguration(final RuleLoaderContext ruleLoaderContext)
     {
         return ConfigurationBuilder.begin()
 

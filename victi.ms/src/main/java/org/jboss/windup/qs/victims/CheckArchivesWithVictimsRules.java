@@ -7,13 +7,13 @@ import java.util.logging.Logger;
 
 import org.jboss.windup.config.AbstractRuleProvider;
 import org.jboss.windup.config.GraphRewrite;
+import org.jboss.windup.config.loader.RuleLoaderContext;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.operation.Iteration;
 import org.jboss.windup.config.operation.Log;
 import org.jboss.windup.config.operation.iteration.AbstractIterationOperation;
 import org.jboss.windup.config.phase.MigrationRulesPhase;
 import org.jboss.windup.config.query.Query;
-import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.model.ArchiveModel;
 import org.jboss.windup.graph.service.GraphService;
 import org.jboss.windup.qs.victims.model.AffectedJarModel;
@@ -45,7 +45,7 @@ public class CheckArchivesWithVictimsRules extends AbstractRuleProvider
 
     // @formatter:off
     @Override
-    public Configuration getConfiguration(final GraphContext context)
+    public Configuration getConfiguration(final RuleLoaderContext ruleLoaderContext)
     {
         try
         {
