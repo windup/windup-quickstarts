@@ -44,7 +44,7 @@ public class UpdateVictimsDbRules extends AbstractRuleProvider
             {
                 public boolean evaluate(GraphRewrite event, EvaluationContext context)
                 {
-                    return !WindupConfigurationService.getConfigurationModel(event.getGraphContext()).isOfflineMode();
+                    return WindupConfigurationService.getConfigurationModel(event.getGraphContext()).isOnlineMode();
                 }
             }
         )

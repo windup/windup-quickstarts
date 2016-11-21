@@ -18,6 +18,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.windup.engine.predicates.RuleProviderWithDependenciesPredicate;
 import org.jboss.windup.exec.WindupProcessor;
 import org.jboss.windup.exec.configuration.WindupConfiguration;
+import org.jboss.windup.exec.configuration.options.OnlineModeOption;
 import org.jboss.windup.graph.GraphContext;
 import org.jboss.windup.graph.GraphContextFactory;
 import org.jboss.windup.graph.service.GraphService;
@@ -73,6 +74,7 @@ public class VictimsRulesetTest
             wc.setGraphContext(ctx);
             wc.setOptionValue(SourceModeOption.NAME, false);
             wc.setOptionValue(ScanPackagesOption.NAME, Collections.singletonList("dontscanpackages"));
+            wc.setOptionValue(OnlineModeOption.NAME, true);
             // Only run Victims Rules and those it needs.
             wc.setRuleProviderFilter(new RuleProviderWithDependenciesPredicate(CheckArchivesWithVictimsRules.class));
             wc.addInputPath(Paths.get("src/test/resources/commons-fileupload-1.0-beta-1.jar"));
