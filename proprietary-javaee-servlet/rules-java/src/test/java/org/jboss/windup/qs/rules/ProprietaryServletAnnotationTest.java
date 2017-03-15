@@ -10,7 +10,7 @@ import org.jboss.forge.arquillian.AddonDependencies;
 import org.jboss.forge.arquillian.AddonDependency;
 import org.jboss.forge.arquillian.archive.AddonArchive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.windup.engine.predicates.RuleProviderWithDependenciesPredicate;
+import org.jboss.windup.engine.predicates.RuleProviderWithDependenciesPredicateImpl;
 import org.jboss.windup.exec.WindupProcessor;
 import org.jboss.windup.exec.configuration.WindupConfiguration;
 import org.jboss.windup.graph.GraphContext;
@@ -62,7 +62,7 @@ public class ProprietaryServletAnnotationTest
 
             WindupConfiguration wc = new WindupConfiguration();
             wc.setGraphContext(context);
-            wc.setRuleProviderFilter(new RuleProviderWithDependenciesPredicate(ProprietaryServletAnnotationRuleProvider.class));
+            wc.setRuleProviderFilter(new RuleProviderWithDependenciesPredicateImpl(ProprietaryServletAnnotationRuleProvider.class));
             wc.addInputPath(Paths.get("src/test/resources/app/"));
             wc.setOutputDirectory(Paths.get("target/WindupReport"));
             wc.setOptionValue(SourceModeOption.NAME, true);
