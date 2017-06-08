@@ -23,8 +23,8 @@
     </scm>
 
     <properties>
-        <version.windup>4.0.0.Beta1</version.windup>
-        <version.windup-maven-plugin>4.0.0.Beta1</version.windup-maven-plugin>
+        <version.windup>4.0.0.Beta2.1</version.windup>
+        <version.windup-maven-plugin>4.0.0.Beta2.1</version.windup-maven-plugin>
     </properties>
 
     <dependencyManagement>
