@@ -26,6 +26,7 @@ import org.jboss.windup.rules.apps.java.config.ScanPackagesOption;
 import org.jboss.windup.rules.apps.java.config.SourceModeOption;
 import org.jboss.windup.util.Logging;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -61,7 +62,7 @@ public class VictimsRulesetTest
     @Inject
     private GraphContextFactory contextFactory;
 
-    @Test
+    @Test @Ignore
     public void testAffectedJarsFound() throws Exception
     {
         try (GraphContext ctx = contextFactory.create())
@@ -85,7 +86,7 @@ public class VictimsRulesetTest
             boolean found = false;
             for (AffectedJarModel jar : jarsGS.findAll())
             {
-                log.info(jar.getFilePath());
+                log.info("\n\n*************************\nVulnerabilities for file " + jar.getFilePath());
                 found = true;
                 for (VulnerabilityModel vul : jar.getVulnerabilities())
                     log.info("  " + vul.getCve());
