@@ -112,11 +112,11 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
-            <type>jar</type>
+            <scope>test</scope>
         </dependency>
 
 
-        <!-- Vulnerable jar -->
+        <!-- Vulnerable jar, DO NOT UPGRADE! -->
         <dependency>
             <groupId>xerces</groupId>
             <artifactId>xercesImpl</artifactId>
@@ -150,6 +150,7 @@
                 <configuration>
                     <argLine>-Xms512m -Xmx2048m -XX:MaxPermSize=768m -XX:ReservedCodeCacheSize=128m</argLine>
                     <reuseForks>false</reuseForks>
+                    <runOrder>alphabetical</runOrder>
                 </configuration>
             </plugin>
 

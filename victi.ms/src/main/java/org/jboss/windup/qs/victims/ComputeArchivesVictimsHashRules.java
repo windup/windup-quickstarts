@@ -1,9 +1,15 @@
 package org.jboss.windup.qs.victims;
 
+import com.redhat.victims.VictimsConfig;
+import com.redhat.victims.VictimsRecord;
+import com.redhat.victims.VictimsScanner;
+import com.redhat.victims.fingerprint.*;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.util.ArrayList;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.io.IOUtils;
 import org.jboss.windup.config.GraphRewrite;
 import org.jboss.windup.config.metadata.RuleMetadata;
 import org.jboss.windup.config.phase.ArchiveExtractionPhase;
@@ -16,15 +22,14 @@ import org.ocpsoft.rewrite.config.ConditionBuilder;
 import org.ocpsoft.rewrite.context.EvaluationContext;
 
 /**
- * Calculates SHA512 hash for each archive.
+ * Calculates the Victims proprietary normalized hash for each archive.
  *
  * @author <a href="mailto:ozizka@redhat.com">Ondrej Zizka</a>
- *
  */
 @RuleMetadata(tags = { "java" }, after = { UnzipArchivesToOutputRuleProvider.class }, phase = ArchiveExtractionPhase.class)
-public class ComputeArchivesSHA512Rules extends IteratingRuleProvider<ArchiveModel>
+public class ComputeArchivesVictimsHashRules extends IteratingRuleProvider<ArchiveModel>
 {
-    public static final String KEY_SHA512 = "SHA512";
+    public static final String KEY_VICTIMS_HASH = "VICTIMS_HASH";
 
 
     @Override
@@ -39,16 +44,35 @@ public class ComputeArchivesSHA512Rules extends IteratingRuleProvider<ArchiveMod
     {
         try (InputStream is = archive.asInputStream())
         {
-            String hash = DigestUtils.sha512Hex(is);
-            archive.asVertex().setProperty(KEY_SHA512, hash);
+            String hash = computeVictimsHash(is, archive.getFileName());
+            archive.asVertex().setProperty(KEY_VICTIMS_HASH, hash);
         }
         catch (IOException e)
         {
             throw new WindupException("Failed to read archive: " + archive.getFilePath() +
-                "\n    Due to: " + e.getMessage(), e);
+                    "\n    Due to: " + e.getMessage(), e);
         }
     }
     // @formatter:on
+
+    public static String computeVictimsHash(InputStream is, String fileName) throws IOException
+    {
+        // The Victims API is not much understandable so this may look chaotic.
+
+        /*
+        Artifact artifact = Processor.process(is, archive.getFileName());
+        ArrayList<VictimsRecord> records = new ArrayList<VictimsRecord>();
+        VictimsScanner.scanArtifact(artifact, new VictimsScanner.ArrayOutputStream(records));
+        return records.get(0).hash;
+        */
+
+        // This only gives a simple hash?
+        //Fingerprint fingerprint = Processor.fingerprint(IOUtils.toByteArray(is));
+        //return fingerprint.get(VictimsConfig.DEFAULT_ALGORITHM_STRING);
+
+        JarFile jarFile = new JarFile(is, fileName);
+        return jarFile.getFingerprint().get(Algorithms.SHA512);
+    }
 
 
     @Override
