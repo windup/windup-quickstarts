@@ -40,7 +40,7 @@ public class ComputeArchivesSHA512Rules extends IteratingRuleProvider<ArchiveMod
         try (InputStream is = archive.asInputStream())
         {
             String hash = DigestUtils.sha512Hex(is);
-            archive.asVertex().setProperty(KEY_SHA512, hash);
+            archive.getElement().property(KEY_SHA512, hash);
         }
         catch (IOException e)
         {
