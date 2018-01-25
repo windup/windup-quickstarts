@@ -1,9 +1,8 @@
 package org.jboss.windup.qs.victims.model;
 
-
-import com.tinkerpop.blueprints.Direction;
-import com.tinkerpop.frames.Adjacency;
-import com.tinkerpop.frames.modules.typedgraph.TypeValue;
+import com.syncleus.ferma.annotations.Adjacency;
+import org.apache.tinkerpop.gremlin.structure.Direction;
+import org.jboss.windup.graph.model.TypeValue;
 import org.jboss.windup.reporting.model.ApplicationReportModel;
 
 /**
