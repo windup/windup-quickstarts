@@ -55,7 +55,7 @@ public class ProprietaryServletAnnotationTest
     @Test
     public void testJavaHints() throws Exception
     {
-        try (GraphContext context = contextFactory.create())
+        try (GraphContext context = contextFactory.create(true))
         {
             WindupJavaConfigurationModel javaCfg = WindupJavaConfigurationService.getJavaConfigurationModel(context);
             javaCfg.setSourceMode(true);

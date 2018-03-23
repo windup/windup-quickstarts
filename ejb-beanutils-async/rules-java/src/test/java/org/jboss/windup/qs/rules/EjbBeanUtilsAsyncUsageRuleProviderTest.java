@@ -55,7 +55,7 @@ public class EjbBeanUtilsAsyncUsageRuleProviderTest
     public void testRules()
     {
         Path outPath = Paths.get("target/WindupReport");
-        try (GraphContext context = contextFactory.create(outPath))
+        try (GraphContext context = contextFactory.create(outPath, true))
         {
             WindupJavaConfigurationModel javaCfg = WindupJavaConfigurationService.getJavaConfigurationModel(context);
             javaCfg.setSourceMode(true);
