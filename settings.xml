@@ -4,13 +4,13 @@
 
     <profiles>
 
-        <!-- Configure the JBoss Nexus Maven repository -->
+        <!-- Configure the Sonatype Nexus Maven repository -->
         <profile>
-            <id>jboss-nexus-repository</id>
+            <id>ossrh-nexus-repository</id>
             <repositories>
                 <repository>
-                    <id>jboss-nexus-repository</id>
-                    <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+                    <id>ossrh-nexus-repository</id>
+                    <url>https://oss.sonatype.org/content/groups/public/</url>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
@@ -21,8 +21,8 @@
             </repositories>
             <pluginRepositories>
                 <pluginRepository>
-                    <id>jboss-nexus-plugin-repository</id>
-                    <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+                    <id>ossrh-nexus-plugin-repository</id>
+                    <url>https://oss.sonatype.org/content/groups/public/</url>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
@@ -36,7 +36,7 @@
     </profiles>
 
     <activeProfiles>
-        <activeProfile>jboss-nexus-repository</activeProfile>
+        <activeProfile>ossrh-nexus-repository</activeProfile>
     </activeProfiles>
 
 </settings>
