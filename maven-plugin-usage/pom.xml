@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.jboss.windup.quickstarts</groupId>
     <artifactId>maven-plugin-usage</artifactId>
-    <version>4.2.0-SNAPSHOT</version>
+    <version>4.2.0.Alpha2</version>
     <description>This example shows how to use Windup for generating reports natively in Maven project</description>
 
     <name>Windup Quickstart: windup-maven-plugin</name>
@@ -23,8 +23,8 @@
     </scm>
 
     <properties>
-        <version.windup>4.2.0-SNAPSHOT</version.windup>
-        <version.windup-maven-plugin>4.2.0-SNAPSHOT</version.windup-maven-plugin>
+        <version.windup>4.2.0.Alpha2</version.windup>
+        <version.windup-maven-plugin>4.2.0.Alpha2</version.windup-maven-plugin>
     </properties>
 
     <dependencyManagement>
