@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
-        <version.windup>4.2.0.Alpha2</version.windup>
+        <version.windup>4.2.0-SNAPSHOT</version.windup>
     </properties>
 
     <parent>
@@ -15,7 +15,7 @@
 
     <groupId>org.jboss.windup.quickstarts</groupId>
     <artifactId>windup-quickstarts-root</artifactId>
-    <version>4.2.0.Alpha2</version>
+    <version>4.2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Windup QuickStart Root</name>
