@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
-        <version.windup>5.0.0.Final</version.windup>
+        <version.windup>5.0.1-SNAPSHOT</version.windup>
     </properties>
 
     <groupId>org.jboss.windup.quickstarts</groupId>
     <artifactId>windup-proprietary-javaee-servlet</artifactId>
-    <version>5.0.0.Final</version>
+    <version>5.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Windup Quickstart: Proprietary to Java EE Servlet</name>
