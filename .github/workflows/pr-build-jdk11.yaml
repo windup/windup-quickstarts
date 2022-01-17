@@ -21,3 +21,6 @@ jobs:
           cache: 'maven'
       - name: Build on JDK 11
         run: mvn -B clean install -s settings.xml
+        
+        
+        
