@@ -20,7 +20,7 @@ jobs:
           java-package: jdk
           cache: 'maven'
       - name: Build on JDK 11
-        run: mvn -B clean install -s settings.xml
+        run: mvn -B clean install -s settings.xml -DskipTests && mvn -B clean install -s settings.xml
         
         
         
