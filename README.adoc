@@ -26,7 +26,7 @@ The following is the list of the currently available quickstarts.
 The rules in this repository are designed to be run on Windup 2.x or
 later.
 
-This project requires Java 7 (Java SDK 1.7) or later and Maven 3.0 or
+This project requires Java 11 (Java SDK 11) or later and Maven 3.0 or
 later.
 
 [[install-windup]]
