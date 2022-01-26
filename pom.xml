@@ -14,7 +14,7 @@
     </parent>
 
     <groupId>org.jboss.windup.quickstarts</groupId>
-    <artifactId>windup-quickstarts-root</artifactId
+    <artifactId>windup-quickstarts-root</artifactId>
     <version>5.2.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
