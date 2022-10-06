@@ -15,12 +15,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout windup repo
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
         with:
           repository: windup/windup
           path: windup
       - name: Checkout windup repo
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v3
         with:
           path: windup-quickstarts
       - name: Set up JDK 11
