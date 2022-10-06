@@ -51,7 +51,7 @@ jobs:
       - name: Build Windup on JDK 11
         run: mvn -B clean install -DskipTests -f windup
       - name: Build on JDK 11
-        run: mvn -B clean install -s settings.xml -DskipTests -f windup-quickstarts && mvn -B clean install -s settings.xml -f windup-quickstarts
+        run: mvn -B clean install -s ./windup-quickstarts/settings.xml -DskipTests -f windup-quickstarts && mvn -B clean install -s ./windup-quickstarts/settings.xml -f windup-quickstarts
         
         
         
