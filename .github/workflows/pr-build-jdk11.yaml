@@ -27,7 +27,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'adopt'
+          distribution: 'temurin'
           java-package: jdk
           cache: 'maven'
       - name: Build Windup on JDK 11
