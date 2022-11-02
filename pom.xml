@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
-        <version.windup>6.1.0.Final</version.windup>
+        <version.windup>6.1.1-SNAPSHOT</version.windup>
     </properties>
 
     <parent>

@@ -23,8 +23,8 @@
     </scm>
 
     <properties>
-        <version.windup>6.1.0.Final</version.windup>
-        <version.windup-maven-plugin>6.1.0.Final</version.windup-maven-plugin>
+        <version.windup>6.1.1-SNAPSHOT</version.windup>
+        <version.windup-maven-plugin>6.1.1-SNAPSHOT</version.windup-maven-plugin>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
