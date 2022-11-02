@@ -8,7 +8,7 @@
 
     <groupId>org.jboss.windup.quickstarts</groupId>
     <artifactId>windup-ejb-beanutils-async</artifactId>
-    <version>6.1.0.Final</version>
+    <version>6.1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Windup Quickstart: ejb-beanutils-async</name>

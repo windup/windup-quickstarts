@@ -4,7 +4,7 @@
 
     <groupId>org.jboss.windup.quickstarts</groupId>
     <artifactId>windup-proprietary-javaee-servlet-rules-java</artifactId>
-    <version>6.1.0.Final</version>
+    <version>6.1.1-SNAPSHOT</version>
 
     <name>Windup Quickstart: Proprietary to Java EE Servlet Rules</name>
     <description>Windup Quickstart: Proprietary Servlet Annotations</description>
