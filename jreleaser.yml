@@ -1,0 +1,16 @@
+project:
+  description: Windup Migration and Modernization Tools
+  website: https://windup.github.io/
+  copyright: Copyright (C) 2022 Windup
+  license: EPL-1
+  authors:
+    - Windup Community
+
+release:
+  github:
+    owner: windup
+    overwrite: true
+    changelog:
+      formatted: ALWAYS
+      preset: 'conventional-commits'
+      format: '- {{commitShortHash}} {{commitTitle}}'

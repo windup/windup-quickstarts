@@ -1,0 +1,709 @@
+[INFO]  JReleaser 1.4.0
+------------------------------------------------------------
+jreleaser 1.4.0
+------------------------------------------------------------
+Build time:   2022-12-29 15:08:38Z
+Revision:     b977b66baed1e4761af054c5d747a0804f457252
+JVM:          17.0.5 (Azul Systems, Inc. 17.0.5+8-LTS)
+------------------------------------------------------------
+[INFO]  Configuring with jreleaser.yml
+[INFO]    - basedir set to /home/runner/work/windup-pipelines/windup-pipelines/repository
+[INFO]    - outputdir set to /home/runner/work/windup-pipelines/windup-pipelines/repository/out/jreleaser
+[INFO]  Reading configuration
+[DEBUG]   - basedir set to /home/runner/work/windup-pipelines/windup-pipelines/repository
+[DEBUG]   - baseOutputDirectory set to /home/runner/work/windup-pipelines/windup-pipelines/repository/out
+[DEBUG]   - outputDirectory set to /home/runner/work/windup-pipelines/windup-pipelines/repository/out/jreleaser
+[DEBUG]   - checksumDirectory set to /home/runner/work/windup-pipelines/windup-pipelines/repository/out/jreleaser/checksums
+[DEBUG]   - signaturesDirectory set to /home/runner/work/windup-pipelines/windup-pipelines/repository/out/jreleaser/signatures
+[DEBUG]   - prepareDirectory set to /home/runner/work/windup-pipelines/windup-pipelines/repository/out/jreleaser/prepare
+[DEBUG]   - packageDirectory set to /home/runner/work/windup-pipelines/windup-pipelines/repository/out/jreleaser/package
+[DEBUG]   - downloadDirectory set to /home/runner/work/windup-pipelines/windup-pipelines/repository/out/jreleaser/download
+[DEBUG]   - assembleDirectory set to /home/runner/work/windup-pipelines/windup-pipelines/repository/out/jreleaser/assemble
+[DEBUG]   - artifactsDirectory set to /home/runner/work/windup-pipelines/windup-pipelines/repository/out/jreleaser/artifacts
+[INFO]  git-root-search set to false
+[INFO]  Loading variables from /home/runner/.jreleaser/config.properties
+[WARN]  Variables source /home/runner/.jreleaser/config.properties does not exist
+[INFO]  Validating configuration
+[INFO]  Strict mode set to false
+[DEBUG] adjusting distributions with assemblies
+[DEBUG]   [validation] --== ASSEMBLE ==--
+[DEBUG]   [validation] hooks
+[DEBUG]   [validation] hooks.command
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] project
+[DEBUG]   [validation] download
+[DEBUG]   [validation] assemble
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] signing
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] release
+[DEBUG]   [validation] release.github
+[DEBUG]   [validation] checksum
+[DEBUG]   [validation] deploy
+[DEBUG]   [validation] deploy.maven
+[DEBUG]   [validation] upload
+[DEBUG]   [validation] announce
+[DEBUG]   [validation] - disabled
+[DEBUG]   [postvalidation] project
+[DEBUG]   [postvalidation] assemble
+[DEBUG]   [postvalidation] assemble.jpackage
+[DEBUG]   [resolution] assemble
+[DEBUG]   [validation] --== FULL ==--
+[DEBUG]   [validation] hooks
+[DEBUG]   [validation] hooks.command
+[DEBUG]   [validation] project
+[DEBUG]   [validation] download
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] assemble
+[DEBUG]   [validation] signing
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] release
+[DEBUG]   [validation] release.github
+[DEBUG]   [validation] checksum
+[DEBUG]   [validation] deploy
+[DEBUG]   [validation] deploy.maven
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] upload
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] packagers
+[DEBUG]   [validation] files
+[DEBUG]   [validation] announce
+[DEBUG]   [validation] announce.article
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.discussions
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.discord
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.discourse
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.gitter
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.googleChat
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.http
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.mail
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.mastodon
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.mattermost
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.sdkman
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.slack
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.teams
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.telegram
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.twitter
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.webhooks
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] announce.zulip
+[DEBUG]   [validation] - disabled
+[DEBUG]   [validation] - disabled
+[DEBUG]   [postvalidation] project
+[DEBUG]   [postvalidation] assemble
+[DEBUG]   [postvalidation] assemble.jpackage
+[DEBUG]   [postvalidation] distributions
+environment:
+ 
+hooks:
+    enabled: false
+    active: never
+    command:
+        enabled: false
+        active: never
+ 
+project:
+    name: windup-quickstarts
+    version: 6.1.1.Final
+    versionPattern: semver
+    snapshot:
+        enabled: false
+        pattern: .*-SNAPSHOT
+        label: early-access
+        fullChangelog: false
+    description: Windup Migration and Modernization Tools
+    license: EPL-1
+    copyright: Copyright (C) 2022 Windup
+    authors:
+        Windup Community
+    stereotype: none
+    links:
+        homepage: https://windup.github.io/
+        documentation: https://windup.github.io/
+        license: https://github.com/windup/windup-quickstarts/blob/releases/6.1.z/LICENSE
+        bugTracker: https://{{repoHost}}/{{repoOwner}}/{{repoName}}/issues
+        vcsBrowser: https://{{repoHost}}/{{repoOwner}}/{{repoName}}
+    extraProperties:
+        projectVersionMajor: 6
+        projectVersionMinor: 1
+        projectVersionPatch: 1
+        projectVersionNumber: 6.1.1
+        projectVersionTag: Final
+        projectVersionWithUnderscores: 6_1_1_Final
+        projectVersionWithDashes: 6-1-1-Final
+        projectVersionNumberWithUnderscores: 6_1_1
+        projectVersionNumberWithDashes: 6-1-1
+        projectEffectiveVersionWithUnderscores: 6_1_1_Final
+        projectEffectiveVersionWithDashes: 6-1-1-Final
+ 
+platform:
+ 
+release:
+    github:
+        enabled: true
+        host: github.com
+        owner: windup
+        name: windup-quickstarts
+        username: windup
+        token: ************
+        artifacts: true
+        files: true
+        checksums: true
+        signatures: true
+        repoUrl: https://{{repoHost}}/{{repoOwner}}/{{repoName}}
+        repoCloneUrl: https://{{repoHost}}/{{repoOwner}}/{{repoName}}.git
+        commitUrl: https://{{repoHost}}/{{repoOwner}}/{{repoName}}/commits
+        srcUrl: https://{{repoHost}}/{{repoOwner}}/{{repoName}}/blob/{{repoBranch}}
+        downloadUrl: https://{{repoHost}}/{{repoOwner}}/{{repoName}}/releases/download/{{tagName}}/{{artifactFile}}
+        releaseNotesUrl: https://{{repoHost}}/{{repoOwner}}/{{repoName}}/releases/tag/{{tagName}}
+        latestReleaseUrl: https://{{repoHost}}/{{repoOwner}}/{{repoName}}/releases/latest
+        issueTrackerUrl: https://{{repoHost}}/{{repoOwner}}/{{repoName}}/issues
+        tagName: 6.1.1.Final
+        releaseName: Release {{tagName}}
+        branch: releases/6.1.z
+        commitAuthor:
+            name: jreleaserbot
+            email: jreleaser@kordamp.org
+        sign: false
+        skipTag: false
+        skipRelease: false
+        overwrite: true
+        update:
+            enabled: false
+        apiEndpoint: https://api.github.com
+        connectTimeout: 20
+        readTimeout: 60
+        changelog:
+            enabled: true
+            append:
+                enabled: false
+            links: false
+            skipMergeCommits: false
+            sort: DESC
+            formatted: always
+            preset: conventional-commits
+            format: - {{commitShortHash}} {{commitTitle}}
+            categoryTitleFormat: ## {{categoryTitle}}
+            contributorsTitleFormat: ## Contributors
+            content: 
+## Changelog
+
+{{changelogChanges}}
+    {{changelogContributors}}
+            hide:
+            contributors:
+                enabled: true
+            categories:
+                category 0:
+                    key: merge
+                    title: 🔀 Merge
+                    labels:
+                        merge
+                    order: 0
+                category 1:
+                    key: features
+                    title: 🚀 Features
+                    labels:
+                        feat
+                    order: 10
+                category 2:
+                    key: fixes
+                    title: 🐛 Fixes
+                    labels:
+                        fix
+                    order: 20
+                category 3:
+                    key: changes
+                    title: 🔄️ Changes
+                    labels:
+                        revert
+                        style
+                        perf
+                        refactor
+                    order: 30
+                category 4:
+                    key: tasks
+                    title: 🧰 Tasks
+                    labels:
+                        chore
+                    order: 40
+                category 5:
+                    key: build
+                    title: 🛠  Build
+                    labels:
+                        test
+                        build
+                        ci
+                    order: 50
+                category 6:
+                    key: docs
+                    title: 📝 Documentation
+                    labels:
+                        docs
+                    order: 60
+            labelers:
+                labeler 0:
+                    label: merge
+                    title: Merge pull
+                    order: 0
+                labeler 1:
+                    label: merge
+                    title: Merge branch
+                    order: 5
+                labeler 2:
+                    label: build
+                    title: regex:^(?:build(?:\(.*\))?!?):\s.*
+                    order: 10
+                labeler 3:
+                    label: chore
+                    title: regex:^(?:chore(?:\(.*\))?!?):\s.*
+                    order: 20
+                labeler 4:
+                    label: ci
+                    title: regex:^(?:ci(?:\(.*\))?!?):\s.*
+                    order: 30
+                labeler 5:
+                    label: docs
+                    title: regex:^(?:docs(?:\(.*\))?!?):\s.*
+                    order: 40
+                labeler 6:
+                    label: feat
+                    title: regex:^(?:feat(?:\(.*\))?!?):\s.*
+                    order: 50
+                labeler 7:
+                    label: fix
+                    title: regex:^(?:fix(?:\(.*\))?!?):\s.*
+                    order: 60
+                labeler 8:
+                    label: perf
+                    title: regex:^(?:perf(?:\(.*\))?!?):\s.*
+                    order: 70
+                labeler 9:
+                    label: refactor
+                    title: regex:^(?:refactor(?:\(.*\))?!?):\s.*
+                    order: 80
+                labeler 10:
+                    label: revert
+                    title: regex:^(?:revert(?:\(.*\))?!?):\s.*
+                    order: 90
+                labeler 11:
+                    label: style
+                    title: regex:^(?:style(?:\(.*\))?!?):\s.*
+                    order: 100
+                labeler 12:
+                    label: test
+                    title: regex:^(?:test(?:\(.*\))?!?):\s.*
+                    order: 110
+        milestone:
+            name: {{tagName}}
+            close: true
+        issues:
+            enabled: false
+            comment: Released in {{tagName}} -> {{releaseNotesUrl}}
+            label:
+                name: released
+                color: #FF0000
+                description: Issue has been released
+        prerelease:
+            enabled: false
+            pattern: .*(?:Alpha|alpha|Beta|beta)[0-9]
+        draft: false
+        releaseNotes:
+            enabled: false
+ 
+checksum:
+    name: checksums.txt
+    individual: false
+    algorithms:
+        SHA_256
+    files: true
+ 
+signing:
+    enabled: false
+    active: never
+    armored: false
+    artifacts: true
+    files: true
+    checksums: true
+    passphrase: **unset**
+    publicKey: **unset**
+    secretKey: **unset**
+ 
+announce:
+    enabled: false
+    active: never
+    article:
+        enabled: false
+        active: never
+        commitAuthor:
+        repository:
+            enabled: false
+            name: article
+            token: **unset**
+    discord:
+        enabled: false
+        active: never
+        webhook: **unset**
+    discourse:
+        enabled: false
+        active: never
+        apiKey: **unset**
+        username: **unset**
+    discussions:
+        enabled: false
+        active: never
+    gitter:
+        enabled: false
+        active: never
+        webhook: **unset**
+    googlechat:
+        enabled: false
+        active: never
+        webhook: **unset**
+    smtp:
+        enabled: false
+        active: never
+        auth: false
+        password: **unset**
+    mastodon:
+        enabled: false
+        active: never
+        accessToken: **unset**
+    mattermost:
+        enabled: false
+        active: never
+        webhook: **unset**
+        structuredMessage: true
+    sdkman:
+        enabled: false
+        active: never
+        consumerKey: **unset**
+        consumerToken: **unset**
+    slack:
+        enabled: false
+        active: never
+        webhook: **unset**
+        token: **unset**
+    teams:
+        enabled: false
+        active: never
+        webhook: **unset**
+    telegram:
+        enabled: false
+        active: never
+        token: **unset**
+        chatId: **unset**
+    twitter:
+        enabled: false
+        active: never
+        consumerKey: **unset**
+        consumerSecret: **unset**
+        accessToken: **unset**
+        accessTokenSecret: **unset**
+    zulip:
+        enabled: false
+        active: never
+        apiKey: **unset**
+ 
+packagers:
+    appimage:
+        enabled: false
+        active: never
+        continueOnError: false
+        commitAuthor:
+            name: jreleaserbot
+            email: jreleaser@kordamp.org
+        developerName: Windup Community
+        requiresTerminal: false
+        repository:
+            enabled: true
+            active: release
+            owner: windup
+            name: appimage
+            tagName: 6.1.1.Final
+            branch: HEAD
+            username: windup
+            token: ************
+    asdf:
+        enabled: false
+        active: never
+        continueOnError: false
+        commitAuthor:
+            name: jreleaserbot
+            email: jreleaser@kordamp.org
+        repository:
+            enabled: true
+            active: release
+            owner: windup
+            name: asdf
+            tagName: 6.1.1.Final
+            branch: HEAD
+            username: windup
+            token: ************
+    brew:
+        enabled: false
+        active: never
+        continueOnError: false
+        commitAuthor:
+            name: jreleaserbot
+            email: jreleaser@kordamp.org
+        multiPlatform: false
+        tap:
+            enabled: true
+            active: release
+            owner: windup
+            name: homebrew-tap
+            tagName: 6.1.1.Final
+            branch: HEAD
+            username: windup
+            token: ************
+        cask:
+            enabled: false
+    chocolatey:
+        enabled: false
+        active: never
+        continueOnError: false
+        commitAuthor:
+            name: jreleaserbot
+            email: jreleaser@kordamp.org
+        apiKey: **unset**
+        remoteBuild: false
+        bucket:
+            enabled: true
+            active: release
+            owner: windup
+            name: chocolatey-bucket
+            tagName: 6.1.1.Final
+            branch: HEAD
+            username: windup
+            token: ************
+    docker:
+        enabled: false
+        active: never
+        useLocalArtifact: true
+        buildx:
+            enabled: false
+        commitAuthor:
+            name: jreleaserbot
+            email: jreleaser@kordamp.org
+        repository:
+            enabled: true
+            active: release
+            owner: windup
+            name: docker
+            tagName: 6.1.1.Final
+            branch: HEAD
+            username: windup
+            token: ************
+            versionedSubfolders: false
+        continueOnError: false
+    flatpak:
+        enabled: false
+        active: never
+        continueOnError: false
+        commitAuthor:
+            name: jreleaserbot
+            email: jreleaser@kordamp.org
+        developerName: Windup Community
+        repository:
+            enabled: true
+            active: release
+            owner: windup
+            name: flatpak
+            tagName: 6.1.1.Final
+            branch: HEAD
+            username: windup
+            token: ************
+    gofish:
+        enabled: false
+        active: never
+        continueOnError: false
+        commitAuthor:
+            name: jreleaserbot
+            email: jreleaser@kordamp.org
+        repository:
+            enabled: true
+            active: release
+            owner: windup
+            name: windup-fish-food
+            tagName: 6.1.1.Final
+            branch: HEAD
+            username: windup
+            token: ************
+    jbang:
+        enabled: false
+        active: never
+        continueOnError: false
+        commitAuthor:
+            name: jreleaserbot
+            email: jreleaser@kordamp.org
+        catalog:
+            enabled: true
+            active: always
+            owner: windup
+            name: jbang-catalog
+            tagName: 6.1.1.Final
+            branch: HEAD
+            username: windup
+            token: ************
+    macports:
+        enabled: false
+        active: never
+        continueOnError: false
+        commitAuthor:
+            name: jreleaserbot
+            email: jreleaser@kordamp.org
+        repository:
+            enabled: true
+            active: release
+            owner: windup
+            name: macports
+            tagName: 6.1.1.Final
+            branch: HEAD
+            username: windup
+            token: ************
+    scoop:
+        enabled: false
+        active: never
+        continueOnError: false
+        commitAuthor:
+            name: jreleaserbot
+            email: jreleaser@kordamp.org
+        bucket:
+            enabled: true
+            active: release
+            owner: windup
+            name: scoop-windup
+            tagName: 6.1.1.Final
+            branch: HEAD
+            username: windup
+            token: ************
+    sdkman:
+        enabled: false
+        active: never
+        continueOnError: false
+        connectTimeout: 20
+        readTimeout: 60
+        consumerKey: **unset**
+        consumerToken: **unset**
+    snap:
+        enabled: false
+        active: never
+        continueOnError: false
+        commitAuthor:
+            name: jreleaserbot
+            email: jreleaser@kordamp.org
+        base: core20
+        grade: stable
+        confinement: strict
+        remoteBuild: false
+        snap:
+            enabled: true
+            active: release
+            owner: windup
+            name: snap
+            tagName: 6.1.1.Final
+            branch: HEAD
+            username: windup
+            token: ************
+    spec:
+        enabled: false
+        active: never
+        continueOnError: false
+        commitAuthor:
+            name: jreleaserbot
+            email: jreleaser@kordamp.org
+        repository:
+            enabled: true
+            active: release
+            owner: windup
+            name: windup-spec
+            tagName: 6.1.1.Final
+            branch: HEAD
+            username: windup
+            token: ************
+ 
+download:
+    enabled: false
+    active: never
+ 
+assemble:
+    enabled: false
+    active: never
+ 
+deploy:
+    enabled: false
+    active: never
+    maven:
+        enabled: false
+        active: never
+ 
+upload:
+    enabled: false
+    active: never
+ 
+[INFO]  Project version set to 6.1.1.Final
+[INFO]  Release is not snapshot
+[INFO]  Timestamp is 2023-01-09T15:23:52.155435029Z
+[INFO]  HEAD is at 1bf2055
+[INFO]  Platform is linux-x86_64
+[DEBUG] loading extension default-jreleaser-mustache:jreleaser.shadow.org.jreleaser.extensions.internal.mustache.DefaultMustacheExtension
+[DEBUG] adding jreleaser.shadow.org.jreleaser.extensions.internal.mustache.DefaultMustacheExtensionPoint from default-jreleaser-mustache extension
+[INFO]  dry-run set to false
+[INFO]  Generating changelog
+[DEBUG] resolving commits
+[WARN]  Cannot parse version 'Beta5'
+[DEBUG] looking for tag that matches '6.1.1.Final'
+[DEBUG] looking for tags that match '6.1.1.Final', excluding '6.1.1.Final'
+[DEBUG] found tag 6.1.0.Final
+[DEBUG] sorting commits DESC
+[INFO]  Storing changelog: out/jreleaser/release/CHANGELOG.md
+[DEBUG] ## Changelog
+
+- 1bf2055 🏁 Releasing version 6.1.1.Final
+- 324cf90 Back to development
+- 74be5a0 ⬆️  Next version 6.1.1-SNAPSHOT
+
+
+## Contributors
+We'd like to thank the following people for their contributions:
+Windup, windup
+[INFO]  Calculating checksums
+[INFO]    [checksum] No files configured for checksum. Skipping
+[INFO]  Signing files
+[INFO]    [sign] Signing is not enabled. Skipping
+[INFO]  Deploying is not enabled. Skipping
+[INFO]  Uploading is not enabled. Skipping
+[INFO]  Releasing to https://github.com/windup/windup-quickstarts
+[DEBUG] fetching all branches on windup/windup-quickstarts
+[DEBUG] looking up release with tag 6.1.1.Final at repository windup/windup-quickstarts
+[DEBUG] fetching release on windup/windup-quickstarts with tag 6.1.1.Final
+[DEBUG] release 6.1.1.Final does not exist
+[DEBUG] creating release 6.1.1.Final
+[DEBUG] tagging local repository with 6.1.1.Final
+[DEBUG] creating release on windup/windup-quickstarts with tag 6.1.1.Final
+[DEBUG] lookup open milestone '6.1.1.Final' on windup/windup-quickstarts
+[DEBUG] lookup repository windup/windup-quickstarts
+[DEBUG] No active distributions for preparing. Skipping
+[DEBUG] No active distributions for packaging. Skipping
+[DEBUG] No active distributions for publishing. Skipping
+[INFO]  Announcing release
+[INFO]  Announcing is not enabled. Skipping
+[INFO]  Writing output properties to out/jreleaser/output.properties
+[INFO]  JReleaser succeeded after 3.613 s
