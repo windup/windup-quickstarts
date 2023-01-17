@@ -120,7 +120,7 @@ hooks:
  
 project:
     name: windup-quickstarts
-    version: 6.1.1.Final
+    version: 6.1.2.Final
     versionPattern: semver
     snapshot:
         enabled: false
@@ -142,15 +142,15 @@ project:
     extraProperties:
         projectVersionMajor: 6
         projectVersionMinor: 1
-        projectVersionPatch: 1
-        projectVersionNumber: 6.1.1
+        projectVersionPatch: 2
+        projectVersionNumber: 6.1.2
         projectVersionTag: Final
-        projectVersionWithUnderscores: 6_1_1_Final
-        projectVersionWithDashes: 6-1-1-Final
-        projectVersionNumberWithUnderscores: 6_1_1
-        projectVersionNumberWithDashes: 6-1-1
-        projectEffectiveVersionWithUnderscores: 6_1_1_Final
-        projectEffectiveVersionWithDashes: 6-1-1-Final
+        projectVersionWithUnderscores: 6_1_2_Final
+        projectVersionWithDashes: 6-1-2-Final
+        projectVersionNumberWithUnderscores: 6_1_2
+        projectVersionNumberWithDashes: 6-1-2
+        projectEffectiveVersionWithUnderscores: 6_1_2_Final
+        projectEffectiveVersionWithDashes: 6-1-2-Final
  
 platform:
  
@@ -174,7 +174,7 @@ release:
         releaseNotesUrl: https://{{repoHost}}/{{repoOwner}}/{{repoName}}/releases/tag/{{tagName}}
         latestReleaseUrl: https://{{repoHost}}/{{repoOwner}}/{{repoName}}/releases/latest
         issueTrackerUrl: https://{{repoHost}}/{{repoOwner}}/{{repoName}}/issues
-        tagName: 6.1.1.Final
+        tagName: 6.1.2.Final
         releaseName: Release {{tagName}}
         branch: releases/6.1.z
         commitAuthor:
@@ -436,7 +436,7 @@ packagers:
             active: release
             owner: windup
             name: appimage
-            tagName: 6.1.1.Final
+            tagName: 6.1.2.Final
             branch: HEAD
             username: windup
             token: ************
@@ -452,7 +452,7 @@ packagers:
             active: release
             owner: windup
             name: asdf
-            tagName: 6.1.1.Final
+            tagName: 6.1.2.Final
             branch: HEAD
             username: windup
             token: ************
@@ -469,7 +469,7 @@ packagers:
             active: release
             owner: windup
             name: homebrew-tap
-            tagName: 6.1.1.Final
+            tagName: 6.1.2.Final
             branch: HEAD
             username: windup
             token: ************
@@ -489,7 +489,7 @@ packagers:
             active: release
             owner: windup
             name: chocolatey-bucket
-            tagName: 6.1.1.Final
+            tagName: 6.1.2.Final
             branch: HEAD
             username: windup
             token: ************
@@ -507,7 +507,7 @@ packagers:
             active: release
             owner: windup
             name: docker
-            tagName: 6.1.1.Final
+            tagName: 6.1.2.Final
             branch: HEAD
             username: windup
             token: ************
@@ -526,7 +526,7 @@ packagers:
             active: release
             owner: windup
             name: flatpak
-            tagName: 6.1.1.Final
+            tagName: 6.1.2.Final
             branch: HEAD
             username: windup
             token: ************
@@ -542,7 +542,7 @@ packagers:
             active: release
             owner: windup
             name: windup-fish-food
-            tagName: 6.1.1.Final
+            tagName: 6.1.2.Final
             branch: HEAD
             username: windup
             token: ************
@@ -558,7 +558,7 @@ packagers:
             active: always
             owner: windup
             name: jbang-catalog
-            tagName: 6.1.1.Final
+            tagName: 6.1.2.Final
             branch: HEAD
             username: windup
             token: ************
@@ -574,7 +574,7 @@ packagers:
             active: release
             owner: windup
             name: macports
-            tagName: 6.1.1.Final
+            tagName: 6.1.2.Final
             branch: HEAD
             username: windup
             token: ************
@@ -590,7 +590,7 @@ packagers:
             active: release
             owner: windup
             name: scoop-windup
-            tagName: 6.1.1.Final
+            tagName: 6.1.2.Final
             branch: HEAD
             username: windup
             token: ************
@@ -618,7 +618,7 @@ packagers:
             active: release
             owner: windup
             name: snap
-            tagName: 6.1.1.Final
+            tagName: 6.1.2.Final
             branch: HEAD
             username: windup
             token: ************
@@ -634,7 +634,7 @@ packagers:
             active: release
             owner: windup
             name: windup-spec
-            tagName: 6.1.1.Final
+            tagName: 6.1.2.Final
             branch: HEAD
             username: windup
             token: ************
@@ -658,10 +658,10 @@ upload:
     enabled: false
     active: never
  
-[INFO]  Project version set to 6.1.1.Final
+[INFO]  Project version set to 6.1.2.Final
 [INFO]  Release is not snapshot
-[INFO]  Timestamp is 2023-01-09T15:23:52.155435029Z
-[INFO]  HEAD is at 1bf2055
+[INFO]  Timestamp is 2023-01-17T12:06:16.299569799Z
+[INFO]  HEAD is at 255d97b
 [INFO]  Platform is linux-x86_64
 [DEBUG] loading extension default-jreleaser-mustache:jreleaser.shadow.org.jreleaser.extensions.internal.mustache.DefaultMustacheExtension
 [DEBUG] adding jreleaser.shadow.org.jreleaser.extensions.internal.mustache.DefaultMustacheExtensionPoint from default-jreleaser-mustache extension
@@ -669,21 +669,20 @@ upload:
 [INFO]  Generating changelog
 [DEBUG] resolving commits
 [WARN]  Cannot parse version 'Beta5'
-[DEBUG] looking for tag that matches '6.1.1.Final'
-[DEBUG] looking for tags that match '6.1.1.Final', excluding '6.1.1.Final'
-[DEBUG] found tag 6.1.0.Final
+[DEBUG] looking for tag that matches '6.1.2.Final'
+[DEBUG] looking for tags that match '6.1.2.Final', excluding '6.1.2.Final'
+[DEBUG] found tag 6.1.1.Final
 [DEBUG] sorting commits DESC
 [INFO]  Storing changelog: out/jreleaser/release/CHANGELOG.md
 [DEBUG] ## Changelog
 
-- 1bf2055 🏁 Releasing version 6.1.1.Final
-- 324cf90 Back to development
-- 74be5a0 ⬆️  Next version 6.1.1-SNAPSHOT
+- 255d97b 🏁 Releasing version 6.1.2.Final
+- 41a279a ⬆️ Next version 6.1.2-SNAPSHOT
 
 
 ## Contributors
 We'd like to thank the following people for their contributions:
-Windup, windup
+windup
 [INFO]  Calculating checksums
 [INFO]    [checksum] No files configured for checksum. Skipping
 [INFO]  Signing files
@@ -692,13 +691,13 @@ Windup, windup
 [INFO]  Uploading is not enabled. Skipping
 [INFO]  Releasing to https://github.com/windup/windup-quickstarts
 [DEBUG] fetching all branches on windup/windup-quickstarts
-[DEBUG] looking up release with tag 6.1.1.Final at repository windup/windup-quickstarts
-[DEBUG] fetching release on windup/windup-quickstarts with tag 6.1.1.Final
-[DEBUG] release 6.1.1.Final does not exist
-[DEBUG] creating release 6.1.1.Final
-[DEBUG] tagging local repository with 6.1.1.Final
-[DEBUG] creating release on windup/windup-quickstarts with tag 6.1.1.Final
-[DEBUG] lookup open milestone '6.1.1.Final' on windup/windup-quickstarts
+[DEBUG] looking up release with tag 6.1.2.Final at repository windup/windup-quickstarts
+[DEBUG] fetching release on windup/windup-quickstarts with tag 6.1.2.Final
+[DEBUG] release 6.1.2.Final does not exist
+[DEBUG] creating release 6.1.2.Final
+[DEBUG] tagging local repository with 6.1.2.Final
+[DEBUG] creating release on windup/windup-quickstarts with tag 6.1.2.Final
+[DEBUG] lookup open milestone '6.1.2.Final' on windup/windup-quickstarts
 [DEBUG] lookup repository windup/windup-quickstarts
 [DEBUG] No active distributions for preparing. Skipping
 [DEBUG] No active distributions for packaging. Skipping
@@ -706,4 +705,4 @@ Windup, windup
 [INFO]  Announcing release
 [INFO]  Announcing is not enabled. Skipping
 [INFO]  Writing output properties to out/jreleaser/output.properties
-[INFO]  JReleaser succeeded after 3.613 s
+[INFO]  JReleaser succeeded after 2.850 s
