@@ -4,7 +4,7 @@
 
     <groupId>org.jboss.windup.quickstarts</groupId>
     <artifactId>windup-ejb-beanutils-async-rules-java</artifactId>
-    <version>6.1.2-SNAPSHOT</version>
+    <version>6.1.2.Final</version>
     <name>Windup Quickstart: ejb-beanutils-async-rules-java</name>
     <description>Windup Quickstart: Rule That Detects Seam Asynchronous Annotation in Remote EJBs</description>
 
