@@ -21,6 +21,18 @@ jobs:
           repository: windup/windup
           path: windup
           ref: ${{ github.base_ref }}
+      - name: Checkout windup-maven-plugin repo
+        uses: actions/checkout@v3
+        with:
+          repository: windup/windup-maven-plugin
+          path: windup-maven-plugin
+          ref: ${{ github.base_ref }}
+      - name: Checkout windup-rulesets repo
+        uses: actions/checkout@v3
+        with:
+          repository: windup/windup-rulesets
+          path: windup-rulesets
+          ref: ${{ github.base_ref }}
       - name: Checkout windup-quickstarts repo
         uses: actions/checkout@v3
         with:
@@ -34,8 +46,9 @@ jobs:
           cache: 'maven'
       - name: Build Windup on JDK 11
         run: mvn -B clean install -DskipTests -f windup
+      - name: Build Windup Rules on JDK 11
+        run: mvn -B clean install -DskipTests -f windup-rulesets
+      - name: Build Windup Maven Plugin on JDK 11
+        run: mvn -B clean install -DskipTests -f windup-maven-plugin
       - name: Build on JDK 11
         run: mvn -B clean install -s ./windup-quickstarts/settings.xml -DskipTests -f windup-quickstarts && mvn -B clean install -s ./windup-quickstarts/settings.xml -f windup-quickstarts
-        
-        
-        
