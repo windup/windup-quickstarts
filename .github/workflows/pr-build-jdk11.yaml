@@ -20,7 +20,8 @@ jobs:
         with:
           repository: windup/windup
           path: windup
-      - name: Checkout windup repo
+          ref: ${{ github.base_ref }}
+      - name: Checkout windup-quickstarts repo
         uses: actions/checkout@v3
         with:
           path: windup-quickstarts
