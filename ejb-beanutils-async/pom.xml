@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
-        <version.windup>6.1.3.Final</version.windup>
+        <version.windup>6.1.4-SNAPSHOT</version.windup>
     </properties>
 
     <groupId>org.jboss.windup.quickstarts</groupId>
     <artifactId>windup-ejb-beanutils-async</artifactId>
-    <version>6.1.3.Final</version>
+    <version>6.1.4-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Windup Quickstart: ejb-beanutils-async</name>
