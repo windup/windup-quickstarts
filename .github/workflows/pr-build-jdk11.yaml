@@ -1,4 +1,4 @@
-name: Windup Quickstarts PR builder for JDK11
+name: Windup Quickstarts PR builder
 
 on:
   pull_request:
@@ -13,6 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+        java-version: [ 11, 17 ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout windup repo
@@ -51,4 +52,13 @@ jobs:
       - name: Build Windup Maven Plugin on JDK 11
         run: mvn -B clean install -DskipTests -f windup-maven-plugin
       - name: Build on JDK 11
-        run: mvn -B clean install -s ./windup-quickstarts/settings.xml -DskipTests -f windup-quickstarts && mvn -B clean install -s ./windup-quickstarts/settings.xml -f windup-quickstarts
+        run: mvn -B clean install -s ./windup-quickstarts/settings.xml -DskipTests -f windup-quickstarts
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'temurin'
+          java-package: jdk
+          cache: 'maven'
+      - name: Test
+        run: export MAVEN_OPTS="--add-modules=java.se  --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.util.stream=ALL-UNNAMED" ; mvn -B clean install -s ./windup-quickstarts/settings.xml -f windup-quickstarts

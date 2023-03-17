@@ -137,9 +137,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>3.0.0</version>
                 <configuration>
-                    <argLine>-Xms512m -Xmx2048m -XX:MaxPermSize=768m -XX:ReservedCodeCacheSize=128m</argLine>
+                    <argLine>-Xms512m -Xmx2048m --add-opens java.base/java.lang=ALL-UNNAMED</argLine>
                     <reuseForks>false</reuseForks>
                 </configuration>
             </plugin>
