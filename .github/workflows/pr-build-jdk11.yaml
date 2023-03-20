@@ -60,5 +60,16 @@ jobs:
           distribution: 'temurin'
           java-package: jdk
           cache: 'maven'
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v4.5
+        with:
+          maven-version: 3.8.7
       - name: Test
-        run: export MAVEN_OPTS="--add-modules=java.se  --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.util.stream=ALL-UNNAMED" ; mvn -B clean install -s ./windup-quickstarts/settings.xml -f windup-quickstarts
+        run:   |
+          if [ "$RUNNER_OS" == "Windows" ]; then
+               SET MAVEN_OPTS="--add-modules=java.se  --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.util.stream=ALL-UNNAMED"
+          else
+               export MAVEN_OPTS="--add-modules=java.se  --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.util.stream=ALL-UNNAMED"
+          fi
+          mvn -B clean install -s ./windup-quickstarts/settings.xml -f windup-quickstarts
+        shell: bash
