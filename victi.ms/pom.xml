@@ -4,7 +4,7 @@
 
     <groupId>org.jboss.windup.quickstarts</groupId>
     <artifactId>windup-victims</artifactId>
-    <version>6.3.1-SNAPSHOT</version>
+    <version>6.3.1.Final</version>
 
     <name>Windup Quickstart: Victi.ms Ruleset</name>
 
@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <version.windup>6.3.1-SNAPSHOT</version.windup>
+        <version.windup>6.3.1.Final</version.windup>
     </properties>
 
     <dependencyManagement>
