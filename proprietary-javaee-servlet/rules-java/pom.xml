@@ -4,7 +4,7 @@
 
     <groupId>org.jboss.windup.quickstarts</groupId>
     <artifactId>windup-proprietary-javaee-servlet-rules-java</artifactId>
-    <version>6.3.6-SNAPSHOT</version>
+    <version>6.3.6.Final</version>
 
     <name>Windup Quickstart: Proprietary to Java EE Servlet Rules</name>
     <description>Windup Quickstart: Proprietary Servlet Annotations</description>
@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <version.windup>6.3.6-SNAPSHOT</version.windup>
+        <version.windup>6.3.6.Final</version.windup>
     </properties>
 
     <dependencyManagement>
